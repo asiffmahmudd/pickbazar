@@ -7,6 +7,11 @@
     cursor: pointer;
 }
 
+.grocery{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
 .grocery .card .btn{
     height: 36px;
     border-radius: 6px;
@@ -50,6 +55,8 @@
     margin: 0px;
     -webkit-box-flex: 1;
     flex-grow: 1;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .grocery .card .btn .btn-plus-icon{
@@ -112,4 +119,19 @@
     height: 100%;
     padding: 10px;
     cursor: pointer;
+}
+
+@media (max-width: 565px){
+    .grocery .card .btn{
+        height: 60px;
+    }
+    .grocery .card .btn .btn-plus-icon{
+        height: 60px;
+    }
+    .counter{
+        height: 60px;
+    }
+    .counter-number{
+        font-size: 20px;
+    }
 }

@@ -1,0 +1,15 @@
+header nav ul form input, header nav ul form{
+    background: rgb(247, 247, 247);
+}
+
+header nav ul form input:focus-visible{
+    outline: none;
+}
+
+header nav ul form input::placeholder{
+    font-weight: 700;
+}
+
+header nav ul form input{
+    width: 94%;
+}

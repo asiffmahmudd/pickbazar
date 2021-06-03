@@ -25,7 +25,7 @@ const GroceryItem = ({product}) => {
 
     return (
         <div className="grocery mt-4 col-md-3">
-            <div className="card">
+            <div className="card shadow-sm">
                 <img className="card-img-top" src={product.img} alt="" />
                 <div className="card-body">
                     <h5 className="card-title">$1.5</h5>

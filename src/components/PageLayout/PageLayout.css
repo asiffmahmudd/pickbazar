@@ -1,0 +1,15 @@
+.sidebar-container{
+    padding-right: 0px !important;
+}
+
+@media (min-width: 991px){
+    .product-container{
+        padding-right: 2.5rem !important;
+    }
+}
+
+@media (max-width: 990px){
+    .row{
+        margin: 0 !important;
+    }
+}

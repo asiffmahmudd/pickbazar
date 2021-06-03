@@ -1,12 +1,23 @@
 body{
   background-color: rgb(247, 247, 247) !important;
+  font-family: 'Lato', sans-serif !important;
 }
 
 .app{
 }
 
-.row{
-  margin:0 !important;
+.theme-text{
+  color: #008d71 !important;
+}
+
+.bg-theme{
+  background: #008d71 !important;
+}
+
+.btn-theme{
+  background: #008d71 !important;
+  color: white !important;
+  font-weight: 800 !important;
 }
 
 .sidebar-container{
