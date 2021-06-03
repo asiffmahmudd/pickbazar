@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import Grocery from './components/Grocery/Grocery';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="row justify-content-center">
+        <div className="col-lg-3 sidebar-container">
+          <Sidebar></Sidebar>
+        </div>
+        <div className="col-lg-9 product-container justify-content-center">
+          <Grocery></Grocery>
+        </div>
+      </div>
+      
+      
+      
+      
     </div>
   );
 }
