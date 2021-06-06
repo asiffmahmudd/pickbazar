@@ -1,0 +1,17 @@
+.cart{
+    background-color: #009e7f;
+    position: fixed;
+    right: 0;
+    top: 43%;
+    color: white;
+    font-weight: 900;
+}
+
+.cart .item-count{
+   font-size: 12px;
+}
+
+.cart .price{
+    color: #009e7f;
+    font-size: 12px;
+}

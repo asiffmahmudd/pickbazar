@@ -3,6 +3,7 @@ import GroceryItem from './GroceryItem/GroceryItem';
 import lime from '../../img/GreenLimes_jrodle.jpg';
 import lemon from '../../img/Yellow_Limes_y0lbyo.jpg'
 import PageLayout from '../PageLayout/PageLayout';
+import Cart from '../Cart/Cart';
 
 const products = [
     {
@@ -64,6 +65,7 @@ const Grocery = () => {
             products.map((product,index) => <GroceryItem key={index} product={product}></GroceryItem>)
           }
         </div>
+        <Cart></Cart>
       </PageLayout>
     );
 };
