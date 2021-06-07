@@ -9,10 +9,10 @@ const CartVoucher = () => {
                 show &&
                 <div className="voucher-input-container">
                     <form>
-                        <div class="form-group">
+                        <div className="form-group">
                             <input type="text" className="form-control shadow-sm" id="code" aria-describedby="code" placeholder="Enter voucher code here" />
                         </div>
-                        <button type="submit" class="btn">Apply</button>
+                        <button type="submit" className="btn">Apply</button>
                     </form>
                 </div>
             }      

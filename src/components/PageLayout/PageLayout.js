@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import './PageLayout.css'
+import './PageLayout.css';
 
 const PageLayout = ({children}) => {
     return (
         <div>
             <Header></Header>
-            <div className="container-fluid">
+            <div className="container-fluid pb-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-3 sidebar-container">
                         <Sidebar></Sidebar>

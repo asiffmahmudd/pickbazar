@@ -3,6 +3,7 @@
     position: fixed;
     right: 0;
     top: 43%;
+    z-index: 1;
     color: white;
     font-weight: 900;
     padding: 1rem;
@@ -21,6 +22,7 @@
 
 .cart-expanded{
     height: 100vh;
+    z-index: 1;
     background-color: white;
     width: 26rem;
     position: fixed;

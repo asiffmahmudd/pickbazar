@@ -1,48 +1,52 @@
 import React from 'react';
 import './Sidebar.css';
-import { faAppleAlt, faFish, faCoffee, faBone, faHome, faEgg, faHamburger, faWineGlassAlt, faMagic, faBreadSlice } from '@fortawesome/free-solid-svg-icons'
+// import { faAppleAlt, faFish, faCoffee, faBone, faHome, faEgg, faHamburger, faWineGlassAlt, faMagic, faBreadSlice } from '@fortawesome/free-solid-svg-icons'
 import SidebarItem from './SidebarItem/SidebarItem';
+import { GiFruitBowl, GiMeat, GiMilkCarton, GiRawEgg, GiMirrorMirror } from "react-icons/gi";
+import { FiCoffee } from "react-icons/fi";
+import { BiBone, BiHome, BiDish, BiDrink } from "react-icons/bi";
+
 
 const categories =[
     {
         name: "Fruits & Vegetables",
-        icon: faAppleAlt
+        icon: <GiFruitBowl size={40}></GiFruitBowl>
     },
     {
         name: "Meat & Fish",
-        icon: faFish
+        icon: <GiMeat size={40}></GiMeat>
     },
     {
         name: "Snacks",
-        icon: faCoffee
+        icon: <FiCoffee size={40}></FiCoffee>
     },
     {
         name: "Pet Care",
-        icon: faBone
+        icon: <BiBone size={40}></BiBone>
     },
     {
         name: "Home & Cleaning",
-        icon: faHome
+        icon: <BiHome size={40}></BiHome>
     },
     {
         name: "Dairy",
-        icon: faEgg
+        icon: <GiMilkCarton size={40}></GiMilkCarton>
     },
     {
         name: "Cooking",
-        icon: faBreadSlice
+        icon: <BiDish size={40}></BiDish>
     },
     {
         name: "Breakfast",
-        icon: faHamburger
+        icon: <GiRawEgg size={40}></GiRawEgg>
     },
     {
         name: "Beverage",
-        icon: faWineGlassAlt
+        icon: <BiDrink size={40}></BiDrink>
     },
     {
         name: "Beauty & Health",
-        icon: faMagic
+        icon: <GiMirrorMirror size={40}></GiMirrorMirror>
     }
 ]
 
