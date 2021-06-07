@@ -16,7 +16,7 @@ const Header = () => {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto col-lg-8">
-                            <form class="form-inline rounded p-2 w-100">
+                            <form className="form-inline rounded p-2 w-100">
                                 <AiOutlineSearch size={25}></AiOutlineSearch>
                                 <input className="border-0 ml-1" type="search" placeholder="Search your products from here" aria-label="Search" />
                             </form>

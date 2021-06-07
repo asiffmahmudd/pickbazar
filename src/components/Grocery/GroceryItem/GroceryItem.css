@@ -120,8 +120,10 @@
     cursor: pointer;
 }
 
+
+
 @media (max-width: 565px){
-    .grocery .card .btn{
+    /* .grocery .card .btn{
         height: 60px;
     }
     .grocery .card .btn .btn-plus-icon{
@@ -132,5 +134,5 @@
     }
     .counter-number{
         font-size: 16;
-    }
+    } */
 }

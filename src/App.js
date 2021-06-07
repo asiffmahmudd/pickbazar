@@ -5,14 +5,18 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { store } from './Redux/CartStore';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Grocery} />
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Grocery} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
 

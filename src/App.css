@@ -6,6 +6,10 @@ body{
 .app{
 }
 
+.hover-pointer:hover{
+  cursor: pointer;
+}
+
 .theme-text{
   color: #008d71 !important;
 }

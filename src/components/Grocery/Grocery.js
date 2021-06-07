@@ -7,53 +7,77 @@ import Cart from '../Cart/Cart';
 
 const products = [
     {
+      id:1,
       img: lime,
-      name: "Lime"
+      name: "Lime",
+      price: 1.2
     },
     {
+      id:2,
       img: lemon,
-      name: "Lemon"
+      name: "Lemon",
+      price: 1.2
     },
     {
-        img: lime,
-        name: "Lime"
-      },
-      {
-        img: lemon,
-        name: "Lemon"
-      },
-      {
-        img: lime,
-        name: "Lime"
-      },
-      {
-        img: lemon,
-        name: "Lemon"
-      },
-      {
-        img: lime,
-        name: "Lime"
-      },
-      {
-        img: lemon,
-        name: "Lemon"
-      },
-      {
-        img: lime,
-        name: "Lime"
-      },
-      {
-        img: lemon,
-        name: "Lemon"
-      },
-      {
-        img: lime,
-        name: "Lime"
-      },
-      {
-        img: lemon,
-        name: "Lemon"
-      },
+      id:3,
+      img: lime,
+      name: "Lime",
+      price: 1.2
+    },
+    {
+      id:4,
+      img: lemon,
+      name: "Lemon",
+      price: 1.2
+    },
+    {
+      id:5,
+      img: lime,
+      name: "Lime",
+      price: 1.2
+    },
+    {
+      id:6,
+      img: lemon,
+      name: "Lemon",
+      price: 1.2
+    },
+    {
+      id:7,
+      img: lime,
+      name: "Lime",
+      price: 1.2
+    },
+    {
+      id:8,
+      img: lemon,
+      name: "Lemon",
+      price: 1.2
+    },
+    {
+      id:9,
+      img: lime,
+      name: "Lime",
+      price: 1.2
+    },
+    {
+      id:10,
+      img: lemon,
+      name: "Lemon",
+      price: 1.2
+    },
+    {
+      id:11,
+      img: lime,
+      name: "Lime",
+      price: 1.2
+    },
+    {
+      id:12,
+      img: lemon,
+      name: "Lemon",
+      price: 1.2
+    },
     
   ]
 

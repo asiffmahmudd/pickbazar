@@ -5,6 +5,9 @@
     top: 43%;
     color: white;
     font-weight: 900;
+    padding: 1rem;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
 }
 
 .cart .item-count{
@@ -14,4 +17,123 @@
 .cart .price{
     color: #009e7f;
     font-size: 12px;
+}
+
+.cart-expanded{
+    height: 100vh;
+    background-color: white;
+    width: 26rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-expanded .cart-expanded-header{
+    
+    color: #009e7f;
+}
+
+.card-expanded-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.card-expanded-body::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+.card-expanded-body::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.card-expanded-body::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+.card-expanded-body::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.card-expanded-body p{
+    font-weight: 800;
+    color: gray;
+}
+
+.cart-expanded-footer{
+    
+}
+
+.checkout-btn{
+    padding: 2px 2px 2px 30px;
+    border-radius: 40px;
+    background-color: #009e7f;
+    font-weight: 700;
+}
+
+.checkout-text{
+    color: white;
+}
+
+.checkout-price{
+    background-color: white;
+    padding: 0.7rem 2rem;
+    border-radius: 40px;
+    color: #009e7f;
+}
+
+.cart-item-img img{
+    height: 60px;
+    width: 60px;
+}
+
+.cart-item{
+    font-weight: 700;
+}
+
+.cart-close:hover .cart-close svg, .cart-item-close:hover .cart-item-close svg{
+    color: red !important;
+}
+
+.cart-items-container .plus-minus{
+    border-radius: 20px;
+}
+
+@media (min-width: 581px){
+    .cart .price-container{
+        margin-top: 1rem;
+    }
+    .cart .price-container .price{
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 580px){
+    .cart{
+        background-color: #009e7f;
+        position: fixed;
+        right: 10%;
+        width: 80%;
+        top:unset;
+        bottom:5%;
+        display: flex;
+        justify-content: space-between;
+        color: white;
+        align-items: center;
+        font-weight: 900;
+        padding: 2px 2px 2px 20px;
+        border-radius: 30px;
+
+    }
+    .cart .price-container .price{
+        border-radius: 40px;
+    }
+
+    .cart-expanded{
+        width: 100%;
+    }
 }
