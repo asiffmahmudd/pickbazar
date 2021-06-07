@@ -5,6 +5,7 @@ import { GrClose } from "react-icons/gr";
 import { useSelector } from 'react-redux';
 import { MdRemoveShoppingCart } from "react-icons/md";
 import CartItem from './CartItem';
+import CartVoucher from './CartVoucher';
 
 const Cart = () => {
     const items = useSelector(state => {
@@ -67,6 +68,7 @@ const Cart = () => {
                     </div>
                     
                     <div className="cart-expanded-footer mt-auto p-3">
+                        <CartVoucher></CartVoucher>
                         <div className="checkout-btn d-flex justify-content-between align-items-center">
                             <span className="checkout-text">Checkout</span>
                             <span className="checkout-price">${totalPrice.toFixed(2)}</span>

@@ -103,6 +103,23 @@
     border-radius: 20px;
 }
 
+.voucher-input-container form{
+    position: relative;
+}
+
+.voucher-input-container form .btn{
+    color: rgb(144, 144, 144) !important;
+    background-color: rgb(241, 241, 241);
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 100px;
+}
+
+.voucher-input-container form input{
+    padding: 1.5rem .75rem;
+}
+
 @media (min-width: 581px){
     .cart .price-container{
         margin-top: 1rem;
