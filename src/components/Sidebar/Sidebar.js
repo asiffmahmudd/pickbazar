@@ -1,6 +1,5 @@
 import React from 'react';
 import './Sidebar.css';
-// import { faAppleAlt, faFish, faCoffee, faBone, faHome, faEgg, faHamburger, faWineGlassAlt, faMagic, faBreadSlice } from '@fortawesome/free-solid-svg-icons'
 import SidebarItem from './SidebarItem/SidebarItem';
 import { GiFruitBowl, GiMeat, GiMilkCarton, GiRawEgg, GiMirrorMirror } from "react-icons/gi";
 import { FiCoffee } from "react-icons/fi";

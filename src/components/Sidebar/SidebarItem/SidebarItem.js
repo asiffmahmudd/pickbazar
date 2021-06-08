@@ -1,6 +1,5 @@
 import React from 'react';
 import './SidebarItem.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const SidebarItem = ({category}) => {
