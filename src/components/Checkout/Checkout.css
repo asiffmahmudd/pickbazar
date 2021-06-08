@@ -2,14 +2,14 @@
     background: white;
 }
 
-.checkout-overview{
+.order-summary{
     background-color: rgb(247, 247, 247);
     display: flex;
     flex-direction: column;
     border-radius: 6px;
 }
 
-.overview-item{
+.summary-item{
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -78,9 +78,50 @@
     color: white !important;
 }
 
+.section-header{
+    font-family: Poppins, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(13, 17, 54);
+    line-height: 1.2;
+    margin-bottom: 25px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.delivery-schedule{
+    margin-top: 60px;
+}
+
 @media (max-width: 630px){
     .checkout .voucher{
         flex-direction: column;
         align-items: flex-start;
     }
 }
+
+
+.checkout .radio-group label {
+    width: 100%;
+}
+
+.checkout .radio-group .card-input-element {
+    display: none;
+}
+
+.checkout .radio-group .card-input {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(247, 247, 247);
+}
+
+.checkout .radio-group .card-input:hover {
+    cursor: pointer;
+}
+
+.checkout .radio-group .card-input-element:checked + .card-input {
+     box-shadow: 0 0 1px 1px rgb(0, 158, 127);
+     background: white;
+ }
