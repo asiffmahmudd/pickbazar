@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './Redux/CartStore';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Grocery} />
+          <Route path="/checkout">
+            <Checkout></Checkout>
+          </Route>
         </Switch>
       </Router>
     </Provider>
