@@ -1,0 +1,121 @@
+.order-received .btn-container .btn{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(119, 121, 140);
+    padding: 5px 15px;
+    height: 36px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out 0s;
+}
+
+.order-received .btn-container .btn:hover{
+    background-color: rgb(0, 158, 127);
+    border-color: rgb(0, 158, 127);
+    color: rgb(255, 255, 255);
+    text-decoration: none !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+
+.order-title{
+    font-family: Poppins, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: rgb(13, 17, 54);
+    line-height: 1;
+    margin-bottom: 32px;
+}
+
+.order-received .order-received-para{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    color: rgb(13, 17, 54);
+    font-weight: 400;
+    line-height: 1.2;
+    display: block;
+    margin: 0px;
+}
+
+.order-info-item{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-number-title{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    color: rgb(13, 17, 54);
+    font-weight: 700;
+    line-height: 1.2;
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.order-number-para{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    color: rgb(13, 17, 54);
+    font-weight: 400;
+    line-height: 1.2;
+    display: block;
+    margin: 0px;
+}
+
+.order-info-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.order-details-item{
+    display: flex;
+}
+
+.order-details-title{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    color: rgb(13, 17, 54);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0px;
+    position: relative;
+    padding-right: 2rem;
+    width: 25%;
+}
+
+.order-details-title::after{
+    content: ":";
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    line-height: 1;
+}
+
+
+.order-details-para{
+    padding-left: 4rem;
+    width: 75%;
+}
+
+@media (max-width:450px) {
+    .order-details-title{
+        width: 35%;
+    }
+    .order-details-para{
+        padding-left: 2rem;
+        width: 65%;
+    }
+}

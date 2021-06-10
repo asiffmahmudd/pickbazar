@@ -1,7 +1,3 @@
-.checkout-wrapper{
-    background: white;
-}
-
 .order-summary{
     background-color: rgb(247, 247, 247);
     display: flex;
@@ -78,17 +74,7 @@
     color: white !important;
 }
 
-.section-header{
-    font-family: Poppins, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: rgb(13, 17, 54);
-    line-height: 1.2;
-    margin-bottom: 25px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
+
 
 .checkout .radio-group label {
     width: 100%;
@@ -107,6 +93,7 @@
     border-radius: 8px;
     background-color: rgb(247, 247, 247);
     border: 1px solid rgb(247, 247, 247);
+    min-height: 100px;
 }
 
 .checkout .radio-group .card-input:hover {
@@ -129,8 +116,7 @@
 }
 
 .add-btn{
-    height: auto;
-    min-height: 102px;
+    min-height: 100px;
     border: 1px dashed rgb(241, 241, 241);
     margin-bottom: 15px;
     margin-left: 0px;
@@ -155,9 +141,6 @@
     background-color: rgb(255, 255, 255);
 }
 
-.add-contact{
-    min-height: 78px;
-}
 
 .add-btn:hover{
     border-color: rgb(0, 158, 127);
@@ -192,10 +175,56 @@
 }
 
 
-
 @media (max-width: 630px){
     .checkout .voucher{
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+.checkout-section{
+    background-color: rgb(255, 255, 255);
+    padding: 30px 40px;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 2px 16px 0px;
+}
+
+.checkout-section h3.section-header::before{
+    counter-increment: section-counter 1;
+    content: counter(section-counter);
+    color: rgb(255, 255, 255);
+    font-size: 19px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: rgb(0, 158, 127);
+    margin-right: 15px;
+}
+
+body{
+    counter-reset: section-counter;
+}
+
+.section-header{
+    margin-left: -10px;
+    font-family: Lato, sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: rgb(13, 17, 54);
+    line-height: 1.2;
+    margin-bottom: 35px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.radio-group label.col-md-4{
+    padding-right: 5px;
+    padding-left: 5px;
 }
