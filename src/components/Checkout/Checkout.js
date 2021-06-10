@@ -15,7 +15,7 @@ const Checkout = () => {
             <div className="checkout container">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row mt-5 mb-5 justify-content-center">
-                        <div className="col-md-7 p-lg-5 p-md-4 p-sm-4 p-3 checkout-wrapper">
+                        <div className="col-md-7 checkout-wrapper">
                             
                             <div className="schedule checkout-section">
                                 <h3 className="section-header">Delivery Schedule</h3>
@@ -159,8 +159,8 @@ const Checkout = () => {
                         </div>
 
 
-                        <div className="col-md-3">
-                            <div className="order-summary p-lg-5 p-md-4 p-sm-4 p-3">
+                        <div className="col-md-3 order-summary">
+                            <div className="order-summary-container">
                                 <div className="sub-total summary-item">
                                     <span>Sub Total (1 items)</span>
                                     <span>$1.50</span>
