@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { MdRemoveShoppingCart } from "react-icons/md";
 import CartItem from './CartItem';
 import CartVoucher from './CartVoucher';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const items = useSelector(state => {
@@ -69,10 +70,12 @@ const Cart = () => {
                     
                     <div className="cart-expanded-footer mt-auto p-3">
                         <CartVoucher></CartVoucher>
-                        <div className="checkout-btn d-flex justify-content-between align-items-center">
-                            <span className="checkout-text">Checkout</span>
-                            <span className="checkout-price">${totalPrice.toFixed(2)}</span>
-                        </div>
+                        <Link to="/checkout" >
+                            <button disabled={items.length===0} className="border-0 w-100 checkout-btn d-flex justify-content-between align-items-center">
+                                <span className="checkout-text">Checkout</span>
+                                <span className="checkout-price">${totalPrice.toFixed(2)}</span>
+                            </button>
+                        </Link>
                     </div>
                 </div>
             }

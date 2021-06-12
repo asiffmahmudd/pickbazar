@@ -1,12 +1,9 @@
-.order-summary{
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-}
+
 
 .order-summary-container{
+    position: sticky;
+    top: 5rem;
     
-    position: fixed;
 }
 
 .summary-item{
@@ -119,37 +116,6 @@
     text-transform: capitalize;
 }
 
-.add-btn{
-    min-height: 100px;
-    border: 1px dashed rgb(241, 241, 241);
-    margin-bottom: 15px;
-    margin-left: 0px;
-    margin-right: auto;
-    padding: 0px 30px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-    border-radius: 6px;
-    appearance: none;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    flex-shrink: 0;
-    text-align: center;
-    text-decoration: none;
-    font-family: inherit;
-    color: rgb(0, 158, 127);
-    background-color: rgb(255, 255, 255);
-}
-
-
-.add-btn:hover{
-    border-color: rgb(0, 158, 127);
-}
-
 .order-btn{
     padding: 0px 30px;
     font-size: 15px;
@@ -176,14 +142,6 @@
 
 .order-btn:hover{
     background: rgb(22, 145, 120);
-}
-
-
-@media (max-width: 630px){
-    .checkout .voucher{
-        flex-direction: column;
-        align-items: flex-start;
-    }
 }
 
 .checkout-section{
@@ -231,4 +189,38 @@ body{
 .radio-group label.col-md-4{
     padding-right: 5px;
     padding-left: 5px;
+}
+
+.payment .order-btn:disabled{
+    background: lightgrey !important;
+}
+
+.payment .order-btn:disabled:hover{
+    cursor: unset;
+}
+
+.checkout-section-add-btn{
+    width: auto;
+    height: auto;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(0, 158, 127);
+    position: absolute;
+    top: 40px;
+    right: 30px;
+}
+
+@media (max-width: 991px){
+    .form-row{
+        flex-direction: column-reverse;
+    }
 }
