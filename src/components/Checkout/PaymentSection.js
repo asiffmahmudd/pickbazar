@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import CardPayment from './CardPayment';
 
 const PaymentSection = ({register,errors, disable}) => {
 
-    const [showVoucher, setShowVoucher] = useState(false)
+    const [showVoucher, setShowVoucher] = useState(false);
+    const [showCard, setShowCard] = useState(false)
+    const handleChange = (event) => {
+        if(event.target.value === "card"){
+            setShowCard(true);
+        }
+        else{
+            setShowCard(false);
+        }
+    }
 
     return (
         <div className="payment checkout-section">
             <h3 className="section-header">Payment Option</h3>
-            <div className="payment-method-container" {...register("paymentMethod", { required:true })} name="paymentMethod" id="payment" >
+            <div className="payment-method-container" {...register("paymentMethod", { required:true })} name="paymentMethod" id="payment" onChange={handleChange}>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name="paymentMethod" id="cash" value="cash"/>
                     <label className="form-check-label" htmlFor="cash">
@@ -22,7 +32,10 @@ const PaymentSection = ({register,errors, disable}) => {
                 </div>
             </div>
             {errors.paymentMethod?.type === 'required' && <span className="text-danger">Payment method is required</span>}
-            
+            {
+                showCard &&
+                <CardPayment></CardPayment>
+            }
             <div className="checkout-voucher mb-3 mt-3">
                 {
                     showVoucher &&

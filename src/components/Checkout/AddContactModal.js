@@ -2,7 +2,10 @@ import React from 'react';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
 
-const ResetModal = ({resetIsOpen, handleClose, handleLoginOpen}) => {
+const AddContactModal = ({addContact, addContactIsOpen, handleClose}) =>{
+
+    
+
     const customStyles = {
         content : {
           top: '50%',
@@ -22,29 +25,30 @@ const ResetModal = ({resetIsOpen, handleClose, handleLoginOpen}) => {
 
     return (
         <Modal
-            isOpen={resetIsOpen}
+            isOpen={addContactIsOpen}
             onRequestClose={handleClose}
             style={customStyles}
+            ariaHideApp={false}
         >
             <span className="modal-close hover-pointer" onClick={handleClose}>
                 <GrClose></GrClose>
             </span>
 
             <div className="modal-container">
-                <h4 className="theme-text text-center">Forgot Password</h4>
-                <p className="text-center">We'll send you a link to reset your password</p>
-                <form className="reset">
+                <h4 className="">Add New Number</h4>
+                <form className="add-number pb-3">
                     <div className="form-group">
-                        <input type="email" className="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input type="text" className="cstm-input" id="number-title" aria-describedby="numberTitle" placeholder="Enter Title" />
                     </div>
-                    <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
+                    <div className="form-group">
+                        <input type="number" className="cstm-input" id="number" placeholder="Enter Number" />
+                    </div>
+                    <div onClick={addContact} className="btn form-btn continue-btn bg-theme w-100">Save Contact</div>
                 </form>
-                
-                <p className="form-text modal-text text-center">Back to <span className="theme-text underline" onClick={handleLoginOpen}>Login</span></p>
                 
             </div>
         </Modal>
     );
 };
 
-export default ResetModal;
+export default AddContactModal;

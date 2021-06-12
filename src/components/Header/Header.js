@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../img/logo.svg';
 import {AiOutlineSearch} from 'react-icons/ai';
 import './Header.css';
-import Login from '../LoginModal/LoginModal';
+import LoginModal from '../LoginModal/LoginModal';
 import SignupModal from '../SignupModal/SignupModal';
 import ResetModal from '../ResetModal/ResetModal';
 
@@ -61,7 +61,7 @@ const Header = () => {
                             <button className="btn btn primary btn-theme pr-5 pl-5" onClick={handleLoginOpen}>Join</button>
                         </ul>
                     </div>
-                    <Login handleSignupOpen={handleSignupOpen} handleResetOpen={handleResetOpen} loginIsOpen={loginIsOpen} handleClose={handleClose}></Login>
+                    <LoginModal handleSignupOpen={handleSignupOpen} handleResetOpen={handleResetOpen} loginIsOpen={loginIsOpen} handleClose={handleClose}></LoginModal>
                     <SignupModal handleLoginOpen={handleLoginOpen} signupIsOpen={signupIsOpen} handleClose={handleClose}></SignupModal>
                     <ResetModal handleClose={handleClose} resetIsOpen={resetIsOpen} handleResetOpen={handleResetOpen} handleLoginOpen={handleLoginOpen}></ResetModal>
                 </nav>

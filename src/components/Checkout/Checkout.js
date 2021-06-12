@@ -8,11 +8,24 @@ import ContactSection from './ContactSection';
 import AddressSection from './AddressSection';
 import DeliverySchedule from './DeliverySchedule';
 import { useSelector } from 'react-redux';
+import { handleSubmit } from './SimpleCard';
+
+async function payWithCard(){
+    const paymentInfo = await handleSubmit();
+    return paymentInfo;
+}
 
 const Checkout = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = async data => {
+        if(data.paymentMethod === 'card'){
+            const paymentInfo = await payWithCard();
+            console.log(paymentInfo)
+        }
+        else{
+            console.log(data)
+        }
+    };
     const items = useSelector(state => state.items.cartItems)
 
     return (

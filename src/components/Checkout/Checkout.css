@@ -219,6 +219,10 @@ body{
     right: 30px;
 }
 
+.StripeElement{
+    margin: 20px 0;
+}
+
 @media (max-width: 991px){
     .form-row{
         flex-direction: column-reverse;

@@ -16,7 +16,7 @@ const OrderSummary = ({items}) => {
                 {
                     items.map((item,index) => {
                         return (
-                            <div className="checkout-cart-item d-flex justify-content-between">
+                            <div key={index} className="checkout-cart-item d-flex justify-content-between">
                                 <div>
                                     <span>{item.count} x </span>
                                     <span>{item.name}</span>
