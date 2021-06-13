@@ -26,12 +26,17 @@ const ContactSection = ({register,errors}) => {
     const addContact = () => {
         let title = document.getElementById("number-title").value;
         let desc = document.getElementById("number").value;
-        numbers.push({
-            title,
-            desc
-        });
-        setAddContactIsOpen(false)
-        console.log(numbers)
+
+        if(!title || !desc){
+            alert("Please fill out all inputs")
+        }
+        else{
+            numbers.push({
+                title,
+                desc
+            });
+            setAddContactIsOpen(false)
+        }
     }
 
     return (
@@ -45,7 +50,7 @@ const ContactSection = ({register,errors}) => {
                         numbers.map((number,index) => {
                             return (
                                 <label key={index} className="col-md-4">
-                                    <input type="radio" name="contactNumber" className="card-input-element" value="1234"/>
+                                    <input type="radio" name="contactNumber" className="card-input-element" value={number.desc}/>
                                     <div className="panel panel-default card-input">
                                         <div className="panel-heading">{number.title}</div>
                                         <div className="panel-body">

@@ -19,7 +19,7 @@ const PaymentSection = ({register,errors, disable}) => {
             <h3 className="section-header">Payment Option</h3>
             <div className="payment-method-container" {...register("paymentMethod", { required:true })} name="paymentMethod" id="payment" onChange={handleChange}>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="paymentMethod" id="cash" value="cash"/>
+                    <input className="form-check-input" type="radio" name="paymentMethod" id="cash" value="Cash on delivery"/>
                     <label className="form-check-label" htmlFor="cash">
                         Cash On Delivery
                     </label>

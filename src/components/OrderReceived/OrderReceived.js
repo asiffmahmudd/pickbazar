@@ -1,16 +1,34 @@
+import { data } from 'jquery';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './OrderReceived.css'
 
 const OrderReceived = () => {
+
+    const location = useLocation();
+
+    const items = useSelector(state => state.items.cartItems)
+    const data = location.state.data
+    
+    var dayjs = require('dayjs')
+    var localizedFormat = require('dayjs/plugin/localizedFormat')
+    dayjs.extend(localizedFormat)
+
+    
+    let totalPrice = 0;
+    for(let i = 0; i < items.length; i++){
+        totalPrice += items[i].price*items[i].count;
+    }
+
     return (
         <>
             <Header></Header>
 
-            <div className="order-received">
+            <div className="order-received container">
                 <div className="row">
-                    <div className="col-md-7 mx-auto mt-5 mb-5 bg-white rounded">
+                    <div className="col-md-9 mx-auto mt-5 mb-5 bg-white rounded">
                         <div className="btn-container mt-3 text-right">
                             <Link to="/"><button className="btn">Back to Home</button></Link>
                         </div>
@@ -24,15 +42,15 @@ const OrderReceived = () => {
                                 </div>
                                 <div className="order-date order-info-item">
                                     <p className="order-number-title">Date</p>
-                                    <p className="order-number-para">March 23, 2019</p>
+                                    <p className="order-number-para">{dayjs().format('LLL')}</p>
                                 </div>
                                 <div className="order-amount order-info-item ">
                                     <p className="order-number-title">Total Amount</p>
-                                    <p className="order-number-para">$10,200</p>
+                                    <p className="order-number-para">${totalPrice}</p>
                                 </div>
                                 <div className="order-method order-info-item">
                                     <p className="order-number-title">Payment Method</p>
-                                    <p className="order-number-para">Cash on delivery</p>
+                                    <p className="order-number-para">{data.paymentMethod}</p>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +63,7 @@ const OrderReceived = () => {
                                         <p>Total Item</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>6 Items</p>
+                                        <p>{items.length} Items</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
@@ -53,7 +71,7 @@ const OrderReceived = () => {
                                         <p>Order Time</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>1.00pm 10/12/19</p>
+                                        <p>{dayjs().format('LLL')}</p>
                                     </div>
                                 </div>
                                 <div className="delivery-time order-details-item mt-1">
@@ -61,7 +79,7 @@ const OrderReceived = () => {
                                         <p>Delivery Time</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>90 Minute Express Delivery</p>
+                                        <p>{data.deliverySchedule}</p>
                                     </div>
                                 </div>
                                 <div className="delivery-location order-details-item mt-1">
@@ -69,7 +87,7 @@ const OrderReceived = () => {
                                         <p>Delivery Location</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>1st Floor, House 149, Road-22, Mohakhali DOHS, Dhaka - North</p>
+                                        <p>{data.deliveryAddress}</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +101,7 @@ const OrderReceived = () => {
                                         <p>Sub Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>$10,200</p>
+                                        <p>${totalPrice.toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
@@ -91,7 +109,7 @@ const OrderReceived = () => {
                                         <p>Payment Method</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>Cash on delivery</p>
+                                        <p>{data.paymentMethod}</p>
                                     </div>
                                 </div>
                                 <div className="delivery-time order-details-item mt-1">
@@ -99,7 +117,7 @@ const OrderReceived = () => {
                                         <p>Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>$10,200</p>
+                                        <p>${totalPrice.toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>

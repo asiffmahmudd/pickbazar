@@ -9,6 +9,7 @@ import AddressSection from './AddressSection';
 import DeliverySchedule from './DeliverySchedule';
 import { useSelector } from 'react-redux';
 import { handleSubmit } from './SimpleCard';
+import { useHistory } from 'react-router-dom';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -16,6 +17,10 @@ async function payWithCard(){
 }
 
 const Checkout = () => {
+    
+    const items = useSelector(state => state.items.cartItems)
+    const history = useHistory();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async data => {
         if(data.paymentMethod === 'card'){
@@ -25,8 +30,11 @@ const Checkout = () => {
         else{
             console.log(data)
         }
+        history.push({
+            pathname: '/order-received',
+            state: {data}
+        })
     };
-    const items = useSelector(state => state.items.cartItems)
 
     return (
         <>
