@@ -12,6 +12,18 @@ export const removeFromCart = (payload) => {
     }
 }
 
+export const loadCart = (payload) => {
+    return {
+        type: "LOAD_CART",
+    }
+}
+
+export const clearCart = () => {
+    return{
+        type: 'CLEAR_CART'
+    }
+}
+
 export const increaseCount = (payload) => {
     return {
         type: "INCREASE_COUNT",

@@ -1,6 +1,4 @@
-import { data } from 'jquery';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './OrderReceived.css'
@@ -9,7 +7,7 @@ const OrderReceived = () => {
 
     const location = useLocation();
 
-    const items = useSelector(state => state.items.cartItems)
+    const items = location.state.data.items
     const data = location.state.data
     
     var dayjs = require('dayjs')
@@ -46,7 +44,7 @@ const OrderReceived = () => {
                                 </div>
                                 <div className="order-amount order-info-item ">
                                     <p className="order-number-title">Total Amount</p>
-                                    <p className="order-number-para">${totalPrice}</p>
+                                    <p className="order-number-para">${totalPrice.toFixed(2)}</p>
                                 </div>
                                 <div className="order-method order-info-item">
                                     <p className="order-number-title">Payment Method</p>

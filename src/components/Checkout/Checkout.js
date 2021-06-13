@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Checkout.css';
 import Header from '../Header/Header';
 import { useForm } from "react-hook-form";
@@ -7,9 +7,10 @@ import PaymentSection from './PaymentSection';
 import ContactSection from './ContactSection';
 import AddressSection from './AddressSection';
 import DeliverySchedule from './DeliverySchedule';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleSubmit } from './SimpleCard';
 import { useHistory } from 'react-router-dom';
+import { clearCart, loadCart } from '../../Redux/Actions/CartActions';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -18,6 +19,11 @@ async function payWithCard(){
 
 const Checkout = () => {
     
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadCart())
+    },[dispatch])   
+    
     const items = useSelector(state => state.items.cartItems)
     const history = useHistory();
 
@@ -25,11 +31,14 @@ const Checkout = () => {
     const onSubmit = async data => {
         if(data.paymentMethod === 'card'){
             const paymentInfo = await payWithCard();
+            data.paymentInfo = paymentInfo;
             console.log(paymentInfo)
         }
         else{
             console.log(data)
         }
+        data.items = items;
+        dispatch(clearCart())
         history.push({
             pathname: '/order-received',
             state: {data}

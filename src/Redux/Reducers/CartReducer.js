@@ -11,6 +11,7 @@ export const CartReducer = (state = intitialState, action) => {
             let newState = {
                 cartItems: [...state.cartItems, product]
             }
+            localStorage.setItem('cart', JSON.stringify(newState.cartItems))
             return newState;
         }
 
@@ -18,6 +19,27 @@ export const CartReducer = (state = intitialState, action) => {
             let newState = {
                 cartItems: state.cartItems.filter(pd=> pd.id !== product.id)
             }
+            localStorage.setItem('cart', JSON.stringify(newState.cartItems))
+            return newState;
+        }
+
+        case "LOAD_CART": {
+            let newState ={
+                cartItems: JSON.parse(localStorage.getItem('cart'))
+            }
+            if(!newState.cartItems){
+                newState = {
+                    cartItems: []
+                }
+            }
+            return newState;
+        }
+
+        case "CLEAR_CART": {
+            let newState ={
+                cartItems: []
+            }
+            localStorage.removeItem('cart')
             return newState;
         }
 
@@ -30,6 +52,7 @@ export const CartReducer = (state = intitialState, action) => {
                     return pd;
                 })
             }
+            localStorage.setItem('cart', JSON.stringify(newState.cartItems))
             return newState;
         }
 
@@ -42,6 +65,7 @@ export const CartReducer = (state = intitialState, action) => {
                     return pd;
                 })
             }
+            localStorage.setItem('cart', JSON.stringify(newState.cartItems))
             return newState;
         }
 
