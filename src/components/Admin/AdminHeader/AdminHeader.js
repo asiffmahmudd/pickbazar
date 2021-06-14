@@ -5,7 +5,7 @@ import './AdminHeader.css';
 
 const AdminHeader = () => {
     return (
-        <header className="admin-header bg-white p-3">
+        <header className="admin-header bg-white p-3 shadow-sm">
             <div className ="container-fluid">
                 <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4">
                     <Link className="navbar-brand d-flex align-items-center" to="/"><img src={adminLogo} alt="" /></Link>
@@ -13,8 +13,8 @@ const AdminHeader = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="ml-auto" >
-                        <button className="btn add-pd-btn pr-4 pl-4">Add Product</button>
+                    <div className=" collapse navbar-collapse" id="navbarSupportedContent">
+                        <button className="ml-auto btn add-pd-btn pr-4 pl-4">Add Product</button>
                     </div>
                     
                 </nav>

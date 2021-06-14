@@ -34,7 +34,7 @@ const Cart = () => {
         <>
             {
                 !cartExpanded &&
-                <div className="cart" onClick={()=> setCartExpanded(true)}>
+                <div className="cart hover-pointer" onClick={()=> setCartExpanded(true)}>
                     <div className="count-container d-flex align-items-center justify-content-center">
                         <GiShoppingBag color="white"></GiShoppingBag>
                         <span className="item-count ml-1"> {items?.length} items</span>

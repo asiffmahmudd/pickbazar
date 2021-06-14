@@ -1,0 +1,46 @@
+.admin-sidebar{
+    height: calc(100vh - 112px);
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding-top: 30px;
+}
+
+.col-lg-2.admin-sidebar-container{
+    padding: 0;
+}
+
+.admin-sidebar-item-container a.active .admin-sidebar-item{
+    color: rgb(0, 197, 141);
+    background-color: rgb(247, 247, 247);
+    border-radius: 50px 0px 0px 50px;
+    transition: all 2s ease-in-out 0s;
+}
+
+.admin-sidebar button{
+    padding: 20px 130px 20px 20px;
+}
+
+.admin-sidebar-item{
+    color: rgb(22, 31, 106);
+    text-align: left;
+    margin-left: 40px;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.admin-logout{
+    color: rgb(22, 31, 106) !important;
+    padding-left: 53px !important;
+    text-align: left !important;
+    margin-top: auto;
+}
+
+.admin-sidebar-item-container{
+    overflow-y: auto;
+}
+
+.admin-sidebar-item-container::-webkit-scrollbar {
+    width: 0px;
+}
+  

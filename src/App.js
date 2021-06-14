@@ -9,7 +9,13 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/CartStore';
 import Checkout from './components/Checkout/Checkout';
 import OrderReceived from './components/OrderReceived/OrderReceived';
-import Dashboard from './components/Admin/Dashboard/Dashboard';
+import Dashboard from './components/Admin/Pages/Dashboard';
+import Products from './components/Admin/Pages/Products';
+import Coupons from './components/Admin/Pages/Coupons';
+import Settings from './components/Admin/Pages/Settings';
+import Orders from './components/Admin/Pages/Orders';
+import Category from './components/Admin/Pages/Category';
+import Customers from './components/Admin/Pages/Customers';
 
 function App() {
   return (
@@ -17,7 +23,13 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Grocery} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/admin/dashboard" component={Dashboard} />
+          <Route exact path="/admin/products" component={Products} />
+          <Route exact path="/admin/category" component={Category} />
+          <Route exact path="/admin/coupons" component={Coupons} />
+          <Route exact path="/admin/customers" component={Customers} />
+          <Route exact path="/admin/orders" component={Orders} />
+          <Route exact path="/admin/settings" component={Settings} />
           <Route path="/checkout">
             <Checkout></Checkout>
           </Route>
