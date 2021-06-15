@@ -5,12 +5,19 @@ import './AdminSidebar.css';
 import { IoLogOut, IoSettings } from "react-icons/io5";
 import { RiShoppingBag3Fill, RiCoupon3Fill } from "react-icons/ri";
 import { FaBoxOpen, FaUsers } from "react-icons/fa";
-import { BsFillInboxesFill } from "react-icons/bs";
+import { BsFillInboxesFill,  } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";
 
 
-const AdminSidebar = () => {
+const AdminSidebar = ({sidebarOpen,setSidebarOpen}) => {
+
+ 
+
     return (
-        <div className="admin-sidebar">
+        <div className="admin-sidebar" id="sidebarContent">
+            <div className="sidebar-close-container">
+                <BiArrowBack size={30} onClick={() => setSidebarOpen(false)} id="sidebarClose" className="sidebar-close" ></BiArrowBack>
+            </div>
             <div className="admin-sidebar-item-container">
                 <NavLink to='/admin/dashboard' exact>
                     <div className='admin-sidebar-item' >

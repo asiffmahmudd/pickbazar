@@ -1,3 +1,21 @@
 .full-admin-container{
     height: calc(100vh - 112px);
 }
+
+.admin-sidebar-container{
+    transition: 0.2s ease-in-out 0.2s;
+}
+
+.full-admin-container .admin-product-container{
+    padding: 0 50px;
+    height: 100%;
+}
+
+@media(max-width:767px){
+    .full-admin-container .admin-product-container{
+        padding: 0px;
+    }
+    .container-fluid{
+        padding: 0 !important;
+    }
+}

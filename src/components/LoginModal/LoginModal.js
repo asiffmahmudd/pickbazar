@@ -38,13 +38,13 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
                 <h4 className="theme-text text-center">Welcome Back</h4>
                 <p className="text-center">Login with your email and password</p>
                 <form className="login">
-                    <div class="form-group">
-                        <input type="email" class="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <div className="form-group">
+                        <input type="email" className="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="cstm-input" id="password" placeholder="Password" />
+                    <div className="form-group">
+                        <input type="password" className="cstm-input" id="password" placeholder="Password" />
                     </div>
-                    <button type="submit" class="btn form-btn continue-btn bg-theme w-100">Continue</button>
+                    <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
                 
                 <SocialLogIn></SocialLogIn>

@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLayout from '../AdminLayout/AdminLayout';
+import AdminLayout from '../../AdminLayout/AdminLayout';
 
 const Coupons = () => {
     return (

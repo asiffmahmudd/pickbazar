@@ -9,13 +9,13 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/CartStore';
 import Checkout from './components/Checkout/Checkout';
 import OrderReceived from './components/OrderReceived/OrderReceived';
-import Dashboard from './components/Admin/Pages/Dashboard';
-import Products from './components/Admin/Pages/Products';
-import Coupons from './components/Admin/Pages/Coupons';
-import Settings from './components/Admin/Pages/Settings';
-import Orders from './components/Admin/Pages/Orders';
-import Category from './components/Admin/Pages/Category';
-import Customers from './components/Admin/Pages/Customers';
+import Dashboard from './components/Admin/Pages/Dashboard/Dashboard';
+import Products from './components/Admin/Pages/Products/Products';
+import Coupons from './components/Admin/Pages/Coupons/Coupons';
+import Settings from './components/Admin/Pages/Settings/Settings';
+import Orders from './components/Admin/Pages/Orders/Orders';
+import Category from './components/Admin/Pages/Category/Category';
+import Customers from './components/Admin/Pages/Customers/Customers';
 
 function App() {
   return (

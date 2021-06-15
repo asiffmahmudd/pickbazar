@@ -1,18 +1,38 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import AdminHeader from '../AdminHeader/AdminHeader';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import './AdminLayout.css'
 
 const AdminLayout = ({children}) => {
+
+    const resizeAction = () => {
+        if(window.innerWidth <= 991){
+            setSidebarOpen(false)
+        }
+        else{
+            setSidebarOpen(true)
+        };
+    }
+
+    const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth <= 991 ? false: true)
+
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            resizeAction()    
+        })
+    }, [])
+
     return (
         <>
-            <AdminHeader></AdminHeader>
+            <AdminHeader setSidebarOpen={setSidebarOpen}></AdminHeader>
             <div className="container-fluid">
                 <div className="row full-admin-container">
-                    <div className="col-lg-2 admin-sidebar-container">
-                        <AdminSidebar></AdminSidebar>
+                    <div className="col-lg-2 admin-sidebar-container" style={!sidebarOpen?{visibility:"hidden", height:"0px", width:"0px"}:{visibilit:"visible", height:"100%", width:"100%"}}>
+                        <AdminSidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}></AdminSidebar>
                     </div>
-                    <div className="col-lg-10 product-container justify-content-center">
+                    <div className="col-lg-10 admin-product-container justify-content-center">
                         {children}
                     </div>
                 </div>

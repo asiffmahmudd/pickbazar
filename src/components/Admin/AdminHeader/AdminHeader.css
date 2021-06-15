@@ -5,8 +5,57 @@
 .add-pd-btn{
     background: rgb(0, 197, 141) !important;
     color: white !important;
+    margin-right: 20px;
 }
 
 .add-pd-btn:hover{
     background-color: rgb(0, 189, 135) !important;
+}
+
+.admin-notification{
+    margin-right: 20px;
+}
+
+.user-icon img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.admin-header .dropdown-menu{
+    left: -140px;
+}
+
+.admin-header .dropdown-menu .dropdown-item:active{
+    background: rgb(0, 197, 141) !important;
+    color: white;
+}
+
+.admin-header .navbar-brand{
+    display: flex;
+    align-items: center;
+}
+
+.admin-header{
+    padding: 1rem;
+}
+
+.admin-sidebar-toggler{
+    display: none;
+}
+
+@media (max-width: 991px){
+    .admin-sidebar-toggler{
+        display: block;
+    }
+    .admin-header .navbar-brand{
+        display: none;
+    }
+    .admin-header{
+        padding: 0;
+    }
+
+    .admin-header .container-fluid{
+        padding: 0;
+    }
 }
