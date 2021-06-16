@@ -5,6 +5,8 @@ import './Products.css';
 import lime from '../../../../img/GreenLimes_jrodle.jpg';
 import lemon from '../../../../img/Yellow_Limes_y0lbyo.jpg';
 import ProductItem from './ProductItem';
+import { useState } from 'react';
+import ProductDrawer from './ProductDrawer';
 
 const products = [
     {
@@ -83,6 +85,24 @@ const products = [
   ]
 
 const Products = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [product, setProduct] = useState({})
+
+    const handleOpen = (pd) => {
+        setIsOpen(true);
+        setProduct({
+            id: pd.id,
+            name: pd.name,
+            price: pd.price
+        })
+    }
+
+    const handleClose = () => {
+        setIsOpen(false);
+    }
+
+
     return (
         <AdminLayout>
             <div className="admin-products container-fluid">
@@ -93,13 +113,18 @@ const Products = () => {
                     <div className="col-lg-12 admin-products-body">
                         <div className="row">
                             {
-                                products.map(product => <ProductItem product={product}></ProductItem>)
+                                products.map((product,index) => <ProductItem key={index} product={product} handleOpen={handleOpen}></ProductItem>)
                             }
                         </div>
                         
                     </div>
                 </div>
             </div>
+
+            {/* <ProductModal setIsOpen={setIsOpen} isOpen={isOpen} product={product} handleClose={handleClose}></ProductModal> */}
+
+            <ProductDrawer isOpen={isOpen} product={product} handleClose={handleClose}></ProductDrawer>
+
         </AdminLayout>
     );
 };

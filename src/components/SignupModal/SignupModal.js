@@ -27,6 +27,7 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
             isOpen={signupIsOpen}
             onRequestClose={handleClose}
             style={customStyles}
+            className="login-modal"
         >
             <span className="modal-close hover-pointer" onClick={handleClose}>
                 <GrClose></GrClose>

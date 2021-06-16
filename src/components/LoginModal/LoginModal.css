@@ -2,7 +2,7 @@
     z-index: 1;
 }
 
-.modal-close{
+.login-modal .modal-close{
     position: fixed;
     top: 5px;
     right: 10px;
@@ -19,11 +19,11 @@
     background-color: rgb(0, 158, 127);
 }
 
-.modal-container{
+.login-modal .modal-container{
     padding: 40px 50px 10px 50px;
 }
 
-.cstm-input{
+.login-modal .cstm-input{
     display: block;
     width: 100%;
     padding: 0px 18px;
@@ -40,15 +40,15 @@
     margin-bottom: 10px;
 }
 
-.cstm-input:focus {
+.login-modal .cstm-input:focus {
     border-color: rgb(0, 158, 127);
 }
 
-.cstm-input:hover, .cstm-input:focus {
+.login-modal .cstm-input:hover, .login-modal .cstm-input:focus {
     outline: 0px;
 }
 
-.form-btn{
+.login-modal .form-btn{
     padding: 0px 30px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
@@ -70,11 +70,11 @@
     height: 48px !important;
 }
 
-.modal-text{
+.login-modal .modal-text{
     padding: 20px 0px;
 }
 
-.form-text{
+.login-modal .form-text{
     font-family: Lato, sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -82,7 +82,7 @@
     margin: 0px;
 }
 
-.forgot-password{
+.login-modal .forgot-password{
     padding: 20px;
     background-color: rgb(247, 247, 247);
 }
@@ -93,32 +93,47 @@
     cursor: pointer;
 }
 
+.login-modal.ReactModal__Content{
+    inset: 50% auto auto 50%;
+    overflow: visible;
+    padding: 0px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    outline: none;
+}
+
 @media (min-width: 1400px){
-    .ReactModal__Content{
+    .login-modal.ReactModal__Content{
         width: 30%;
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399px){
-    .ReactModal__Content{
+    .login-modal.ReactModal__Content{
         width: 33%;
     }
 }
 
 @media (min-width: 993px) and (max-width: 1199px){
-    .ReactModal__Content{
+    .login-modal.ReactModal__Content{
         width: 40%;
     }
 }
 
 @media (min-width: 769px) and (max-width: 991px){
-    .ReactModal__Content{
+    .login-modal.ReactModal__Content{
         width: 50%;
     }
 }
 
 @media (max-width: 768px){
-    .ReactModal__Content{
+    .login-modal.ReactModal__Content{
         width: 90%;
+    }
+    .login-modal .modal-container{
+        padding: 40px 25px 10px 25px;
     }
 }
