@@ -81,6 +81,85 @@ svg.add-product-close  {
     overflow-x: hidden;
 }
 
+.drawer-body::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    width: 6px;
+}
+
+.drawer-body::-webkit-scrollbar {
+    background-color: transparent;
+    border-radius: 20px;
+    width: 6px;
+    height: 100%;
+  }
+
+.add-product-drawer .drawer-body-section-title{
+    color: rgb(102, 109, 146);
+    padding: 28px 0px 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: Lato, sans-serif;
+}
+
+.add-product-drawer .drawer-body-section-element{
+    padding: 30px;
+}
+
+.add-product-drawer .dropzone{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed rgb(230, 230, 230);
+    margin-right: 15px;
+}
+
+.add-product-drawer .dropzone-label{
+    color: rgb(22, 31, 106);
+    margin: 0;
+}
+
+.add-product-drawer .dropzone-label span{
+    color: rgb(0, 197, 141);
+}
+
+.add-product-drawer .dropzone-container{
+    padding: 40px;
+}
+
+.add-product-drawer .dropzone-img-container{
+    border: 1px solid rgb(230,230,230);
+    margin-top: 15px;
+    display: flex;
+    width: 90px;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.add-product-drawer form label {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: Lato, sans-serif;
+    color: rgb(22, 31, 106);
+}
+
+.add-product-drawer .product-info {
+    padding: 30px 40px;
+}
+
+.add-product-drawer .product-info form{
+    margin-right: 10px;
+}
+
+.add-product-drawer .dropzone-img-container img{
+    height: 80px;
+    width: 80px;
+}
 
 @media (min-width: 1400px){
     .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {

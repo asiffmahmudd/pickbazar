@@ -1,8 +1,11 @@
 import React from 'react';
+import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 
-const ProductItem = ({product, handleOpen}) => {
+const ProductItem = ({product}) => {
+
+    const {handleProductDrawerOpen} = useProductDrawer()
     return (
-        <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2" onClick={() => handleOpen(product)}>
+        <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer" onClick={() => handleProductDrawerOpen(product)}>
             <div className="card border-0">
                 <img className="card-img-top" src={product.img} alt="" />
                 <div className="card-body">

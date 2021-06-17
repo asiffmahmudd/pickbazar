@@ -5,9 +5,10 @@ import './AdminHeader.css';
 import { IoNotificationsOutline } from "react-icons/io5";
 import user from '../../../img/user.jpg';
 import { AiOutlineAlignLeft } from "react-icons/ai";
+import { useProductDrawer } from '../../../contexts/ProductDrawerContext';
 
 const AdminHeader = ({setSidebarOpen}) => {
-
+    const {handleProductDrawerOpen} = useProductDrawer()
     return (
         <header className="admin-header bg-white shadow-sm">
             <div className ="container-fluid">
@@ -25,7 +26,7 @@ const AdminHeader = ({setSidebarOpen}) => {
                     </div>
 
                     <div className="navbar ml-auto" id="navbarSupportedContent">
-                        <button className="ml-auto btn add-pd-btn pr-4 pl-4">Add Product</button>
+                        <button className="ml-auto btn add-pd-btn pr-4 pl-4" onClick={()=>handleProductDrawerOpen(null)}>Add Product</button>
                         <div className="admin-notification">
                             <IoNotificationsOutline size={20} color="rgb(22, 31, 106)"></IoNotificationsOutline>
                         </div>
