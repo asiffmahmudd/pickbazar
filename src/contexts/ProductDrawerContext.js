@@ -13,18 +13,13 @@ export function ProductDrawerProvider({children}){
     const [product, setProduct] = useState({})
     
     const handleProductDrawerOpen = (pd) => {
-        setProductDrawerOpen(true);
         if(pd){
-            setProduct({
-                id: pd.id,
-                name: pd.name,
-                price: pd.price,
-                img: pd.img
-            })
+            setProduct(pd)
         }
         else{
             setProduct(null)
         }
+        setProductDrawerOpen(true);
     }
 
     const handleProductDrawerClose = () => {
@@ -32,7 +27,7 @@ export function ProductDrawerProvider({children}){
     }
 
     const value = {
-        isProductDrawerOpen, setProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose, product
+        isProductDrawerOpen, setProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose, product, setProduct
     }
 
     return (

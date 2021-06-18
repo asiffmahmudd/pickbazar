@@ -1,0 +1,23 @@
+.admin-orders #status{
+    border: none;
+    background: transparent;
+    font-weight: 700;
+    color: rgb(22, 31, 106);
+}
+
+.admin-orders #status:focus-visible{
+    outline: none;
+}
+
+.admin-orders table thead tr th:nth-child(2){
+    min-width: 140px;
+}
+.admin-orders table thead tr th:nth-child(3){
+    min-width: 140px;
+}
+.admin-orders table thead tr th:nth-child(4){
+    min-width: 200px;
+}
+.admin-orders table thead tr th:nth-child(6){
+    min-width: 160px;
+}

@@ -3,7 +3,8 @@ import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 
 const ProductItem = ({product}) => {
 
-    const {handleProductDrawerOpen} = useProductDrawer()
+    const {handleProductDrawerOpen} = useProductDrawer();
+    
     return (
         <div className="col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer" onClick={() => handleProductDrawerOpen(product)}>
             <div className="card border-0">

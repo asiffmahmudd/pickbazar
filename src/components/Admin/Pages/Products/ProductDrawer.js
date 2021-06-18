@@ -8,62 +8,8 @@ import { useEffect } from 'react';
 import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
-import { GiFruitBowl, GiMeat, GiMilkCarton, GiRawEgg, GiMirrorMirror } from "react-icons/gi";
-import { FiCoffee } from "react-icons/fi";
-import { BiBone, BiHome, BiDish, BiDrink } from "react-icons/bi";
+import categories from '../../../../data/categories';
 
-const categories =[
-    {
-        id:1,
-        name: "Fruits & Vegetables",
-        icon: <GiFruitBowl size={40}></GiFruitBowl>
-    },
-    {
-        id:2,
-        name: "Meat & Fish",
-        icon: <GiMeat size={40}></GiMeat>
-    },
-    {
-        id:3,
-        name: "Snacks",
-        icon: <FiCoffee size={40}></FiCoffee>
-    },
-    {
-        id:4,
-        name: "Pet Care",
-        icon: <BiBone size={40}></BiBone>
-    },
-    {
-        id:5,
-        name: "Home & Cleaning",
-        icon: <BiHome size={40}></BiHome>
-    },
-    {
-        id:6,
-        name: "Dairy",
-        icon: <GiMilkCarton size={40}></GiMilkCarton>
-    },
-    {
-        id:7,
-        name: "Cooking",
-        icon: <BiDish size={40}></BiDish>
-    },
-    {
-        id:8,
-        name: "Breakfast",
-        icon: <GiRawEgg size={40}></GiRawEgg>
-    },
-    {
-        id:9,
-        name: "Beverage",
-        icon: <BiDrink size={40}></BiDrink>
-    },
-    {
-        id:10,
-        name: "Beauty & Health",
-        icon: <GiMirrorMirror size={40}></GiMirrorMirror>
-    }
-]
 
 const ProductDrawer = () => {
 
@@ -164,7 +110,7 @@ const ProductDrawer = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productPrice">Price</label>
-                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?product.price:0} step="any" required/>
+                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?product.price:""} step="any" required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productSaleprice">Sale Price</label>
@@ -186,13 +132,11 @@ const ProductDrawer = () => {
                                         <label htmlFor="productCategories">Categories</label>
                                         {/* <input type="text" className="form-control" {...register("productCategories")} name="productCategories" id="productCategories" aria-describedby="productCategories" required /> */}
                                         <Multiselect
-                                            {...register("productTags")}
                                             options={options} // Options to display in the dropdown
                                             selectedValues={selectedValues} // Preselected value to persist in dropdown
                                             onSelect={onSelect} // Function will trigger on select event
                                             onRemove={onRemove} // Function will trigger on remove event
                                             displayValue="name" // Property name to display in the dropdown options
-                                            
                                         />
                                     </div>
                                     {/* <button type="submit" className="btn btn-primary">Submit</button> */}
@@ -203,7 +147,7 @@ const ProductDrawer = () => {
                     </div>
                     <div className="drawer-footer bg-white row">
                         <div className="col-6">
-                            <button className="cancel-btn btn w-100" onClick={()=>handleProductDrawerClose()}>Cancel</button>
+                            <div className="cancel-btn btn w-100" onClick={()=>handleProductDrawerClose()}>Cancel</div>
                         </div>
                         <div className="col-6">
                             <button type="submit" id="productDrawerFormBtn" className="update-btn btn w-100">{product ? 'Update Product':'Add Product'}</button>

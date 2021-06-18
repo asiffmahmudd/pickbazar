@@ -7,7 +7,6 @@ import { BiEdit } from 'react-icons/bi';
 import { useState } from "react";
 import CategoryDrawer from './CategoryDrawer.js';
 import categories from '../../../../data/categories';
-import { useEffect } from 'react';
 
 const Category = () => {
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
@@ -42,7 +41,7 @@ const Category = () => {
 
     return (
         <AdminLayout>
-            <div className="admin-products container-fluid">
+            <div className="category-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
                         <CategoryHeader handleCategoryDrawerOpen={handleCategoryDrawerOpen}></CategoryHeader>
