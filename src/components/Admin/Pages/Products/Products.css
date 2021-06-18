@@ -1,15 +1,18 @@
-.admin-products-header .form-control, .add-product-drawer .form-control{
+.admin-products-header .form-control, .drawer .form-control{
     border-radius: 0px;
     background-color: rgb(238, 238, 238);
     transition: .15s ease-in-out;
     border: 3px solid rgb(238, 238, 238);
     background-clip: unset;
+    color:rgb(22, 31, 106);
+    font-weight: 700;
 }
 
-.admin-products-header .form-control:focus, .add-product-drawer .form-control:focus{
+.admin-products-header .form-control:focus, .drawer .form-control:focus{
     background: white;
     border-color: #009e7f;
     box-shadow: none;
+    color:rgb(22, 31, 106);
 }
 
 .admin-products-header .header-title{
@@ -29,7 +32,7 @@
     padding: 0 20px;
 }
 
-select.form-control, select.form-control option, .add-product-drawer select.form-control, .add-product-drawer select.form-control option{
+select.form-control, select.form-control option, .drawer select.form-control, .drawer select.form-control option{
     color:rgb(22, 31, 106);
     font-weight: 700;
 }
@@ -60,5 +63,17 @@ select.form-control, select.form-control option, .add-product-drawer select.form
     .admin-products-header .header-title{
         text-align: center;
         margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767px){
+    .admin-products-header{
+        margin:15px;
+    }
+    .admin-products-header .header-content-row{
+        padding: 0;
+    }
+    .admin-products-header .header-content-row .col-lg-10{
+        padding: 0;
     }
 }

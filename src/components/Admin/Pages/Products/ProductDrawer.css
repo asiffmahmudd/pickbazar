@@ -1,8 +1,8 @@
-.add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
     background-color: rgb(247, 247, 247)
 }
 
-.add-product-drawer .drawer-footer{
+.drawer-footer{
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -18,29 +18,29 @@
     margin: 0;
 }
 
-.add-product-drawer .drawer-footer .btn{
+.drawer-footer .btn{
     padding: 15px 0; 
 }
 
-.add-product-drawer .drawer-footer .update-btn{
+.drawer-footer .update-btn{
     background: rgb(0, 197, 141);
     color: white;
     font-weight: 700;
 }
 
-.add-product-drawer .drawer-footer .update-btn:hover{
+.drawer-footer .update-btn:hover{
     background-color: rgb(0, 189, 135);
 }
 
-.add-product-drawer .drawer-footer .cancel-btn:hover{
+.drawer-footer .cancel-btn:hover{
     background-color: rgb(246, 246, 246);
 }
 
-.add-product-drawer .drawer-footer .cancel-btn{
+.drawer-footer .cancel-btn{
     color:rgb(252, 92, 99);
 }
 
-.add-product-drawer .drawer-header h3{
+.drawer-header h3{
     color: rgb(22, 31, 106);
     font-size: 18px;
     left: 4%;
@@ -50,7 +50,7 @@
     font-family: Lato, sans-serif;
 }
 
-.add-product-drawer .drawer-header{
+.drawer-header{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -59,7 +59,7 @@
     overflow: hidden;
 }
 
-svg.add-product-close  {
+svg.drawer-close  {
     margin-left: 10px;
     margin-top: 10px;
     background: white;
@@ -94,7 +94,7 @@ svg.add-product-close  {
     height: 100%;
   }
 
-.add-product-drawer .drawer-body-section-title{
+.drawer-body-section-title{
     color: rgb(102, 109, 146);
     padding: 28px 0px 15px;
     font-weight: 400;
@@ -103,11 +103,11 @@ svg.add-product-close  {
     font-family: Lato, sans-serif;
 }
 
-.add-product-drawer .drawer-body-section-element{
+.drawer-body-section-element{
     padding: 30px;
 }
 
-.add-product-drawer .dropzone{
+.drawer .dropzone{
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -117,20 +117,20 @@ svg.add-product-close  {
     margin-right: 15px;
 }
 
-.add-product-drawer .dropzone-label{
+.drawer .dropzone-label{
     color: rgb(22, 31, 106);
     margin: 0;
 }
 
-.add-product-drawer .dropzone-label span{
+.drawer .dropzone-label span{
     color: rgb(0, 197, 141);
 }
 
-.add-product-drawer .dropzone-container{
+.drawer .dropzone-container{
     padding: 40px;
 }
 
-.add-product-drawer .dropzone-img-container{
+.drawer .dropzone-img-container{
     border: 1px solid rgb(230,230,230);
     margin-top: 15px;
     display: flex;
@@ -140,7 +140,7 @@ svg.add-product-close  {
     border-radius: 2px;
 }
 
-.add-product-drawer form label {
+.drawer form label {
     margin-bottom: 10px;
     font-weight: 700;
     font-size: 14px;
@@ -148,44 +148,100 @@ svg.add-product-close  {
     color: rgb(22, 31, 106);
 }
 
-.add-product-drawer .product-info {
+.drawer .product-info {
     padding: 30px 40px;
 }
 
-.add-product-drawer .product-info form{
+.drawer .product-info form{
     margin-right: 10px;
 }
 
-.add-product-drawer .dropzone-img-container img{
+.drawer .dropzone-img-container img{
     height: 80px;
     width: 80px;
 }
 
+.category-multiSelect .search-wrapper {
+    border-radius: 0px;
+    background-color: rgb(238, 238, 238);
+    transition: .15s ease-in-out;
+    border: 1px solid rgb(238, 238, 238);
+    background-clip: unset;
+}
+
+
+.category-multiSelect .optionListContainer{
+    box-shadow: rgb(0 0 0 / 16%) 0px 4px 16px;
+    border: 0;
+    border-radius: 0px; 
+}
+
+.category-multiSelect .optionListContainer ul{
+    border: none;
+    border-radius: 0px;
+}
+
+
+.category-multiSelect .optionListContainer ul::-webkit-scrollbar{
+    width: 0px;
+}
+
+.category-multiSelect .optionListContainer ul li:nth-child(1){
+    background: unset;
+    color: rgb(102, 109, 146);
+}
+
+.category-multiSelect .optionListContainer ul li{
+    color: rgb(102, 109, 146); 
+}
+
+.category-multiSelect .optionListContainer ul li:hover{
+    background: rgb(240, 240, 240);
+}
+
+.category-multiSelect .search-wrapper span{
+    background: rgb(0, 197, 141);
+    border-radius: 15px;
+}
+
+.category-multiSelect .search-wrapper:focus{
+    border: 2px solid rgb(0, 197, 141);
+}
+
+.multiselect-container input#search_input::placeholder{
+    color: rgb(102, 109, 146);
+    font-weight: 700;
+}
+
+.multiselect-container .search-wrapper:focus-within{
+    border: 2px solid rgb(0, 197, 141);
+}
+
 @media (min-width: 1400px){
-    .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 70%;
     }
     
 }
 
 @media (min-width: 1200px) and (max-width: 1399px){
-    .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 75%;
     }
 }
 
 @media (min-width: 993px) and (max-width: 1199px){
-    .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 80%;
     }
     
 }
 
 @media (min-width: 769px) and (max-width: 991px){
-    .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .adrawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 100%;
     }
-    svg.add-product-close{
+    svg.drawer-close{
         margin: unset;
         right: 10px;
         top: 10px;
@@ -193,13 +249,13 @@ svg.add-product-close  {
 }
 
 @media (max-width: 768px){
-    .add-product-drawer .drawer-footer{
+    .drawer .drawer-footer{
         padding:20px 10px;
     }
-    .add-product-drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 100%;
     }
-    svg.add-product-close{
+    svg.drawer-close{
         margin: unset;
         right: 10px;
         top: 10px;

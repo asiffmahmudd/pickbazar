@@ -84,8 +84,9 @@ const products = [
 
 const Products = () => {
 
+
     return (
-        <AdminLayout>
+        <AdminLayout >
             <div className="admin-products container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">

@@ -6,10 +6,89 @@ import './ProductDrawer.css'
 import {useDropzone} from 'react-dropzone';
 import { useEffect } from 'react';
 import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
+import { useForm } from "react-hook-form";
+import { Multiselect } from 'multiselect-react-dropdown';
+import { GiFruitBowl, GiMeat, GiMilkCarton, GiRawEgg, GiMirrorMirror } from "react-icons/gi";
+import { FiCoffee } from "react-icons/fi";
+import { BiBone, BiHome, BiDish, BiDrink } from "react-icons/bi";
+
+const categories =[
+    {
+        id:1,
+        name: "Fruits & Vegetables",
+        icon: <GiFruitBowl size={40}></GiFruitBowl>
+    },
+    {
+        id:2,
+        name: "Meat & Fish",
+        icon: <GiMeat size={40}></GiMeat>
+    },
+    {
+        id:3,
+        name: "Snacks",
+        icon: <FiCoffee size={40}></FiCoffee>
+    },
+    {
+        id:4,
+        name: "Pet Care",
+        icon: <BiBone size={40}></BiBone>
+    },
+    {
+        id:5,
+        name: "Home & Cleaning",
+        icon: <BiHome size={40}></BiHome>
+    },
+    {
+        id:6,
+        name: "Dairy",
+        icon: <GiMilkCarton size={40}></GiMilkCarton>
+    },
+    {
+        id:7,
+        name: "Cooking",
+        icon: <BiDish size={40}></BiDish>
+    },
+    {
+        id:8,
+        name: "Breakfast",
+        icon: <GiRawEgg size={40}></GiRawEgg>
+    },
+    {
+        id:9,
+        name: "Beverage",
+        icon: <BiDrink size={40}></BiDrink>
+    },
+    {
+        id:10,
+        name: "Beauty & Health",
+        icon: <GiMirrorMirror size={40}></GiMirrorMirror>
+    }
+]
 
 const ProductDrawer = () => {
 
+    const [options, setOptions] = useState(categories)
+    const [selectedValues, setSelectedValues] = useState([])
+
+    const onSelect = (selectedList, selectedItem) => {
+        setSelectedValues(selectedList);
+    }
+
+    const onRemove = (selectedList, removedItem) => {
+        setSelectedValues(selectedList);
+    }
+    
+    
     const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
+    const { register, handleSubmit, reset } = useForm();
+
+    const onSubmit = data => {
+        data.img = preview;
+        console.log(data)
+        reset();
+        handleProductDrawerClose()
+    }
+
     const onDrop = useCallback(acceptedFiles => {
         handleChange(acceptedFiles[0])
       }, [])
@@ -30,11 +109,12 @@ const ProductDrawer = () => {
     
     return (
         <div>
-            <Drawer className="add-product-drawer" anchor={"right"} open={isProductDrawerOpen} onClose={() => handleProductDrawerClose()}> 
+            <Drawer className="add-product-drawer drawer" anchor={"right"} open={isProductDrawerOpen} onClose={() => handleProductDrawerClose()}> 
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="drawer-container">
                     
                     <div className="drawer-header">
-                    <GrClose className="add-product-close hover-pointer" onClick={()=>handleProductDrawerClose()}></GrClose>
+                    <GrClose className="drawer-close hover-pointer" onClick={()=>handleProductDrawerClose()}></GrClose>
                         <h3>
                             {
                                 product ? 'Update Product':'Add Product'
@@ -49,7 +129,7 @@ const ProductDrawer = () => {
                             </div>
                             <div className="col-lg-8 bg-white dropzone-container">
                                 <div {...getRootProps({className: 'dropzone hover-pointer'})}>
-                                    <input {...getInputProps()}  />
+                                    <input {...getInputProps()}  name="productImg" />
                                     <FaCloudUploadAlt color="rgb(230, 230, 230)" size={40}></FaCloudUploadAlt>
                                     <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
                                 </div>
@@ -69,45 +149,54 @@ const ProductDrawer = () => {
                             </div>
                             <div className="col-lg-8 bg-white product-info">
                                 
-                                <form>
-                                    <div class="form-group">
-                                        <label for="productName">Name</label>
-                                        <input type="text" class="form-control" id="productName" aria-describedby="productName" defaultValue={product?product.name:""} />
+                                {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+                                    <div className="form-group">
+                                        <label htmlFor="productName">Name</label>
+                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" defaultValue={product?product.name:""} required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productDescription">Description</label>
-                                        <textarea type="text" class="form-control" id="productDescription"  />
+                                    <div className="form-group">
+                                        <label htmlFor="productDescription">Description</label>
+                                        <textarea type="text" className="form-control" {...register("productDescription")} name="productDescription" id="productDescription"  required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productUnit">Unit</label>
-                                        <input type="text" class="form-control" id="productUnit" aria-describedby="productUnit" />
+                                    <div className="form-group">
+                                        <label htmlFor="productUnit">Unit</label>
+                                        <input type="text" className="form-control" {...register("productUnit")} name="productUnit" id="productUnit" aria-describedby="productUnit" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productPrice">Price</label>
-                                        <input type="number" class="form-control" id="productPrice" aria-describedby="productPrice" defaultValue={product?product.price:""} />
+                                    <div className="form-group">
+                                        <label htmlFor="productPrice">Price</label>
+                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?product.price:0} step="any" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productSaleprice">Sale Price</label>
-                                        <input type="text" class="form-control" id="productSaleprice" aria-describedby="productSaleprice" />
+                                    <div className="form-group">
+                                        <label htmlFor="productSaleprice">Sale Price</label>
+                                        <input type="text" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" aria-describedby="productSaleprice" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productDiscount">Discount In Percent</label>
-                                        <input type="text" class="form-control" id="productDiscount" aria-describedby="productDiscount" />
+                                    <div className="form-group">
+                                        <label htmlFor="productDiscount">Discount In Percent</label>
+                                        <input type="text" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" aria-describedby="productDiscount" required/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productQuantity">Product Quantity</label>
-                                        <input type="text" class="form-control" id="productQuantity" aria-describedby="productQuantity" />
+                                    <div className="form-group">
+                                        <label htmlFor="productQuantity">Product Quantity</label>
+                                        <input type="text" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" required />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productType">Type</label>
-                                        <input type="text" class="form-control" id="productType" aria-describedby="productType" />
+                                    <div className="form-group">
+                                        <label htmlFor="productType">Type</label>
+                                        <input type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" required />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="productCategories">Categories</label>
-                                        <input type="text" class="form-control" id="productCategories" aria-describedby="productCategories" />
+                                    <div className="form-group category-multiSelect">
+                                        <label htmlFor="productCategories">Categories</label>
+                                        {/* <input type="text" className="form-control" {...register("productCategories")} name="productCategories" id="productCategories" aria-describedby="productCategories" required /> */}
+                                        <Multiselect
+                                            {...register("productTags")}
+                                            options={options} // Options to display in the dropdown
+                                            selectedValues={selectedValues} // Preselected value to persist in dropdown
+                                            onSelect={onSelect} // Function will trigger on select event
+                                            onRemove={onRemove} // Function will trigger on remove event
+                                            displayValue="name" // Property name to display in the dropdown options
+                                            
+                                        />
                                     </div>
-                                    {/* <button type="submit" class="btn btn-primary">Submit</button> */}
-                                </form>
+                                    {/* <button type="submit" className="btn btn-primary">Submit</button> */}
+                                {/* </form> */}
                             </div>
                         </div>
                         
@@ -117,12 +206,12 @@ const ProductDrawer = () => {
                             <button className="cancel-btn btn w-100" onClick={()=>handleProductDrawerClose()}>Cancel</button>
                         </div>
                         <div className="col-6">
-                            <button className="update-btn btn w-100">{product ? 'Update Product':'Add Product'}</button>
+                            <button type="submit" id="productDrawerFormBtn" className="update-btn btn w-100">{product ? 'Update Product':'Add Product'}</button>
                         </div>
                     </div>
                     
                 </div>
-
+                </form>
             </Drawer>
         </div>
     );
