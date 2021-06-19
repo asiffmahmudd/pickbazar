@@ -6,16 +6,31 @@
     transition: 0.2s ease-in-out 0.2s;
 }
 
-.full-admin-container .admin-product-container{
+.full-admin-container .admin-container{
     padding: 0 50px;
     height: 100%;
 }
 
+.admin-container{
+    display: flex;
+}
+
+.admin::-webkit-scrollbar {
+    width: 0px;
+}
+
+.admin-container::-webkit-scrollbar{
+    width: 100px;
+    background-color: grey;
+
+}
+
 @media(max-width:767px){
-    .full-admin-container .admin-product-container{
+    .full-admin-container .admin-container{
         padding: 0px;
     }
     .container-fluid{
         padding: 0 !important;
     }
 }
+

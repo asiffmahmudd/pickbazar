@@ -2,6 +2,10 @@
     max-width: 150px;
 }
 
+.admin-header{
+    border-bottom: 1px solid rgba(0,0,0,.075);
+}
+
 .add-pd-btn{
     background: rgb(0, 197, 141) !important;
     color: white !important;

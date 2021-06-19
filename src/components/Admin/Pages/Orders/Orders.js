@@ -3,7 +3,7 @@ import orders from '../../../../data/orders';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import OrderHeader from './OrderHeader';
 import './Orders.css';
-import OrderStatus from './OrderStatus';
+import OrderItem from './OrderItem';
 
 const Orders = () => {
 
@@ -33,22 +33,8 @@ const Orders = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        orders.map((order,index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <th scope="row">{order.id}</th>
-                                                    <td>{order.customerId}</td>
-                                                    <td>{order.date}</td>
-                                                    <td>{order.address}</td>
-                                                    <td>{order.amount}</td>
-                                                    <td>{order.paymentMethod}</td>
-                                                    <td>{order.contact}</td>
-                                                    <OrderStatus order={order}></OrderStatus>
-                                                </tr>
-                                            )
-                                        })
+                                        orders.map((order,index) => <OrderItem order={order} key={index}></OrderItem>)
                                     }
-                                    
                                 </tbody>
                             </table>
                         </div>

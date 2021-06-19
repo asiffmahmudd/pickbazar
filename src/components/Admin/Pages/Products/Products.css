@@ -49,13 +49,13 @@ select.form-control, select.form-control option, .drawer select.form-control, .d
     padding: 0;
 }
 
-.admin-product-container .admin-products{
+.admin-container .admin-products{
     height: 100%;
     overflow: hidden;
     overflow-y: auto;
 }
 
-.admin-product-container .admin-products::-webkit-scrollbar{
+.admin-container .admin-products::-webkit-scrollbar{
     width: 0;
 }
 

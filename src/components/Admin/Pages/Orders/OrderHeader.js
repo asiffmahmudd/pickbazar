@@ -7,8 +7,8 @@ const OrderHeader = () => {
             <div className="col-lg-10">
                 <div className ="row">
                     <div className="form-group col-lg-3">
-                        <select id="status" className="form-control">
-                            <option defaultValue>Status</option>
+                        <select id="filterStatus" defaultValue="" className="form-control">
+                            <option value="" disabled >Status</option>
                             <option value="Delivered">Delivered</option>
                             <option value="Pending">Pending</option>
                             <option value="Processing">Processing</option>
@@ -16,8 +16,8 @@ const OrderHeader = () => {
                         </select>
                     </div>
                     <div className="form-group col-lg-3">
-                        <select id="orderLimits" className="form-control">
-                            <option defaultValue>Order Limits</option>
+                        <select id="orderLimits" defaultValue="" className="form-control">
+                            <option value="" disabled>Order Limits</option>
                             <option value="Last 7 orders">Last 7 orders</option>
                             <option value="Last 15 orders">Last 15 orders</option>
                             <option value="Last 30 orders">Last 30 orders</option>

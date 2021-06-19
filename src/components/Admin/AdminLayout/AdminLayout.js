@@ -33,7 +33,7 @@ const AdminLayout = ({children}) => {
                     <div className="col-lg-2 admin-sidebar-container" style={!sidebarOpen?{visibility:"hidden", height:"0px", width:"0px"}:{visibilit:"visible", height:"100%", width:"100%"}}>
                         <AdminSidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}></AdminSidebar>
                     </div>
-                    <div className="col-lg-10 admin-product-container justify-content-center">
+                    <div className="col-lg-10 admin-container justify-content-center">
                         {children}
                     </div>
                 </div>

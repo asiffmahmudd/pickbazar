@@ -7,16 +7,16 @@ const ProductHeader = () => {
             <div className="col-lg-10">
                 <div className ="row">
                     <div className="form-group col-lg-3">
-                        <select id="category" className="form-control">
-                            <option defaultValue>Category</option>
+                        <select id="category" defaultValue="" className="form-control">
+                            <option value="" disabled >Category</option>
                             <option value="grocery">Grocery</option>
                             <option value="Dairy">Dairy</option>
                             <option value="home">Home</option>
                         </select>
                     </div>
                     <div className="form-group col-lg-3">
-                        <select id="price" className="form-control">
-                            <option defaultValue>Price</option>
+                        <select id="price" defaultValue="" className="form-control">
+                            <option value="" disabled >Price</option>
                             <option value="lowest to highest">Lowest to highest</option>
                             <option value="highest to lowest">Highest to lowest</option>
                         </select>

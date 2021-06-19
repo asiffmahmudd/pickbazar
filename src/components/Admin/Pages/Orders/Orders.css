@@ -1,11 +1,11 @@
-.admin-orders #status{
+.admin-orders #status, .admin-coupon #status{
     border: none;
     background: transparent;
     font-weight: 700;
     color: rgb(22, 31, 106);
 }
 
-.admin-orders #status:focus-visible{
+.admin-orders #status:focus-visible,  .admin-coupon #status:focus-visible{
     outline: none;
 }
 

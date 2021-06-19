@@ -2,11 +2,10 @@ import React from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import './Category.css'
 import CategoryHeader from './CategoryHeader'
-import { BsTrash } from 'react-icons/bs';
-import { BiEdit } from 'react-icons/bi';
 import { useState } from "react";
 import CategoryDrawer from './CategoryDrawer.js';
 import categories from '../../../../data/categories';
+import CategoryItem from './CategoryItem';
 
 const Category = () => {
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
@@ -41,7 +40,7 @@ const Category = () => {
 
     return (
         <AdminLayout>
-            <div className="category-category admin container-fluid">
+            <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
                         <CategoryHeader handleCategoryDrawerOpen={handleCategoryDrawerOpen}></CategoryHeader>
@@ -61,21 +60,7 @@ const Category = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        categories.map((category,index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <th scope="row">{category.id}</th>
-                                                    <td>{category.img}</td>
-                                                    <td>{category.name}</td>
-                                                    <td>{category.slug}</td>
-                                                    <td>{category.type}</td>
-                                                    <td>
-                                                        <BiEdit color="green" onClick={()=> handleCategoryDrawerOpen(category)} className="mr-2 hover-pointer"></BiEdit>
-                                                        <BsTrash color='red' onClick={() => handleCategoryDelete(category)} className="hover-pointer"></BsTrash>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
+                                        categories.map((category,index) => <CategoryItem key={index} handleCategoryDrawerOpen={handleCategoryDrawerOpen} handleCategoryDelete={handleCategoryDelete} category={category}></CategoryItem>)
                                     }
                                     
                                 </tbody>
