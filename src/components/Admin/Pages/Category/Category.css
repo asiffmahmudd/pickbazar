@@ -65,6 +65,11 @@
     overflow-y: auto;
 }
 
+.coupon-td-info{
+    font-size: 13px;
+    color: rgb(22, 31, 106);
+}
+
 @media (max-width:991px){
     .admin .table-responsive {
         height: unset;

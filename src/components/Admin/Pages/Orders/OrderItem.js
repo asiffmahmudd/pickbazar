@@ -32,7 +32,7 @@ const OrderItem = ({order}) => {
             <td>{order.customerId}</td>
             <td>{order.date}</td>
             <td>{order.address}</td>
-            <td>{order.amount}</td>
+            <td>${order.amount}</td>
             <td>{order.paymentMethod}</td>
             <td>{order.contact}</td>
             <td className="d-flex align-items-center">

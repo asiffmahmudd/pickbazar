@@ -22,12 +22,23 @@ const CouponItem = ({coupon, handleCouponDrawerOpen, handleCouponDelete}) => {
         coupon.status = event.target.value
     }
 
+    const percentage = (coupon.remainingCoupons*100)/coupon.totalCoupons;
+    
     return (
         <tr>
             <th scope="row">{coupon.id}</th>
             <td>{coupon.name}</td>
             <td>{coupon.code}</td>
-            <td>{coupon.remainingCoupons}</td>
+            <td className="pt-3 pb-3">
+                
+                <div className="progress" style={{height:'4px'}}>
+                    <div className="progress-bar" role="progressbar" style={{width: `${percentage}%`, background:'rgb(0, 197, 141)'}} aria-valuenow={coupon.remainingCoupons} aria-valuemin="0" aria-valuemax={coupon.totalCoupons}></div>
+                </div>
+                <div className="coupon-td-info">
+                    {coupon.remainingCoupons} of {coupon.totalCoupons} coupons remaining
+                </div>
+            
+            </td>
             <td>{coupon.expiration}</td>
             <td>{coupon.creation}</td>
             <td>

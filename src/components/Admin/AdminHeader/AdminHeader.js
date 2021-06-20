@@ -33,8 +33,8 @@ const AdminHeader = ({setSidebarOpen}) => {
                         <div className="dropdown user-icon hover-pointer">
                             <img className="dropdown-toggle" src={user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="/admin/settings">Settings</a>
-                                <a className="dropdown-item" href="/admin/dashboard">Logout</a>
+                                <Link className="dropdown-item" to="/admin/settings">Settings</Link>
+                                <div className="dropdown-item" href="/admin/dashboard">Logout</div>
                             </div>
                         </div>
                     </div>

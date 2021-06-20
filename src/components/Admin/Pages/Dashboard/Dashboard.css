@@ -1,0 +1,58 @@
+.dashboard .card-title{
+    font-size: 16px;
+    color: rgb(22, 31, 106);    
+    font-weight: 700;
+}
+.dashboard .card-para{
+    font-size: 13px;
+    color: rgb(22, 31, 106);   
+}
+
+.dashboard .card-icon {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+}
+
+.dashboard .card-icon.revenue-icon{
+    background: #ffe8b2;
+}
+.dashboard .card-icon.order-icon{
+    background: #fac6c6;
+}
+.dashboard .card-icon.customer-icon{
+    background: #d2f9f5;
+}
+.dashboard .card-icon.delivery-icon{
+    background: #F8D9C0;
+}
+
+.dashboard .revenue{
+    font-size: 21px;
+    font-weight: 700;
+    color:rgb(22, 31, 106);
+}
+
+
+.dashboard .revenue-info.up{
+    color: rgb(39, 199, 183);
+}
+
+
+.dashboard .revenue-info.down{
+    color: rgb(255, 110, 110);
+}
+
+.dashboard .revenue-info{
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.dashboard .revenue-info span{
+    color:rgb(22, 31, 106);
+    font-size: 12px;
+}

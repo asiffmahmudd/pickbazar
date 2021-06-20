@@ -6,6 +6,8 @@ import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 import CategoryDrawer from '../Category/CategoryDrawer';
 import { useState } from 'react';
 import CouponDrawer from '../Coupons/CouponDrawer';
+import { BsFillInboxesFill } from "react-icons/bs";
+import { RiCoupon3Fill } from "react-icons/ri";
 
 const Settings = () => {
 
@@ -45,7 +47,7 @@ const Settings = () => {
                     <div className="col-lg-6 mt-4">
                         <div className="p-4 bg-white d-flex align-items-center hover-pointer" onClick={handleCategoryDrawerOpen}>
                             <div className="mr-4">
-                                <FaCartPlus color="rgb(0, 197, 141)" size={70}></FaCartPlus>
+                                <BsFillInboxesFill color="rgb(0, 197, 141)" size={70}></BsFillInboxesFill>
                             </div>
                             <div>
                                 <h2 className="settings-title">Add Categories</h2>
@@ -57,7 +59,7 @@ const Settings = () => {
                     <div className="col-lg-6 mt-4">
                         <div className="p-4 bg-white d-flex align-items-center hover-pointer" onClick={handleCouponDrawerOpen}>
                             <div className="mr-4">
-                                <FaCartPlus color="rgb(0, 197, 141)" size={70}></FaCartPlus>
+                                <RiCoupon3Fill color="rgb(0, 197, 141)" size={70}></RiCoupon3Fill>
                             </div>
                             <div>
                                 <h2 className="settings-title">Add Coupons</h2>

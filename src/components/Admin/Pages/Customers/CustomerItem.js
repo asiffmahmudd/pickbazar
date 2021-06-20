@@ -8,7 +8,7 @@ const CustomerItem = ({customer}) => {
             <td>{customer.name}</td>
             <td>{customer.contact}</td>
             <td>{customer.totalOrders}</td>
-            <td>{customer.totalAmount}</td>
+            <td>${customer.totalAmount}</td>
             <td>{customer.joining}</td>
         </tr>
     );
