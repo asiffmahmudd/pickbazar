@@ -22,7 +22,6 @@ const UserDashboardHeader = () => {
                     </div>
                 </nav>
             </div>
-            
         </header>
     );
 };
