@@ -17,6 +17,7 @@ import Orders from './components/Admin/Pages/Orders/Orders';
 import Category from './components/Admin/Pages/Category/Category';
 import Customers from './components/Admin/Pages/Customers/Customers';
 import { ProductDrawerProvider } from './contexts/ProductDrawerContext';
+import UserProfile from './components/UserDashboard/Profile/Profile';
 
 function App() {
   
@@ -32,6 +33,8 @@ function App() {
           <Route path="/order-received">
             <OrderReceived></OrderReceived>
           </Route>
+          <Route path="/user/profile" component={UserProfile} />
+          <Route path="/user/orders" component={UserProfile} />
           <ProductDrawerProvider>
             <Route exact path="/admin/dashboard" component={Dashboard} />
             <Route exact path="/admin/products" component={Products} />

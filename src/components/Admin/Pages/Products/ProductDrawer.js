@@ -11,6 +11,8 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 
 
+
+
 const ProductDrawer = () => {
 
     const [options, setOptions] = useState(categories)
@@ -26,11 +28,12 @@ const ProductDrawer = () => {
     
     
     const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
+    console.log(product)
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
         data.img = preview;
-        console.log(data)
+        console.log('submitted: ',data)
         reset();
         handleProductDrawerClose()
     }
@@ -49,6 +52,12 @@ const ProductDrawer = () => {
     });
 
     const [preview, setPreview] = useState(product?.img)
+
+    const test = () => {
+        reset();
+        handleProductDrawerClose();
+    }
+
     useEffect(() => {
         setPreview(product?.img)
     },[product])
@@ -96,9 +105,9 @@ const ProductDrawer = () => {
                             <div className="col-lg-8 bg-white product-info">
                                 
                                 {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                    <div className="form-group">
+                                    <div className="form-group"  key={product}>
                                         <label htmlFor="productName">Name</label>
-                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" defaultValue={product?product.name:""} required/>
+                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" value={product?product.name:""} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productDescription">Description</label>
