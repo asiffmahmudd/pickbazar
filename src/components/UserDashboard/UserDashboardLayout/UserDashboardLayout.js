@@ -1,22 +1,23 @@
 import React from 'react';
 import UserDashboardSidebar from '../UserDashboardSidebar/UserDashboardSidebar';
 import UserProfileHeader from '../UserDashboardHeader/UserDashboardHeader';
+import './UserDashboardLayout.css'
 
 const UserDashboardLayout = ({children}) => {
     return (
-        <>
+        <div className="user-dashboard-layout">
             <UserProfileHeader></UserProfileHeader>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-lg-3">
+            <div className="container-fluid pb-5">
+                <div className="row mt-4" style={{margin:'0'}}>
+                    <div className="col-lg-3 user-dashboard-sidebar-container mt-4">
                         <UserDashboardSidebar></UserDashboardSidebar>
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-9 user-dashboard-body-container">
                         {children}
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

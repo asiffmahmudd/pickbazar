@@ -1,0 +1,12 @@
+.user-sidebar-item{
+    font-size: 15px;
+    font-weight: 700;
+    transition: color 0.35s ease 0s;
+    text-decoration: none;
+    color: black;
+}
+
+.user-sidebar-nav.active .user-sidebar-item{
+    color: rgb(0, 158, 127);
+    border-left: 5px solid rgb(0, 158, 127);
+}

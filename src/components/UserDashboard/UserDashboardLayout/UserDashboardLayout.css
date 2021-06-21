@@ -1,0 +1,23 @@
+@media (min-width: 992px){
+    .user-dashboard-layout .user-dashboard-sidebar-container.col-lg-3 {
+        flex: 0 0 22%;
+        max-width: 22%;
+    }
+
+    .user-dashboard-layout .col-lg-9.user-dashboard-body-container{
+        flex: 0 0 78%;
+        max-width: 78%;
+    }
+
+    .user-dashboard-layout .col-lg-9.user-dashboard-body-container .order-container.container-fluid  .col-lg-4.bg-white.pb-3.cstm-col{
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .user-dashboard-layout .col-lg-9.user-dashboard-body-container .order-container.container-fluid  .col-lg-8.cstm-col{
+        flex: 0 0 68%;
+        max-width: 68%;
+        margin-left: 15px;
+    }
+}
+

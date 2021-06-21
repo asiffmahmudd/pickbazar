@@ -1,0 +1,63 @@
+.user-order-title{
+    font-family: Poppins, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: rgb(13, 17, 54);
+    margin: 25px 0px;
+}
+
+.order-item-header p{
+    margin-bottom: 0;
+}
+
+.order-item{
+    border-radius: 6px;
+    background-color: rgb(247, 247, 247);
+}
+
+.order-item-container{
+    height: 575px;
+    overflow-y: scroll;
+}
+
+.order-item-container::-webkit-scrollbar{
+    width: 1px;
+}
+
+.order-item-container::-webkit-scrollbar-thumb{
+    width: 1px;
+    background-color: grey;
+}
+
+.order-item .order-item-body p{
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(13, 17, 54);
+}
+
+.user-order-item-status{
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(46, 112, 250);
+    line-height: 1;
+    background-color: rgba(46, 112, 250, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.user-order-details .address-title{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(13, 17, 54);
+    margin-bottom: 10px;
+}
+
+.user-order-details .details-title, .user-order-details .address-details{
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(119, 121, 140);
+    line-height: 1.5;
+}

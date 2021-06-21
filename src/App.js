@@ -18,6 +18,7 @@ import Category from './components/Admin/Pages/Category/Category';
 import Customers from './components/Admin/Pages/Customers/Customers';
 import { ProductDrawerProvider } from './contexts/ProductDrawerContext';
 import UserProfile from './components/UserDashboard/Profile/Profile';
+import UserOrders from './components/UserDashboard/UserOrders/UserOrders';
 
 function App() {
   
@@ -25,8 +26,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/" component={Grocery} />
-          
           <Route path="/checkout">
             <Checkout></Checkout>
           </Route>
@@ -34,7 +33,8 @@ function App() {
             <OrderReceived></OrderReceived>
           </Route>
           <Route path="/user/profile" component={UserProfile} />
-          <Route path="/user/orders" component={UserProfile} />
+          <Route path="/user/orders" component={UserOrders} />
+          <Route exact path="/" component={Grocery} />
           <ProductDrawerProvider>
             <Route exact path="/admin/dashboard" component={Dashboard} />
             <Route exact path="/admin/products" component={Products} />
