@@ -13,7 +13,8 @@ const UserDashboardHeader = () => {
                     <div className="dropdown user-icon hover-pointer ml-auto">
                         <img className="dropdown-toggle" src={user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <Link className="dropdown-item" to="/admin/settings">Settings</Link>
+                            <Link className="dropdown-item" to="/user/orders">Your Orders</Link>
+                            <Link className="dropdown-item" to="/user/profile">Profile</Link>
                             <div className="dropdown-item" href="/admin/dashboard">Logout</div>
                         </div>
                     </div>
