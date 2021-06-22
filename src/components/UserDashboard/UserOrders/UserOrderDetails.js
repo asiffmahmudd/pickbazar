@@ -34,8 +34,8 @@ const UserOrderDetails = () => {
             </div>
 
             <div className="m-5 progressbar-container">
-                <div class="progress ml-5 mr-5 mb-4" style={{height: '4px'}}>
-                    <div class="progress-bar" role="progressbar" style={{width: "25%", backgroundColor:'rgb(0, 158, 127)'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div className="progress ml-5 mr-5 mb-4" style={{height: '4px'}}>
+                    <div className="progress-bar" role="progressbar" style={{width: "25%", backgroundColor:'rgb(0, 158, 127)'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div className="progress-numbers">
                     <div className="first-step check-container">

@@ -91,6 +91,14 @@
     color: rgb(0, 158, 127);
 }
 
+.order-item-container .order-item.active{
+    border: 2px solid rgb(0, 158, 127);
+}
+
+.order-item-container .order-item{
+    transition: .05s ease-in-out .05s;
+}
+
 .user-order-details .order-status-text p{
     font-size: 14px;
     font-weight: 700;

@@ -104,7 +104,7 @@ const orders = [
     },
     {
         id:3,
-        customerId:"3",
+        customerId:"1",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 643,
@@ -129,7 +129,7 @@ const orders = [
     },
     {
         id:4,
-        customerId:"4",
+        customerId:"2",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 210,
@@ -167,7 +167,7 @@ const orders = [
     },
     {
         id:5,
-        customerId:"5",
+        customerId:"1",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 110.89,
@@ -218,7 +218,7 @@ const orders = [
     },
     {
         id:6,
-        customerId:"6",
+        customerId:"3",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 756.30,
@@ -282,7 +282,7 @@ const orders = [
     },
     {
         id:7,
-        customerId:"7",
+        customerId:"3",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 299.99,
@@ -308,7 +308,7 @@ const orders = [
     },
     {
         id:8,
-        customerId:"8",
+        customerId:"4",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 657,
@@ -333,7 +333,7 @@ const orders = [
     },
     {
         id:9,
-        customerId:"9",
+        customerId:"5",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 512,
@@ -371,7 +371,7 @@ const orders = [
     },
     {
         id:10,
-        customerId:"10",
+        customerId:"6",
         date:"18 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 249.7,
