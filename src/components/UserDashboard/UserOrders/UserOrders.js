@@ -18,7 +18,7 @@ const UserOrders = () => {
                         <div className="order-item-container">
 
                             {
-                                orders.map((order,index) => <UserOrderItem test={test} order={order} index={index+1} key={index}></UserOrderItem>)
+                                orders.map((order,index) => <UserOrderItem order={order} index={index+1} key={index}></UserOrderItem>)
                             }
                             
                         </div>

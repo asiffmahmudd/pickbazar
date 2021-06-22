@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const UserOrderItem = ({order,index,test}) => {
+const UserOrderItem = ({order,index}) => {
     
     const changeClass = (index) => {
         index--;
