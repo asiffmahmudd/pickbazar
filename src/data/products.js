@@ -14,7 +14,7 @@ import pears from '../img/pears.jpg';
 const products = [
     {
       id:1,
-      img: lime,
+      img: [lime,lime,lime,lime],
       name: "Lime",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -27,7 +27,7 @@ const products = [
     },
     {
       id:2,
-      img: lemon,
+      img: [lemon],
       name: "Lemon",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -40,7 +40,7 @@ const products = [
     },
     {
       id:3,
-      img: apples,
+      img: [apples],
       name: "Apples",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -53,7 +53,7 @@ const products = [
     },
     {
       id:4,
-      img: dates,
+      img: [dates],
       name: "Dates",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -66,7 +66,7 @@ const products = [
     },
     {
       id:5,
-      img: carrot,
+      img: [carrot],
       name: "Carrot",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -79,7 +79,7 @@ const products = [
     },
     {
       id:6,
-      img: cucumber,
+      img: [cucumber],
       name: "Cucmber",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -92,7 +92,7 @@ const products = [
     },
     {
       id:7,
-      img: cherry,
+      img: [cherry],
       name: "Cherry",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -105,7 +105,7 @@ const products = [
     },
     {
       id:8,
-      img: blueberry,
+      img: [blueberry],
       name: "Blueberry",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -118,7 +118,7 @@ const products = [
     },
     {
       id:9,
-      img: strawberry,
+      img: [strawberry],
       name: "Strawberry",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -131,7 +131,7 @@ const products = [
     },
     {
       id:10,
-      img: mango,
+      img: [mango],
       name: "Mango",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -144,7 +144,7 @@ const products = [
     },
     {
       id:11,
-      img: pepper,
+      img: [pepper],
       name: "Pepper",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',
@@ -157,7 +157,7 @@ const products = [
     },
     {
       id:12,
-      img: pears,
+      img: [pears],
       name: "Pears",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur mollis lectus. Nulla in efficitur libero, vel maximus quam. Duis feugiat vulputate sem eget efficitur.",
       unit:'lb',

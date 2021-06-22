@@ -19,6 +19,7 @@ import Customers from './components/Admin/Pages/Customers/Customers';
 import { ProductDrawerProvider } from './contexts/ProductDrawerContext';
 import UserProfile from './components/UserDashboard/Profile/Profile';
 import UserOrders from './components/UserDashboard/UserOrders/UserOrders';
+import SingleProduct from './components/SingleProduct/SingleProduct';
 
 function App() {
   
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/order-received">
             <OrderReceived></OrderReceived>
+          </Route>
+          <Route path="/product/:id">
+            <SingleProduct></SingleProduct>
           </Route>
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/user/orders" component={UserOrders} />

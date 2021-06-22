@@ -20,7 +20,6 @@ const Cart = () => {
     const items = useSelector(state => {
         return state.items.cartItems;
     })
-    console.log(items)
 
     const [cartExpanded, setCartExpanded] = useState(false);
     

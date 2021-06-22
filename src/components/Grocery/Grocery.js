@@ -12,7 +12,13 @@ const Grocery = () => {
         <div className="row mt-4">
           <Slider></Slider>
           {
-            products.map((product,index) => <GroceryItem key={index} product={product}></GroceryItem>)
+            products.map((product,index) => {
+              return(
+                <div className="col-md-3" key={index} style={{padding:'0'}}>
+                  <GroceryItem product={product}></GroceryItem>
+                </div>
+              )
+            })
           }
         </div>
         <Cart></Cart>
