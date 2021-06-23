@@ -16,8 +16,13 @@
 }
 
 .order-item-container{
-    height: 575px;
+    max-height: 650px;
     overflow-y: scroll;
+}
+
+.user-order-details.border.bg-white .table-responsive {
+    max-height: 311px;
+    overflow: scroll;
 }
 
 .order-item-container::-webkit-scrollbar{
@@ -121,4 +126,29 @@
 
 .progressbar-container{
     position: relative;
+}
+
+@media(max-width: 991px){
+    .user-order-item-accordion#accordion{
+        display: block;
+    }
+    .user-order-item-container{
+        display: none;
+    }
+    .user-order-details-container{
+        display: none;
+    }
+    .order-item-container{
+        overflow-y: unset;
+        max-height: unset;
+    }
+}
+@media(min-width: 992px){
+    .user-order-item-accordion#accordion{
+        display: none;
+    }
+    .user-order-item-container{
+        display: block;
+    }
+
 }

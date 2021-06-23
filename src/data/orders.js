@@ -34,7 +34,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 2.2
+                price: 2.2,
+                count: 2
               },
               {
                 id:3,
@@ -47,7 +48,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 3.2
+                price: 3.2,
+                count: 1
               },
               {
                 id:4,
@@ -60,7 +62,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 4.0
+                price: 4.0,
+                count: 3
               },
         ]
     },
@@ -85,7 +88,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 5.0
+                price: 5.0,
+                count: 1
               },
               {
                 id:6,
@@ -98,7 +102,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 6.3
+                price: 6.3,
+                count: 2
               },
         ]
     },
@@ -123,7 +128,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 8.6
+                price: 8.6,
+                count: 4
               },
         ]
     },
@@ -148,7 +154,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 10.4
+                price: 10.4,
+                count: 3
               },
               {
                 id:11,
@@ -161,7 +168,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 9.99
+                price: 9.99,
+                count: 1
               },
         ]
     },
@@ -186,7 +194,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 10.4
+                price: 10.4,
+                count: 6
               },
               {
                 id:11,
@@ -199,7 +208,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 9.99
+                price: 9.99,
+                count: 1
               },
               {
                 id:12,
@@ -212,7 +222,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 2.99
+                price: 2.99,
+                count: 2
               },
         ]
     },
@@ -237,7 +248,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 6.3
+                price: 6.3,
+                count: 2
               },
               {
                 id:7,
@@ -250,7 +262,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 9.1
+                price: 9.1,
+                count: 2
               },
               {
                 id:8,
@@ -263,7 +276,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 8.6
+                price: 8.6,
+                count: 2
               },
               {
                 id:9,
@@ -276,7 +290,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 11
+                price: 11,
+                count: 5
               },
         ]
     },
@@ -301,7 +316,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 4.0
+                price: 4.0,
+                count: 1
               },
         ]
 
@@ -327,7 +343,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 1.2
+                price: 1.2,
+                count: 1
               },
         ]
     },
@@ -352,7 +369,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 2.2
+                price: 2.2,
+                count: 4
               },
               {
                 id:3,
@@ -365,7 +383,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 3.2
+                price: 3.2,
+                count: 7
               },
         ]
     },
@@ -390,7 +409,8 @@ const orders = [
                 quantity:100,
                 type: "vegetables",
                 tags: ['fruits', 'vegetables'],
-                price: 2.2
+                price: 2.2,
+                count: 1
               },
               {
                 id:3,
@@ -403,7 +423,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 3.2
+                price: 3.2,
+                count: 1
               },
               {
                 id:4,
@@ -416,7 +437,8 @@ const orders = [
                 quantity:100,
                 type: "fruits",
                 tags: ['fruits', 'vegetables'],
-                price: 4.0
+                price: 4.0,
+                count: 3
               },
         ]
     },
