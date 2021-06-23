@@ -116,7 +116,7 @@ const UserOrderDetails = ({orderDetails}) => {
                     </h4>
                 }
                 {
-                    !orderDetails.status === 'failed' &&
+                    orderDetails.status !== 'failed' &&
                     <div className="d-flex order-status-text justify-content-between mt-3">
                         <p>Order Received</p>
                         <p>Order on the way</p>

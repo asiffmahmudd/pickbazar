@@ -12,7 +12,7 @@ const UserDashboardLayout = ({children}) => {
                     <div className="col-lg-3 user-dashboard-sidebar-container mt-4">
                         <UserDashboardSidebar></UserDashboardSidebar>
                     </div>
-                    <div className="col-lg-9 user-dashboard-body-container">
+                    <div className="col-lg-9 user-dashboard-body-container mt-4">
                         {children}
                     </div>
                 </div>

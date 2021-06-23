@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import { BiPlus } from "react-icons/bi";
+import numbers from '../../data/numbers';
 import AddContactModal from './AddContactModal';
 
-const numbers = [
-    {
-        title: "Primary",
-        desc: "019123456789"
-    },
-    {
-        title: "Secondary",
-        desc: "017123456789"
-    },
-]
 
 const ContactSection = ({register,errors}) => {
    

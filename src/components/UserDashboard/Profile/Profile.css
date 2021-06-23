@@ -1,3 +1,151 @@
 .user-profile-header .dropdown-menu{
     left: -140px;
 }
+
+.profile-header{
+    font-size: 21px;
+    font-weight: 600;
+    color: rgb(13, 17, 54);
+}
+
+.profile .radio-group label {
+    width: 100%;
+}
+
+.profile .radio-group .card-input-element {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.profile .radio-group .card-input {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(247, 247, 247);
+    min-height: 100px;
+}
+
+.profile .radio-group .card-input:hover {
+    cursor: pointer;
+}
+
+.profile .radio-group .card-input-element:checked + .card-input {
+     box-shadow: 0 0 1px 1px rgb(0, 158, 127);
+     background: white;
+}
+
+.profile{
+    padding: 40px 40px !important;
+}
+
+.profile form input{
+    display: block;
+    width: 100%;
+    padding: 0px 18px;
+    appearance: none;
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    line-height: inherit;
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 6px;
+    color: rgb(13, 17, 54);
+    transition: all 0.25s ease 0s;
+    background-color: rgb(247, 247, 247);
+    height: 48px;
+}
+
+.profile form label{
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(13, 17, 54);
+    line-height: 19px;
+    margin-bottom: 15px;
+}
+
+.profile form button{
+    padding: 0px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 158, 127);
+    transition: all 0.3s ease 0s;
+    border-radius: 6px;
+    appearance: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+    border: 0px;
+    height: 48px;
+}
+
+.profile form button:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(1, 147, 118);
+}
+
+.profile .address, .profile .contact{
+    margin: 30px 0;
+}
+
+.address.profile-section, .contact.profile-section{
+    position:relative;
+}
+
+.profile .address .profile-header, .profile .contact .profile-header{
+    margin-bottom: 40px;
+}
+
+.profile .panel-default.card-input{
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(247, 247, 247);
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+
+.profile-section-add-btn{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(0, 158, 127);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+@media (max-width:425px){
+    .profile-section-add-btn{
+        top: 30px;
+        left: 0px;
+    }
+}
+
+@media (max-width:567px){
+    .profile {
+        padding: 15px !important;
+    }
+}

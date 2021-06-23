@@ -16,8 +16,8 @@ const UserOrderAccordion = ({order,index}) => {
     }
 
     return (
-        <div class="card mb-4">
-            <div class="card-header hover-pointer collapsed" data-toggle="collapse" data-target={"#collapse-"+index} aria-expanded="true" aria-controls={"collapse-"+index} id={"heading-"+index} style={{padding:0}}>
+        <div className="card mb-4">
+            <div className="card-header hover-pointer collapsed" data-toggle="collapse" data-target={"#collapse-"+index} aria-expanded="true" aria-controls={"collapse-"+index} id={"heading-"+index} style={{padding:0}}>
                 <div className="order-item-accordion" >
                     <div className="order-item-header pt-3 pl-3 pr-3">
                         <div className="d-flex justify-content-between align-items-center">
@@ -43,7 +43,7 @@ const UserOrderAccordion = ({order,index}) => {
                 </div>
             </div>
 
-            <div id={"collapse-"+index} class="collapse" aria-labelledby={"heading-"+index} data-parent="#accordion">
+            <div id={"collapse-"+index} className="collapse" aria-labelledby={"heading-"+index} data-parent="#accordion">
                 <div className="row border-top border-bottom" style={{margin:'0'}}>
                     <div className="col-lg-12 border-right p-3">
                         <p className="address-title">Delivery Address</p>
@@ -73,8 +73,8 @@ const UserOrderAccordion = ({order,index}) => {
                 <div className="m-5 progressbar-container">
                     {
                         order.status !== 'failed' &&
-                        <div class="progress vertical">
-                            <div class="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{height: barWidth, width:'100%', backgroundColor:'rgb(0, 158, 127)'}}>
+                        <div className="progress vertical">
+                            <div className="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{height: barWidth, width:'100%', backgroundColor:'rgb(0, 158, 127)'}}>
                             </div>
                         </div>
                     }

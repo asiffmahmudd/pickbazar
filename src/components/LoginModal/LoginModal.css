@@ -2,7 +2,7 @@
     z-index: 1;
 }
 
-.login-modal .modal-close{
+ .modal-close{
     position: fixed;
     top: 5px;
     right: 10px;
@@ -19,11 +19,11 @@
     background-color: rgb(0, 158, 127);
 }
 
-.login-modal .modal-container{
+ .modal-container{
     padding: 40px 50px 10px 50px;
 }
 
-.login-modal .cstm-input{
+ .cstm-input{
     display: block;
     width: 100%;
     padding: 0px 18px;
@@ -40,15 +40,15 @@
     margin-bottom: 10px;
 }
 
-.login-modal .cstm-input:focus {
+ .cstm-input:focus {
     border-color: rgb(0, 158, 127);
 }
 
-.login-modal .cstm-input:hover, .login-modal .cstm-input:focus {
+ .cstm-input:hover,  .cstm-input:focus {
     outline: 0px;
 }
 
-.login-modal .form-btn{
+ .form-btn{
     padding: 0px 30px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
@@ -70,11 +70,11 @@
     height: 48px !important;
 }
 
-.login-modal .modal-text{
+ .modal-text{
     padding: 20px 0px;
 }
 
-.login-modal .form-text{
+ .form-text{
     font-family: Lato, sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -82,7 +82,7 @@
     margin: 0px;
 }
 
-.login-modal .forgot-password{
+ .forgot-password{
     padding: 20px;
     background-color: rgb(247, 247, 247);
 }
@@ -93,7 +93,7 @@
     cursor: pointer;
 }
 
-.login-modal.ReactModal__Content{
+.ReactModal__Content{
     inset: 50% auto auto 50%;
     overflow: visible;
     padding: 0px;
@@ -106,34 +106,34 @@
 }
 
 @media (min-width: 1400px){
-    .login-modal.ReactModal__Content{
+    .ReactModal__Content{
         width: 30%;
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1399px){
-    .login-modal.ReactModal__Content{
+    .ReactModal__Content{
         width: 33%;
     }
 }
 
 @media (min-width: 993px) and (max-width: 1199px){
-    .login-modal.ReactModal__Content{
+    .ReactModal__Content{
         width: 40%;
     }
 }
 
 @media (min-width: 769px) and (max-width: 991px){
-    .login-modal.ReactModal__Content{
+    .ReactModal__Content{
         width: 50%;
     }
 }
 
 @media (max-width: 768px){
-    .login-modal.ReactModal__Content{
+    .ReactModal__Content{
         width: 90%;
     }
-    .login-modal .modal-container{
+     .modal-container{
         padding: 40px 25px 10px 25px;
     }
 }

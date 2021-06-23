@@ -15,7 +15,7 @@ const UserOrders = () => {
         <UserDashboardLayout>
             <div className="order-container container-fluid">
                 <div className="row">
-                    <div className="col-lg-4 cstm-col mt-4 bg-white pb-3" style={{border: '1px solid rgb(241, 241, 241)'}}>
+                    <div className="col-lg-4 cstm-col bg-white pb-3" style={{border: '1px solid rgb(241, 241, 241)'}}>
                         <h3 className="user-order-title">My Order</h3>
                         <div className="order-item-container">
                             <div className="user-order-item-container">
@@ -30,7 +30,7 @@ const UserOrders = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-8 cstm-col mt-4 user-order-details-container">
+                    <div className="col-lg-8 cstm-col user-order-details-container">
                         <UserOrderDetails orderDetails={orderDetails}></UserOrderDetails>
                     </div>
                 </div>

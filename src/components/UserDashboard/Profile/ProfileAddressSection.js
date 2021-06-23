@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import addresses from '../../../data/adresse';
+import AddAddressModal from '../../Checkout/AddAddressModal';
 import { BiPlus } from "react-icons/bi";
-import addresses from '../../data/adresse';
-import AddAddressModal from './AddAddressModal';
 
-const AddressSection = ({register,errors}) => {
+const ProfileAddressSection = () => {
 
     const [addAddressIsOpen, setAddAddressIsOpen] = useState(false);
 
@@ -29,35 +30,33 @@ const AddressSection = ({register,errors}) => {
 
     return (
         <>
-            <div className="address checkout-section">
-                <h3 className="section-header">Delivery Address</h3>
-                <div className="checkout-section-add-btn" onClick={() => setAddAddressIsOpen(true)}><BiPlus/> Add Address</div>
-                <div className="radio-group row" id="deliveryAddress" name="deliveryAddress" {...register("deliveryAddress", { required:true })}>
+            <div className="address profile-section">
+                <h3 className="profile-header">Delivery Address</h3>
+                <div className="profile-section-add-btn" onClick={() => setAddAddressIsOpen(true)}>
+                    <BiPlus/> Add Address
+                </div>
+                <div className="row" id="deliveryAddress" name="deliveryAddress">
                     
                     {
                         addresses.map((address, index) => {
                             return (
-                                <label key={index} className="col-md-4">
-                                    <input type="radio" name="deliveryAddress" className="card-input-element" value={address.desc}/>
+                                <div key={index} className="col-md-4">
                                     <div className="panel panel-default card-input">
                                         <div className="panel-heading">{address.title}</div>
                                         <div className="panel-body">
                                             {address.desc}
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             )
                         })
                     }
                     
                 </div>
-                {errors.deliveryAddress?.type === 'required' && <span className="text-danger">Delivery address is required</span>}
             </div>
             <AddAddressModal addAddress={addAddress} addAddressIsOpen={addAddressIsOpen} handleClose={handleClose}></AddAddressModal>
-            
-
         </>
     );
 };
 
-export default AddressSection;
+export default ProfileAddressSection;
