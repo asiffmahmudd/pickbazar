@@ -67,7 +67,7 @@
     line-height: 1.5;
 }
 
-.user-order-details .check-container{
+.user-order-details .check-container, #accordion .check-container{
     background-color: rgb(0, 158, 127);
     height: 40px;
     width: 40px;
@@ -79,7 +79,7 @@
     position: absolute;
 }
 
-.user-order-details .number-container{
+.user-order-details .number-container, #accordion .number-container{
     background: white;
     border: 1px dashed rgb(0, 158, 127);
     height: 40px;
@@ -124,8 +124,46 @@
     right: 25px;
 }
 
+.accordion-first-step{
+    top: -20px;
+    left: -18px;
+}
+
+.accordion-second-step{
+    top: 87px;
+    left: -18px;
+}
+
+.accordion-third-step{
+    left: -18px;
+    bottom: -15px;
+}
+
 .progressbar-container{
     position: relative;
+}
+
+.progressbar-container .progress.vertical{
+    width: 5px;
+    height: 200px;
+}
+
+.accordion-order-status-text p:nth-child(1) {
+    top: -15px;
+}
+
+.accordion-order-status-text p:nth-child(2) {
+    top: 92px;
+}
+
+.accordion-order-status-text p:nth-child(3) {
+    bottom: -20px;
+}
+
+.accordion-order-status-text p{
+    font-weight: 700;
+    position: absolute;
+    left: 40px;
 }
 
 @media(max-width: 991px){

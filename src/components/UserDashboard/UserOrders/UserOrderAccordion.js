@@ -6,13 +6,13 @@ const UserOrderAccordion = ({order,index}) => {
 
     let barWidth;
     if(order.status === "pending"){
-        barWidth = "25%"
+        barWidth = "50px"
     }
     else if(order.status === "processing"){
-        barWidth = "75%"
+        barWidth = "160px"
     }
     else if(order.status === "delivered"){
-        barWidth = "100%"
+        barWidth = "200px"
     }
 
     return (
@@ -73,27 +73,22 @@ const UserOrderAccordion = ({order,index}) => {
                 <div className="m-5 progressbar-container">
                     {
                         order.status !== 'failed' &&
-                        <>
                         <div class="progress vertical">
-                            <div class="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{height: barWidth, backgroundColor:'rgb(0, 158, 127)'}}>
+                            <div class="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{height: barWidth, width:'100%', backgroundColor:'rgb(0, 158, 127)'}}>
                             </div>
                         </div>
-                        {/* <div className="progress ml-5 mr-5 mb-4" style={{height: '4px'}}>
-                            <div className="progress-bar" role="progressbar" style={{width: barWidth, backgroundColor:'rgb(0, 158, 127)'}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> */}
-                        </>
                     }
                     <div className="progress-numbers">
                         {
                             order.status === "pending" &&
                             <>
-                                <div className="first-step check-container">
+                                <div className="accordion-first-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
-                                <div className="second-step number-container">
+                                <div className="accordion-second-step number-container">
                                     <span>2</span>
                                 </div>
-                                <div className="third-step number-container">
+                                <div className="accordion-third-step number-container">
                                     <span>3</span>
                                 </div>
                             </>
@@ -102,13 +97,13 @@ const UserOrderAccordion = ({order,index}) => {
                         {
                             order.status === "delivered" &&
                             <>
-                                <div className="first-step check-container">
+                                <div className="accordion-first-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
-                                <div className="second-step check-container">
+                                <div className="accordion-second-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
-                                <div className="third-step check-container">
+                                <div className="accordion-third-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
                             </>
@@ -117,16 +112,25 @@ const UserOrderAccordion = ({order,index}) => {
                         {
                             order.status === "processing" &&
                             <>
-                                <div className="first-step check-container">
+                                <div className="accordion-first-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
-                                <div className="second-step check-container">
+                                <div className="accordion-second-step check-container">
                                     <BsCheck color="white" size={20}></BsCheck>
                                 </div>
-                                <div className="third-step number-container">
+                                <div className="accordion-third-step number-container">
                                     <span>3</span>
                                 </div>
                             </>
+                        }
+
+                        {
+                            order.status !== 'failed' &&
+                            <div className="d-flex accordion-order-status-text justify-content-between mt-3">
+                                <p>Order Received</p>
+                                <p>Order on the way</p>
+                                <p>Order Delivered</p>
+                            </div>
                         }
 
                         {
@@ -145,14 +149,6 @@ const UserOrderAccordion = ({order,index}) => {
                         <h4 className="text-center mt-3">
                             Delivery Failed
                         </h4>
-                    }
-                    {
-                        !order.status === 'failed' &&
-                        <div className="d-flex order-status-text justify-content-between mt-3">
-                            <p>Order Received</p>
-                            <p>Order on the way</p>
-                            <p>Order Delivered</p>
-                        </div>
                     }
                 </div>
 
