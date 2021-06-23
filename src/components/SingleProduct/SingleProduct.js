@@ -20,7 +20,7 @@ const SingleProduct = () => {
 
             <UserDashboardHeader></UserDashboardHeader>
 
-            <div className="bg-white border-top single-product-container">
+            <div className="bg-white border-top single-product-container" style={{marginTop: '89px'}}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-6 cstm-right-border cstm-padding">

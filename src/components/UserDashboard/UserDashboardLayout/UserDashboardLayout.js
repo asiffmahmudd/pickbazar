@@ -7,7 +7,7 @@ const UserDashboardLayout = ({children}) => {
     return (
         <div className="user-dashboard-layout">
             <UserProfileHeader></UserProfileHeader>
-            <div className="container-fluid pb-5">
+            <div className="container-fluid pb-5" style={{marginTop: '89px'}}>
                 <div className="row mt-4" style={{margin:'0'}}>
                     <div className="col-lg-3 user-dashboard-sidebar-container mt-4">
                         <UserDashboardSidebar></UserDashboardSidebar>

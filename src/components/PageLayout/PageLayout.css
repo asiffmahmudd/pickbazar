@@ -2,6 +2,10 @@
     padding-right: 0px !important;
 }
 
+.product-container #carouselControls{
+    margin-top: 5px;
+}
+
 @media (min-width: 991px){
     .product-container{
         padding-right: 2.5rem !important;

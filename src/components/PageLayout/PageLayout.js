@@ -7,7 +7,7 @@ const PageLayout = ({children}) => {
     return (
         <div>
             <Header></Header>
-            <div className="container-fluid pb-5">
+            <div className="container-fluid pb-5" style={{marginTop: '89px'}}>
                 <div className="row justify-content-center">
                     <div className="col-lg-3 sidebar-container">
                         <Sidebar></Sidebar>

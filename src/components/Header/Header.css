@@ -13,3 +13,83 @@ header nav ul form input::placeholder{
 header nav ul form input{
     width: 94%;
 }
+
+
+
+header{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+}
+
+.mobile-view-selected-category{
+    font-size: 15px;
+    color: rgb(13, 17, 54);
+    font-weight: 700;
+}
+
+.mobile-view-filter-text{
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 6px;
+    appearance: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+    border: 0px;
+    color: rgb(0, 158, 127);
+    background-color: transparent;
+}
+
+.filter-mobile-view{
+    display: none;
+}
+
+.filter-drawer-item{
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    padding: 1rem 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid rgb(247, 247, 247);
+    min-height: 160px;
+}
+
+.MuiDrawer-paperAnchorBottom {
+    max-height: 70vh !important;
+    border-radius: 20px 20px 0 0;
+}
+
+.filter-drawer-close-btn{
+    position: absolute;
+    top: 0px;
+    left: 46%;
+    background: white;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width:991px){
+    .navbar-nav .form-inline{
+        flex-flow: unset;
+    }
+    ul.navbar-nav.ml-auto.col-lg-8 {
+        padding: 0;
+        margin: 10px 0;
+    }
+    .filter-mobile-view{
+        display: block;
+    }
+}

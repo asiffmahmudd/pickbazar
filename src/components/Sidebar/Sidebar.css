@@ -1,0 +1,11 @@
+.sidebar::-webkit-scrollbar{
+    width: 0px;
+}
+
+.sidebar{
+    padding-bottom: 1rem;
+}
+
+.sidebar-item{
+    height: 150px;
+}

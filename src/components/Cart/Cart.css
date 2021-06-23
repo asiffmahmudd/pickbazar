@@ -122,7 +122,7 @@
     padding: 1.5rem .75rem;
 }
 
-@media (min-width: 581px){
+@media (min-width: 991px){
     .cart .price-container{
         margin-top: 1rem;
     }
@@ -131,7 +131,7 @@
     }
 }
 
-@media (max-width: 580px){
+@media (max-width: 991px){
     .cart{
         background-color: #009e7f;
         position: fixed;

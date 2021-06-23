@@ -1,1 +1,8 @@
-
+.sidebar{
+    position: fixed;
+    overflow-y: scroll;
+    width: 23%;
+    display: flex;
+    height: calc(100% - 110px);
+    flex-wrap: wrap;
+}
