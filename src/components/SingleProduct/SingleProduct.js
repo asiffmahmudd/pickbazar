@@ -5,8 +5,8 @@ import Cart from '../Cart/Cart';
 import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
 import SingleProductCarousel from './SingleProductCarousel';
 import './SingleProduct.css';
-import ProductButton from '../Grocery/ProductButton/ProductButton';
-import GroceryItem from '../Grocery/GroceryItem/GroceryItem';
+import ProductButton from '../Products/ProductButton/ProductButton';
+import ProductItem from '../Products/ProductItem/ProductItem';
 
 const SingleProduct = () => {
 
@@ -50,7 +50,7 @@ const SingleProduct = () => {
                                 return (
                                     <div key={index} className="col-md-2" style={{padding:'0'}}>
                                 
-                                        <GroceryItem  product={product}></GroceryItem>
+                                        <ProductItem  product={product}></ProductItem>
                                     </div>
                                 )
                             })

@@ -6,14 +6,26 @@
     margin-top: 5px;
 }
 
+.sidebar-item.active, .filter-drawer-item.active {
+    border: 2px solid;
+}
+
+.sidebar-item{
+    transition: 0.05s ease-in-out 0.05s;
+}
+
 @media (min-width: 991px){
     .product-container{
         padding-right: 2.5rem !important;
     }
+    
 }
 
-@media (max-width: 990px){
+@media (max-width: 991px){
     .row{
         margin: 0 !important;
+    }
+    .sidebar-desktop-view{
+        display: none;
     }
 }

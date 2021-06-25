@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
-import './ProductModal.css';
+import './AdminProductModal.css';
 
-const ProductModal = ({product, isOpen, handleClose}) => {
+const AdminProductModal = ({product, isOpen, handleClose}) => {
 
     const customStyles = {
         content : {
@@ -41,4 +41,4 @@ const ProductModal = ({product, isOpen, handleClose}) => {
     );
 };
 
-export default ProductModal;
+export default AdminProductModal;

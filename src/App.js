@@ -1,5 +1,4 @@
 import './App.css';
-import Grocery from './components/Grocery/Grocery';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +9,7 @@ import { store } from './Redux/CartStore';
 import Checkout from './components/Checkout/Checkout';
 import OrderReceived from './components/OrderReceived/OrderReceived';
 import Dashboard from './components/Admin/Pages/Dashboard/Dashboard';
-import Products from './components/Admin/Pages/Products/Products';
+import AdminProducts from './components/Admin/Pages/AdminProducts/AdminProducts';
 import Coupons from './components/Admin/Pages/Coupons/Coupons';
 import Settings from './components/Admin/Pages/Settings/Settings';
 import Orders from './components/Admin/Pages/Orders/Orders';
@@ -20,6 +19,7 @@ import { ProductDrawerProvider } from './contexts/ProductDrawerContext';
 import UserProfile from './components/UserDashboard/Profile/Profile';
 import UserOrders from './components/UserDashboard/UserOrders/UserOrders';
 import SingleProduct from './components/SingleProduct/SingleProduct';
+import PageLayout from './components/PageLayout/PageLayout';
 
 function App() {
   
@@ -36,12 +36,15 @@ function App() {
           <Route path="/product/:id">
             <SingleProduct></SingleProduct>
           </Route>
+          <Route exact path="/">
+            <PageLayout></PageLayout>  
+          </Route>
+          <ProductDrawerProvider>
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/user/orders" component={UserOrders} />
-          <Route exact path="/" component={Grocery} />
-          <ProductDrawerProvider>
+          
             <Route exact path="/admin/dashboard" component={Dashboard} />
-            <Route exact path="/admin/products" component={Products} />
+            <Route exact path="/admin/products" component={AdminProducts} />
             <Route exact path="/admin/category" component={Category} />
             <Route exact path="/admin/coupons" component={Coupons} />
             <Route exact path="/admin/customers" component={Customers} />

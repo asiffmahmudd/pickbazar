@@ -8,7 +8,7 @@ import SignupModal from '../SignupModal/SignupModal';
 import ResetModal from '../ResetModal/ResetModal';
 import FilterDrawer from './FilterDrawer';
 
-const Header = () => {
+const Header = ({selectedCategory, changeClassMobile}) => {
 
     const [loginIsOpen,setLoginIsOpen] = useState(false);
     const [signupIsOpen, setSignupIsOpen] = useState(false);
@@ -83,14 +83,14 @@ const Header = () => {
                 <div className="filter-mobile-view bg-white shadow-sm">
                     <div className="p-4 d-flex justify-content-between">
                         <div className="mobile-view-selected-category">
-                            No Category Selected
+                            {selectedCategory? selectedCategory :'No Category Selected'}
                         </div>
                         <div className="mobile-view-filter-text" onClick={handleFilterDrawerOpen}>
                             Filter
                         </div>
                     </div>
                 </div>
-                <FilterDrawer isFilterDrawerOpen={isFilterDrawerOpen} handleFilterDrawerClose={handleFilterDrawerClose}></FilterDrawer>
+                <FilterDrawer changeClassMobile={changeClassMobile} isFilterDrawerOpen={isFilterDrawerOpen} handleFilterDrawerClose={handleFilterDrawerClose}></FilterDrawer>
                 </>
             }
         </header>

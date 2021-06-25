@@ -6,3 +6,10 @@
     height: calc(100% - 110px);
     flex-wrap: wrap;
 }
+
+
+@media (min-width:991px){
+    img.card-img-top {
+        height: 250px;
+    }
+}

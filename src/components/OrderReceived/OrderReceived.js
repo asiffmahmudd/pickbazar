@@ -24,7 +24,7 @@ const OrderReceived = () => {
         <>
             <Header></Header>
 
-            <div className="order-received container">
+            <div className="order-received container" style={{marginTop:'6rem'}}>
                 <div className="row">
                     <div className="col-md-9 mx-auto mt-5 mb-5 bg-white rounded">
                         <div className="btn-container mt-3 text-right">

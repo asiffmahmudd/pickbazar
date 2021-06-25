@@ -2,20 +2,22 @@ import React, {useCallback, useState } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { GrClose } from "react-icons/gr";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import './ProductDrawer.css'
+import './AdminProductDrawer.css'
 import {useDropzone} from 'react-dropzone';
 import { useEffect } from 'react';
 import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
+import tags from '../../../../data/tags';
+import Category from '../Category/Category';
 
 
 
 
-const ProductDrawer = () => {
+const AdminProductDrawer = () => {
 
-    const [options, setOptions] = useState(categories)
+    const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState([])
 
     const onSelect = (selectedList, selectedItem) => {
@@ -135,7 +137,11 @@ const ProductDrawer = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productType">Type</label>
-                                        <input type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" required />
+                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" required>
+                                            {
+                                                categories.map(category => <option value={category.name}>{category.name}</option>)
+                                            }
+                                        </select>
                                     </div>
                                     <div className="form-group category-multiSelect">
                                         <label htmlFor="productCategories">Categories</label>
@@ -170,4 +176,4 @@ const ProductDrawer = () => {
     );
 };
 
-export default ProductDrawer;
+export default AdminProductDrawer;

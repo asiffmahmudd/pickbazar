@@ -49,7 +49,7 @@ const Checkout = () => {
         <>
             <Header></Header>
 
-            <div className="checkout container">
+            <div className="checkout container" style={{marginTop:'8rem'}}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row mt-5 mb-5 justify-content-center form-row">
                         <div className="col-lg-7 checkout-wrapper">

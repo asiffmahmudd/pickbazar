@@ -1,11 +1,11 @@
 import React from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
-import ProductHeader from './ProductHeader';
-import './Products.css';
-import ProductItem from './ProductItem';
+import ProductHeader from './AdminProductHeader';
+import './AdminProducts.css';
+import ProductItem from './AdminProductItem';
 import products from '../../../../data/products';
 
-const Products = () => {
+const AdminProducts = () => {
     return (
         <AdminLayout >
             <div className="admin-products container-fluid">
@@ -28,4 +28,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default AdminProducts;

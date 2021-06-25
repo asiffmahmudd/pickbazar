@@ -1,9 +1,9 @@
 import React from 'react';
-import './GroceryItem.css';
+import './ProductItem.css';
 import ProductButton from '../ProductButton/ProductButton';
 import { useHistory } from 'react-router-dom';
 
-const GroceryItem = ({product}) => {
+const ProductItem = ({product}) => {
     const history = useHistory();
     return (
         <div className="grocery mt-4">
@@ -20,4 +20,4 @@ const GroceryItem = ({product}) => {
     );
 };
 
-export default GroceryItem;
+export default ProductItem;

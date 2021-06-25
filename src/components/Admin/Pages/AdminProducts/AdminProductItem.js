@@ -1,7 +1,7 @@
 import React from 'react';
 import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 
-const ProductItem = ({product}) => {
+const AdminProductItem = ({product}) => {
 
     const {handleProductDrawerOpen} = useProductDrawer()
     return (
@@ -17,4 +17,4 @@ const ProductItem = ({product}) => {
     );
 };
 
-export default ProductItem;
+export default AdminProductItem;

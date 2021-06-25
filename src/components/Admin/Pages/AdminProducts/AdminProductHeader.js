@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductHeader = () => {
+const AdminProductHeader = () => {
     return (
         <div className="row header-content-row">
             <div className="header-title col-lg-2">Products</div>
@@ -30,4 +30,4 @@ const ProductHeader = () => {
     );
 };
 
-export default ProductHeader;
+export default AdminProductHeader;

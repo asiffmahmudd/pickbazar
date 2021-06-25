@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import AdminHeader from '../AdminHeader/AdminHeader';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
-import ProductDrawer from '../Pages/Products/ProductDrawer';
+import ProductDrawer from '../Pages/AdminProducts/AdminProductDrawer';
 import './AdminLayout.css'
 
 const AdminLayout = ({children}) => {
