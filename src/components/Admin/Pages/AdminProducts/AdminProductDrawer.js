@@ -139,7 +139,7 @@ const AdminProductDrawer = () => {
                                         <label htmlFor="productType">Type</label>
                                         <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" required>
                                             {
-                                                categories.map(category => <option value={category.name}>{category.name}</option>)
+                                                categories.map((category,index) => <option key={index} value={category.name}>{category.name}</option>)
                                             }
                                         </select>
                                     </div>

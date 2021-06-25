@@ -13,7 +13,7 @@ const SingleProduct = () => {
     const productId = useParams('id');
     const product = products.find(pd => (pd.id === parseInt(productId.id)))
 
-
+    const related = products.filter(pd => pd.type === product.type);
     
     return (
         <div className="single-product">
@@ -39,14 +39,14 @@ const SingleProduct = () => {
                 </div>
             </div>
 
-            <div className="">
+            <div className="pb-5">
                 <div className="container-fluid">
                     <div className="row mt-5 related-items-row" >
                         <div className="col-lg-12" style={{paddingLeft:'5px'}}>
                             <h3>Related Items</h3>
                         </div>
                         {
-                            products.map((product,index) => {
+                            related.map((product,index) => {
                                 return (
                                     <div key={index} className="col-md-2" style={{padding:'0'}}>
                                 

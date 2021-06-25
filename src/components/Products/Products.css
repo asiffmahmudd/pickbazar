@@ -7,9 +7,12 @@
     flex-wrap: wrap;
 }
 
+.product-item p.card-text {
+    height: 35px;
+}
 
 @media (min-width:991px){
-    img.card-img-top {
+    .product-item img.card-img-top {
         height: 250px;
     }
 }

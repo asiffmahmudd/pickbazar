@@ -1,4 +1,4 @@
-.grocery .card{
+.product-item .card{
     border-radius: 6px !important;
     border: 1px solid rgb(243, 243, 243) !important;
     display: flex;
@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.grocery{
+.product-item{
     padding-left: 5px !important;
     padding-right: 5px !important;
 }
@@ -70,7 +70,7 @@
     color: black;
 }
 
-.grocery .card:hover{
+.product-item .card:hover{
     box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px;
     transform: translateY(-5px);
 }
@@ -123,10 +123,10 @@
 
 
 @media (max-width: 565px){
-    /* .grocery .card .btn{
+    /* .product-item .card .btn{
         height: 60px;
     }
-    .grocery .card .btn .btn-plus-icon{
+    .product-item .card .btn .btn-plus-icon{
         height: 60px;
     }
     .counter{

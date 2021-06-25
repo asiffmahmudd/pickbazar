@@ -1,15 +1,15 @@
-import lime from '../img/GreenLimes_jrodle.jpg';
-import lemon from '../img/Yellow_Limes_y0lbyo.jpg';
-import apples from '../img/apples.jpg';
-import dates from '../img/dates.jpg';
-import carrot from '../img/carrots.jpg';
-import cucumber from '../img/cucumber.jpg';
-import blueberry from '../img/blueberry.jpg';
-import strawberry from '../img/strawberry.jpg';
-import mango from '../img/mango.jpg';
-import pepper from '../img/pepper.jpg';
-import cherry from '../img/cherry.jpg';
-import pears from '../img/pears.jpg';
+import lime from '../img/GreenLimes_jrodle.png';
+import lemon from '../img/Yellow_Limes_y0lbyo.png';
+import apples from '../img/apples.png';
+import dates from '../img/dates.png';
+import carrot from '../img/carrots.png';
+import cucumber from '../img/cucumber.png';
+import blueberry from '../img/blueberry.png';
+import strawberry from '../img/strawberry.png';
+import mango from '../img/mango.png';
+import pepper from '../img/pepper.png';
+import cherry from '../img/cherry.png';
+import pears from '../img/pears.png';
 
 
 const orders = [

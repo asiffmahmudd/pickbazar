@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 const ProductItem = ({product}) => {
     const history = useHistory();
     return (
-        <div className="grocery mt-4">
+        <div className="product-item mt-4">
             <div className="card shadow-sm">
                 <img className="card-img-top" src={product.img[0]} alt="" onClick={() => history.push('/product/'+product.id)} />
                 <div className="card-body">
