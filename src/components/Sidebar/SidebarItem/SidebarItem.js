@@ -1,11 +1,11 @@
 import React from 'react';
 import './SidebarItem.css'
 
-const SidebarItem = ({category, changeClass, index}) => {
+const SidebarItem = ({category, changeCategory, index}) => {
 
     return (
         <div className="col-md-6 mt-2" style={{padding: '0 5px'}}>
-            <div className="sidebar-item p-4 text-center hover-pointer" onClick={()=>changeClass(index,category.name)}>
+            <div className="sidebar-item p-4 text-center hover-pointer" onClick={()=>changeCategory(index,category.name)}>
                 {category.img}
                 <p className="text-center mt-1">{category.name}</p>
             </div>

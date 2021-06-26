@@ -8,7 +8,7 @@ import SignupModal from '../SignupModal/SignupModal';
 import ResetModal from '../ResetModal/ResetModal';
 import FilterDrawer from './FilterDrawer';
 
-const Header = ({selectedCategory, changeClassMobile}) => {
+const Header = ({selectedCategory, changeCategory}) => {
 
     const [loginIsOpen,setLoginIsOpen] = useState(false);
     const [signupIsOpen, setSignupIsOpen] = useState(false);
@@ -78,21 +78,20 @@ const Header = ({selectedCategory, changeClassMobile}) => {
                     <ResetModal handleClose={handleClose} resetIsOpen={resetIsOpen} handleResetOpen={handleResetOpen} handleLoginOpen={handleLoginOpen}></ResetModal>
                 </nav>
             </div>
-            {   <>
-                <hr style={{margin:0}}/>
-                <div className="filter-mobile-view bg-white shadow-sm">
-                    <div className="p-4 d-flex justify-content-between">
-                        <div className="mobile-view-selected-category">
-                            {selectedCategory? selectedCategory :'No Category Selected'}
-                        </div>
-                        <div className="mobile-view-filter-text" onClick={handleFilterDrawerOpen}>
-                            Filter
-                        </div>
+            
+            <hr style={{margin:0}}/>
+            <div className="filter-mobile-view bg-white shadow-sm">
+                <div className="p-3 d-flex justify-content-between">
+                    <div className="mobile-view-selected-category">
+                        {selectedCategory? selectedCategory :'No Category Selected'}
+                    </div>
+                    <div className="mobile-view-filter-text" onClick={handleFilterDrawerOpen}>
+                        Filter
                     </div>
                 </div>
-                <FilterDrawer changeClassMobile={changeClassMobile} isFilterDrawerOpen={isFilterDrawerOpen} handleFilterDrawerClose={handleFilterDrawerClose}></FilterDrawer>
-                </>
-            }
+            </div>
+            <FilterDrawer changeCategory={changeCategory} isFilterDrawerOpen={isFilterDrawerOpen} handleFilterDrawerClose={handleFilterDrawerClose}></FilterDrawer>
+            
         </header>
         
         </>

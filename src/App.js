@@ -39,6 +39,9 @@ function App() {
           <Route exact path="/">
             <PageLayout></PageLayout>  
           </Route>
+          <Route exact path="/:index/:category">
+            <PageLayout></PageLayout>  
+          </Route>
           <ProductDrawerProvider>
           <Route path="/user/profile" component={UserProfile} />
           <Route path="/user/orders" component={UserOrders} />

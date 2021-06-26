@@ -18,7 +18,6 @@
     .product-container{
         padding-right: 2.5rem !important;
     }
-    
 }
 
 @media (max-width: 991px){
@@ -27,5 +26,8 @@
     }
     .sidebar-desktop-view{
         display: none;
+    }
+    .home .container-fluid.pb-5{
+        margin-top: 9rem !important;
     }
 }
