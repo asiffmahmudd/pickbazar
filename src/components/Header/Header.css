@@ -74,8 +74,8 @@ header{
 }
 
 .filter-drawer-close-btn{
-    position: absolute;
-    top: 0px;
+    position: fixed;
+    top: 23%;
     left: 46%;
     background: white;
     padding: 8px;

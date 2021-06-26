@@ -19,7 +19,7 @@ const PageLayout = () => {
             items[0].classList.remove('active')
         items = document.querySelectorAll('.sidebar .sidebar-item')
         if(params.index)
-            items[params.index].classList.add('active')
+            items[params.index]?.classList.add('active')
     }
 
     const changeClassMobile = () => {
@@ -39,7 +39,7 @@ const PageLayout = () => {
     }, [params])
 
     const changeCategory = (index,categoryName) => {
-        history.push('/'+index+'/'+categoryName)
+        history.push('/category/'+index+'/'+categoryName)
     }
 
     

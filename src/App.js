@@ -27,25 +27,26 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/checkout">
+          <Route exact path="/checkout">
             <Checkout></Checkout>
           </Route>
-          <Route path="/order-received">
+          <Route exact path="/order-received">
             <OrderReceived></OrderReceived>
           </Route>
-          <Route path="/product/:id">
+          <Route exact path="/product/:id">
             <SingleProduct></SingleProduct>
           </Route>
           <Route exact path="/">
             <PageLayout></PageLayout>  
           </Route>
-          <Route exact path="/:index/:category">
+          <Route exact path="/category/:index/:category">
             <PageLayout></PageLayout>  
           </Route>
+
+          <Route exact path="/user/profile" component={UserProfile} />
+          <Route exact path="/user/orders" component={UserOrders} />
+
           <ProductDrawerProvider>
-          <Route path="/user/profile" component={UserProfile} />
-          <Route path="/user/orders" component={UserOrders} />
-          
             <Route exact path="/admin/dashboard" component={Dashboard} />
             <Route exact path="/admin/products" component={AdminProducts} />
             <Route exact path="/admin/category" component={Category} />
