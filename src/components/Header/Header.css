@@ -65,6 +65,7 @@ header{
     cursor: pointer;
     border: 2px solid rgb(247, 247, 247);
     min-height: 160px;
+    transition: 0.10s ease-in-out 0.10s;
 }
 
 .MuiDrawer-paperAnchorBottom {
@@ -83,6 +84,8 @@ header{
     align-items: center;
     justify-content: center;
 }
+
+
 
 @media(max-width:991px){
     .navbar-nav .form-inline{

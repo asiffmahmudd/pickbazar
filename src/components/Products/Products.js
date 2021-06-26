@@ -18,7 +18,7 @@ const Products = ({selectedCategory}) => {
         {
           productArray?.map((product,index) => {
             return(
-              <div className="col-md-3" key={index} style={{padding:'0'}}>
+              <div className="col-md-3 col-sm-4 col-6" key={index} style={{padding:'0'}}>
                 <ProductItem product={product}></ProductItem>
               </div>
             )
