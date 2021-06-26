@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
-import Category from '../Category/Category';
+// import Category from '../Category/Category';
 
 
 
@@ -55,10 +55,10 @@ const AdminProductDrawer = () => {
 
     const [preview, setPreview] = useState(product?.img)
 
-    const test = () => {
-        reset();
-        handleProductDrawerClose();
-    }
+    // const test = () => {
+    //     reset();
+    //     handleProductDrawerClose();
+    // }
 
     useEffect(() => {
         setPreview(product?.img)

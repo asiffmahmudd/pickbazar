@@ -45,7 +45,7 @@ const Header = ({selectedCategory, changeCategory}) => {
     const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
     
     const handleFilterDrawerOpen = () => {
-        setFilterDrawerOpen(true);  
+        setFilterDrawerOpen(true); 
     }
 
     const handleFilterDrawerClose = () => {
