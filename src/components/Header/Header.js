@@ -82,9 +82,12 @@ const Header = ({selectedCategory, changeCategory}) => {
             <hr style={{margin:0}}/>
             <div className="filter-mobile-view bg-white shadow-sm">
                 <div className="p-3 d-flex justify-content-between">
-                    <div className="mobile-view-selected-category">
-                        {selectedCategory? selectedCategory :'No Category Selected'}
-                    </div>
+                    {
+                        selectedCategory? 
+                        <div className="mobile-view-selected-category">{selectedCategory}</div> 
+                        :<div style={{fontWeight:700}}>No Category Selected</div>
+                    }
+                    
                     <div className="mobile-view-filter-text" onClick={handleFilterDrawerOpen}>
                         Filter
                     </div>

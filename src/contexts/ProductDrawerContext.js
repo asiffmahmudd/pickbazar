@@ -10,7 +10,7 @@ export function useProductDrawer(){
 
 export function ProductDrawerProvider({children}){
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState()
     
     const handleProductDrawerOpen = (pd) => {
         if(pd){

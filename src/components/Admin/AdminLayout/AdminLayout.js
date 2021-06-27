@@ -30,7 +30,7 @@ const AdminLayout = ({children}) => {
             <AdminHeader setSidebarOpen={setSidebarOpen}></AdminHeader>
             <div className="container-fluid" style={{marginTop: '136px'}}>
                 <div className="row full-admin-container">
-                    <div className="col-lg-2 admin-sidebar-container" style={!sidebarOpen?{visibility:"hidden", height:"0px", width:"0px"}:{visibilit:"visible", height:"100%", width:"100%"}}>
+                    <div className="col-lg-2 admin-sidebar-container" style={!sidebarOpen?{visibility:"hidden", height:"0px", width:"0px"}:{visibility:"visible", height:"100%", width:"100%"}}>
                         <AdminSidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}></AdminSidebar>
                     </div>
                     <div className="col-lg-10 admin-container justify-content-center">

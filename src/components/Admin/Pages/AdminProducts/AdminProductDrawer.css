@@ -134,10 +134,13 @@ svg.drawer-close  {
     border: 1px solid rgb(230,230,230);
     margin-top: 15px;
     display: flex;
-    width: 90px;
-    justify-content: center;
     padding: 4px;
     border-radius: 2px;
+}
+
+.drawer .dropzone-img-container img{
+    border: 1px solid rgb(230,230,230);
+    margin-right: 5px;
 }
 
 .drawer form label {
