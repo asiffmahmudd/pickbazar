@@ -9,45 +9,49 @@ import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
+import { useEffect } from 'react';
 
 const AdminProductDrawer = () => {
 
-    const [options, setOptions] = useState(tags)
-    const [selectedValues, setSelectedValues] = useState([])
+    
+    const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
 
+    const [options, setOptions] = useState(tags)
+    const [selectedValues, setSelectedValues] = useState(product?.tags)
     const onSelect = (selectedList, selectedItem) => {
         setSelectedValues(selectedList);
     }
-
     const onRemove = (selectedList, removedItem) => {
         setSelectedValues(selectedList);
     }
     
-    const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
     const { register, handleSubmit, reset } = useForm();
 
-    const {acceptedFiles, fileRejections, getRootProps, getInputProps} = useDropzone({
-        // onDrop: files => console.log(files),
+    const [files, setFiles] = useState([])
+    const processDrop = (pics) =>{
+        setFiles(pics.map(file => (
+            <img src={URL.createObjectURL(file)} alt="preview" />
+        )))
+    }
+
+    const {fileRejections, getRootProps, getInputProps} = useDropzone({
+        onDrop: processDrop,
         accept: 'image/jpeg, image/png',
         maxFiles:4,
     });
 
     const onSubmit = data => {
-        data.img = acceptedFiles
+        data.img = files
         reset()
         handleProductDrawerClose()
     }
 
-    let files = acceptedFiles.map(file => (
-        <img src={URL.createObjectURL(file)} alt="preview" />
-    ));
-
     const closeDrawer = () => {
-        reset();
-        files = null;
+        setFiles([])
+        // reset()
         handleProductDrawerClose();
     }
-
+    
     const fileRejectionItems = fileRejections.map(({ file, errors  }) => { 
         return (
           <li key={file.path}>
@@ -62,12 +66,12 @@ const AdminProductDrawer = () => {
 
     return (
         <div>
-            <Drawer className="add-product-drawer drawer" anchor={"right"} open={isProductDrawerOpen} onClose={() => closeDrawer()}> 
+            <Drawer className="add-product-drawer drawer" anchor={"right"} open={isProductDrawerOpen} onClose={closeDrawer}> 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="drawer-container">
                     
                     <div className="drawer-header">
-                    <GrClose className="drawer-close hover-pointer" onClick={()=>handleProductDrawerClose()}></GrClose>
+                    <GrClose className="drawer-close hover-pointer" onClick={closeDrawer}></GrClose>
                         <h3>
                             {
                                 product ? 'Update Product':'Add Product'
@@ -87,10 +91,10 @@ const AdminProductDrawer = () => {
                                     <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
                                 </div>
                                 {
-                                    product?.length > 0 &&
+                                    product?.img.length > 0 &&
                                     <div className="dropzone-img-container">
                                         {   
-                                            product?.img.map(pic => <img src={pic} alt="preview" />)
+                                            product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
                                         }
                                         
                                     </div>
@@ -115,37 +119,37 @@ const AdminProductDrawer = () => {
                             <div className="col-lg-8 bg-white product-info">
                                 
                                 {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                    <div className="form-group"  key={product}>
+                                    <div className="form-group"  >
                                         <label htmlFor="productName">Name</label>
-                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" value={product?product.name:""} required/>
+                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" defaultValue={product?.name} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productDescription">Description</label>
-                                        <textarea type="text" className="form-control" {...register("productDescription")} name="productDescription" id="productDescription"  required/>
+                                        <textarea type="text" className="form-control" {...register("productDescription")} name="productDescription" id="productDescription" defaultValue={product?.desc}  required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productUnit">Unit</label>
-                                        <input type="text" className="form-control" {...register("productUnit")} name="productUnit" id="productUnit" aria-describedby="productUnit" required/>
+                                        <input type="text" className="form-control" {...register("productUnit")} name="productUnit" id="productUnit" aria-describedby="productUnit" defaultValue={product?.unit} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productPrice">Price</label>
-                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?product.price:""} step="any" required/>
+                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?.price} step="any" required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productSaleprice">Sale Price</label>
-                                        <input type="text" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" aria-describedby="productSaleprice" required/>
+                                        <input type="text" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" aria-describedby="productSaleprice" defaultValue={product?.sale} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productDiscount">Discount In Percent</label>
-                                        <input type="text" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" aria-describedby="productDiscount" required/>
+                                        <input type="text" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" aria-describedby="productDiscount" defaultValue={product?.discount} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productQuantity">Product Quantity</label>
-                                        <input type="text" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" required />
+                                        <input type="text" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" defaultValue={product?.quantity} required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productType">Type</label>
-                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" required>
+                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" defaultValue={product?.type} required>
                                             {
                                                 categories.map((category,index) => <option key={index} value={category.name}>{category.name}</option>)
                                             }

@@ -17,7 +17,7 @@ export function ProductDrawerProvider({children}){
             setProduct(pd)
         }
         else{
-            setProduct(null)
+            setProduct()
         }
         setProductDrawerOpen(true);
     }
