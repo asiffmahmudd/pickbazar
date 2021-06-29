@@ -1,59 +1,41 @@
 const tags = [
-    {
-        name:'chicken'
-    },
-    {
-        name: 'beef'
-    },
-    {
-        name: 'mutton'
-    },
-    {
-        name: 'chips'
-    },
-    {
-        name: 'breads'
-    },
-    {
-        name: 'jam & jelly'
-    },
-    {
-        name: 'pet food'
-    },
-    {
-        name: 'women dress'
-    },
-    {
-        name: 'brush'
-    },
-    {
-        name: 'spray'
-    },
-    {
-        name: 'mop'
-    },
-    {
-        name: 'milk'
-    },
-    {
-        name: 'egg'
-    },
-    {
-        name: 'dish'
-    },
-    {
-        name: 'bowl'
-    },
-    {
-        name: 'juice'
-    },
-    {
-        name: 'cereal'
-    },
-    {
-        name: 'lipsticks'
-    },
-
+    {name:'fruits'},
+    {name:'bath'},
+    {name:'vegetables'},
+    {name:'chicken'},
+    {name: 'beef'},
+    {name: 'mutton'},
+    {name: 'chips'},
+    {name: 'breads'},
+    {name: 'jam & jelly'},
+    {name: 'pet food'},
+    {name: 'women dress'},
+    {name: 'brush'},
+    {name: 'spray'},
+    {name: 'mop'},
+    {name: 'milk'},
+    {name: 'egg'},
+    {name: 'dish'},
+    {name: 'bowl'},
+    {name: 'juice'},
+    {name: 'cereal'},
+    {name: 'lipsticks'},
+    {name:'fizzy drinks'},
+    {name:'energy drinks'},
+    {name:'coffee'},
+    {name:'cereal'},
+    {name:'bread'},
+    {name:'oil'},
+    {name:'butter'},
+    {name:'home'}, 
+    {name:'cleaning'},
+    {name:'dog food'},
+    {name:'pet care'},
+    {name:'cat food'},
+    {name:'chocolate'},
+    {name:'snacks'},
+    {name:'biscuit'},
+    
 ]
 
 export default tags;

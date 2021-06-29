@@ -8,9 +8,26 @@ const ProductItem = ({product}) => {
     return (
         <div className="product-item mt-4">
             <div className="card shadow-sm">
-                <img className="card-img-top" src={product.img[0]} alt="" onClick={() => history.push('/product/'+product.id)} />
+                <div className="product-img-container">
+                    <img className="card-img-top" src={product.img[0]} alt="" onClick={() => history.push('/product/'+product.id)} />
+                    {
+                        product.discount > 0 &&
+                        <p className="product-item-discount">{product.discount}%</p>
+                    }
+                </div>
                 <div className="card-body">
-                    <h5 className="card-title">${product.price}</h5>
+                    {
+                        product.discount > 0 &&
+                        <>
+                            <h5 className="card-title">${product.sale}</h5> 
+                            <span className="discount-price">${product.price}</span>
+                            
+                        </>
+                    }
+                    {
+                        product.discount === 0 &&
+                        <h5 className="card-title">${product.price}</h5>
+                    }
                     <p className="card-text">{product.name}</p>
                     <ProductButton product={product}></ProductButton>
                     

@@ -12,8 +12,6 @@ import tags from '../../../../data/tags';
 import { useEffect } from 'react';
 
 const AdminProductDrawer = () => {
-
-    
     const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
 
     const [options, setOptions] = useState(tags)
@@ -29,8 +27,8 @@ const AdminProductDrawer = () => {
 
     const [files, setFiles] = useState([])
     const processDrop = (pics) =>{
-        setFiles(pics.map(file => (
-            <img src={URL.createObjectURL(file)} alt="preview" />
+        setFiles(pics.map((file,index) => (
+            <img key={index} src={URL.createObjectURL(file)} alt="preview" />
         )))
     }
 
@@ -41,7 +39,7 @@ const AdminProductDrawer = () => {
     });
 
     const onSubmit = data => {
-        data.img = files
+        data.img =  files.length > 0? files: product.img 
         reset()
         handleProductDrawerClose()
     }
@@ -52,7 +50,7 @@ const AdminProductDrawer = () => {
         handleProductDrawerClose();
     }
     
-    const fileRejectionItems = fileRejections.map(({ file, errors  }) => { 
+    const fileRejectionItems = fileRejections.map(({ file, errors }) => { 
         return (
           <li key={file.path}>
                <ul>
@@ -62,7 +60,7 @@ const AdminProductDrawer = () => {
         ) 
     });
 
-    
+    console.log(product)
 
     return (
         <div>
@@ -91,7 +89,7 @@ const AdminProductDrawer = () => {
                                     <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
                                 </div>
                                 {
-                                    product?.img.length > 0 &&
+                                    product?.img.length > 0 && files.length === 0 &&
                                     <div className="dropzone-img-container">
                                         {   
                                             product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
@@ -116,12 +114,12 @@ const AdminProductDrawer = () => {
                             <div className="col-lg-4">
                                 <p className="drawer-body-section-title">Add your Product description and necessary information from here</p>
                             </div>
-                            <div className="col-lg-8 bg-white product-info">
+                            <div className="col-lg-8 bg-white product-info" key={product}>
                                 
                                 {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                    <div className="form-group"  >
+                                    <div className="form-group">
                                         <label htmlFor="productName">Name</label>
-                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" defaultValue={product?.name} required/>
+                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" value={product?.name} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productDescription">Description</label>
@@ -160,7 +158,7 @@ const AdminProductDrawer = () => {
                                         {/* <input type="text" className="form-control" {...register("productCategories")} name="productCategories" id="productCategories" aria-describedby="productCategories" required /> */}
                                         <Multiselect
                                             options={options} // Options to display in the dropdown
-                                            selectedValues={selectedValues} // Preselected value to persist in dropdown
+                                            selectedValues={product?.tags} // Preselected value to persist in dropdown
                                             onSelect={onSelect} // Function will trigger on select event
                                             onRemove={onRemove} // Function will trigger on remove event
                                             displayValue="name" // Property name to display in the dropdown options
