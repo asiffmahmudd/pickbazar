@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import ProductHeader from './AdminProductHeader';
 import './AdminProducts.css';
-import ProductItem from './AdminProductItem';
+import AdminProductItem from './AdminProductItem';
 import products from '../../../../data/products';
 
 const AdminProducts = () => {
@@ -16,7 +16,7 @@ const AdminProducts = () => {
                     <div className="col-lg-12 admin-products-body">
                         <div className="row pb-5">
                             {
-                                products.map((product,index) => <ProductItem key={index} product={product} ></ProductItem>)
+                                products.map((product,index) => <AdminProductItem key={'12'+index} product={product} ></AdminProductItem>)
                             }
                         </div>
                         

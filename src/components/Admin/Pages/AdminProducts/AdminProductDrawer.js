@@ -4,15 +4,12 @@ import { GrClose } from "react-icons/gr";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import './AdminProductDrawer.css'
 import {useDropzone} from 'react-dropzone';
-import { useProductDrawer } from '../../../../contexts/ProductDrawerContext';
 import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
-import { useEffect } from 'react';
 
-const AdminProductDrawer = () => {
-    const {product, handleProductDrawerClose, isProductDrawerOpen} = useProductDrawer()
+const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
 
     const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState(product?.tags)
@@ -40,13 +37,14 @@ const AdminProductDrawer = () => {
 
     const onSubmit = data => {
         data.img =  files.length > 0? files: product.img 
+        console.log(data)
         reset()
         handleProductDrawerClose()
     }
 
     const closeDrawer = () => {
         setFiles([])
-        // reset()
+        reset()
         handleProductDrawerClose();
     }
     
@@ -59,64 +57,60 @@ const AdminProductDrawer = () => {
           </li>
         ) 
     });
-
-    console.log(product)
-
+    
     return (
         <div>
             <Drawer className="add-product-drawer drawer" anchor={"right"} open={isProductDrawerOpen} onClose={closeDrawer}> 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="drawer-container">
-                    
-                    <div className="drawer-header">
-                    <GrClose className="drawer-close hover-pointer" onClick={closeDrawer}></GrClose>
-                        <h3>
-                            {
-                                product ? 'Update Product':'Add Product'
-                            }
-                        </h3>
-                    </div>
-                    
-                    <div className="drawer-body">
-                        <div className="row">
-                            <div className="col-lg-4">
-                                <p className="drawer-body-section-title">Upload your Product image here</p>
-                            </div>
-                            <div className="col-lg-8 bg-white dropzone-container">
-                                <div {...getRootProps({className: 'dropzone hover-pointer'})}>
-                                    <input {...getInputProps()}  name="productImg" />
-                                    <FaCloudUploadAlt color="rgb(230, 230, 230)" size={40}></FaCloudUploadAlt>
-                                    <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
-                                </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="drawer-container">
+                        
+                        <div className="drawer-header">
+                        <GrClose className="drawer-close hover-pointer" onClick={closeDrawer}></GrClose>
+                            <h3>
                                 {
-                                    product?.img.length > 0 && files.length === 0 &&
-                                    <div className="dropzone-img-container">
-                                        {   
-                                            product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
-                                        }
-                                        
-                                    </div>
+                                    product ? 'Update Product':'Add Product'
                                 }
-                                {
-                                    files.length > 0 && 
-                                    <div className="dropzone-img-container">
-                                        {files}
-                                    </div>
-                                }
-                                {
-                                    fileRejectionItems.length > 0 &&
-                                    <p className="text-danger mt-3">You can upload 4 images max</p>
-                                }
-                            </div>
+                            </h3>
                         </div>
-
-                        <div className="row mt-4">
-                            <div className="col-lg-4">
-                                <p className="drawer-body-section-title">Add your Product description and necessary information from here</p>
+                        
+                        <div className="drawer-body">
+                            <div className="row">
+                                <div className="col-lg-4">
+                                    <p className="drawer-body-section-title">Upload your Product image here</p>
+                                </div>
+                                <div className="col-lg-8 bg-white dropzone-container">
+                                    <div {...getRootProps({className: 'dropzone hover-pointer'})}>
+                                        <input {...getInputProps()}  name="productImg" />
+                                        <FaCloudUploadAlt color="rgb(230, 230, 230)" size={40}></FaCloudUploadAlt>
+                                        <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
+                                    </div>
+                                    {
+                                        product?.img.length > 0 && files.length === 0 &&
+                                        <div className="dropzone-img-container">
+                                            {   
+                                                product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
+                                            }
+                                            
+                                        </div>
+                                    }
+                                    {
+                                        files.length > 0 && 
+                                        <div className="dropzone-img-container">
+                                            {files}
+                                        </div>
+                                    }
+                                    {
+                                        fileRejectionItems.length > 0 &&
+                                        <p className="text-danger mt-3">You can upload 4 images max</p>
+                                    }
+                                </div>
                             </div>
-                            <div className="col-lg-8 bg-white product-info" key={product}>
-                                
-                                {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+
+                            <div className="row mt-4">
+                                <div className="col-lg-4">
+                                    <p className="drawer-body-section-title">Add your Product description and necessary information from here</p>
+                                </div>
+                                <div className="col-lg-8 bg-white product-info" key={product}>
                                     <div className="form-group">
                                         <label htmlFor="productName">Name</label>
                                         <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" value={product?.name} required/>
@@ -135,15 +129,15 @@ const AdminProductDrawer = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productSaleprice">Sale Price</label>
-                                        <input type="text" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" aria-describedby="productSaleprice" defaultValue={product?.sale} required/>
+                                        <input type="number" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" step="any" aria-describedby="productSaleprice" defaultValue={product?.sale} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productDiscount">Discount In Percent</label>
-                                        <input type="text" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" aria-describedby="productDiscount" defaultValue={product?.discount} required/>
+                                        <input type="number" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" step="any" aria-describedby="productDiscount" defaultValue={product?.discount} required/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productQuantity">Product Quantity</label>
-                                        <input type="text" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" defaultValue={product?.quantity} required />
+                                        <input type="number" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" defaultValue={product?.quantity} required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="productType">Type</label>
@@ -155,7 +149,6 @@ const AdminProductDrawer = () => {
                                     </div>
                                     <div className="form-group category-multiSelect">
                                         <label htmlFor="productCategories">Categories</label>
-                                        {/* <input type="text" className="form-control" {...register("productCategories")} name="productCategories" id="productCategories" aria-describedby="productCategories" required /> */}
                                         <Multiselect
                                             options={options} // Options to display in the dropdown
                                             selectedValues={product?.tags} // Preselected value to persist in dropdown
@@ -164,22 +157,20 @@ const AdminProductDrawer = () => {
                                             displayValue="name" // Property name to display in the dropdown options
                                         />
                                     </div>
-                                    {/* <button type="submit" className="btn btn-primary">Submit</button> */}
-                                {/* </form> */}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div className="drawer-footer bg-white row">
+                            <div className="col-6">
+                                <div className="cancel-btn btn w-100" onClick={closeDrawer}>Cancel</div>
+                            </div>
+                            <div className="col-6">
+                                <button type="submit" id="productDrawerFormBtn" className="update-btn btn w-100">{product ? 'Update Product':'Add Product'}</button>
                             </div>
                         </div>
                         
                     </div>
-                    <div className="drawer-footer bg-white row">
-                        <div className="col-6">
-                            <div className="cancel-btn btn w-100" onClick={()=>closeDrawer()}>Cancel</div>
-                        </div>
-                        <div className="col-6">
-                            <button type="submit" id="productDrawerFormBtn" className="update-btn btn w-100">{product ? 'Update Product':'Add Product'}</button>
-                        </div>
-                    </div>
-                    
-                </div>
                 </form>
             </Drawer>
         </div>
