@@ -45,7 +45,7 @@ const AdminProductItem = ({product, deselectAll, isAllChecked, selected, setSele
         <>
         <div className="admin-product-item col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer">
             <div className="card border-0">
-                <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
+                <input type="checkbox" className="mt-2 hover-pointer item-select ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
                 <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
                     <img className="card-img-top" src={product.img[0]} alt="" />
                     {
