@@ -1,24 +1,52 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import products from '../../../../data/products';
 import AdminProductDrawer from './AdminProductDrawer';
 
-const AdminProductItem = ({product}) => {
+const AdminProductItem = ({product, deselectAll, isAllChecked, selected, setSelected}) => {
 
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
     
     const handleProductDrawerOpen = () => {
-        
         setProductDrawerOpen(true);
     }
 
     const handleProductDrawerClose = () => {
         setProductDrawerOpen(false);
     }
+
+    const [isChecked, setIsChecked] = useState(isAllChecked);
+
+    const changeCheck = () => {
+        if(!isChecked){
+            const newList = [...selected, product]
+            setSelected(newList)
+        }
+        else{
+            const newList = selected.filter(pd => pd.id !== product.id)
+            setSelected(newList)
+        }
+        setIsChecked(!isChecked)
+    }
+
+    useEffect(() => {
+         if(isAllChecked){
+            setSelected(products)
+            setIsChecked(true)
+         }
+         if(deselectAll){
+             setSelected([])
+             setIsChecked(false)
+         }
+    }, [isAllChecked, deselectAll, setSelected])
+
     return (
         <>
-        <div className="admin-product-item col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer" onClick={() => handleProductDrawerOpen(product)}>
+        <div className="admin-product-item col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer">
             <div className="card border-0">
-                <div className="admin-product-item-img-container">
+                <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
+                <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
                     <img className="card-img-top" src={product.img[0]} alt="" />
                     {
                         product.discount > 0 &&
@@ -27,6 +55,7 @@ const AdminProductItem = ({product}) => {
                 </div>
                 
                 <div className="card-body">
+                    <div>
                     {
                         product.discount > 0 &&
                         <>
@@ -39,7 +68,13 @@ const AdminProductItem = ({product}) => {
                         product.discount === 0 &&
                         <h5 className="card-title">${product.price}</h5>
                     }
-                    <p className="card-text">{product.name}</p>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <p className="card-text">{product.name}</p>
+                        <div className="btn delete-btn">
+                            Delete
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

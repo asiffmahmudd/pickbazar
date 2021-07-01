@@ -4,8 +4,10 @@ import { BiEdit } from 'react-icons/bi';
 import { VscCircleFilled } from "react-icons/vsc";
 import { useState } from 'react';
 import CouponDrawer from './CouponDrawer';
+import { useEffect } from 'react';
+import coupons from '../../../../data/coupons';
 
-const CouponItem = ({coupon}) => {
+const CouponItem = ({coupon, isAllChecked, setSelected, deselectAll, selected}) => {
 
     const selectColor = (status) => {
         if(status === 'active'){
@@ -39,9 +41,37 @@ const CouponItem = ({coupon}) => {
 
     }
 
+    const [isChecked, setIsChecked] = useState(isAllChecked);
+
+    const changeCheck = () => {
+        if(!isChecked){
+            const newList = [...selected, coupon]
+            setSelected(newList)
+        }
+        else{
+            const newList = selected.filter(coup => coup.id !== coupon.id)
+            setSelected(newList)
+        }
+        setIsChecked(!isChecked)
+    }
+
+    useEffect(() => {
+         if(isAllChecked){
+            setSelected(coupons)
+            setIsChecked(true)
+         }
+         if(deselectAll){
+             setSelected([])
+             setIsChecked(false)
+         }
+    }, [isAllChecked, deselectAll, setSelected])
+
     return (
         <>
             <tr>
+                <td>
+                    <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="coupon-item" value={coupon}/>
+                </td>
                 <th scope="row">{coupon.id}</th>
                 <td>{coupon.name}</td>
                 <td>{coupon.code}</td>
@@ -65,7 +95,7 @@ const CouponItem = ({coupon}) => {
                     </select></td>
                 <td>
                     <BiEdit color="green" onClick={()=> handleCouponDrawerOpen(coupon)} className="mr-2 hover-pointer"></BiEdit>
-                    <BsTrash color='red' onClick={() => handleCouponDelete(coupon)} className="hover-pointer"></BsTrash>
+                    <BsTrash color='red' onClick={() => handleCouponDelete()} className="hover-pointer"></BsTrash>
                 </td>
             </tr>
             <CouponDrawer coupon={coupon} isCouponDrawerOpen={isCouponDrawerOpen} handleCouponDrawerClose={handleCouponDrawerClose}></CouponDrawer>

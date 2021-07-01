@@ -15,11 +15,6 @@ const CouponsHeader = () => {
         setCouponDrawerOpen(false);
     }
 
-    const handleCouponDelete = () => {
-
-    }
-
-
     return (
         <>
             <div className="row header-content-row">

@@ -2,6 +2,7 @@ import React from 'react';
 
 const AdminProductHeader = () => {
     return (
+        <>
         <div className="row header-content-row">
             <div className="header-title col-lg-2">Products</div>
             <div className="col-lg-10">
@@ -27,6 +28,7 @@ const AdminProductHeader = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

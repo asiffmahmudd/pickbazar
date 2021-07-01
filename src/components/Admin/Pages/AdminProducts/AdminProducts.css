@@ -59,6 +59,28 @@ select.form-control, select.form-control option, .drawer select.form-control, .d
     width: 0;
 }
 
+.delete-btn{
+    background-color: rgb(255, 110, 110) !important;
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+.select-bar .btn{
+    color: white !important;
+}
+
+.select-bar .select-btn{
+    background-color: rgb(39, 199, 183) !important;
+}
+
+.select-bar .delete-select-btn{
+    background-color: rgb(255, 110, 110) !important;
+}
+
+.select-bar .deselect-btn{
+    background-color: rgb(255, 129, 29) !important;
+}
+
 @media (max-width: 991px){
     .admin-products-header .header-title{
         text-align: center;

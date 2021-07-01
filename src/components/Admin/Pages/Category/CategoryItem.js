@@ -3,8 +3,10 @@ import { BsTrash } from 'react-icons/bs';
 import { BiEdit } from 'react-icons/bi';
 import CategoryDrawer from './CategoryDrawer.js';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import categories from '../../../../data/categories.js';
 
-const CategoryItem = ({category}) => {
+const CategoryItem = ({category, isAllChecked, setSelected, deselectAll, selected}) => {
 
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
 
@@ -20,9 +22,38 @@ const CategoryItem = ({category}) => {
 
     }
 
+    const [isChecked, setIsChecked] = useState(isAllChecked);
+
+    const changeCheck = () => {
+        if(!isChecked){
+            const newList = [...selected, category]
+            setSelected(newList)
+        }
+        else{
+            const newList = selected.filter(cat => cat.id !== category.id)
+            setSelected(newList)
+        }
+        setIsChecked(!isChecked)
+    }
+
+    useEffect(() => {
+         if(isAllChecked){
+            setSelected(categories)
+            setIsChecked(true)
+         }
+         if(deselectAll){
+             setSelected([])
+             setIsChecked(false)
+         }
+    }, [isAllChecked, deselectAll, setSelected])
+
+
     return (
         <>
             <tr>
+                <td>
+                    <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="category-item" value={category}/>
+                </td>
                 <th scope="row">{category.id}</th>
                 <td>{category.img}</td>
                 <td>{category.name}</td>
