@@ -8,42 +8,12 @@ import coupons from '../../../../data/coupons';
 
 const Coupons = () => {
 
-    const [isCouponDrawerOpen, setCouponDrawerOpen] = useState(false);
-    const [coupon, setCoupon] = useState()
-    
-    const handleCouponDrawerOpen = (coup) => {
-        if(coup !== 'add'){
-            setCoupon({
-                id: coup.id,
-                name: coup.name,
-                slug: coup.slug,
-                img: coup.img,
-                type: coup.type
-            })
-            
-        }
-        else{
-            setCoupon(null)
-        }
-        
-        setCouponDrawerOpen(true);
-        
-    }
-
-    const handleCouponDrawerClose = () => {
-        setCouponDrawerOpen(false);
-    }
-
-    const handleCouponDelete = () => {
-
-    }
-
     return (
         <AdminLayout>
             <div className="admin-coupon admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CouponsHeader handleCouponDrawerOpen={handleCouponDrawerOpen}></CouponsHeader>
+                        <CouponsHeader></CouponsHeader>
                     </div>
                     <div className="col-lg-12 admin-products-body mt-5">
                         <div className="table-responsive">
@@ -62,7 +32,12 @@ const Coupons = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        coupons.map((coupon,index) => <CouponItem key={index} handleCouponDrawerOpen={handleCouponDrawerOpen} handleCouponDelete={handleCouponDelete} coupon={coupon}></CouponItem>)
+                                        coupons.map((coupon,index) => (
+                                            <CouponItem 
+                                                key={index}
+                                                coupon={coupon}>
+                                            </CouponItem>)
+                                        )
                                     }
                                     
                                 </tbody>
@@ -72,7 +47,6 @@ const Coupons = () => {
                     </div>
                 </div>
             </div>
-            <CouponDrawer coupon={coupon} isCouponDrawerOpen={isCouponDrawerOpen} handleCouponDrawerClose={handleCouponDrawerClose}></CouponDrawer>
         </AdminLayout>
     );
 };

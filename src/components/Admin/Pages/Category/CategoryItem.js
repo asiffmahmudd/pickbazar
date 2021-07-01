@@ -1,20 +1,40 @@
 import React from 'react';
 import { BsTrash } from 'react-icons/bs';
 import { BiEdit } from 'react-icons/bi';
+import CategoryDrawer from './CategoryDrawer.js';
+import { useState } from 'react';
 
-const CategoryItem = ({category, handleCategoryDrawerOpen, handleCategoryDelete}) => {
+const CategoryItem = ({category}) => {
+
+    const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
+
+    const handleCategoryDrawerOpen = () => {
+        setCategoryDrawerOpen(true)
+    }
+
+    const handleCategoryDrawerClose = () => {
+        setCategoryDrawerOpen(false);
+    }
+
+    const handleCategoryDelete = () => {
+
+    }
+
     return (
-        <tr>
-            <th scope="row">{category.id}</th>
-            <td>{category.img}</td>
-            <td>{category.name}</td>
-            <td>{category.slug}</td>
-            <td>{category.type}</td>
-            <td>
-                <BiEdit color="green" onClick={()=> handleCategoryDrawerOpen(category)} className="mr-2 hover-pointer"></BiEdit>
-                <BsTrash color='red' onClick={() => handleCategoryDelete(category)} className="hover-pointer"></BsTrash>
-            </td>
-        </tr>
+        <>
+            <tr>
+                <th scope="row">{category.id}</th>
+                <td>{category.img}</td>
+                <td>{category.name}</td>
+                <td>{category.slug}</td>
+                <td>{category.type}</td>
+                <td>
+                    <BiEdit color="green" onClick={()=> handleCategoryDrawerOpen(category)} className="mr-2 hover-pointer"></BiEdit>
+                    <BsTrash color='red' onClick={() => handleCategoryDelete(category)} className="hover-pointer"></BsTrash>
+                </td>
+            </tr>
+            <CategoryDrawer category={category} isCategoryDrawerOpen={isCategoryDrawerOpen} handleCategoryDrawerClose={handleCategoryDrawerClose}></CategoryDrawer>
+        </>
     );
 };
 

@@ -8,42 +8,13 @@ import categories from '../../../../data/categories';
 import CategoryItem from './CategoryItem';
 
 const Category = () => {
-    const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
-    const [category, setCategory] = useState()
-    
-    const handleCategoryDrawerOpen = (cat) => {
-        if(cat !== 'add'){
-            setCategory({
-                id: cat.id,
-                name: cat.name,
-                slug: cat.slug,
-                img: cat.img,
-                type: cat.type
-            })
-            
-        }
-        else{
-            setCategory(null)
-        }
-        
-        setCategoryDrawerOpen(true);
-        
-    }
-
-    const handleCategoryDrawerClose = () => {
-        setCategoryDrawerOpen(false);
-    }
-
-    const handleCategoryDelete = () => {
-
-    }
 
     return (
         <AdminLayout>
             <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CategoryHeader handleCategoryDrawerOpen={handleCategoryDrawerOpen}></CategoryHeader>
+                        <CategoryHeader></CategoryHeader>
                     </div>
                     <div className="col-lg-12 admin-products-body mt-5">
                         <div className="table-responsive">
@@ -60,7 +31,12 @@ const Category = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        categories.map((category,index) => <CategoryItem key={index} handleCategoryDrawerOpen={handleCategoryDrawerOpen} handleCategoryDelete={handleCategoryDelete} category={category}></CategoryItem>)
+                                        categories.map((category,index) => (
+                                            <CategoryItem 
+                                                key={index} 
+                                                category={category}>
+                                            </CategoryItem>)
+                                        )
                                     }
                                     
                                 </tbody>
@@ -70,7 +46,7 @@ const Category = () => {
                     </div>
                 </div>
             </div>
-            <CategoryDrawer category={category} isCategoryDrawerOpen={isCategoryDrawerOpen} handleCategoryDrawerClose={handleCategoryDrawerClose}></CategoryDrawer>
+            
         </AdminLayout>
     );
 };

@@ -16,7 +16,7 @@ const AdminProducts = () => {
                     <div className="col-lg-12 admin-products-body">
                         <div className="row pb-5">
                             {
-                                products.map((product,index) => <AdminProductItem key={'12'+index} product={product} ></AdminProductItem>)
+                                products.map((product,index) => <AdminProductItem key={index} product={product} ></AdminProductItem>)
                             }
                         </div>
                         

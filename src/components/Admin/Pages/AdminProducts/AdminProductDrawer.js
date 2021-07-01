@@ -101,7 +101,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                     }
                                     {
                                         fileRejectionItems.length > 0 &&
-                                        <p className="text-danger mt-3">You can upload 4 images max</p>
+                                        <p className="text-danger mt-3">You can upload 1 image max</p>
                                     }
                                 </div>
                             </div>

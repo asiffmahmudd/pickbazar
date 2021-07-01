@@ -114,7 +114,6 @@ svg.drawer-close  {
     justify-content: center;
     align-items: center;
     border: 2px dashed rgb(230, 230, 230);
-    margin-right: 15px;
 }
 
 .drawer .dropzone-label{
@@ -131,10 +130,11 @@ svg.drawer-close  {
 }
 
 .drawer .dropzone-img-container{
-    border: 1px solid rgb(230,230,230);
+    /* border: 1px solid rgb(230,230,230); */
     margin-top: 15px;
     display: flex;
-    padding: 4px;
+    flex-wrap: wrap;
+    /* padding: 4px; */
     border-radius: 2px;
 }
 
@@ -220,6 +220,12 @@ svg.drawer-close  {
     border: 2px solid rgb(0, 197, 141);
 }
 
+@media (min-width: 992px){
+    .drawer .dropzone, .drawer .dropzone-img-container{  
+        margin-right: 15px;
+    }
+}
+
 @media (min-width: 1400px){
     .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 70%;
@@ -241,7 +247,7 @@ svg.drawer-close  {
 }
 
 @media (min-width: 769px) and (max-width: 991px){
-    .adrawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
         width: 100%;
     }
     svg.drawer-close{
