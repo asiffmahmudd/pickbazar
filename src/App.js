@@ -20,6 +20,7 @@ import UserProfile from './components/UserDashboard/Profile/Profile';
 import UserOrders from './components/UserDashboard/UserOrders/UserOrders';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import PageLayout from './components/PageLayout/PageLayout';
+import { CouponContextProvider } from './contexts/CouponContext';
 
 function App() {
   
@@ -27,34 +28,39 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/checkout">
-            <Checkout></Checkout>
-          </Route>
-          <Route exact path="/order-received">
-            <OrderReceived></OrderReceived>
-          </Route>
-          <Route exact path="/product/:id">
-            <SingleProduct></SingleProduct>
-          </Route>
-          <Route exact path="/">
-            <PageLayout></PageLayout>  
-          </Route>
-          <Route exact path="/category/:index/:category">
-            <PageLayout></PageLayout>  
-          </Route>
+          <CouponContextProvider>
+            <Route exact path="/product/:id">
+              <SingleProduct></SingleProduct>
+            </Route>
+            <Route exact path="/">
+              <PageLayout></PageLayout>  
+            </Route>
+            <Route exact path="/category/:index/:category">
+              <PageLayout></PageLayout>  
+            </Route>
 
-          <Route exact path="/user/profile" component={UserProfile} />
-          <Route exact path="/user/orders" component={UserOrders} />
+            <Route exact path="/user/profile" component={UserProfile} />
+            <Route exact path="/user/orders" component={UserOrders} />
 
-          <ProductDrawerProvider>
-            <Route exact path="/admin/dashboard" component={Dashboard} />
-            <Route exact path="/admin/products" component={AdminProducts} />
-            <Route exact path="/admin/category" component={Category} />
-            <Route exact path="/admin/coupons" component={Coupons} />
-            <Route exact path="/admin/customers" component={Customers} />
-            <Route exact path="/admin/orders" component={Orders} />
-            <Route exact path="/admin/settings" component={Settings} />
-          </ProductDrawerProvider>
+          
+            <Route exact path="/checkout">
+              <Checkout></Checkout>
+            </Route>
+            <Route exact path="/order-received">
+              <OrderReceived></OrderReceived>
+            </Route>
+          
+
+            <ProductDrawerProvider>
+              <Route exact path="/admin/dashboard" component={Dashboard} />
+              <Route exact path="/admin/products" component={AdminProducts} />
+              <Route exact path="/admin/category" component={Category} />
+              <Route exact path="/admin/coupons" component={Coupons} />
+              <Route exact path="/admin/customers" component={Customers} />
+              <Route exact path="/admin/orders" component={Orders} />
+              <Route exact path="/admin/settings" component={Settings} />
+            </ProductDrawerProvider>
+          </CouponContextProvider>
         </Switch>
       </Router>
     </Provider>

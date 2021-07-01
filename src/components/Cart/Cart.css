@@ -105,6 +105,12 @@
     border-radius: 20px;
 }
 
+.cart-items-container .plus-minus span{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
 .voucher-input-container form{
     position: relative;
 }

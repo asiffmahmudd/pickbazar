@@ -9,6 +9,7 @@ import CartVoucher from './CartVoucher';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { loadCart } from '../../Redux/Actions/CartActions';
+import { useCoupon } from '../../contexts/CouponContext';
 
 const Cart = () => {
 
@@ -33,7 +34,10 @@ const Cart = () => {
         }
     }
 
-    
+    const {appliedCoupon} = useCoupon()
+    if(appliedCoupon)
+        totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
+
     return (
         <>
             {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useCoupon } from '../../contexts/CouponContext';
 import Header from '../Header/Header';
 import './OrderReceived.css'
 
@@ -24,6 +25,10 @@ const OrderReceived = () => {
             totalPrice += items[i].price*items[i].count;
         }
     }
+
+    const {appliedCoupon} = useCoupon()
+    if(appliedCoupon)
+        totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
 
     return (
         <>

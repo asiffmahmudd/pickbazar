@@ -1,8 +1,12 @@
 import React from 'react';
 import { MdRemoveShoppingCart } from "react-icons/md";
+import { useCoupon } from '../../contexts/CouponContext';
 
 const OrderSummary = ({items}) => {
     
+    const {appliedCoupon} = useCoupon()
+    
+
     let totalPrice = 0
     for(let i= 0; i < items.length; i++){
         if(items[i].discount > 0){
@@ -12,6 +16,11 @@ const OrderSummary = ({items}) => {
             totalPrice += items[i].price*items[i].count;
         }
     }
+
+    let discount = 0;
+    if(appliedCoupon)
+        discount = totalPrice*(appliedCoupon.discount/100)
+
     let shipping = 0;
 
     return (
@@ -49,13 +58,20 @@ const OrderSummary = ({items}) => {
                     <span>Sub Total ({items.length} items)</span>
                     <span>${totalPrice.toFixed(2)}</span>
                 </div>
+                {
+                    appliedCoupon &&
+                    <div className="discount summary-item">
+                        <span>Discount ({appliedCoupon.code})</span>
+                        <span>${discount.toFixed(2)}</span>
+                    </div>
+                }
                 <div className="shipping summary-item">
                     <span>Shipping fee</span>
                     <span>${shipping.toFixed(2)}</span>
                 </div>
                 <div className="sub-total summary-item">
                     <span>Total</span>
-                    <span>${(totalPrice+shipping).toFixed(2)}</span>
+                    <span>${(totalPrice+shipping-discount).toFixed(2)}</span>
                 </div>
             </div>
         </div>

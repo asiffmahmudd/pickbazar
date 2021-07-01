@@ -1,12 +1,10 @@
 import { createContext, useContext, useState } from "react";
 
-
 const ProductDrawerContext = createContext()
 
 export function useProductDrawer(){
     return useContext(ProductDrawerContext)
 }
-
 
 export function ProductDrawerProvider({children}){
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
@@ -17,7 +15,7 @@ export function ProductDrawerProvider({children}){
     const handleProductDrawerClose = () => {
         setProductDrawerOpen(false);
     }
-
+    
     const value = {
         isProductDrawerOpen, setProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose
     }

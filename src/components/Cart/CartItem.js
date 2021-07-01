@@ -18,12 +18,16 @@ const CartItem = ({item}) => {
         <div className="cart-item d-flex justify-content-between align-items-center p-3 border-bottom">
             <div className="d-flex align-items-center justify-content-center">
                 <div className="plus-minus d-flex flex-column bg-light p-2">
-                    <span className="hover-pointer" onClick={() => dispatch(increaseCount(item))}><FontAwesomeIcon icon={faPlus} size="xs" color="gray"/></span>
+                    <span className="hover-pointer" onClick={() => dispatch(increaseCount(item))}>
+                        <FontAwesomeIcon icon={faPlus} size="md" color="gray"/>
+                    </span>
                     <span>{item.count}</span>
-                    <span className="hover-pointer" onClick={() => handleDecrease(item)}><FontAwesomeIcon icon={faMinus} size="xs" color="gray"/></span>
+                    <span className="hover-pointer" onClick={() => handleDecrease(item)}>
+                        <FontAwesomeIcon icon={faMinus} size="md" color="gray"/>
+                    </span>
                 </div>
                 <div className="cart-item-img ml-4">
-                    <img src={item.img} alt="" />
+                    <img src={item.img[0]} alt="" />
                 </div>
                 <div className="cart-item-desc ml-4">
                     <div className="text-dark">{item.name}</div>
