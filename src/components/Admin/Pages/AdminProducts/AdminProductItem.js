@@ -1,10 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import products from '../../../../data/products';
 import AdminProductDrawer from './AdminProductDrawer';
 
-const AdminProductItem = ({product, deselectAll, isAllChecked, selected, setSelected}) => {
+const AdminProductItem = ({product, products, deselectAll, isAllChecked, selected, setSelected}) => {
 
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
     
@@ -69,8 +68,8 @@ const AdminProductItem = ({product, deselectAll, isAllChecked, selected, setSele
                         <h5 className="card-title">${product.price}</h5>
                     }
                     </div>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <p className="card-text">{product.name}</p>
+                    <div className="d-flex justify-content-between align-items-center" style={{height:'50px'}}>
+                        <p className="card-text" style={{margin:0}}>{product.name}</p>
                         <div className="btn delete-btn">
                             Delete
                         </div>

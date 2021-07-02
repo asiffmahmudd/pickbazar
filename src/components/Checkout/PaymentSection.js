@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useCoupon } from '../../contexts/CouponContext';
 import CardPayment from './CardPayment';
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSelector } from 'react-redux';
 
 const PaymentSection = ({register,errors, disable}) => {
 
@@ -12,6 +15,19 @@ const PaymentSection = ({register,errors, disable}) => {
         else{
             setShowCard(false);
         }
+    }
+
+    const items = useSelector(state => state.items.cartItems)
+
+    const {removeCoupon, appliedCoupon, error, couponHandler} = useCoupon()
+    const handleCoupon = (e) => {
+        e.preventDefault()
+        let userCode = document.getElementById('code').value.toLowerCase()
+        couponHandler(userCode)
+    }
+
+    const couponRemove = () => {
+        removeCoupon()
     }
 
     return (
@@ -31,28 +47,38 @@ const PaymentSection = ({register,errors, disable}) => {
                     </label>
                 </div>
             </div>
-            {errors.paymentMethod?.type === 'required' && <span className="text-danger">Payment method is required</span>}
+            {errors.paymentMethod?.category === 'required' && <span className="text-danger">Payment method is required</span>}
             {
                 showCard &&
                 <CardPayment></CardPayment>
             }
             <div className="checkout-voucher mb-3 mt-3">
                 {
-                    showVoucher &&
+                    showVoucher && !appliedCoupon &&
                     <div className="voucher-input-container">
                         <div className="form-group d-flex">
                             <input type="text" className="form-control shadow-sm col-md-5" id="code" aria-describedby="code" placeholder="Enter voucher code here" />
-                            <button type="submit" className="btn bg-theme ml-2 text-white">Apply</button>
+                            <button onClick={handleCoupon} className="btn bg-theme ml-2 text-white">Apply</button>
                         </div>
-                        
+                        {
+                            error && <p className="text-danger">{error}</p>
+                        }
                     </div>
-                }      
+                } 
+
                 {
-                    !showVoucher &&
+                    items.length>0 && !showVoucher && !appliedCoupon &&
                     <div className="theme-text hover-pointer font-weight-bold" onClick={() => setShowVoucher(true)}>
                         Do you have a voucher?
                     </div>
-                }           
+                }   
+
+                {
+                    appliedCoupon && 
+                    <div className="text-success ">
+                        {appliedCoupon.name} coupon applied <AiOutlineCloseCircle onClick={couponRemove} className="hover-pointer" color="rgb(255, 110, 110)"></AiOutlineCloseCircle>
+                    </div>
+                }          
             </div>
             
             <button type="submit" className="order-btn mt-5" disabled={disable}>Confirm Order</button>

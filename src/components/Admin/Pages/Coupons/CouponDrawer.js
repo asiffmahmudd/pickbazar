@@ -60,7 +60,7 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="couponCategory">Category</label>
-                                    <select type="text" className="form-control" {...register("couponCategory")} name="couponCategory" id="couponCategory" defaultValue={coupon?coupon.type:""} aria-describedby="categoryParent" required>
+                                    <select type="text" className="form-control" {...register("couponCategory")} name="couponCategory" id="couponCategory" defaultValue={coupon?coupon.category:""} aria-describedby="categoryParent" required>
                                         <option value="Grocery">Grocery</option>
                                         <option value="Make Up">Make Up</option>
                                         <option value="home">Home</option>

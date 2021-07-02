@@ -1,18 +1,24 @@
 import React from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
-import ProductHeader from './AdminProductHeader';
+import AdminProductHeader from './AdminProductHeader';
 import './AdminProducts.css';
 import AdminProductItem from './AdminProductItem';
-import products from '../../../../data/products';
+import allproducts from '../../../../data/products';
 import SelectBar from './SelectBar';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
+export function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+}
 
 const AdminProducts = () => {
 
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
+    const [products,setProducts] = useState(allproducts)
 
     useEffect(() => {
         if(selected.length < products.length){
@@ -29,8 +35,36 @@ const AdminProducts = () => {
         }
     }, [selected])
 
+    const resetSelection = () => {
+        setDeselectAll(true)
+        setSelected([])
+        setIsAllChecked(false)
+    }
+
     const handleDelete = () => {
         console.log(selected)
+    }
+
+    const forceUpdate = useForceUpdate();
+
+    const productFilter = (e) => {
+        const newProductList = allproducts.filter(pd => pd.category === e.target.value)
+        setProducts(newProductList)
+        resetSelection()
+        forceUpdate()
+    }
+
+    const priceFilter = (e) => {
+        const newProductList = products
+        if(e.target.value === 'highest to lowest'){
+            newProductList.sort((a, b) => (a.price > b.price) ? -1 : 1)
+        }
+        else{
+            newProductList.sort((a, b) => (a.price > b.price) ? 1 : -1)
+        } 
+        setProducts(newProductList)
+        resetSelection()
+        forceUpdate()
     }
 
     return (
@@ -38,7 +72,11 @@ const AdminProducts = () => {
             <div className="admin-products container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <ProductHeader></ProductHeader>
+                        <AdminProductHeader 
+                            productFilter={productFilter}
+                            priceFilter={priceFilter}
+                        >
+                        </AdminProductHeader>
                     </div>
                     {
                         selected.length > 0 &&
@@ -62,6 +100,7 @@ const AdminProducts = () => {
                                         setSelected={setSelected} 
                                         deselectAll={deselectAll}
                                         selected={selected} 
+                                        products={products}
                                         product={product} >
                                     </AdminProductItem>
                                 ))

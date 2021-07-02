@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
 import { useCoupon } from '../../contexts/CouponContext';
-import coupons from '../../data/coupons';
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const CartVoucher = () => {
     const [show, setShow] = useState(false);
-    const {setAppliedCoupon, appliedCoupon} = useCoupon()
-    const [error, setError] = useState()
+    const items = useSelector(state => state.items.cartItems)
     
+    const {removeCoupon, setAppliedCoupon, appliedCoupon, error, couponHandler} = useCoupon()
     const handleCoupon = (e) => {
         e.preventDefault()
         let userCode = document.getElementById('code').value.toLowerCase()
-        const validCoupon = coupons.find(coupon => userCode === coupon.code.toLowerCase())
-        if(validCoupon){
-            if(validCoupon.status !== "active"){
-                setError("This coupon is no longer active")
-            }
-            else if(validCoupon.remainingCoupons === 0){
-                setError("This coupon has crossed it's limit")
-            }
-            else{
-                setError(null)
-                setAppliedCoupon(validCoupon)
-            }
-        }
-        else{
-            setError("Invalid coupon")
-        }
+        couponHandler(userCode)
     }
+
+    const couponRemove = () => {
+        removeCoupon()
+    }
+
+    useEffect(()=> {
+        setAppliedCoupon();
+    }, [setAppliedCoupon])
 
     return (
         <div className="cart-voucher text-center mb-3">
@@ -49,7 +43,7 @@ const CartVoucher = () => {
                 
             }      
             {
-                !show && !appliedCoupon &&
+                items.length > 0 && !show && !appliedCoupon &&
                 <div className="text-center theme-text hover-pointer font-weight-bold" onClick={() => setShow(true)}>
                     Do you have a voucher?
                 </div>
@@ -58,7 +52,7 @@ const CartVoucher = () => {
             {
                 appliedCoupon && 
                 <div className="text-success ">
-                    {appliedCoupon.name} coupon applied <AiOutlineCloseCircle onClick={()=>setAppliedCoupon(null)} className="hover-pointer" color="rgb(255, 110, 110)"></AiOutlineCloseCircle>
+                    {appliedCoupon.name} coupon applied <AiOutlineCloseCircle onClick={couponRemove} className="hover-pointer" color="rgb(255, 110, 110)"></AiOutlineCloseCircle>
                 </div>
             }          
         </div>

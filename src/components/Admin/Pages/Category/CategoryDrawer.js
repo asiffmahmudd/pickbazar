@@ -116,8 +116,8 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
                                         <select type="text" className="form-control" {...register("categoryParent")} name="categoryParent" id="categoryParent" defaultValue={category?category.type:""} aria-describedby="categoryParent" required>
                                             <option value="Grocery">Grocery</option>
                                             <option value="Make Up">Make Up</option>
-                                            <option value="home">Home</option>
-                                            <option value="meat">Meat</option>
+                                            <option value="Home">Home</option>
+                                            <option value="Meat">Meat</option>
                                         </select>
                                     </div>
                                     

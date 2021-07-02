@@ -45,6 +45,8 @@ const Checkout = () => {
         })
     };
 
+    
+
     return (
         <>
             <Header></Header>

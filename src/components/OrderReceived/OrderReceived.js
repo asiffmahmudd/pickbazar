@@ -27,8 +27,9 @@ const OrderReceived = () => {
     }
 
     const {appliedCoupon} = useCoupon()
-    if(appliedCoupon)
+    if(appliedCoupon){
         totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
+    }
 
     return (
         <>

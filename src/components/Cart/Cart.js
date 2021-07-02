@@ -88,9 +88,13 @@ const Cart = () => {
                     <div className="cart-expanded-footer mt-auto p-3">
                         <CartVoucher></CartVoucher>
                         <Link to="/checkout" >
-                            <button disabled={items?.length===0} className="border-0 w-100 checkout-btn d-flex justify-content-between align-items-center">
-                                <span className="checkout-text">Checkout</span>
-                                <span className="checkout-price">${totalPrice.toFixed(2)}</span>
+                            <button disabled={items?.length===0} className="hover-pointer border-0 w-100 checkout-btn d-flex justify-content-between align-items-center">
+                                <span className="checkout-text" onClick={(e) => items?.length===0 ? e.preventDefault(): ""}>
+                                    Checkout
+                                </span>
+                                <span className="checkout-price" onClick={(e) => items?.length===0 ? e.preventDefault(): ""}>
+                                    ${totalPrice.toFixed(2)}
+                                </span>
                             </button>
                         </Link>
                     </div>

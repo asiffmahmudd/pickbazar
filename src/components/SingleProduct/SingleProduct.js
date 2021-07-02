@@ -13,7 +13,7 @@ const SingleProduct = () => {
     const productId = useParams('id');
     const product = products.find(pd => (pd.id === parseInt(productId.id)))
 
-    const related = products.filter(pd => pd.type === product.type && pd.id !== product.id);
+    const related = products.filter(pd => pd.category === product.category && pd.id !== product.id);
     
     return (
         <div className="single-product">

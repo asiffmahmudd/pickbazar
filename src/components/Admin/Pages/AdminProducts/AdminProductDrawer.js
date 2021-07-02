@@ -140,15 +140,15 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         <input type="number" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" defaultValue={product?.quantity} required />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productType">Type</label>
-                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" defaultValue={product?.type} required>
+                                        <label htmlFor="productType">Category</label>
+                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" defaultValue={product?.category} required>
                                             {
                                                 categories.map((category,index) => <option key={index} value={category.name}>{category.name}</option>)
                                             }
                                         </select>
                                     </div>
                                     <div className="form-group category-multiSelect">
-                                        <label htmlFor="productCategories">Categories</label>
+                                        <label htmlFor="productCategories">Tags</label>
                                         <Multiselect
                                             options={options} // Options to display in the dropdown
                                             selectedValues={product?.tags} // Preselected value to persist in dropdown

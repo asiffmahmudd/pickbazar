@@ -15,7 +15,7 @@ const categories =[
         name: "Meat & Fish",
         img: <GiMeat size={40}></GiMeat>,
         slug: 'meat-fish',
-        type: 'Make Up'
+        type: 'Meat'
     },
     {
         id:3,

@@ -14,6 +14,7 @@ const Category = () => {
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
 
+
     useEffect(() => {
         if(selected.length < categories.length){
             setIsAllChecked(false)
@@ -43,6 +44,7 @@ const Category = () => {
             setDeselectAll(true)
         }
     }
+
 
     return (
         <AdminLayout>

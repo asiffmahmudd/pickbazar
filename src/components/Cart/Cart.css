@@ -105,10 +105,12 @@
     border-radius: 20px;
 }
 
-.cart-items-container .plus-minus span{
+.cart-items-container .plus-minus button{
     display: flex;
     justify-content: center;
     padding: 5px;
+    border: none;
+    background: transparent;
 }
 
 .voucher-input-container form{

@@ -8,7 +8,7 @@ import products from '../../data/products';
 const Products = ({selectedCategory}) => {
   let productArray = products
   if(selectedCategory){
-    productArray = productArray.filter(pd => pd.type === selectedCategory)
+    productArray = productArray.filter(pd => pd.category === selectedCategory)
   }
 
   return (

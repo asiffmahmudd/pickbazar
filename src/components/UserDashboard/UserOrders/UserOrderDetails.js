@@ -30,6 +30,13 @@ const UserOrderDetails = ({orderDetails}) => {
                         <p className="details-title">Sub Total</p>
                         <p>${orderDetails.amount}</p>
                     </div>
+                    {
+                        orderDetails.discount &&
+                        <div className="d-flex justify-content-between">
+                            <p className="details-title">Discount</p>
+                            <p>${orderDetails.discount}</p>
+                        </div>
+                    }
                     <div className="d-flex justify-content-between">
                         <p className="details-title">Delivery</p>
                         <p>$0</p>
@@ -40,7 +47,19 @@ const UserOrderDetails = ({orderDetails}) => {
                     </div>
                     <div className="d-flex justify-content-between">
                         <p className="total"><strong>Total</strong></p>
-                        <p><strong>${orderDetails.amount}</strong></p>
+                        <p>
+                            <strong>
+                                $
+                                {
+                                    orderDetails.discount &&
+                                    (orderDetails.amount-orderDetails.discount).toFixed(2)
+                                }
+                                {
+                                    !orderDetails.discount &&
+                                    orderDetails.amount
+                                }
+                            </strong>
+                        </p>
                     </div>
                 </div>
             </div>

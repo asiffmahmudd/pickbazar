@@ -5,7 +5,7 @@ const intitialState = {
 
 export const CartReducer = (state = intitialState, action) => {
     const product = action.payload;
-    switch(action.type){
+    switch(action.category){
         case "ADD_TO_CART": {
             product.count = 1;
             let newState = {

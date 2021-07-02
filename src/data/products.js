@@ -59,7 +59,7 @@ const products = [
       sale:1.08,
       discount:10,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 1.2
     },
@@ -72,7 +72,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 2.2
     },
@@ -85,7 +85,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 3.2
     },
@@ -98,7 +98,7 @@ const products = [
       sale:2,
       discount:50,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 4
     },
@@ -111,7 +111,7 @@ const products = [
       sale:4.5,
       discount:10,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}, {name:'vegetables'}],
       price: 5.0
     },
@@ -124,7 +124,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}, {name:'vegetables'}],
       price: 6.3
     },
@@ -137,7 +137,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 9.1
     },
@@ -150,7 +150,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 8.6
     },
@@ -163,7 +163,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 11
     },
@@ -176,7 +176,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 10.4
     },
@@ -189,7 +189,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}, {name:'vegetables'}],
       price: 9.99
     },
@@ -202,7 +202,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Fruits & Vegetables",
+      category: "Fruits & Vegetables",
       tags: [{name:'fruits'}],
       price: 2.99
     },
@@ -215,7 +215,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'fish'}, {name:'fresh fish'}],
       price: 4.95
     },
@@ -228,7 +228,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'fish'}, {name:'fresh fish'}],
       price: 7.95
     },
@@ -241,7 +241,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'fish'}, {name:'fresh fish'}],
       price: 8.5
     },
@@ -254,7 +254,7 @@ const products = [
       sale:4.8,
       discount:20,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'meat'}, {name:'beef'}],
       price: 6
     },
@@ -267,20 +267,20 @@ const products = [
       sale:9,
       discount:10,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'chicken'}, {name:'fresh chicken'}],
       price: 10
     },
     {
       id:16,
       img: [beefsteak],
-      name: "Fresh Beef",
+      name: "Steak Beef",
       desc: "Meat is animal flesh that is eaten as food. Humans have hunted and killed animals for meat since prehistoric times. The advent of civilization allowed the domestication of animals such as chickens, sheep, rabbits, pigs and cattle.",
       unit:'lb',
       sale:16,
       discount:20,
       quantity:100,
-      type: "Meat & Fish",
+      category: "Meat & Fish",
       tags: [{name:'meat'}, {name:'beef'}],
       price: 20.00
     },
@@ -293,7 +293,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Snacks",
+      category: "Snacks",
       tags: [{name:'snacks'}, {name:'biscuit'}],
       price: 4.5
     },
@@ -307,7 +307,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Snacks",
+      category: "Snacks",
       tags: [{name:'snacks'}, {name:'biscuit'}],
       price: 6.4
     },
@@ -320,7 +320,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Snacks",
+      category: "Snacks",
       tags: [{name:'snacks'}, {name:'biscuit'}],
       price: 5
     },
@@ -333,7 +333,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Snacks",
+      category: "Snacks",
       tags: [{name:'snacks'}, {name:'chocolate'}],
       price: 3.5
     },
@@ -347,7 +347,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Pet Care",
+      category: "Pet Care",
       tags: [{name:'pet care'}, {name:'cat food'}],
       price: 27
     },
@@ -360,7 +360,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Pet Care",
+      category: "Pet Care",
       tags: [{name:'pet care'}, {name:'cat food'}],
       price: 25
     },
@@ -373,7 +373,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Pet Care",
+      category: "Pet Care",
       tags: [{name:'pet care'}, {name:'dog food'}],
       price: 27
     },
@@ -386,7 +386,7 @@ const products = [
       sale:12.75,
       discount:10,
       quantity:100,
-      type: "Home & Cleaning",
+      category: "Home & Cleaning",
       tags: [{name:'home'}, {name:'cleaning'}],
       price: 15
     },
@@ -399,7 +399,7 @@ const products = [
       sale:18,
       discount:10,
       quantity:100,
-      type: "Home & Cleaning",
+      category: "Home & Cleaning",
       tags: [{name:'home'}, {name:'cleaning'}],
       price: 20
     },
@@ -412,7 +412,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Home & Cleaning",
+      category: "Home & Cleaning",
       tags: [{name:'home'}, {name:'cleaning'}],
       price: 15
     },
@@ -425,7 +425,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Home & Cleaning",
+      category: "Home & Cleaning",
       tags: [{name:'home'}, {name:'cleaning'}],
       price: 15
     },
@@ -438,7 +438,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'butter'}],
       price: 8
     },
@@ -451,7 +451,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'butter'}],
       price: 8.1
     },
@@ -464,7 +464,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'butter'}],
       price: 8.6
     },
@@ -477,7 +477,7 @@ const products = [
       sale:0.0,
       discount:0,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'egg'}],
       price: 2
     },
@@ -490,7 +490,7 @@ const products = [
       sale:3.8,
       discount:5,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'egg'}],
       price: 4
     },
@@ -503,7 +503,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Dairy",
+      category: "Dairy",
       tags: [{name:'milk'}],
       price: 3.6
     },
@@ -516,7 +516,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Cooking",
+      category: "Cooking",
       tags: [{name:'oil'}],
       price: 4
     },
@@ -529,7 +529,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Cooking",
+      category: "Cooking",
       tags: [{name:'oil'}],
       price: 6.4
     },
@@ -542,7 +542,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Cooking",
+      category: "Cooking",
       tags: [{name:'oil'}],
       price: 8
     },
@@ -555,7 +555,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Cooking",
+      category: "Cooking",
       tags: [{name:'oil'}],
       price: 4
     },
@@ -569,7 +569,7 @@ const products = [
       sale:3.8,
       discount:10,
       quantity:100,
-      type: "Breakfast",
+      category: "Breakfast",
       tags: [{name:'bread'}],
       price: 4
     },
@@ -582,7 +582,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Breakfast",
+      category: "Breakfast",
       tags: [{name:'bread'}],
       price: 6
     },
@@ -595,7 +595,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Breakfast",
+      category: "Breakfast",
       tags: [{name:'cereal'}],
       price: 3.2
     },
@@ -608,7 +608,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Breakfast",
+      category: "Breakfast",
       tags: [{name:'cereal'}],
       price: 5.7
     },
@@ -621,7 +621,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Beverage",
+      category: "Beverage",
       tags: [{name:'coffee'}],
       price: 3
     },
@@ -634,7 +634,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Beverage",
+      category: "Beverage",
       tags: [{name:'energy drinks'}],
       price: 2.2
     },
@@ -647,7 +647,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Beverage",
+      category: "Beverage",
       tags: [{name:'juice'}],
       price: 1.5
     },
@@ -660,7 +660,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Beverage",
+      category: "Beverage",
       tags: [{name:'fizzy drinks'}],
       price: 1
     },
@@ -674,7 +674,7 @@ const products = [
       sale:14,
       discount:30,
       quantity:100,
-      type: "Beauty & Health",
+      category: "Beauty & Health",
       tags: [{name:'bath'}],
       price: 20
     },
@@ -687,7 +687,7 @@ const products = [
       sale:0,
       discount:0,
       quantity:100,
-      type: "Beauty & Health",
+      category: "Beauty & Health",
       tags: [{name:'bath'}],
       price: 16
     },

@@ -72,7 +72,7 @@ const DeliverySchedule = ({register,errors}) => {
                     </div>
                 </label>
             </div>
-            {errors.deliverySchedule?.type === 'required' && <span className="text-danger">Delivery schedule is required</span>}
+            {errors.deliverySchedule?.category === 'required' && <span className="text-danger">Delivery schedule is required</span>}
         </div>
     );
 };
