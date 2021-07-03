@@ -38,7 +38,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
              setSelected([])
              setIsChecked(false)
          }
-    }, [isAllChecked, deselectAll, setSelected])
+    }, [isAllChecked, deselectAll, setSelected, products])
 
     return (
         <>

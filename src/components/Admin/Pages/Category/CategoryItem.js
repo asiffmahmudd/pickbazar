@@ -4,9 +4,8 @@ import { BiEdit } from 'react-icons/bi';
 import CategoryDrawer from './CategoryDrawer.js';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import categories from '../../../../data/categories.js';
 
-const CategoryItem = ({category, isAllChecked, setSelected, deselectAll, selected}) => {
+const CategoryItem = ({category, categories, isAllChecked, setSelected, deselectAll, selected}) => {
 
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
 

@@ -33,7 +33,7 @@ const AdminProducts = () => {
         else if(selected.length === 0){
             setDeselectAll(true)
         }
-    }, [selected])
+    }, [selected, products.length])
 
     const resetSelection = () => {
         setDeselectAll(true)
@@ -48,10 +48,15 @@ const AdminProducts = () => {
     const forceUpdate = useForceUpdate();
 
     const productFilter = (e) => {
-        const newProductList = allproducts.filter(pd => pd.category === e.target.value)
-        setProducts(newProductList)
-        resetSelection()
-        forceUpdate()
+        if(e.target.value === "all"){
+            setProducts(allproducts)
+        }
+        else{
+            const newProductList = allproducts.filter(pd => pd.category === e.target.value)
+            setProducts(newProductList)
+            resetSelection()
+            forceUpdate()
+        } 
     }
 
     const priceFilter = (e) => {

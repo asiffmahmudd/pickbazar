@@ -4,7 +4,7 @@ import { BiPlus } from "react-icons/bi";
 import { useState } from 'react';
 import CategoryDrawer from './CategoryDrawer';
 
-const CategoryHeader = () => {
+const CategoryHeader = ({categoryFilter}) => {
 
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
 
@@ -23,11 +23,14 @@ const CategoryHeader = () => {
                 <div className="col-lg-10">
                     <div className ="row">
                         <div className="form-group col-lg-3">
-                            <select id="category" defaultValue="" className="form-control">
+                            <select id="category" defaultValue="" onChange={categoryFilter} className="form-control">
                                 <option value="" disabled>Category Type</option>
-                                <option value="grocery">Grocery</option>
-                                <option value="Dairy">Dairy</option>
-                                <option value="home">Home</option>
+                                <option value="all">All</option>
+                                <option value="Grocery">Grocery</option>
+                                <option value="Home">Home</option>
+                                <option value="Make Up">Make Up</option>
+                                <option value="Drinks">Drinks</option>
+                                <option value="Pet">Pet</option>
                             </select>
                         </div>
                         <div className="form-group col-lg-6">

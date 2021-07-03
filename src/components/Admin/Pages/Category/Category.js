@@ -3,7 +3,7 @@ import AdminLayout from '../../AdminLayout/AdminLayout';
 import './Category.css'
 import CategoryHeader from './CategoryHeader'
 import { useState } from "react";
-import categories from '../../../../data/categories';
+import allcategories from '../../../../data/categories';
 import CategoryItem from './CategoryItem';
 import { useEffect } from 'react';
 import DeleteBar from './DeleteBar';
@@ -13,7 +13,7 @@ const Category = () => {
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-
+    const [categories, setCategories] = useState(allcategories)
 
     useEffect(() => {
         if(selected.length < categories.length){
@@ -31,7 +31,8 @@ const Category = () => {
     }, [selected])
 
     const handleDelete = () => {
-        console.log(selected)
+        // console.log(selected)
+        console.log(isAllChecked,deselectAll, selected)
     }
     
     const handleAll = (e) => {
@@ -45,13 +46,29 @@ const Category = () => {
         }
     }
 
+    const resetSelection = () => {
+        setDeselectAll(true)
+        setSelected([])
+        setIsAllChecked(false)
+    }
+
+    const categoryFilter = (e) => {
+        if(e.target.value === "all"){
+            setCategories(allcategories)
+        }
+        else{
+            const newCategories = allcategories.filter(item => item.type === e.target.value)
+            setCategories(newCategories)
+        }
+        resetSelection()
+    }
 
     return (
         <AdminLayout>
             <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CategoryHeader></CategoryHeader>
+                        <CategoryHeader categoryFilter={categoryFilter}></CategoryHeader>
                     </div>
                     {
                         selected.length > 0 &&
@@ -84,6 +101,7 @@ const Category = () => {
                                             <CategoryItem 
                                                 key={index} 
                                                 category={category}
+                                                categories={categories}
                                                 isAllChecked={isAllChecked} 
                                                 setSelected={setSelected} 
                                                 deselectAll={deselectAll}

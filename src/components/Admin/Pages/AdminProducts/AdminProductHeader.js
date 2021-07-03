@@ -11,6 +11,7 @@ const AdminProductHeader = ({productFilter, priceFilter}) => {
                     <div className="form-group col-lg-3">
                         <select id="category" defaultValue="" onChange={productFilter} className="form-control">
                             <option value="" disabled >Category</option>
+                            <option value="all">All</option>
                             {
                                 categories.map((category,index) => (
                                     <option key={index} value={category.name}>{category.name}</option>

@@ -1,16 +1,32 @@
 import React from 'react';
-import customers from '../../../../data/customers';
+import { useState } from 'react';
+import allcustomers from '../../../../data/customers';
 import AdminLayout from '../../AdminLayout/AdminLayout';
+import { useForceUpdate } from '../AdminProducts/AdminProducts';
 import CustomerItem from './CustomerItem';
 import CustomersHeader from './CustomersHeader';
 
 const Customers = () => {
+    const [customers, setCustomers] = useState(allcustomers)
+    const forceUpdate = useForceUpdate()
+    const customerFilter = (e) => {
+        const newList = customers
+        if(e.target.value === 'highest to lowest'){
+            newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? -1 : 1)
+        }
+        else{
+            newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? 1 : -1)
+        } 
+        setCustomers(newList)
+        forceUpdate()
+    }
+
     return (
         <AdminLayout>
             <div className="admin-customers admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CustomersHeader></CustomersHeader>
+                        <CustomersHeader customerFilter={customerFilter}></CustomersHeader>
                     </div>
                     <div className="col-lg-12 admin-products-body mt-5">
                         <div className="table-responsive">

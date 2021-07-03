@@ -1,16 +1,16 @@
 import React from 'react';
 
-const CustomersHeader = () => {
+const CustomersHeader = ({customerFilter}) => {
     return (
         <div className="row header-content-row">
-            <div className="header-title col-lg-2">Orders</div>
+            <div className="header-title col-lg-2">Customers</div>
             <div className="col-lg-10">
                 <div className ="row">
                     <div className="form-group col-lg-3">
-                        <select id="orderLimits" className="form-control">
+                        <select id="orderLimits" onChange={customerFilter} className="form-control">
                             <option value="" disabled selected>Order Amount</option>
-                            <option value="Last 7 orders">Highest To Lowest</option>
-                            <option value="Last 15 orders">Lowest To Highest</option>
+                            <option value="highest to lowest">Highest To Lowest</option>
+                            <option value="lowest to highest">Lowest To Highest</option>
                         </select>
                     </div>
                     <div className="form-group col-lg-9">
