@@ -1,20 +1,31 @@
 import React from 'react';
-import orders from '../../../../data/orders';
+import allorders from '../../../../data/orders';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import OrderHeader from './OrderHeader';
 import './Orders.css';
 import OrderItem from './OrderItem';
+import { useState } from 'react';
 
 const Orders = () => {
 
-    
-    
+    const [orders, setOrders] = useState(allorders)
+
+    const orderFilter = (e) => {
+        if(e.target.value === 'all'){
+            setOrders(allorders)
+        }
+        else{
+            const newList = allorders.filter(item => item.status === e.target.value)
+            setOrders(newList)
+        }
+    }
+
     return (
         <AdminLayout>
             <div className="admin-orders admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <OrderHeader></OrderHeader>
+                        <OrderHeader orderFilter={orderFilter}></OrderHeader>
                     </div>
                     <div className="col-lg-12 admin-products-body mt-5">
                         <div className="table-responsive">

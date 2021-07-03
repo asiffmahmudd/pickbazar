@@ -3,7 +3,7 @@ import { useState } from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import CouponItem from './CouponItem';
 import CouponsHeader from './CouponsHeader';
-import coupons from '../../../../data/coupons';
+import allcoupons from '../../../../data/coupons';
 import { useEffect } from 'react';
 import DeleteBar from '../Category/DeleteBar';
 
@@ -12,6 +12,7 @@ const Coupons = () => {
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
+    const [coupons, setCoupons] = useState(allcoupons)
 
     useEffect(() => {
         if(selected.length < coupons.length){
@@ -43,12 +44,29 @@ const Coupons = () => {
         }
     }
 
+    const resetSelection = () => {
+        setDeselectAll(true)
+        setSelected([])
+        setIsAllChecked(false)
+    }
+
+    const couponFilter = (e) => {
+        if(e.target.value === 'all'){
+            setCoupons(allcoupons)
+        }
+        else{
+            const newList = allcoupons.filter(item => item.status === e.target.value)
+            setCoupons(newList)
+        }
+        resetSelection()
+    }
+
     return (
         <AdminLayout>
             <div className="admin-coupon admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CouponsHeader></CouponsHeader>
+                        <CouponsHeader couponFilter={couponFilter}></CouponsHeader>
                     </div>
                     {
                         selected.length > 0 &&
@@ -83,6 +101,7 @@ const Coupons = () => {
                                             <CouponItem 
                                                 key={index}
                                                 coupon={coupon}
+                                                coupons={coupons}
                                                 isAllChecked={isAllChecked} 
                                                 setSelected={setSelected} 
                                                 deselectAll={deselectAll}

@@ -5,9 +5,8 @@ import { VscCircleFilled } from "react-icons/vsc";
 import { useState } from 'react';
 import CouponDrawer from './CouponDrawer';
 import { useEffect } from 'react';
-import coupons from '../../../../data/coupons';
 
-const CouponItem = ({coupon, isAllChecked, setSelected, deselectAll, selected}) => {
+const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, selected}) => {
 
     const selectColor = (status) => {
         if(status === 'active'){
@@ -65,6 +64,10 @@ const CouponItem = ({coupon, isAllChecked, setSelected, deselectAll, selected}) 
              setIsChecked(false)
          }
     }, [isAllChecked, deselectAll, setSelected])
+
+    useEffect(() =>{
+        setStatusColor(selectColor(coupon.status))
+    }, [coupon])
 
     return (
         <>

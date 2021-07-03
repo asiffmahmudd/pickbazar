@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { VscCircleFilled } from "react-icons/vsc";
 
@@ -25,6 +26,10 @@ const OrderItem = ({order}) => {
         setStatusColor(selectColor(event.target.value))
         order.status = event.target.value
     }
+
+    useEffect(() => {
+        setStatusColor(selectColor(order.status))
+    }, [order])
 
     return (
         <tr>
