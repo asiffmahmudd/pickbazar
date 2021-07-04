@@ -35,7 +35,7 @@ const OrderItem = ({order}) => {
         <tr>
             <th scope="row">{order.id}</th>
             <td>{order.customerId}</td>
-            <td>{order.date}</td>
+            <td>{order.orderDate}</td>
             <td>{order.address}</td>
             <td>${order.amount}</td>
             <td>{order.paymentMethod}</td>

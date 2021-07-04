@@ -63,7 +63,7 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
              setSelected([])
              setIsChecked(false)
          }
-    }, [isAllChecked, deselectAll, setSelected])
+    }, [isAllChecked, deselectAll, setSelected, coupons])
 
     useEffect(() =>{
         setStatusColor(selectColor(coupon.status))

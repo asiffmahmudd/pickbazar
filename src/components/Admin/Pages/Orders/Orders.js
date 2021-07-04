@@ -7,17 +7,46 @@ import OrderItem from './OrderItem';
 import { useState } from 'react';
 
 const Orders = () => {
-
+    
     const [orders, setOrders] = useState(allorders)
 
-    const orderFilter = (e) => {
-        if(e.target.value === 'all'){
+    const sortByDate = (orderList) => {
+        let d1,d2;
+        const newList = orderList
+        newList.sort((a,b) => {
+            d1 = new Date(a.orderDate)
+            d2 = new Date(b.orderDate)
+            if(d1 > d2){
+                return -1
+            }
+            else if(d1 < d2){
+                return 1
+            } 
+            else
+                return 0 
+        })
+        return newList
+    }
+
+    const orderFilter = (status, limit) => {
+        if(status === 'all' && limit === 'all'){
             setOrders(allorders)
         }
-        else{
-            const newList = allorders.filter(item => item.status === e.target.value)
+        else if(status === 'all' && limit !== 'all'){
+            let newList = sortByDate(allorders)
+            setOrders(newList.slice(0, parseInt(limit)))
+        }
+        else if(status !== 'all' && limit === 'all'){
+            let newList = allorders.filter(item => item.status === status)
             setOrders(newList)
         }
+        else{
+            let newList = sortByDate(allorders)
+            newList = allorders.filter(item => item.status === status)
+            newList = newList.slice(0, parseInt(limit))
+            setOrders(newList)
+        }
+        
     }
 
     return (
@@ -25,7 +54,7 @@ const Orders = () => {
             <div className="admin-orders admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <OrderHeader orderFilter={orderFilter}></OrderHeader>
+                        <OrderHeader orderFilter={orderFilter} ></OrderHeader>
                     </div>
                     <div className="col-lg-12 admin-products-body mt-5">
                         <div className="table-responsive">

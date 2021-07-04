@@ -28,7 +28,7 @@ const Category = () => {
         else if(selected.length === 0){
             setDeselectAll(true)
         }
-    }, [selected])
+    }, [selected, categories.length])
 
     const handleDelete = () => {
         // console.log(selected)

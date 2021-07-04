@@ -27,7 +27,7 @@ const Coupons = () => {
         else if(selected.length === 0){
             setDeselectAll(true)
         }
-    }, [selected])
+    }, [selected, coupons.length])
 
     const handleDelete = () => {
         console.log(selected)

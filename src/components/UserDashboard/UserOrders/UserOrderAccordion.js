@@ -29,7 +29,7 @@ const UserOrderAccordion = ({order,index}) => {
                     <div className="order-item-body pt-3 pl-3 pr-3">
                         <div className="d-flex justify-content-between">
                             <p>Order Date:</p>
-                            <p>{order.date}</p>
+                            <p>{order.orderDate}</p>
                         </div>
                         <div className="d-flex justify-content-between">
                             <p>Delivery Time:</p>

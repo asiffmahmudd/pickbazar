@@ -16,7 +16,8 @@ const orders = [
     {
         id:1,
         customerId:"1",
-        date:"18 Jun 2021",
+        orderDate:"18 Jun 2021",
+        deliveryDate:"19 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 99.10,
         discount: 10,
@@ -71,7 +72,7 @@ const orders = [
     {
         id:2,
         customerId:"2",
-        date:"18 Jun 2021",
+        orderDate:"30 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 322,
         paymentMethod:"Cash On Delivery",
@@ -111,7 +112,7 @@ const orders = [
     {
         id:3,
         customerId:"1",
-        date:"18 Jun 2021",
+        orderDate:"25 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 643,
         paymentMethod:"Cash On Delivery",
@@ -137,7 +138,7 @@ const orders = [
     {
         id:4,
         customerId:"2",
-        date:"18 Jun 2021",
+        orderDate:"07 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 210,
         paymentMethod:"Cash On Delivery",
@@ -177,7 +178,7 @@ const orders = [
     {
         id:5,
         customerId:"1",
-        date:"18 Jun 2021",
+        orderDate:"27 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 110.89,
         discount: 10,
@@ -232,7 +233,7 @@ const orders = [
     {
         id:6,
         customerId:"3",
-        date:"18 Jun 2021",
+        orderDate:"03 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 756.30,
         paymentMethod:"Cash On Delivery",
@@ -300,7 +301,7 @@ const orders = [
     {
         id:7,
         customerId:"3",
-        date:"18 Jun 2021",
+        orderDate:"11 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 299.99,
         paymentMethod:"Cash On Delivery",
@@ -327,7 +328,7 @@ const orders = [
     {
         id:8,
         customerId:"4",
-        date:"18 Jun 2021",
+        orderDate:"26 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 657,
         discount: 20,
@@ -354,7 +355,7 @@ const orders = [
     {
         id:9,
         customerId:"5",
-        date:"18 Jun 2021",
+        orderDate:"09 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 512,
         paymentMethod:"Cash On Delivery",
@@ -394,7 +395,7 @@ const orders = [
     {
         id:10,
         customerId:"6",
-        date:"18 Jun 2021",
+        orderDate:"30 Jun 2021",
         address:"29 Eve Street, 543 Evenue Road, Ny 87876",
         amount: 249.7,
         paymentMethod:"Cash On Delivery",

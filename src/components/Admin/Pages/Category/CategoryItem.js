@@ -44,7 +44,7 @@ const CategoryItem = ({category, categories, isAllChecked, setSelected, deselect
              setSelected([])
              setIsChecked(false)
          }
-    }, [isAllChecked, deselectAll, setSelected])
+    }, [isAllChecked, deselectAll, setSelected, categories])
 
 
     return (
