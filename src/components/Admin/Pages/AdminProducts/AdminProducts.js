@@ -47,29 +47,55 @@ const AdminProducts = () => {
 
     const forceUpdate = useForceUpdate();
 
-    const productFilter = (e) => {
-        if(e.target.value === "all"){
-            setProducts(allproducts)
-        }
-        else{
-            const newProductList = allproducts.filter(pd => pd.category === e.target.value)
+    const productFilter = (category, price) => {
+        if(category === "all"){
+            let newProductList = priceFilter(allproducts, price)
             setProducts(newProductList)
-            resetSelection()
-            forceUpdate()
-        } 
-    }
-
-    const priceFilter = (e) => {
-        const newProductList = products
-        if(e.target.value === 'highest to lowest'){
-            newProductList.sort((a, b) => (a.price > b.price) ? -1 : 1)
         }
         else{
-            newProductList.sort((a, b) => (a.price > b.price) ? 1 : -1)
-        } 
-        setProducts(newProductList)
+            let newProductList = allproducts.filter(pd => pd.category === category)
+            newProductList = priceFilter(newProductList, price)
+            setProducts(newProductList)
+        }
         resetSelection()
         forceUpdate()
+    }
+
+    const priceFilter = (pd, price) => {
+        const newProductList = pd
+        if(price === 'highest to lowest'){
+            newProductList.sort((a, b) => {
+                if(a.sale > 0 && b.sale > 0){
+                    return a.sale > b.sale ? -1 : 1
+                }
+                else if(a.sale > 0 && b.sale === 0){
+                    return a.sale > b.price ? -1 : 1
+                }
+                else if(a.sale === 0 && b.sale > 0){
+                    return a.price > b.sale ? -1 : 1
+                }
+                else{
+                    return a.price > b.price ? -1 : 1
+                }
+            })
+        }
+        else if(price === "lowest to highest"){
+            newProductList.sort((a, b) => {
+                if(a.sale > 0 && b.sale > 0){
+                    return a.sale > b.sale ? 1 : -1
+                }
+                else if(a.sale > 0 && b.sale === 0){
+                    return a.sale > b.price ? 1 : -1
+                }
+                else if(a.sale === 0 && b.sale > 0){
+                    return a.price > b.sale ? 1 : -1
+                }
+                else{
+                    return a.price > b.price ? 1 : -1
+                }
+            })
+        } 
+        return newProductList
     }
 
     return (
@@ -79,7 +105,6 @@ const AdminProducts = () => {
                     <div className="admin-products-header col-lg-12 mt-5">
                         <AdminProductHeader 
                             productFilter={productFilter}
-                            priceFilter={priceFilter}
                         >
                         </AdminProductHeader>
                     </div>
