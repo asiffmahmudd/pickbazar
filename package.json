@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
     "dayjs": "^1.10.5",
+    "firebase": "^8.7.0",
     "jquery": "^3.6.0",
     "multiselect-react-dropdown": "^1.7.0",
     "popper.js": "^1.16.1",
