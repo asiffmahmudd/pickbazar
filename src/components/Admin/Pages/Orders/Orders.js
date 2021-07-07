@@ -30,10 +30,10 @@ const Orders = () => {
 
     const orderFilter = (status, limit) => {
         if(status === 'all' && limit === 'all'){
-            setOrders(allorders)
+            setOrders(allorders.slice())
         }
         else if(status === 'all' && limit !== 'all'){
-            let newList = sortByDate(allorders)
+            let newList = sortByDate(allorders.slice())
             setOrders(newList.slice(0, parseInt(limit)))
         }
         else if(status !== 'all' && limit === 'all'){
@@ -41,7 +41,7 @@ const Orders = () => {
             setOrders(newList)
         }
         else{
-            let newList = sortByDate(allorders)
+            let newList = sortByDate(allorders.slice())
             newList = allorders.filter(item => item.status === status)
             newList = newList.slice(0, parseInt(limit))
             setOrders(newList)

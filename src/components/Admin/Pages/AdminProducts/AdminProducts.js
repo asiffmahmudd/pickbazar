@@ -15,10 +15,13 @@ export function useForceUpdate(){
 
 const AdminProducts = () => {
 
+    
+
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
     const [products,setProducts] = useState(allproducts)
+    console.log(allproducts)
 
     useEffect(() => {
         if(selected.length < products.length){
@@ -49,7 +52,8 @@ const AdminProducts = () => {
 
     const productFilter = (category, price) => {
         if(category === "all"){
-            let newProductList = priceFilter(allproducts, price)
+            let newProductList = allproducts.slice()
+            newProductList = priceFilter(newProductList, price)
             setProducts(newProductList)
         }
         else{

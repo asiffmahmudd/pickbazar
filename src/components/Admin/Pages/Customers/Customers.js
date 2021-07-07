@@ -7,7 +7,7 @@ import CustomerItem from './CustomerItem';
 import CustomersHeader from './CustomersHeader';
 
 const Customers = () => {
-    const [customers, setCustomers] = useState(allcustomers)
+    const [customers, setCustomers] = useState(allcustomers.slice())
     const forceUpdate = useForceUpdate()
     const customerFilter = (e) => {
         const newList = customers
