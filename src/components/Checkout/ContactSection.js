@@ -55,7 +55,7 @@ const ContactSection = ({register,errors}) => {
                     
 
                 </div>
-                {errors.contactNumber?.category === 'required' && <span className="text-danger">Contact Number is required</span>}
+                {errors.contactNumber?.type === 'required' && <span className="text-danger">Contact Number is required</span>}
             </div>
             <AddContactModal addContact={addContact} addContactIsOpen={addContactIsOpen} handleClose={handleClose} ></AddContactModal>
         </>
