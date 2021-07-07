@@ -51,7 +51,7 @@ const AddressSection = ({register,errors}) => {
                     }
                     
                 </div>
-                {errors.deliveryAddress?.category === 'required' && <span className="text-danger">Delivery address is required</span>}
+                {errors.deliveryAddress?.type === 'required' && <span className="text-danger">Delivery address is required</span>}
             </div>
             <AddAddressModal addAddress={addAddress} addAddressIsOpen={addAddressIsOpen} handleClose={handleClose}></AddAddressModal>
             

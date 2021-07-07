@@ -11,6 +11,7 @@ const DeliverySchedule = ({register,errors}) => {
     const disabledFont ={
         color: 'white'
     }
+    console.log(errors)
 
     return (
         <div className="schedule checkout-section">
@@ -72,7 +73,7 @@ const DeliverySchedule = ({register,errors}) => {
                     </div>
                 </label>
             </div>
-            {errors.deliverySchedule?.category === 'required' && <span className="text-danger">Delivery schedule is required</span>}
+            {errors.deliverySchedule?.type === 'required' && <span className="text-danger">Delivery schedule is required</span>}
         </div>
     );
 };
