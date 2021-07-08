@@ -27,6 +27,7 @@ function App() {
   
   return (
     <Provider store={store}>
+      <AuthProvider>
         <Router>
           <Switch>
             <CouponContextProvider>
@@ -64,6 +65,7 @@ function App() {
             </CouponContextProvider>
           </Switch>
         </Router>
+      </AuthProvider>  
     </Provider>
   );
 }

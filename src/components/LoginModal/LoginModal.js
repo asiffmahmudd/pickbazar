@@ -29,6 +29,7 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
             isOpen={loginIsOpen}
             onRequestClose={handleClose}
             style={customStyles}
+            ariaHideApp={false}
             className={"login-modal"}
         >
             <span className="modal-close hover-pointer" onClick={handleClose}>
@@ -48,7 +49,7 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
                     <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
                 
-                <SocialLogIn></SocialLogIn>
+                <SocialLogIn handleClose={handleClose}></SocialLogIn>
                 
                 <p className="form-text modal-text text-center">Don't have any account? <span className="theme-text underline" onClick={handleSignupOpen}>Sign Up</span></p>
             

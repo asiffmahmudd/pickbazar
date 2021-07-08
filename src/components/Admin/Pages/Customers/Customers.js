@@ -14,7 +14,7 @@ const Customers = () => {
         if(e.target.value === 'highest to lowest'){
             newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? -1 : 1)
         }
-        else{
+        else if(e.target.value === 'lowest to highest'){
             newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? 1 : -1)
         } 
         setCustomers(newList)

@@ -8,10 +8,7 @@ import { FaBoxOpen, FaUsers } from "react-icons/fa";
 import { BsFillInboxesFill,  } from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
 
-
-const AdminSidebar = ({sidebarOpen,setSidebarOpen}) => {
-
- 
+const AdminSidebar = ({setSidebarOpen}) => {
 
     return (
         <div className="admin-sidebar" id="sidebarContent">

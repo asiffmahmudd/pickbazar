@@ -7,6 +7,9 @@ import LoginModal from '../LoginModal/LoginModal';
 import SignupModal from '../SignupModal/SignupModal';
 import ResetModal from '../ResetModal/ResetModal';
 import FilterDrawer from './FilterDrawer';
+import { useAuth } from '../../contexts/AuthContext';
+import { AiOutlineAlignLeft } from "react-icons/ai";
+import UserDrawer from './UserDrawer';
 
 const Header = ({selectedCategory, changeCategory}) => {
 
@@ -52,27 +55,70 @@ const Header = ({selectedCategory, changeCategory}) => {
         setFilterDrawerOpen(false);
     }
 
+    const {loggedInUser, logout} = useAuth()
+    
+    const [isUserDrawerOpen, setUserDrawerOpen] = useState(false)
+
+    const handleUserDrawerClose = () => {
+        setUserDrawerOpen(false)
+    }
+
     return (
         <>
         <header className="bg-white">
             <div className ="container-fluid">
             <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4">
-                    <Link className="navbar-brand d-flex align-items-center" to="/"><img src={logo} alt="" /></Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                    <div className="d-flex">
+                        <div className="user-drawer-toggle">
+                            <AiOutlineAlignLeft size={30} 
+                                color="rgb(22, 31, 106)" 
+                                className="mr-3"
+                                onClick={()=>setUserDrawerOpen(true)}
+                            />
+                        </div>
+                        <Link className="navbar-brand d-flex align-items-center" to="/"><img src={logo} alt="" /></Link>
+                    </div>
+                    <AiOutlineSearch 
+                        size={25} 
+                        className="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" 
+                        aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    </AiOutlineSearch>
 
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ml-auto col-lg-8">
+                    <div className={"collapse navbar-collapse"} id="navbarSupportedContent">
+                        <ul className={"navbar-nav col-lg-8 ml-auto"}>
                             <form className="form-inline rounded p-2 w-100">
                                 <AiOutlineSearch size={25}></AiOutlineSearch>
                                 <input className="border-0 ml-1" type="search" placeholder="Search your products from here" aria-label="Search" />
                             </form>
                         </ul>
-                        <ul className="navbar-nav ml-auto">
-                            <button className="btn btn primary btn-theme pr-5 pl-5" onClick={handleLoginOpen}>Join</button>
-                        </ul>
+                        {
+                            !loggedInUser &&
+                            <ul className="navbar-nav ml-auto">
+                                <button className="btn btn primary btn-theme pr-5 pl-5" onClick={handleLoginOpen}>Join</button>
+                            </ul>
+                        }
+                        {
+                            loggedInUser &&
+                            <ul className="navbar-nav ml-auto user-menu">
+                                <div className="dropdown user-icon hover-pointer">
+                                    <img className="dropdown-toggle" src={loggedInUser.photo} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <Link className="dropdown-item" to="/user/profile">Profile</Link>
+                                        <Link className="dropdown-item" to="/user/orders">Your Order</Link>
+                                        <div className="dropdown-item" href="/admin/dashboard" onClick={logout}>Logout</div>
+                                    </div>
+                                </div>
+                            </ul>
+                        }
                     </div>
+
+                    
+
                     <LoginModal handleSignupOpen={handleSignupOpen} handleResetOpen={handleResetOpen} loginIsOpen={loginIsOpen} handleClose={handleClose}></LoginModal>
                     <SignupModal handleLoginOpen={handleLoginOpen} signupIsOpen={signupIsOpen} handleClose={handleClose}></SignupModal>
                     <ResetModal handleClose={handleClose} resetIsOpen={resetIsOpen} handleResetOpen={handleResetOpen} handleLoginOpen={handleLoginOpen}></ResetModal>
@@ -93,8 +139,16 @@ const Header = ({selectedCategory, changeCategory}) => {
                     </div>
                 </div>
             </div>
-            <FilterDrawer changeCategory={changeCategory} isFilterDrawerOpen={isFilterDrawerOpen} handleFilterDrawerClose={handleFilterDrawerClose}></FilterDrawer>
-            
+            <FilterDrawer 
+                changeCategory={changeCategory} 
+                isFilterDrawerOpen={isFilterDrawerOpen} 
+                handleFilterDrawerClose={handleFilterDrawerClose}
+            />
+            <UserDrawer
+                isUserDrawerOpen={isUserDrawerOpen}
+                handleUserDrawerClose={handleUserDrawerClose}
+                handleLoginOpen={handleLoginOpen}
+            />
         </header>
         
         </>

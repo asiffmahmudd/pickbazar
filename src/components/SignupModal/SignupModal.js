@@ -5,6 +5,9 @@ import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
 
 const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
+
+    
+
     const customStyles = {
         content : {
           top: '50%',

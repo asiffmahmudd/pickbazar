@@ -26,7 +26,7 @@
     border-radius: 50%;
 }
 
-.admin-header .dropdown-menu{
+.admin-header .dropdown-menu, header .dropdown-menu{
     left: -140px;
 }
 
