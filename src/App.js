@@ -16,12 +16,17 @@ import Orders from './components/Admin/Pages/Orders/Orders';
 import Category from './components/Admin/Pages/Category/Category';
 import Customers from './components/Admin/Pages/Customers/Customers';
 import { ProductDrawerProvider } from './contexts/ProductDrawerContext';
-import UserProfile from './components/UserDashboard/Profile/Profile';
+import UserProfile from './components/UserDashboard/Profile/UserProfile';
 import UserOrders from './components/UserDashboard/UserOrders/UserOrders';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import PageLayout from './components/PageLayout/PageLayout';
 import { CouponContextProvider } from './contexts/CouponContext';
 import { AuthProvider } from './contexts/AuthContext';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
+import Reset from './components/Reset/Reset';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import AdminRoute from './components/AdminRoute/AdminRoute';
 
 function App() {
   
@@ -40,27 +45,52 @@ function App() {
               <Route exact path="/category/:index/:category">
                 <PageLayout></PageLayout>  
               </Route>
-
-              <Route exact path="/user/profile" component={UserProfile} />
-              <Route exact path="/user/orders" component={UserOrders} />
-
-            
-              <Route exact path="/checkout">
+              
+              <PrivateRoute exact path="/user/profile">
+                <UserProfile></UserProfile>
+              </PrivateRoute>
+              <PrivateRoute exact path="/user/orders">
+                <UserOrders></UserOrders>
+              </PrivateRoute>
+              <Route exact path="/login">
+                <Login></Login>
+              </Route>
+              <Route exact path="/signup">
+                <SignUp></SignUp>
+              </Route>
+              <Route exact path="/reset">
+                <Reset></Reset>
+              </Route>
+              <PrivateRoute exact path="/checkout">
                 <Checkout></Checkout>
-              </Route>
-              <Route exact path="/order-received">
+              </PrivateRoute>
+              <PrivateRoute exact path="/order-received">
                 <OrderReceived></OrderReceived>
-              </Route>
+              </PrivateRoute>
             
 
               <ProductDrawerProvider>
-                <Route exact path="/admin/dashboard" component={Dashboard} />
-                <Route exact path="/admin/products" component={AdminProducts} />
-                <Route exact path="/admin/category" component={Category} />
-                <Route exact path="/admin/coupons" component={Coupons} />
-                <Route exact path="/admin/customers" component={Customers} />
-                <Route exact path="/admin/orders" component={Orders} />
-                <Route exact path="/admin/settings" component={Settings} />
+                <AdminRoute exact path="/admin/dashboard">
+                  <Dashboard></Dashboard>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/products">
+                  <AdminProducts></AdminProducts>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/category">
+                  <Category></Category>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/coupons">
+                  <Coupons></Coupons>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/customers">
+                  <Customers></Customers>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/orders">
+                  <Orders></Orders>
+                </AdminRoute>
+                <AdminRoute exact path="/admin/settings">
+                  <Settings></Settings>
+                </AdminRoute>
               </ProductDrawerProvider>
             </CouponContextProvider>
           </Switch>

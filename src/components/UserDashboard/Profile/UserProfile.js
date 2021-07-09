@@ -4,7 +4,7 @@ import UserDashboardLayout from '../UserDashboardLayout/UserDashboardLayout';
 import './Profile.css'
 import ProfileContactSection from './ProfileContactSection';
 
-const Profile = () => {
+const UserProfile = () => {
     return (
         <UserDashboardLayout>
             <div className="profile container-fluid bg-white">
@@ -33,4 +33,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default UserProfile;

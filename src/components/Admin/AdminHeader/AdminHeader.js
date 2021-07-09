@@ -3,13 +3,15 @@ import adminLogo from '../../../img/adminLogo.png';
 import { Link } from 'react-router-dom';
 import './AdminHeader.css';
 import { IoNotificationsOutline } from "react-icons/io5";
-import user from '../../../img/user.jpg';
+import user from '../../../img/user.png';
 import { AiOutlineAlignLeft } from "react-icons/ai";
 import { useProductDrawer } from '../../../contexts/ProductDrawerContext';
 import AdminProductDrawer from '../Pages/AdminProducts/AdminProductDrawer';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
+    const {loggedInUser} = useAuth()
     return (
         <>
         <header className="admin-header bg-white shadow-sm">
@@ -29,7 +31,7 @@ const AdminHeader = ({setSidebarOpen}) => {
                             <IoNotificationsOutline size={20} color="rgb(22, 31, 106)"></IoNotificationsOutline>
                         </div>
                         <div className="dropdown user-icon hover-pointer">
-                            <img className="dropdown-toggle" src={user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                            <img className="dropdown-toggle" src={loggedInUser.photo? loggedInUser.photo : user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <Link className="dropdown-item" to="/admin/settings">Settings</Link>
                                 <div className="dropdown-item" href="/admin/dashboard">Logout</div>

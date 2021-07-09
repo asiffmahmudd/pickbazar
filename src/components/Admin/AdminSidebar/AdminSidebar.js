@@ -7,8 +7,11 @@ import { RiShoppingBag3Fill, RiCoupon3Fill } from "react-icons/ri";
 import { FaBoxOpen, FaUsers } from "react-icons/fa";
 import { BsFillInboxesFill,  } from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
+import { useAuth } from '../../../contexts/AuthContext';
 
 const AdminSidebar = ({setSidebarOpen}) => {
+
+    const {logout} = useAuth()
 
     return (
         <div className="admin-sidebar" id="sidebarContent">
@@ -53,7 +56,7 @@ const AdminSidebar = ({setSidebarOpen}) => {
                 </NavLink>
             
             </div>
-            <button className="btn admin-logout"><IoLogOut/> Logout</button>
+            <button className="btn admin-logout" onClick={logout}><IoLogOut/> Logout</button>
         </div>
     );
 };
