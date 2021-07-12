@@ -19,7 +19,7 @@ const AdminProducts = () => {
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-    const [products,setProducts] = useState()
+    const [products,setProducts] = useState([])
 
     useEffect(() => {
         fetch('http://localhost:4000/products')

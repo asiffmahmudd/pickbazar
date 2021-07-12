@@ -117,7 +117,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         product?.img.length > 0 && files.length === 0 &&
                                         <div className="dropzone-img-container">
                                             {   
-                                                product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
+                                                product?.img.map((pic,index) => <img key={index} src={`data:image/jpeg;base64,${pic.img}`} alt="preview" />)
                                             }
                                             
                                         </div>

@@ -21,7 +21,9 @@
     color: rgb(22, 31, 106);
 }
 
-
+.admin-product-item-img-container .card-img-top{
+    height: 300px;
+}
 
 .admin-products-header{
     background: white;

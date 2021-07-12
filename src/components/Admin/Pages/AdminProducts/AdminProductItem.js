@@ -46,7 +46,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
             <div className="card border-0">
                 <input type="checkbox" className="mt-2 hover-pointer item-select ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
                 <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
-                    <img className="card-img-top" src={product?.img[0]} alt="" />
+                    <img className="card-img-top" src={`data:image/jpeg;base64,${product?.img[0].img}`} alt="" />
                     {
                         product?.discount > 0 &&
                         <p className="admin-item-discount">{product.discount}%</p>
