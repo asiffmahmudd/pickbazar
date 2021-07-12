@@ -84,6 +84,8 @@ select.form-control, select.form-control option, .drawer select.form-control, .d
 .item-select{
     height: 20px;
     width: 20px;
+    position: absolute;
+    z-index: 1;
 }
 
 @media (max-width: 991px){

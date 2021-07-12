@@ -46,9 +46,9 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
             <div className="card border-0">
                 <input type="checkbox" className="mt-2 hover-pointer item-select ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
                 <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
-                    <img className="card-img-top" src={product.img[0]} alt="" />
+                    <img className="card-img-top" src={product?.img[0]} alt="" />
                     {
-                        product.discount > 0 &&
+                        product?.discount > 0 &&
                         <p className="admin-item-discount">{product.discount}%</p>
                     }
                 </div>
@@ -56,7 +56,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
                 <div className="card-body">
                     <div>
                     {
-                        product.discount > 0 &&
+                        product?.discount > 0 &&
                         <>
                             <h5 className="card-title">${product.sale}</h5> 
                             <span className="discount-price">${product.price}</span>
@@ -64,7 +64,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
                         </>
                     }
                     {
-                        product.discount === 0 &&
+                        product?.discount === 0 &&
                         <h5 className="card-title">${product.price}</h5>
                     }
                     </div>

@@ -23,9 +23,11 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     const { register, handleSubmit, reset } = useForm();
 
     const [files, setFiles] = useState([])
+    const [productImage, setImages] = useState([])
     const processDrop = (pics) =>{
-        setFiles(pics.map((file,index) => (
-            <img key={index} src={URL.createObjectURL(file)} alt="preview" />
+        setFiles(pics)
+        setImages(pics.map((pic,index) => (
+            <img key={index} src={URL.createObjectURL(pic)} alt="preview" />
         )))
     }
 
@@ -36,13 +38,35 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     });
 
     const onSubmit = data => {
-        data.img =  files.length > 0? files: product.img 
-        console.log(data)
-        reset()
-        handleProductDrawerClose()
+        if(files.length > 0 || product?.img){
+            data.tags = selectedValues
+            const formData = new FormData()
+            files.map((file,index) => formData.append('file'+index, file))
+            
+            formData.append('data', JSON.stringify(data))
+            fetch('http://localhost:4000/addproduct', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+            setImages([])
+            setFiles([])
+            reset()
+            handleProductDrawerClose()
+        } 
+        else{
+            alert("Please upload at least one image")
+        }
     }
 
     const closeDrawer = () => {
+        setImages([])
         setFiles([])
         reset()
         handleProductDrawerClose();
@@ -60,7 +84,12 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     
     return (
         <div>
-            <Drawer className="add-product-drawer drawer" anchor={"right"} open={isProductDrawerOpen} onClose={closeDrawer}> 
+            <Drawer 
+                className="add-product-drawer drawer" 
+                anchor={"right"} 
+                open={isProductDrawerOpen} 
+                onClose={closeDrawer}
+            > 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="drawer-container">
                         
@@ -94,14 +123,14 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         </div>
                                     }
                                     {
-                                        files.length > 0 && 
+                                        productImage.length > 0 && 
                                         <div className="dropzone-img-container">
-                                            {files}
+                                            {productImage}
                                         </div>
                                     }
                                     {
                                         fileRejectionItems.length > 0 &&
-                                        <p className="text-danger mt-3">You can upload 1 image max</p>
+                                        <p className="text-danger mt-3">You can upload 4 images max</p>
                                     }
                                 </div>
                             </div>
@@ -112,43 +141,117 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                 </div>
                                 <div className="col-lg-8 bg-white product-info" key={product}>
                                     <div className="form-group">
-                                        <label htmlFor="productName">Name</label>
-                                        <input type="text" className="form-control" {...register("productName")} name="productName" id="productName" aria-describedby="productName" value={product?.name} required/>
+                                        <label htmlFor="name">Name</label>
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            {...register("name")} 
+                                            name="name" 
+                                            id="name" 
+                                            aria-describedby="name" 
+                                            value={product?.name} 
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productDescription">Description</label>
-                                        <textarea type="text" className="form-control" {...register("productDescription")} name="productDescription" id="productDescription" defaultValue={product?.desc}  required/>
+                                        <label htmlFor="desc">Description</label>
+                                        <textarea 
+                                            type="text" 
+                                            className="form-control" 
+                                            {...register("desc")} 
+                                            name="desc" 
+                                            id="desc" 
+                                            defaultValue={product?.desc}  
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productUnit">Unit</label>
-                                        <input type="text" className="form-control" {...register("productUnit")} name="productUnit" id="productUnit" aria-describedby="productUnit" defaultValue={product?.unit} required/>
+                                        <label htmlFor="unit">Unit</label>
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            {...register("unit")} 
+                                            name="unit" 
+                                            id="unit" 
+                                            aria-describedby="unit" 
+                                            defaultValue={product?.unit} 
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productPrice">Price</label>
-                                        <input type="number" className="form-control" {...register("productPrice")} name="productPrice" id="productPrice" aria-describedby="productPrice" defaultValue={product?.price} step="any" required/>
+                                        <label htmlFor="price">Price</label>
+                                        <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            {...register("price")} 
+                                            name="price" 
+                                            id="price" 
+                                            aria-describedby="price" 
+                                            defaultValue={product?.price} 
+                                            step="any" 
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productSaleprice">Sale Price</label>
-                                        <input type="number" className="form-control" {...register("productSaleprice")} name="productSaleprice" id="productSaleprice" step="any" aria-describedby="productSaleprice" defaultValue={product?.sale} required/>
+                                        <label htmlFor="sale">Sale Price</label>
+                                        <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            {...register("sale")} 
+                                            name="sale" 
+                                            id="sale" 
+                                            step="any" 
+                                            aria-describedby="sale"
+                                            defaultValue={product?.sale} 
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productDiscount">Discount In Percent</label>
-                                        <input type="number" className="form-control" {...register("productDiscount")} name="productDiscount" id="productDiscount" step="any" aria-describedby="productDiscount" defaultValue={product?.discount} required/>
+                                        <label htmlFor="discount">Discount In Percent</label>
+                                        <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            {...register("discount")} 
+                                            name="discount" 
+                                            id="discount" 
+                                            step="any" 
+                                            aria-describedby="discount" 
+                                            defaultValue={product?.discount} 
+                                            required
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productQuantity">Product Quantity</label>
-                                        <input type="number" className="form-control" {...register("productQuantity")} name="productQuantity" id="productQuantity" aria-describedby="productQuantity" defaultValue={product?.quantity} required />
+                                        <label htmlFor="quantity">Product Quantity</label>
+                                        <input 
+                                            type="number" 
+                                            className="form-control" 
+                                            {...register("quantity")}
+                                            name="quantity" 
+                                            id="quantity" 
+                                            aria-describedby="quantity" 
+                                            defaultValue={product?.quantity} 
+                                            required 
+                                        />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="productType">Category</label>
-                                        <select type="text" className="form-control" {...register("productType")} name="productType" id="productType" aria-describedby="productType" defaultValue={product?.category} required>
+                                        <label htmlFor="category">Category</label>
+                                        <select 
+                                            type="text" 
+                                            className="form-control" 
+                                            {...register("category")} 
+                                            name="category" 
+                                            id="category" 
+                                            aria-describedby="category" 
+                                            defaultValue={product?.category} 
+                                            required
+                                        >
                                             {
                                                 categories.map((category,index) => <option key={index} value={category.name}>{category.name}</option>)
                                             }
                                         </select>
                                     </div>
                                     <div className="form-group category-multiSelect">
-                                        <label htmlFor="productCategories">Tags</label>
+                                        <label htmlFor="tags">Tags</label>
                                         <Multiselect
                                             options={options} // Options to display in the dropdown
                                             selectedValues={product?.tags} // Preselected value to persist in dropdown

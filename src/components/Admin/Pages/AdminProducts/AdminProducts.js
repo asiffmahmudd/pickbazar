@@ -15,19 +15,27 @@ export function useForceUpdate(){
 
 const AdminProducts = () => {
 
-    
-
+    // const [allproducts, setAllProducts] = useState([])
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
     const [products,setProducts] = useState(allproducts)
-    console.log(allproducts)
+
+    // useEffect(() => {
+    //     fetch('http://localhost:4000/products')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setAllProducts(data)
+    //         setProducts(data)
+    //     })
+    // },[])
+    // console.log(products)
 
     useEffect(() => {
-        if(selected.length < products.length){
+        if(selected.length < products?.length){
             setIsAllChecked(false)
         }
-        else if(selected.length === products.length){
+        else if(selected.length === products?.length){
             setIsAllChecked(true)
         }
         if(selected.length > 0){
@@ -36,7 +44,7 @@ const AdminProducts = () => {
         else if(selected.length === 0){
             setDeselectAll(true)
         }
-    }, [selected, products.length])
+    }, [selected, products?.length])
 
     const resetSelection = () => {
         setDeselectAll(true)
