@@ -3,7 +3,7 @@ import AdminLayout from '../../AdminLayout/AdminLayout';
 import AdminProductHeader from './AdminProductHeader';
 import './AdminProducts.css';
 import AdminProductItem from './AdminProductItem';
-import allproducts from '../../../../data/products';
+// import allproducts from '../../../../data/products';
 import SelectBar from './SelectBar';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -15,21 +15,21 @@ export function useForceUpdate(){
 
 const AdminProducts = () => {
 
-    // const [allproducts, setAllProducts] = useState([])
+    const [allproducts, setAllProducts] = useState([])
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-    const [products,setProducts] = useState(allproducts)
+    const [products,setProducts] = useState()
 
-    // useEffect(() => {
-    //     fetch('http://localhost:4000/products')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setAllProducts(data)
-    //         setProducts(data)
-    //     })
-    // },[])
-    // console.log(products)
+    useEffect(() => {
+        fetch('http://localhost:4000/products')
+        .then(res => res.json())
+        .then(data => {
+            setAllProducts(data)
+            setProducts(data)
+        })
+    },[])
+    console.log(products)
 
     useEffect(() => {
         if(selected.length < products?.length){
