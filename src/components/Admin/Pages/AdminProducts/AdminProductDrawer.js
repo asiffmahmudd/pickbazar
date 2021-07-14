@@ -52,7 +52,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
         return (
           <li key={file.path}>
                <ul>
-                 {errors.map(e => <li key={e.code}>{e.message}</li>)}
+                 {errors.map(e => <li key={e.code}>{e.message}</li>)} 
               </ul>
           </li>
         ) 
