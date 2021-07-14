@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import AdminProductDrawer from './AdminProductDrawer';
 
-const AdminProductItem = ({product, products, deselectAll, isAllChecked, selected, setSelected}) => {
+const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, isAllChecked, selected, setSelected}) => {
 
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
     
@@ -15,7 +15,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
         setProductDrawerOpen(false);
     }
 
-    const [isChecked, setIsChecked] = useState(isAllChecked);
+    const [isChecked, setIsChecked] = useState(false);
 
     const changeCheck = () => {
         if(!isChecked){
@@ -23,7 +23,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
             setSelected(newList)
         }
         else{
-            const newList = selected.filter(pd => pd.id !== product.id)
+            const newList = selected.filter(pd => pd._id !== product._id)
             setSelected(newList)
         }
         setIsChecked(!isChecked)
@@ -31,20 +31,25 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
 
     useEffect(() => {
          if(isAllChecked){
-            setSelected(products)
             setIsChecked(true)
          }
          if(deselectAll){
-             setSelected([])
-             setIsChecked(false)
+            setIsChecked(false)
          }
-    }, [isAllChecked, deselectAll, setSelected, products])
+    }, [isAllChecked, deselectAll, products])
 
     return (
         <>
         <div className="admin-product-item col-lg-3 col-md-4 col-sm-6 col-12 mt-3 mb-2 hover-pointer">
             <div className="card border-0">
-                <input type="checkbox" className="mt-2 hover-pointer item-select ml-2" checked={isChecked} onChange={changeCheck} name="product-item" value={product}/>
+                <input 
+                    type="checkbox" 
+                    className="mt-2 hover-pointer item-select ml-2" 
+                    checked={isChecked} 
+                    onChange={changeCheck} 
+                    name="product-item" 
+                    value={product}
+                />
                 <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
                     <img className="card-img-top" src={`data:image/jpeg;base64,${product?.img[0].img}`} alt="" />
                     {
@@ -70,7 +75,7 @@ const AdminProductItem = ({product, products, deselectAll, isAllChecked, selecte
                     </div>
                     <div className="d-flex justify-content-between align-items-center" style={{height:'50px'}}>
                         <p className="card-text" style={{margin:0}}>{product.name}</p>
-                        <div className="btn delete-btn">
+                        <div className="btn delete-btn hover-pointer" onClick={()=>handleSingleDelete(product._id)}>
                             Delete
                         </div>
                     </div>

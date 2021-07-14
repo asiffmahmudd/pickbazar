@@ -8,9 +8,11 @@ import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
+import { useItem } from '../../../../contexts/ItemContext';
 
 const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
-
+    
+    const {change,setChange} = useItem()
     const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState(product?.tags)
     const onSelect = (selectedList, selectedItem) => {
@@ -43,17 +45,28 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
             const formData = new FormData()
             files.map((file,index) => formData.append('file'+index, file))
             
+            let apiURL = ""
+            if(!product){
+                apiURL = 'http://localhost:4000/addproduct'
+            }
+            else{
+                apiURL = 'http://localhost:4000/updateProduct/'+product._id
+            }
+            
             formData.append('data', JSON.stringify(data))
-            fetch('http://localhost:4000/addproduct', {
-                method: 'POST',
+            fetch(apiURL, {
+                method: product? 'PUT' : 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                if(data){
+                    setChange(true)
+                    setChange(false)
+                }
             })
             .catch(error => {
-                console.error(error)
+                alert(error.message)
             })
             setImages([])
             setFiles([])
@@ -149,7 +162,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                             name="name" 
                                             id="name" 
                                             aria-describedby="name" 
-                                            value={product?.name} 
+                                            defaultValue={product?.name} 
                                             required
                                         />
                                     </div>

@@ -12,6 +12,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
     const {loggedInUser} = useAuth()
+
     return (
         <>
         <header className="admin-header bg-white shadow-sm">

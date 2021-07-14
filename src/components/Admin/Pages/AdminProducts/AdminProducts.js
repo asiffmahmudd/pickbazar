@@ -7,6 +7,8 @@ import AdminProductItem from './AdminProductItem';
 import SelectBar from './SelectBar';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Loading from '../../../Loading/Loading';
+import { useItem } from '../../../../contexts/ItemContext';
 
 export function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
@@ -14,35 +16,75 @@ export function useForceUpdate(){
 }
 
 const AdminProducts = () => {
-
-    const [allproducts, setAllProducts] = useState([])
+    const {loading, setLoading, allproducts, products, setProducts} = useItem()
+    // const [loading,setLoading] = useState(true)
+    // const [allproducts, setAllProducts] = useState([])
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-    const [products,setProducts] = useState([])
+    // const [products,setProducts] = useState(allproducts)
 
-    useEffect(() => {
-        fetch('http://localhost:4000/products')
+    // useEffect(() => {
+    //     setLoading(true)
+    //     fetch('http://localhost:4000/products')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setAllProducts(data)
+    //         setProducts(data)
+    //         setLoading(false)
+    //     })
+    // },[])
+
+    const handleSingleDelete = (id) => {
+        setLoading(true)
+        fetch(`http://localhost:4000/deleteProduct/${id}`,{
+            method: 'DELETE'
+        })
         .then(res => res.json())
         .then(data => {
-            setAllProducts(data)
-            setProducts(data)
+            setLoading(false)
+            if(data){
+                const newList = products.filter(pd => pd._id !== id)
+                setProducts(newList)
+            }
         })
-    },[])
-    console.log(products)
+    }
+
+    const handleAllChecked = () => {
+        setSelected(products)
+        setIsAllChecked(true)
+        setDeselectAll(false)
+    }
+
+    const handleDeselectAll = () => {
+        setSelected([])
+        setIsAllChecked(false)
+        setDeselectAll(true)
+    }
+
+    // useEffect(() => {
+    //     if(isAllChecked){
+                // setSelected(products)
+    //      }
+    //     if(deselectAll){
+    //         setSelected([])
+    //     }
+    // },[isAllChecked, deselectAll, products])
 
     useEffect(() => {
-        if(selected.length < products?.length){
-            setIsAllChecked(false)
-        }
-        else if(selected.length === products?.length){
-            setIsAllChecked(true)
-        }
-        if(selected.length > 0){
-            setDeselectAll(false)
-        }
-        else if(selected.length === 0){
-            setDeselectAll(true)
+        if(products?.length > 0){
+            if(selected.length < products.length){
+                setIsAllChecked(false)
+            }
+            else if(selected.length === products.length){
+                setIsAllChecked(true)
+            }
+            if(selected.length > 0){
+                setDeselectAll(false)
+            }
+            else if(selected.length === 0){
+                setDeselectAll(true)
+            }
         }
     }, [selected, products?.length])
 
@@ -52,7 +94,7 @@ const AdminProducts = () => {
         setIsAllChecked(false)
     }
 
-    const handleDelete = () => {
+    const handleBulkDelete = () => {
         console.log(selected)
     }
 
@@ -124,18 +166,23 @@ const AdminProducts = () => {
                         selected.length > 0 &&
                         <div className="col-lg-12 mt-3" style={{padding:0}}>
                             <SelectBar 
-                                setDeselectAll={setDeselectAll}
-                                setIsAllChecked={setIsAllChecked}
-                                handleDelete={handleDelete}
+                                handleAllChecked={handleAllChecked}
+                                handleDeselectAll={handleDeselectAll}
+                                handleDelete={handleBulkDelete}
                             >
                             </SelectBar>
                         </div>
                     }
                     
                     <div className="col-lg-12 admin-products-body">
+                        <Loading loading={loading}></Loading>
                         <div className="row pb-5">
                             {
-                                products.map((product,index) => (
+                                !loading && products?.length === 0 &&
+                                <h1 className="col-md-12 mt-4 text-center">No products found</h1>
+                            }
+                            {
+                                products?.map((product,index) => (
                                     <AdminProductItem 
                                         key={index} 
                                         isAllChecked={isAllChecked} 
@@ -143,7 +190,9 @@ const AdminProducts = () => {
                                         deselectAll={deselectAll}
                                         selected={selected} 
                                         products={products}
-                                        product={product} >
+                                        product={product} 
+                                        handleSingleDelete={handleSingleDelete}
+                                    >
                                     </AdminProductItem>
                                 ))
                             }

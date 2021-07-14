@@ -1,10 +1,18 @@
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({loading}) => {
     return (
-        <div className="text-center">
-            
-        </div>
+        <>
+        {
+            loading && 
+            <div className="text-center mt-3 mb-3">
+                <div className="spinner-border text-success" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>
+        }
+        
+        </>
     );
 };
 
