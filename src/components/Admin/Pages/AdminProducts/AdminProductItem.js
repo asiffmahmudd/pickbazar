@@ -82,7 +82,11 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
                 </div>
             </div>
         </div>
-        <AdminProductDrawer product={product} isProductDrawerOpen={isProductDrawerOpen} handleProductDrawerClose={handleProductDrawerClose}></AdminProductDrawer>
+        <AdminProductDrawer 
+            product={product} 
+            isProductDrawerOpen={isProductDrawerOpen} 
+            handleProductDrawerClose={handleProductDrawerClose}>
+        </AdminProductDrawer>
         </>
     );
 };

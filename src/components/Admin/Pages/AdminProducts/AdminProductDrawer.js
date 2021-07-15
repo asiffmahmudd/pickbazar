@@ -9,10 +9,11 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
 import { useItem } from '../../../../contexts/ItemContext';
+import { useForceUpdate } from './AdminProducts';
 
 const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
-    
-    const {change,setChange} = useItem()
+
+    const {change,setChange, setLoading} = useItem()
     const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState(product?.tags)
     const onSelect = (selectedList, selectedItem) => {
@@ -39,6 +40,15 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
         maxFiles:4,
     });
 
+    // const forceUpdate = useForceUpdate()
+
+    const closeDrawer = () => {
+        setImages([])
+        setFiles([])
+        reset()
+        handleProductDrawerClose();
+    }
+
     const onSubmit = data => {
         if(files.length > 0 || product?.img){
             data.tags = selectedValues
@@ -54,44 +64,38 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
             }
             
             formData.append('data', JSON.stringify(data))
+            setLoading(true)
             fetch(apiURL, {
                 method: product? 'PUT' : 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
+                setLoading(false)
                 if(data){
+                    reset()
                     setChange(true)
                     setChange(false)
                 }
             })
             .catch(error => {
+                setLoading(false)
                 alert(error.message)
             })
-            setImages([])
-            setFiles([])
-            reset()
-            handleProductDrawerClose()
+            closeDrawer()
         } 
         else{
             alert("Please upload at least one image")
         }
     }
-
-    const closeDrawer = () => {
-        setImages([])
-        setFiles([])
-        reset()
-        handleProductDrawerClose();
-    }
     
     const fileRejectionItems = fileRejections.map(({ file, errors }) => { 
         return (
-          <li key={file.path}>
-               <ul>
-                 {errors.map(e => <li key={e.code}>{e.message}</li>)}
-              </ul>
-          </li>
+            <li key={file.path}>
+                <ul>
+                    {errors.map(e => <li key={e.code}>{e.message}</li>)}
+                </ul>
+            </li>
         ) 
     });
     
