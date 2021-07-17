@@ -3,10 +3,18 @@ import ProductItem from './ProductItem/ProductItem';
 import Cart from '../Cart/Cart';
 import './Products.css'
 import Slider from './Slider';
-import products from '../../data/products';
+import { useEffect } from 'react';
+import { useItem } from '../../contexts/ItemContext';
+import Loading from '../Loading/Loading';
 
 const Products = ({selectedCategory}) => {
-  let productArray = products
+  const {allproducts, loading} = useItem()
+  let productArray = allproducts
+
+  useEffect(() => {
+    productArray = allproducts
+  },[allproducts])
+
   if(selectedCategory){
     productArray = productArray.filter(pd => pd.category === selectedCategory)
   }
@@ -14,6 +22,7 @@ const Products = ({selectedCategory}) => {
   return (
     <>
       <div className="row mt-4">
+        <Loading loading={loading}></Loading>
         <Slider></Slider>
         {
           productArray?.map((product,index) => {

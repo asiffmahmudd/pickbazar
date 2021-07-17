@@ -1,25 +1,39 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import products from '../../data/products';
 import Cart from '../Cart/Cart';
 import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
 import SingleProductCarousel from './SingleProductCarousel';
 import './SingleProduct.css';
 import ProductButton from '../Products/ProductButton/ProductButton';
 import ProductItem from '../Products/ProductItem/ProductItem';
+import { useItem } from '../../contexts/ItemContext';
+import Loading from '../Loading/Loading';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const SingleProduct = () => {
 
     const productId = useParams('id');
-    const product = products.find(pd => (pd.id === parseInt(productId.id)))
+    const {allproducts, loading} = useItem()
+    const [product, setProduct] = useState()
+    const [related, setRelated] = useState()
 
-    const related = products.filter(pd => pd.category === product.category && pd.id !== product.id);
+    useEffect(() => {
+        setProduct(allproducts.find(pd => pd._id === productId.id))
+        window.scrollTo(0, 0)
+    },[allproducts,product, window.location.href])
+
+    useEffect(() => {
+        setRelated(allproducts?.filter(pd => pd.category === product?.category && pd._id !== productId.id))
+    }, [product])
+
     
     return (
         <div className="single-product">
-
+            <Loading loading={loading}></Loading>
             <UserDashboardHeader></UserDashboardHeader>
-
+            { product &&
+            <>
             <div className="bg-white border-top single-product-container" style={{marginTop: '89px'}}>
                 <div className="container-fluid">
                     <div className="row">
@@ -38,32 +52,37 @@ const SingleProduct = () => {
                     </div>
                 </div>
             </div>
-
+            
             <div className="pb-5">
-                <div className="container-fluid">
-                    <div className="row mt-5 related-items-row" >
-                        <div className="col-lg-12" style={{paddingLeft:'5px'}}>
-                            <h3>Related Items</h3>
-                        </div>
-                        {
-                            related.map((product,index) => {
-                                return (
-                                    <div key={index} className="col-md-2" style={{padding:'0'}}>
-                                
-                                        <ProductItem  product={product}></ProductItem>
-                                    </div>
-                                )
-                            })
-                        }
-                        <div>
+                {
+                    related.length > 0 &&
+                    <div className="container-fluid">
+                        <div className="row mt-5 related-items-row" >
+                            <div className="col-lg-12" style={{paddingLeft:'5px'}}>
+                                <h3>Related Items</h3>
+                            </div>
+                            {
+                                related.map((product,index) => {
+                                    return (
+                                        <div key={index} className="col-md-2" style={{padding:'0'}}>
+                                    
+                                            <ProductItem  product={product}></ProductItem>
+                                        </div>
+                                    )
+                                })
+                            }
+                            <div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
 
             </div>
-            
+            </>
+            }   
             <Cart></Cart>
+            
         </div>
     );
 };

@@ -90,7 +90,7 @@ const Category = () => {
                                         <th scope="col">Id</th>
                                         <th scope="col">Image</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Slug</th>
+                                        {/* <th scope="col">Slug</th> */}
                                         <th scope="col">Type</th>
                                         <th scope="col">Action</th>
                                     </tr>

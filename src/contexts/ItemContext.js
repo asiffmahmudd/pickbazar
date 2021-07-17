@@ -7,7 +7,7 @@ export function useItem(){
 }
 
 export function ItemContextProvider({children}){
-    const [change, setChange] = useState(true)
+    const [productChange, setProductChange] = useState(true)
     const [loading,setLoading] = useState(true)
     const [allproducts, setAllProducts] = useState([])
     const [products, setProducts] = useState([])
@@ -20,10 +20,12 @@ export function ItemContextProvider({children}){
             setAllProducts(data)
             setLoading(false)
         })
-    },[change])
+    },[productChange])
+
+    
 
     const value = {
-        loading, setLoading, allproducts, products, setProducts, change, setChange 
+        loading, setLoading, allproducts, products, setProducts, productChange, setProductChange 
     }
 
     return (

@@ -27,7 +27,7 @@ const CartItem = ({item}) => {
                     </button>
                 </div>
                 <div className="cart-item-img ml-4">
-                    <img src={item.img[0]} alt="" />
+                    <img src={`data:image/jpeg;base64,${item.img[0].img}`} alt="" />
                 </div>
                 <div className="cart-item-desc ml-4">
                     <div className="text-dark">{item.name}</div>

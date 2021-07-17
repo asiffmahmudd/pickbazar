@@ -9,7 +9,7 @@ const ProductItem = ({product}) => {
         <div className="product-item mt-4">
             <div className="card shadow-sm">
                 <div className="product-img-container">
-                    <img className="card-img-top" src={product.img[0]} alt="" onClick={() => history.push('/product/'+product.id)} />
+                    <img className="card-img-top" src={`data:image/jpeg;base64,${product?.img[0].img}`} alt="" onClick={() => history.push('/product/'+product._id)} />
                     {
                         product.discount > 0 &&
                         <p className="product-item-discount">{product.discount}%</p>

@@ -56,7 +56,7 @@ const CategoryItem = ({category, categories, isAllChecked, setSelected, deselect
                 <th scope="row">{category.id}</th>
                 <td>{category.img}</td>
                 <td>{category.name}</td>
-                <td>{category.slug}</td>
+                {/* <td>{category.slug}</td> */}
                 <td>{category.type}</td>
                 <td>
                     <BiEdit color="green" onClick={()=> handleCategoryDrawerOpen(category)} className="mr-2 hover-pointer"></BiEdit>

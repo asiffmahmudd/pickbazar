@@ -11,7 +11,7 @@ const ProductButton = ({product}) => {
         return state.items;
     })
 
-    const item = items?.cartItems?.find(pd => pd.id === product.id);
+    const item = items?.cartItems?.find(pd => pd._id === product?._id);
     // const [productAdded, setProductAdded] = useState(false);
     // const [count, setCount] = useState(0);
     // const addProduct = () =>{

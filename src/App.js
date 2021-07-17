@@ -27,7 +27,6 @@ import SignUp from './components/SignUp/SignUp';
 import Reset from './components/Reset/Reset';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import AdminRoute from './components/AdminRoute/AdminRoute';
-import { useEffect, useState } from 'react';
 import { ItemContextProvider } from './contexts/ItemContext';
 
 function App() {

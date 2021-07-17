@@ -5,10 +5,12 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import './Category.css'
 import {useDropzone} from 'react-dropzone';
 import { useForm } from "react-hook-form";
+import { useItem } from '../../../../contexts/ItemContext';
 
 const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClose}) => {
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, setChange } = useForm();
+    const {loading, setLoading} = useItem();
 
     const [files, setFiles] = useState([])
     const processDrop = (pics) =>{
@@ -24,10 +26,46 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
     });
 
     const onSubmit = data => {
-        data.img =  files.length > 0? files: category.img 
-        console.log(data)
-        reset()
-        handleCategoryDrawerClose()
+        // data.img =  files.length > 0? files: category.img 
+        // console.log(data)
+        // reset()
+        // handleCategoryDrawerClose()
+        if(files.length > 0 || category?.img){
+            const formData = new FormData()
+            formData.append('file', files)
+            
+            let apiURL = ""
+            if(!category){
+                apiURL = 'http://localhost:4000/addCategory'
+            }
+            else{
+                apiURL = 'http://localhost:4000/updateCategory/'+category._id
+            }
+            
+            formData.append('data', JSON.stringify(data))
+            setLoading(true)
+            fetch(apiURL, {
+                method: category? 'PUT' : 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                setLoading(false)
+                if(data){
+                    reset()
+                    setChange(true)
+                    setChange(false)
+                }
+            })
+            .catch(error => {
+                setLoading(false)
+                alert(error.message)
+            })
+            closeDrawer()
+        } 
+        else{
+            alert("Please upload at least one image")
+        }
     }
 
     const closeDrawer = () => {

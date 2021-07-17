@@ -9,11 +9,10 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
 import { useItem } from '../../../../contexts/ItemContext';
-import { useForceUpdate } from './AdminProducts';
 
 const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
 
-    const {change,setChange, setLoading} = useItem()
+    const {setProductChange, setLoading} = useItem()
     const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState(product?.tags)
     const onSelect = (selectedList, selectedItem) => {
@@ -74,8 +73,8 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                 setLoading(false)
                 if(data){
                     reset()
-                    setChange(true)
-                    setChange(false)
+                    setProductChange(true)
+                    setProductChange(false)
                 }
             })
             .catch(error => {
