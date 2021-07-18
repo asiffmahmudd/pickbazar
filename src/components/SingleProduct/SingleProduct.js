@@ -20,12 +20,12 @@ const SingleProduct = () => {
 
     useEffect(() => {
         setProduct(allproducts.find(pd => pd._id === productId.id))
-        window.scrollTo(0, 0)
-    },[allproducts,product, window.location.href])
-
-    useEffect(() => {
         setRelated(allproducts?.filter(pd => pd.category === product?.category && pd._id !== productId.id))
-    }, [product])
+        window.scrollTo(0, 0)
+    },[allproducts,product, productId.id])
+
+    // useEffect(() => {
+    // }, [product, allproducts, productId.id])
 
     
     return (

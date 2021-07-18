@@ -42,8 +42,6 @@ const PageLayout = () => {
         history.push('/category/'+index+'/'+categoryName)
     }
 
-    
-
     return (
         <div className="home">
             <Header changeCategory={changeCategory} selectedCategory={selectedCategory}></Header>

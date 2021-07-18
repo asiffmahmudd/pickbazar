@@ -3,17 +3,18 @@ import AdminLayout from '../../AdminLayout/AdminLayout';
 import './Category.css'
 import CategoryHeader from './CategoryHeader'
 import { useState } from "react";
-import allcategories from '../../../../data/categories';
 import CategoryItem from './CategoryItem';
 import { useEffect } from 'react';
 import DeleteBar from './DeleteBar';
+import Loading from '../../../Loading/Loading';
+import { useItem } from '../../../../contexts/ItemContext';
 
 const Category = () => {
 
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-    const [categories, setCategories] = useState(allcategories)
+    const {categories, allcategories, setCategories, categoryLoading, setCategoryLoading} = useItem()
 
     useEffect(() => {
         if(selected.length < categories.length){
@@ -30,9 +31,49 @@ const Category = () => {
         }
     }, [selected, categories.length])
 
-    const handleDelete = () => {
-        // console.log(selected)
-        console.log(isAllChecked,deselectAll, selected)
+    const handleBulkDelete = () => {
+        setCategoryLoading(true)
+        const selectedIds = selected.map(item => item._id) 
+        fetch(`http://localhost:4000/deleteBulkCategory/`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(selectedIds)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data){
+                const newList = categories.filter(item => {
+                    let deleteItem = selected.find(item2 => item._id === item2._id)
+                    return deleteItem? false: true
+                })
+                setCategories(newList)
+            }
+            resetSelection()
+            setCategoryLoading(false)
+        })
+        .catch(e => {
+            alert(e.message)
+        })
+    }
+
+    const handleSingleDelete = (id) => {
+        setCategoryLoading(true)
+        fetch(`http://localhost:4000/deleteCategory/${id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data){
+                setCategories(categories.filter(item => item._id !== id))
+                resetSelection()
+            }
+            setCategoryLoading(false)
+        })
+        .catch(e => {
+            alert(e.message)
+        })
     }
     
     const handleAll = (e) => {
@@ -65,6 +106,7 @@ const Category = () => {
 
     return (
         <AdminLayout>
+            <Loading loading={categoryLoading}></Loading>
             <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
@@ -74,48 +116,57 @@ const Category = () => {
                         selected.length > 0 &&
                         <div className="col-lg-12 mt-3" style={{padding:0}}>
                             <DeleteBar
-                                handleDelete={handleDelete}
+                                handleBulkDelete={handleBulkDelete}
                             >
                             </DeleteBar>
                         </div>
                     }
-                    <div className="col-lg-12 admin-products-body mt-5">
-                        <div className="table-responsive">
-                            <table className="table bg-white border table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input type="checkbox" className="mt-2 ml-2" checked={isAllChecked} onChange={handleAll} name="category-item" value={categories}/>
-                                        </th>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Name</th>
-                                        {/* <th scope="col">Slug</th> */}
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        categories.map((category,index) => (
-                                            <CategoryItem 
-                                                key={index} 
-                                                category={category}
-                                                categories={categories}
-                                                isAllChecked={isAllChecked} 
-                                                setSelected={setSelected} 
-                                                deselectAll={deselectAll}
-                                                selected={selected}
-                                            >
-                                            </CategoryItem>)
-                                        )
-                                    }
-                                    
-                                </tbody>
-                            </table>
+                    {
+                        categories.length === 0 && !categoryLoading &&
+                        <h1 className="col-md-12 mt-4 text-center">No categories found</h1>
+                    }
+                    {
+                        categories.length > 0 &&
+                        <div className="col-lg-12 admin-products-body mt-5">
+                            <div className="table-responsive">
+                                <table className="table bg-white border table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" className="mt-2 ml-2" checked={isAllChecked} onChange={handleAll} name="category-item" value={categories}/>
+                                            </th>
+                                            <th scope="col">Index</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            {/* <th scope="col">Slug</th> */}
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            categories.map((category,index) => (
+                                                <CategoryItem 
+                                                    key={index} 
+                                                    index={index}
+                                                    category={category}
+                                                    categories={categories}
+                                                    isAllChecked={isAllChecked} 
+                                                    setSelected={setSelected} 
+                                                    deselectAll={deselectAll}
+                                                    selected={selected}
+                                                    handleSingleDelete={handleSingleDelete}
+                                                >
+                                                </CategoryItem>)
+                                            )
+                                        }
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
+                    }
                 </div>
             </div>
             

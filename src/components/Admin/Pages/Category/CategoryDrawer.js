@@ -9,12 +9,14 @@ import { useItem } from '../../../../contexts/ItemContext';
 
 const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClose}) => {
 
-    const { register, handleSubmit, reset, setChange } = useForm();
-    const {loading, setLoading} = useItem();
+    const { register, handleSubmit, reset } = useForm();
+    const {setLoading, setCategoryChange} = useItem();
 
     const [files, setFiles] = useState([])
+    const [categoryImage, setImage] = useState([])
     const processDrop = (pics) =>{
-        setFiles(pics.map((file,index) => (
+        setFiles(pics)
+        setImage(pics.map((file,index) => (
             <img key={index} src={URL.createObjectURL(file)} alt="preview" />
         )))
     }
@@ -26,14 +28,9 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
     });
 
     const onSubmit = data => {
-        // data.img =  files.length > 0? files: category.img 
-        // console.log(data)
-        // reset()
-        // handleCategoryDrawerClose()
         if(files.length > 0 || category?.img){
             const formData = new FormData()
-            formData.append('file', files)
-            
+            formData.append('file', files[0])
             let apiURL = ""
             if(!category){
                 apiURL = 'http://localhost:4000/addCategory'
@@ -44,18 +41,20 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
             
             formData.append('data', JSON.stringify(data))
             setLoading(true)
+            
             fetch(apiURL, {
                 method: category? 'PUT' : 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                setLoading(false)
                 if(data){
                     reset()
-                    setChange(true)
-                    setChange(false)
+                    setCategoryChange(true)
+                    setCategoryChange(false)
+                    console.log(data)
                 }
+                setLoading(false)
             })
             .catch(error => {
                 setLoading(false)
@@ -64,11 +63,12 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
             closeDrawer()
         } 
         else{
-            alert("Please upload at least one image")
+            alert("Please upload an image")
         }
     }
 
     const closeDrawer = () => {
+        setImage([])
         setFiles([])
         reset()
         handleCategoryDrawerClose();
@@ -112,18 +112,18 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
                                     <p className="dropzone-label"><span>Drag/Upload your</span> image here</p>
                                 </div>
                                     {
-                                        category?.img.length > 0 && files.length === 0 &&
+                                        category && files.length === 0 &&
                                         <div className="dropzone-img-container">
-                                            {   
-                                                category?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
+                                            {  
+                                                <img className="p-2" src={`data:image/jpeg;base64,${category.img.img}`} alt="" />
                                             }
                                             
                                         </div>
                                     }
                                     {
-                                        files.length > 0 && 
+                                        categoryImage.length > 0 && 
                                         <div className="dropzone-img-container">
-                                            {files}
+                                            {categoryImage}
                                         </div>
                                     }
                                     {
@@ -139,28 +139,23 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
                                 <p className="drawer-body-section-title">Add your Category description and necessary information from here</p>
                             </div>
                             <div className="col-lg-8 bg-white product-info">
-                                
-                                {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                                    <div className="form-group">
-                                        <label htmlFor="categoryName">Name</label>
-                                        <input type="text" className="form-control" {...register("categoryName")} name="categoryName" id="categoryName" aria-describedby="categoryName" defaultValue={category?category.name:""} required/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="categorySlug">Slug</label>
-                                        <input type="text" className="form-control" {...register("categorySlug")} name="categorySlug" id="categorySlug" defaultValue={category?category.slug:""}  required/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="categoryParent">Parent</label>
-                                        <select type="text" className="form-control" {...register("categoryParent")} name="categoryParent" id="categoryParent" defaultValue={category?category.type:""} aria-describedby="categoryParent" required>
-                                            <option value="Grocery">Grocery</option>
-                                            <option value="Make Up">Make Up</option>
-                                            <option value="Home">Home</option>
-                                            <option value="Meat">Meat</option>
-                                        </select>
-                                    </div>
-                                    
-                                    {/* <button type="submit" className="btn btn-primary">Submit</button> */}
-                                {/* </form> */}
+                                <div className="form-group">
+                                    <label htmlFor="name">Name</label>
+                                    <input type="text" className="form-control" {...register("name")} name="name" id="name" aria-describedby="name" defaultValue={category?category.name:""} required/>
+                                </div>
+                                {/* <div className="form-group">
+                                    <label htmlFor="categorySlug">Slug</label>
+                                    <input type="text" className="form-control" {...register("categorySlug")} name="categorySlug" id="categorySlug" defaultValue={category?category.slug:""}  required/>
+                                </div> */}
+                                <div className="form-group">
+                                    <label htmlFor="type">Parent</label>
+                                    <select type="text" className="form-control" {...register("type")} name="type" id="type" defaultValue={category?category.type:""} aria-describedby="type" required>
+                                        <option value="Grocery">Grocery</option>
+                                        <option value="Make Up">Make Up</option>
+                                        <option value="Home">Home</option>
+                                        <option value="Meat">Meat</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         

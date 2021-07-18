@@ -16,7 +16,7 @@ const Products = ({selectedCategory}) => {
   },[allproducts])
 
   if(selectedCategory){
-    productArray = productArray.filter(pd => pd.category === selectedCategory)
+    productArray = allproducts.filter(pd => pd.category === selectedCategory)
   }
 
   return (

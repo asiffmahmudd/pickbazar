@@ -17,23 +17,36 @@ export function useForceUpdate(){
 
 const AdminProducts = () => {
     const {loading, setLoading, allproducts, products, setProducts} = useItem()
-    // const [loading,setLoading] = useState(true)
-    // const [allproducts, setAllProducts] = useState([])
     const [isAllChecked, setIsAllChecked] = useState(false)
     const [deselectAll, setDeselectAll] = useState(true);
     const [selected, setSelected] = useState([])
-    // const [products,setProducts] = useState(allproducts)
 
-    // useEffect(() => {
-    //     setLoading(true)
-    //     fetch('http://localhost:4000/products')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setAllProducts(data)
-    //         setProducts(data)
-    //         setLoading(false)
-    //     })
-    // },[])
+    const handleBulkDelete = () => {
+        setLoading(true)
+        const selectedIds = selected.map(item => item._id) 
+        fetch(`http://localhost:4000/deleteBulkProduct/`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(selectedIds)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data){
+                const newList = products.filter(item => {
+                    let deleteItem = selected.find(item2 => item._id === item2._id)
+                    return deleteItem? false: true
+                })
+                setProducts(newList)
+            }
+            resetSelection()
+            setLoading(false)
+        })
+        .catch(e => {
+            alert(e.message)
+        })
+    }
 
     const handleSingleDelete = (id) => {
         setLoading(true)
@@ -62,15 +75,6 @@ const AdminProducts = () => {
         setDeselectAll(true)
     }
 
-    // useEffect(() => {
-    //     if(isAllChecked){
-                // setSelected(products)
-    //      }
-    //     if(deselectAll){
-    //         setSelected([])
-    //     }
-    // },[isAllChecked, deselectAll, products])
-
     useEffect(() => {
         if(products?.length > 0){
             if(selected.length < products.length){
@@ -92,10 +96,6 @@ const AdminProducts = () => {
         setDeselectAll(true)
         setSelected([])
         setIsAllChecked(false)
-    }
-
-    const handleBulkDelete = () => {
-        console.log(selected)
     }
 
     const forceUpdate = useForceUpdate();
