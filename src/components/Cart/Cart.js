@@ -19,11 +19,20 @@ const Cart = () => {
         dispatch(loadCart())
     },[dispatch])   
     
-    // const {allproducts} = useItem()
-    // console.log(allproducts)
-
-    const items = useSelector(state => {
+    const {allproducts} = useItem()
+    const cartItems = useSelector(state => {
         return state.items.cartItems;
+    })
+    const items = allproducts.filter(pd => {
+        let exists = cartItems.find(cartPd => {
+            if(pd._id === cartPd._id){
+                pd.count = cartPd.count
+                return pd
+            }
+            else 
+                return null
+        })
+        return exists? true : false
     })
 
     const [cartExpanded, setCartExpanded] = useState(false);

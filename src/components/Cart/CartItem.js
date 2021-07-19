@@ -10,7 +10,7 @@ const CartItem = ({item}) => {
     const dispatch = useDispatch();
     const handleDecrease = (product) => {
         dispatch(decreaseCount(product))
-        if(product.count === 0){
+        if(product.count === 1){
             dispatch(removeFromCart(product))
         }
     }

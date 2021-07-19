@@ -3,29 +3,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decreaseCount, increaseCount, removeFromCart } from '../../../Redux/Actions/CartActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { useItem } from '../../../contexts/ItemContext';
 
 const ProductButton = ({product}) => {
 
     const dispatch = useDispatch();
-    const items = useSelector(state => {
-        return state.items;
+
+    const {allproducts} = useItem()
+    const cartItems = useSelector(state => {
+        return state.items.cartItems;
     })
-
-    const item = items?.cartItems?.find(pd => pd._id === product?._id);
-    // const [productAdded, setProductAdded] = useState(false);
-    // const [count, setCount] = useState(0);
-    // const addProduct = () =>{
-    //     setProductAdded(true);
-    //     setCount(1);
-    // }
-
+    
+    const items = allproducts.filter(pd => {
+        let exists = cartItems.find(cartPd => {
+            if(pd._id === cartPd._id){
+                pd.count = cartPd.count
+                return pd
+            }
+            else 
+                return null
+        })
+        return exists? true : false
+    })
+    
+    const item = items?.find(pd => pd._id === product?._id);
     const handleIncrease = () =>{
         dispatch(increaseCount(product))
     }
 
     const handleDecrease = () => {
         dispatch(decreaseCount(product))
-        if(item.count === 0){
+        console.log(item, item.count)
+        if(item.count === 1){
+            console.log('here')
             dispatch(removeFromCart(product))
         }
     }
@@ -41,7 +51,7 @@ const ProductButton = ({product}) => {
         }
         
         {
-            item?.count &&
+            item?.count > 0 &&
             <div className="counter">
                 <button className="single-minus-btn minus" onClick={handleDecrease}><FontAwesomeIcon icon={faMinus} size="sm"/></button>
                 <span className="counter-number">{item.count}</span>

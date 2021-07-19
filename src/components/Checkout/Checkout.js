@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleSubmit } from './SimpleCard';
 import { useHistory } from 'react-router-dom';
 import { clearCart, loadCart } from '../../Redux/Actions/CartActions';
+import { useItem } from '../../contexts/ItemContext';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -24,7 +25,22 @@ const Checkout = () => {
         dispatch(loadCart())
     },[dispatch])   
     
-    const items = useSelector(state => state.items.cartItems)
+    const {allproducts} = useItem()
+    const cartItems = useSelector(state => {
+        return state.items.cartItems;
+    })
+    const items = allproducts.filter(pd => {
+        let exists = cartItems.find(cartPd => {
+            if(pd._id === cartPd._id){
+                pd.count = cartPd.count
+                return pd
+            }
+            else 
+                return null
+        })
+        return exists? true : false
+    })
+
     const history = useHistory();
 
     const { register, handleSubmit, formState: { errors } } = useForm();

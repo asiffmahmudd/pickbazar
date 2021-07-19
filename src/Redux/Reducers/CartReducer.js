@@ -7,9 +7,11 @@ export const CartReducer = (state = intitialState, action) => {
     const product = action.payload;
     switch(action.type){
         case "ADD_TO_CART": {
-            product.count = 1;
+            const newItem = {}
+            newItem._id = product._id
+            newItem.count = 1
             let newState = {
-                cartItems: [...state.cartItems, product]
+                cartItems: [...state.cartItems, newItem]
             }
             localStorage.setItem('cart', JSON.stringify(newState.cartItems))
             return newState;

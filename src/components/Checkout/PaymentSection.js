@@ -3,6 +3,7 @@ import { useCoupon } from '../../contexts/CouponContext';
 import CardPayment from './CardPayment';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from 'react-redux';
+import { useItem } from '../../contexts/ItemContext';
 
 const PaymentSection = ({register,errors, disable}) => {
 
@@ -17,7 +18,21 @@ const PaymentSection = ({register,errors, disable}) => {
         }
     }
 
-    const items = useSelector(state => state.items.cartItems)
+    const {allproducts} = useItem()
+    const cartItems = useSelector(state => {
+        return state.items.cartItems;
+    })
+    const items = allproducts.filter(pd => {
+        let exists = cartItems.find(cartPd => {
+            if(pd._id === cartPd._id){
+                pd.count = cartPd.count
+                return pd
+            }
+            else 
+                return null
+        })
+        return exists? true : false
+    })
 
     const {removeCoupon, appliedCoupon, error, couponHandler} = useCoupon()
     const handleCoupon = (e) => {
