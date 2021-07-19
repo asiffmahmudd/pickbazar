@@ -33,9 +33,7 @@ const ProductButton = ({product}) => {
 
     const handleDecrease = () => {
         dispatch(decreaseCount(product))
-        console.log(item, item.count)
         if(item.count === 1){
-            console.log('here')
             dispatch(removeFromCart(product))
         }
     }

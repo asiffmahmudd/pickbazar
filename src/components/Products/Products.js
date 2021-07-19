@@ -6,19 +6,21 @@ import Slider from './Slider';
 import { useEffect } from 'react';
 import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
+import { useState } from 'react';
 
 const Products = ({selectedCategory}) => {
   const {allproducts, loading} = useItem()
-  let productArray = allproducts
-
+  
+  const [productArray, setProductArray] = useState(allproducts)
   useEffect(() => {
-    productArray = allproducts
+    setProductArray(allproducts)
   },[allproducts])
 
-  if(selectedCategory){
-    productArray = allproducts.filter(pd => pd.category === selectedCategory)
-  }
-
+  useEffect(() => {
+    if(selectedCategory)
+      setProductArray(allproducts.filter(pd => pd.category === selectedCategory))
+  },[selectedCategory, allproducts])
+  
   return (
     <>
       <div className="row mt-4">

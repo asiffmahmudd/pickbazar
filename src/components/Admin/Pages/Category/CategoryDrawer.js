@@ -52,7 +52,6 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
                     reset()
                     setCategoryChange(true)
                     setCategoryChange(false)
-                    console.log(data)
                 }
                 setLoading(false)
             })

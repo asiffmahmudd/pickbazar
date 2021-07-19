@@ -53,7 +53,6 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
             data.tags = selectedValues
             const formData = new FormData()
             files.map((file,index) => formData.append('file'+index, file))
-            console.log(files[0])
             let apiURL = ""
             if(!product){
                 apiURL = 'http://localhost:4000/addproduct'

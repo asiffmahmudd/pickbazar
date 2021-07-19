@@ -8,7 +8,6 @@ const SocialLogIn = ({handleClose}) => {
     const {loginWith} = useAuth()
     
     const handleLogin = (media) => {
-        console.log(media)
         loginWith(media)
         .then(data => handleClose())
     }

@@ -48,7 +48,6 @@ const Checkout = () => {
         if(data.paymentMethod === 'card'){
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
-            console.log(paymentInfo)
         }
         else{
             console.log(data)

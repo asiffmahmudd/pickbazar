@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import './Sidebar.css';
 import SidebarItem from './SidebarItem/SidebarItem';
-import { useState } from 'react';
 import { useItem } from '../../contexts/ItemContext';
 
 const Sidebar = ({changeCategory}) => {
