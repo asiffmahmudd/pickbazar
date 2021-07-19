@@ -9,3 +9,8 @@
 .sidebar-item{
     height: 150px;
 }
+
+.sidebar-item img.category-icon {
+    height: 40px;
+    width: 40px;
+}

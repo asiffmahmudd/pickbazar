@@ -25,6 +25,10 @@ const Products = ({selectedCategory}) => {
         <Loading loading={loading}></Loading>
         <Slider></Slider>
         {
+          !loading && productArray.length === 0 &&
+          <h3 className="text-center col-md-12 mt-4">No products found</h3>
+        }
+        {
           productArray?.map((product,index) => {
             return(
               <div className="col-md-3 col-sm-4 col-6" key={index} style={{padding:'0'}}>

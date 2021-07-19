@@ -10,13 +10,17 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { loadCart } from '../../Redux/Actions/CartActions';
 import { useCoupon } from '../../contexts/CouponContext';
+import { useItem } from '../../contexts/ItemContext';
 
 const Cart = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadCart())
-    },[dispatch])    
+    },[dispatch])   
+    
+    // const {allproducts} = useItem()
+    // console.log(allproducts)
 
     const items = useSelector(state => {
         return state.items.cartItems;
