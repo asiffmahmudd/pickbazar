@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Sidebar.css';
 import SidebarItem from './SidebarItem/SidebarItem';
 import { useItem } from '../../contexts/ItemContext';
@@ -6,9 +6,6 @@ import { useItem } from '../../contexts/ItemContext';
 const Sidebar = ({changeCategory}) => {
 
     const {categories} = useItem();
-    useEffect(()=>{
-        
-    },[])
     
     return (
         <div className="sidebar mt-4 justify-content-center">
