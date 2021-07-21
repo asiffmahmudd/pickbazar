@@ -104,7 +104,7 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
                                         <input type="number" className="form-control" {...register("remainingCoupons")} name="remainingCoupons" id="remainingCoupons" defaultValue={coupon?coupon.remainingCoupons:""} step="any" required/>
                                     </div>
                                 }
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label htmlFor="couponCategory">Category</label>
                                     <select type="text" className="form-control" {...register("couponCategory")} name="couponCategory" id="couponCategory" defaultValue={coupon?coupon.category:""} aria-describedby="categoryParent" required>
                                         <option value="All">All</option>
@@ -113,7 +113,7 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
                                         <option value="home">Home</option>
                                         <option value="meat">Meat</option>
                                     </select>
-                                </div>
+                                </div> */}
                                 <div className="form-group">
                                     <label htmlFor="minimumAmount">Minimun Amount Required</label>
                                     <input type="number" className="form-control" {...register("minimumAmount")} name="minimumAmount" id="minimumAmount" defaultValue={coupon?coupon.minimumAmount:""}  required/>

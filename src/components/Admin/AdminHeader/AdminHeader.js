@@ -11,7 +11,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 
 const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
-    const {loggedInUser} = useAuth()
+    const {loggedInUser, logout} = useAuth()
 
     return (
         <>
@@ -35,7 +35,7 @@ const AdminHeader = ({setSidebarOpen}) => {
                             <img className="dropdown-toggle" src={loggedInUser.photo? loggedInUser.photo : user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <Link className="dropdown-item" to="/admin/settings">Settings</Link>
-                                <div className="dropdown-item" href="/admin/dashboard">Logout</div>
+                                <div className="dropdown-item" href="/admin/dashboard" onClick={logout}>Logout</div>
                             </div>
                         </div>
                     </div>

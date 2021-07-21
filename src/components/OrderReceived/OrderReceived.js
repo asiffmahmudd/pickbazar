@@ -1,35 +1,14 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useCoupon } from '../../contexts/CouponContext';
 import Header from '../Header/Header';
 import './OrderReceived.css'
 
 const OrderReceived = () => {
 
     const location = useLocation();
-
-    const items = location.state.data.items
-    const data = location.state.data
-    
-    var dayjs = require('dayjs')
-    var localizedFormat = require('dayjs/plugin/localizedFormat')
-    dayjs.extend(localizedFormat)
-
-    
-    let totalPrice = 0;
-    for(let i = 0; i < items.length; i++){
-        if(items[i].discount > 0){
-            totalPrice += items[i].sale*items[i].count;
-        }
-        else{
-            totalPrice += items[i].price*items[i].count;
-        }
-    }
-
-    const {appliedCoupon} = useCoupon()
-    if(appliedCoupon){
-        totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
-    }
+    const items = location.state.passData.products
+    const data = location.state.passData
+    const totalPrice = location.state.passData.amount
 
     return (
         <>
@@ -47,11 +26,11 @@ const OrderReceived = () => {
                             <div className="order-info-container mt-4">
                                 <div className="order-number order-info-item">
                                     <p className="order-number-title">Order Number</p>
-                                    <p className="order-number-para">1234</p>
+                                    <p className="order-number-para">{data.orderId}</p>
                                 </div>
                                 <div className="order-date order-info-item">
                                     <p className="order-number-title">Date</p>
-                                    <p className="order-number-para">{dayjs().format('LLL')}</p>
+                                    <p className="order-number-para">{data.orderDate}</p>
                                 </div>
                                 <div className="order-amount order-info-item ">
                                     <p className="order-number-title">Total Amount</p>
@@ -72,7 +51,7 @@ const OrderReceived = () => {
                                         <p>Total Item</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>{items.length} Items</p>
+                                        <p>{items?.length} Items</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
@@ -80,7 +59,7 @@ const OrderReceived = () => {
                                         <p>Order Time</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>{dayjs().format('LLL')}</p>
+                                        <p>{data.orderDate}</p>
                                     </div>
                                 </div>
                                 <div className="delivery-time order-details-item mt-1">
