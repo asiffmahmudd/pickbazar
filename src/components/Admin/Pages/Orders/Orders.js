@@ -1,14 +1,29 @@
 import React from 'react';
-import allorders from '../../../../data/orders';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import OrderHeader from './OrderHeader';
 import './Orders.css';
 import OrderItem from './OrderItem';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Loading from '../../../Loading/Loading';
 
 const Orders = () => {
     
-    const [orders, setOrders] = useState(allorders)
+    const [orders, setOrders] = useState([])
+    const [allorders, setAllOrders] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(()=> {
+        setLoading(true)
+        fetch('http://localhost:4000/orders')
+        .then(res => res.json())
+        .then(result => {
+            setAllOrders(result)
+            setOrders(result)
+            setLoading(false)
+        })
+        .catch(e => alert(e.message))
+    },[])
 
     const sortByDate = (orderList) => {
         let d1,d2;
@@ -51,6 +66,7 @@ const Orders = () => {
 
     return (
         <AdminLayout>
+            <Loading loading={loading}></Loading>
             <div className="admin-orders admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
@@ -73,7 +89,7 @@ const Orders = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        orders.map((order,index) => <OrderItem order={order} key={index}></OrderItem>)
+                                        orders?.map((order,index) => <OrderItem index={index} order={order} key={index}></OrderItem>)
                                     }
                                 </tbody>
                             </table>

@@ -2,8 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { VscCircleFilled } from "react-icons/vsc";
+import Loading from '../../../Loading/Loading';
 
-const OrderItem = ({order}) => {
+const OrderItem = ({order,index}) => {
 
     const selectColor = (status) => {
         if(status === 'delivered'){
@@ -20,11 +21,29 @@ const OrderItem = ({order}) => {
         }
     }
     
+    const [loading, setLoading] = useState(false)
     const [statusColor, setStatusColor] = useState(selectColor(order.status));
-
     const handleChange = (event) => {
+        setLoading(true)
         setStatusColor(selectColor(event.target.value))
         order.status = event.target.value
+        fetch('http://localhost:4000/updateOrderStatus/'+order._id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){ 
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
     }
 
     useEffect(() => {
@@ -32,14 +51,16 @@ const OrderItem = ({order}) => {
     }, [order])
 
     return (
+        <>
+        <Loading loading={loading}></Loading>
         <tr>
-            <th scope="row">{order.id}</th>
+            <th scope="row">{index+1}</th>
             <td>{order.customerId}</td>
             <td>{order.orderDate}</td>
-            <td>{order.address}</td>
-            <td>${order.amount}</td>
+            <td>{order.deliveryAddress}</td>
+            <td>${order.amount.toFixed(2)}</td>
             <td>{order.paymentMethod}</td>
-            <td>{order.contact}</td>
+            <td>{order.contactNumber}</td>
             <td className="d-flex align-items-center">
                 <VscCircleFilled color={statusColor}></VscCircleFilled>
                 <select name="status" id="status" value={order.status} onChange={handleChange}>
@@ -50,6 +71,7 @@ const OrderItem = ({order}) => {
                 </select>
             </td>
         </tr>
+        </>
         
     );
 };

@@ -33,7 +33,7 @@ const Checkout = () => {
     const cartItems = useSelector(state => {
         return state.items.cartItems;
     })
-
+    
     const [items, setItems] = useState([])
     useEffect(() => {
         setItems(allproducts.filter(pd => {
@@ -80,16 +80,20 @@ const Checkout = () => {
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
         }
-
+        
         data.orderId = uniqid()
         data.customerId = loggedInUser.uid
         data.orderDate = dayjs().format('LLL') 
         data.amount = totalPrice
         const passData = {...data}
         passData.products = items
-        data.products = items.map(item=>item._id)
+        data.products = items.map(item=> {
+            return {
+                id: item._id,
+                count: item.count
+            }
+        })
         data.status = "pending"
-
         setOrderLoading(true)
         fetch('http://localhost:4000/addOrder',{
             method: 'POST',
@@ -110,24 +114,26 @@ const Checkout = () => {
             setOrderLoading(false)
         })
         .catch(e => alert(e.message))
-
-        fetch('http://localhost:4000/updateCoupon/'+appliedCoupon._id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(appliedCoupon)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data){ 
-            }
-            setCouponLoading(false)
-        })
-        .catch(error => {
-            setCouponLoading(false)
-            alert(error.message)
-        })
+        
+        if(appliedCoupon){
+            fetch('http://localhost:4000/updateCoupon/'+appliedCoupon._id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(appliedCoupon)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){ 
+                }
+                setCouponLoading(false)
+            })
+            .catch(error => {
+                setCouponLoading(false)
+                alert(error.message)
+            })
+        }
     };
 
     return (
