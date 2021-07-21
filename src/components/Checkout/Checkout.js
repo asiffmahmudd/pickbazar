@@ -12,6 +12,10 @@ import { handleSubmit } from './SimpleCard';
 import { useHistory } from 'react-router-dom';
 import { clearCart, loadCart } from '../../Redux/Actions/CartActions';
 import { useItem } from '../../contexts/ItemContext';
+import { useState } from 'react';
+import Loading from '../Loading/Loading';
+import { useAuth } from '../../contexts/AuthContext';
+import { useCoupon } from '../../contexts/CouponContext';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -25,47 +29,119 @@ const Checkout = () => {
         dispatch(loadCart())
     },[dispatch])   
     
-    const {allproducts} = useItem()
+    const {allproducts, loading, couponLoading, setCouponLoading} = useItem()
     const cartItems = useSelector(state => {
         return state.items.cartItems;
     })
-    const items = allproducts.filter(pd => {
-        let exists = cartItems.find(cartPd => {
-            if(pd._id === cartPd._id){
-                pd.count = cartPd.count
-                return pd
-            }
-            else 
-                return null
-        })
-        return exists? true : false
-    })
+    
+    const [items, setItems] = useState([])
+    useEffect(() => {
+        setItems(allproducts.filter(pd => {
+            let exists = cartItems.find(cartPd => {
+                if(pd._id === cartPd._id){
+                    pd.count = cartPd.count
+                    return pd
+                }
+                else 
+                    return null
+            })
+            return exists? true : false
+        }))
+    }, [allproducts,cartItems])
 
     const history = useHistory();
+    const [orderLoading, setOrderLoading] = useState(false)
+    const {loggedInUser} = useAuth()
+    const uniqid = require('uniqid');
+    
+    var dayjs = require('dayjs')
+    var localizedFormat = require('dayjs/plugin/localizedFormat')
+    dayjs.extend(localizedFormat)
+
+    let totalPrice = 0;
+    for(let i = 0; i < items?.length; i++){
+        if(items[i].discount > 0){
+            totalPrice += items[i].sale*items[i].count;
+        }
+        else{
+            totalPrice += items[i].price*items[i].count;
+        }
+    }
+
+    const {appliedCoupon} = useCoupon()
+    if(appliedCoupon){
+        totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
     const onSubmit = async data => {
         if(data.paymentMethod === 'card'){
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
         }
-        else{
-            console.log(data)
-        }
-        data.items = items;
-        dispatch(clearCart())
-        history.push({
-            pathname: '/order-received',
-            state: {data}
+        
+        data.orderId = uniqid()
+        data.customerId = loggedInUser.uid
+        data.orderDate = dayjs().format('LLL') 
+        data.amount = totalPrice
+        const passData = {...data}
+        passData.products = items
+        data.products = items.map(item=> {
+            return {
+                id: item._id,
+                count: item.count
+            }
         })
+        data.status = "pending"
+        setOrderLoading(true)
+        fetch('http://localhost:4000/addOrder',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result){
+                dispatch(clearCart())
+                history.push({
+                    pathname: '/order-received',
+                    state: {passData}
+                })
+            }
+            setOrderLoading(false)
+        })
+        .catch(e => alert(e.message))
+        
+        if(appliedCoupon){
+            fetch('http://localhost:4000/updateCoupon/'+appliedCoupon._id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(appliedCoupon)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){ 
+                }
+                setCouponLoading(false)
+            })
+            .catch(error => {
+                setCouponLoading(false)
+                alert(error.message)
+            })
+        }
     };
-
-    
 
     return (
         <>
             <Header></Header>
-
+            <Loading loading={couponLoading}></Loading>
+            <Loading loading={orderLoading}></Loading>
+            <Loading loading={loading}></Loading>
             <div className="checkout container" style={{marginTop:'10rem'}}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row mt-5 mb-5 justify-content-center form-row">

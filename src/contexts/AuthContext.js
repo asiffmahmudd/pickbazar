@@ -31,7 +31,12 @@ export function AuthProvider({children}) {
         auth.onAuthStateChanged(user => {
             let currentUser;
             if(user){
+                saveToken()
+                .then(idToken => {
+                    localStorage.setItem('token', idToken)
+                })
                 currentUser = {
+                    uid: user.uid,
                     name: user.displayName,
                     email: user.email,
                     photo: user.photoURL
@@ -68,6 +73,7 @@ export function AuthProvider({children}) {
                     localStorage.setItem('token', idToken)
                 })
                 currentUser = {
+                    uid: user.uid,
                     name: user.displayName,
                     email: user.email,
                     photo: user.photoURL

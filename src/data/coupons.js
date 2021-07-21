@@ -7,7 +7,7 @@ const coupons =[
         totalCoupons:20,
         remainingCoupons:5,
         expiration:"18 Jun 2021",
-        creation:"18 Jun 2021",
+        creation:"18 Jun 2021", 
         status:"active"
     },
     {

@@ -5,8 +5,9 @@ import { VscCircleFilled } from "react-icons/vsc";
 import { useState } from 'react';
 import CouponDrawer from './CouponDrawer';
 import { useEffect } from 'react';
+import { useItem } from '../../../../contexts/ItemContext';
 
-const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, selected}) => {
+const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselectAll, selected, handleSingleDelete}) => {
 
     const selectColor = (status) => {
         if(status === 'active'){
@@ -17,14 +18,34 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
         }
     }
 
+    const {setCouponLoading} = useItem()
+
     const [statusColor, setStatusColor] = useState(selectColor(coupon.status));
 
     const handleChange = (event) => {
-        setStatusColor(selectColor(event.target.value))
+        setCouponLoading(true)
         coupon.status = event.target.value
+        setStatusColor(selectColor(event.target.value))
+        fetch('http://localhost:4000/updateCouponStatus/'+coupon._id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(coupon)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){ 
+            }
+            setCouponLoading(false)
+        })
+        .catch(error => {
+            setCouponLoading(false)
+            alert(error.message)
+        })
     }
 
-    const percentage = (coupon.remainingCoupons*100)/coupon.totalCoupons;
+    const percentage = 100 - ((coupon.remainingCoupons*100)/coupon.totalCoupons);
     
     const [isCouponDrawerOpen, setCouponDrawerOpen] = useState(false);
     
@@ -34,10 +55,6 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
 
     const handleCouponDrawerClose = () => {
         setCouponDrawerOpen(false);
-    }
-
-    const handleCouponDelete = () => {
-
     }
 
     const [isChecked, setIsChecked] = useState(isAllChecked);
@@ -75,7 +92,7 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
                 <td>
                     <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="coupon-item" value={coupon}/>
                 </td>
-                <th scope="row">{coupon.id}</th>
+                <th scope="row">{index+1}</th>
                 <td>{coupon.name}</td>
                 <td>{coupon.code}</td>
                 <td className="pt-3 pb-3">
@@ -88,7 +105,7 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
                     </div>
                 
                 </td>
-                <td>{coupon.expiration}</td>
+                {/* <td>{coupon.expiration}</td> */}
                 <td>{coupon.creation}</td>
                 <td>
                     <VscCircleFilled color={statusColor}></VscCircleFilled>
@@ -98,7 +115,7 @@ const CouponItem = ({coupon, coupons, isAllChecked, setSelected, deselectAll, se
                     </select></td>
                 <td>
                     <BiEdit color="green" onClick={()=> handleCouponDrawerOpen(coupon)} className="mr-2 hover-pointer"></BiEdit>
-                    <BsTrash color='red' onClick={() => handleCouponDelete()} className="hover-pointer"></BsTrash>
+                    <BsTrash color='red' onClick={() => handleSingleDelete(coupon._id)} className="hover-pointer"></BsTrash>
                 </td>
             </tr>
             <CouponDrawer coupon={coupon} isCouponDrawerOpen={isCouponDrawerOpen} handleCouponDrawerClose={handleCouponDrawerClose}></CouponDrawer>

@@ -22,7 +22,7 @@ const OrderSummary = ({items}) => {
         discount = totalPrice*(appliedCoupon.discount/100)
 
     let shipping = 0;
-
+    
     return (
         <div className="col-lg-3 offset-lg-1 mb-5 order-summary">
             <div className="order-summary-container">
@@ -36,7 +36,7 @@ const OrderSummary = ({items}) => {
                                     <span>{item.name}</span>
                                 </div>
                                 <div>
-                                    <span>${(item.price*item.count).toFixed(2)}</span>    
+                                    <span>${item.sale?(item.sale*item.count).toFixed(2):(item.price*item.count).toFixed(2)}</span>    
                                 </div>  
                             </div>
                         )

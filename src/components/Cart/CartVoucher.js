@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useItem } from '../../contexts/ItemContext';
 
-const CartVoucher = () => {
+const CartVoucher = ({totalPrice}) => {
     const [show, setShow] = useState(false);
     const {allproducts} = useItem()
 
@@ -29,7 +29,7 @@ const CartVoucher = () => {
     const handleCoupon = (e) => {
         e.preventDefault()
         let userCode = document.getElementById('code').value.toLowerCase()
-        couponHandler(userCode)
+        couponHandler(userCode,totalPrice)
     }
 
     const couponRemove = () => {

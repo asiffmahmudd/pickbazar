@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { loadCart } from '../../Redux/Actions/CartActions';
 import { useCoupon } from '../../contexts/CouponContext';
 import { useItem } from '../../contexts/ItemContext';
+import Loading from '../Loading/Loading';
 
 const Cart = () => {
 
@@ -19,7 +20,7 @@ const Cart = () => {
         dispatch(loadCart())
     },[dispatch])   
     
-    const {allproducts} = useItem()
+    const {allproducts, couponLoading} = useItem()
     const cartItems = useSelector(state => {
         return state.items.cartItems;
     })
@@ -47,10 +48,15 @@ const Cart = () => {
         }
     }
 
-    const {appliedCoupon} = useCoupon()
+    const {appliedCoupon, setError} = useCoupon()
     if(appliedCoupon)
         totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
 
+    const closeCart = () => {
+        setError(null)
+        setCartExpanded(false)
+    }
+    
     return (
         <>
             {
@@ -72,9 +78,9 @@ const Cart = () => {
                     <div className="cart-expanded-header d-flex align-items-center p-3 border-bottom">
                         <GiShoppingBag color="#009e7f" size={25}></GiShoppingBag>
                         <span className="item-count ml-1"> {items?.length} items</span>
-                        <GrClose className="ml-auto hover-pointer cart-close" onClick={()=>setCartExpanded(false)}></GrClose>
+                        <GrClose className="ml-auto hover-pointer cart-close" onClick={closeCart}></GrClose>
                     </div>
-                    
+                    <Loading loading={couponLoading}></Loading>
                         
                     <div className="card-expanded-body">
                         {
@@ -99,7 +105,7 @@ const Cart = () => {
                     </div>
                     
                     <div className="cart-expanded-footer mt-auto p-3">
-                        <CartVoucher></CartVoucher>
+                        <CartVoucher totalPrice={totalPrice}></CartVoucher>
                         <Link to="/checkout" >
                             <button disabled={items?.length===0} className="hover-pointer border-0 w-100 checkout-btn d-flex justify-content-between align-items-center">
                                 <span className="checkout-text" onClick={(e) => items?.length===0 ? e.preventDefault(): ""}>

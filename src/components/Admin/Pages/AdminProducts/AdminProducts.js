@@ -3,7 +3,6 @@ import AdminLayout from '../../AdminLayout/AdminLayout';
 import AdminProductHeader from './AdminProductHeader';
 import './AdminProducts.css';
 import AdminProductItem from './AdminProductItem';
-// import allproducts from '../../../../data/products';
 import SelectBar from './SelectBar';
 import { useState } from 'react';
 import { useEffect } from 'react';
