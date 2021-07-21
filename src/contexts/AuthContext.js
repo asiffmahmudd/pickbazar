@@ -12,13 +12,21 @@ export function AuthProvider({children}) {
     const [loggedInUser, setLoggedInUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    function loginWith(media){
+    async function loginWith(media){
         let provider;
+        // setLoading(true)
         if(media === 'google')
             provider = new firebase.auth.GoogleAuthProvider();
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
-        return auth.signInWithPopup(provider)
+        const data = await auth.signInWithPopup(provider)
+        if(data.additionalUserInfo.isNewUser){
+            saveUserData(data.user)
+        }
+        // else{
+        //     setLoading(false)
+        // }
+        return data;
     }
 
     async function signUpWithEmail(userData){
@@ -62,6 +70,32 @@ export function AuthProvider({children}) {
         }).catch(function(error) {
             alert(error.message);
         });
+    }
+
+    const saveUserData = async (user) =>{
+        let currentUser = {
+            uid: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL
+        }
+        fetch('http://localhost:4000/addCustomer/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){ 
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
     }
 
     useEffect(() => {

@@ -2,14 +2,22 @@ import React from 'react';
 import './SocialLogin.css';
 import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
 import { useAuth } from '../../contexts/AuthContext';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const SocialLogIn = ({handleClose}) => {
 
     const {loginWith} = useAuth()
+    let history = useHistory();
+    let location = useLocation();
+
+    let { from } = location.state || { from: { pathname: "/" } };
     
     const handleLogin = (media) => {
         loginWith(media)
-        .then(data => handleClose())
+        .then(data => {
+            handleClose()
+            history.push(from)
+        })
     }
 
     return (

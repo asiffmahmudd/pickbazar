@@ -13,8 +13,10 @@ const UserSocialLogin = () => {
 
     async function handleLogin(media) {
         try{
-            await loginWith(media);
-            history.replace(from)
+            loginWith(media)
+            .then(data => {
+                history.replace(from)
+            })
         }
         catch(e){
             alert(e.message)

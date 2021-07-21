@@ -35,7 +35,6 @@ const UserOrderDetails = ({orderDetails}) => {
             return exists? true : false
         }))
     }, [allproducts, orderDetails?.products])
-    console.log(orderedProducts, allproducts)
 
     return (
         <div className="user-order-details border bg-white">
