@@ -2,9 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
 
-const AddContactModal = ({addContact, addContactIsOpen, handleClose}) =>{
-
-    
+const AddContactModal = ({numberData, updateNumber, addContact, addContactIsOpen, handleClose}) =>{
 
     const customStyles = {
         content : {
@@ -20,8 +18,16 @@ const AddContactModal = ({addContact, addContactIsOpen, handleClose}) =>{
             backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
         
-      };
+    };
 
+    const handleSave = () => {
+        if(numberData){
+            updateNumber()
+        }
+        else{
+            addContact()
+        }
+    }
 
     return (
         <Modal
@@ -35,15 +41,15 @@ const AddContactModal = ({addContact, addContactIsOpen, handleClose}) =>{
             </span>
 
             <div className="modal-container">
-                <h4 className="">Add New Number</h4>
+                <h4 className="">{numberData? "Update Number" : "Add New Number"}</h4>
                 <form className="add-number pb-3">
                     <div className="form-group">
-                        <input type="text" className="cstm-input" id="number-title" aria-describedby="numberTitle" placeholder="Enter Title" />
+                        <input type="text" className="cstm-input" id="number-title" aria-describedby="numberTitle" placeholder="Enter Title"  defaultValue={numberData?numberData.title:""}/>
                     </div>
                     <div className="form-group">
-                        <input type="number" className="cstm-input" id="number" placeholder="Enter Number" />
+                        <input type="number" className="cstm-input" id="number" placeholder="Enter Number"  defaultValue={numberData?numberData.desc:""}/>
                     </div>
-                    <div onClick={addContact} className="btn form-btn continue-btn bg-theme w-100">Save Contact</div>
+                    <div onClick={handleSave} className="btn form-btn continue-btn bg-theme w-100">Save Contact</div>
                 </form>
                 
             </div>

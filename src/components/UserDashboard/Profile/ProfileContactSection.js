@@ -5,11 +5,14 @@ import { BiPlus } from "react-icons/bi";
 import { useAuth } from '../../../contexts/AuthContext';
 import AddContactModal from '../../Checkout/AddContactModal';
 import Loading from '../../Loading/Loading';
+import ProfileContactItem from './ProfileContactItem';
 
 const ProfileContactSection = ({customer}) => {
 
     const [addContactIsOpen, setAddContactIsOpen] = useState(false);
     const [numbers, setNumbers] = useState([])
+    const {loggedInUser} = useAuth()
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=> {
         setNumbers(customer?.contactNumber || [])
@@ -18,9 +21,7 @@ const ProfileContactSection = ({customer}) => {
     const handleClose = () => {
         setAddContactIsOpen(false)
     }
-      
-    const {loggedInUser} = useAuth()
-    const [loading, setLoading] = useState(false)
+    
 
     const addContact = () => {
         let title = document.getElementById("number-title").value;
@@ -30,34 +31,44 @@ const ProfileContactSection = ({customer}) => {
             alert("Please fill out all inputs")
         }
         else{
-            setLoading(true)
             const newList = numbers
             newList.push({
                 title,
                 desc
             });
             setNumbers(newList)
-            setAddContactIsOpen(false)
-
-            fetch('http://localhost:4000/updateCustomerContact/'+loggedInUser.uid, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(numbers)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data){
-                    
-                }
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.message)
-            })
+            setAddContactIsOpen(false) 
+            updateNumbersInDatabase(newList)
         }
+    }
+
+    const updateNumbersInDatabase = (newList) => {
+        setLoading(true)
+        fetch('http://localhost:4000/updateCustomerContact/'+loggedInUser.uid, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newList)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
+    }
+
+    const handleDelete = (index) =>{
+        const newList = [...numbers]
+        newList.splice(index,1)
+        setNumbers(newList)
+        updateNumbersInDatabase(newList)
     }
 
     return (
@@ -69,22 +80,9 @@ const ProfileContactSection = ({customer}) => {
                     <BiPlus/> Add Number
                 </div>
                 <div className="row" id="deliveryAddress" name="deliveryAddress">
-                    
                     {
-                        numbers.map((address, index) => {
-                            return (
-                                <div key={index} className="col-md-4">
-                                    <div className="panel panel-default card-input">
-                                        <div className="panel-heading">{address.title}</div>
-                                        <div className="panel-body">
-                                            {address.desc}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
+                        numbers?.map((number, index) => <ProfileContactItem key={index} number={number} updateNumbersInDatabase={updateNumbersInDatabase} numbers={numbers} index={index} setNumbers={setNumbers} handleDelete={handleDelete}></ProfileContactItem>)
                     }
-                    
                 </div>
             </div>
             <AddContactModal addContact={addContact} addContactIsOpen={addContactIsOpen} handleClose={handleClose}></AddContactModal>

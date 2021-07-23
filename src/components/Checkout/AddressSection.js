@@ -4,11 +4,14 @@ import { BiPlus } from "react-icons/bi";
 import { useAuth } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import AddAddressModal from './AddAddressModal';
+import AddressItem from './AddressItem';
 
 const AddressSection = ({register,errors, customer}) => {
 
     const [addAddressIsOpen, setAddAddressIsOpen] = useState(false);
-    const [addresses, setAddresses] = useState([])
+    const [addresses, setAddresses] = useState([]) 
+    const [loading, setLoading] = useState(false)
+    const {loggedInUser} = useAuth()
 
     useEffect(()=> {
         setAddresses(customer?.deliveryAddress || [])
@@ -18,8 +21,6 @@ const AddressSection = ({register,errors, customer}) => {
         setAddAddressIsOpen(false)
     }
       
-    const {loggedInUser} = useAuth()
-    const [loading, setLoading] = useState(false)
     const addAddress = () => {
         let title = document.getElementById("address-title").value;
         let desc = document.getElementById("address").value;
@@ -27,7 +28,6 @@ const AddressSection = ({register,errors, customer}) => {
             alert("Please fill out all inputs")
         }
         else{
-            setLoading(true)
             const newList = addresses
             newList.push({
                 title,
@@ -35,27 +35,39 @@ const AddressSection = ({register,errors, customer}) => {
             });
             setAddresses(newList)
             setAddAddressIsOpen(false)
-
-            fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(addresses)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data){
-                    
-                }
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.message)
-            })
+            updateAddressInDatabase(newList)
         }
     }
+
+    const updateAddressInDatabase = (newList) => {
+        setLoading(true)
+        fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newList)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
+    }
+    
+    const handleDelete = (index) =>{
+        const newList = [...addresses]
+        newList.splice(index,1)
+        setAddresses(newList)
+        updateAddressInDatabase(newList)
+    }
+
 
     return (
         <>
@@ -66,19 +78,7 @@ const AddressSection = ({register,errors, customer}) => {
                 <div className="radio-group row" id="deliveryAddress" name="deliveryAddress" {...register("deliveryAddress", { required:true })}>
                     
                     {
-                        addresses?.map((address, index) => {
-                            return (
-                                <label key={index} className="col-md-4">
-                                    <input type="radio" name="deliveryAddress" className="card-input-element" value={address.desc}/>
-                                    <div className="panel panel-default card-input">
-                                        <div className="panel-heading">{address.title}</div>
-                                        <div className="panel-body">
-                                            {address.desc}
-                                        </div>
-                                    </div>
-                                </label>
-                            )
-                        })
+                        addresses?.map((address, index) => <AddressItem key={index} updateAddressInDatabase={updateAddressInDatabase} index={index} setAddresses={setAddresses} addresses={addresses} address={address} handleDelete={handleDelete}></AddressItem>)
                     }
                     
                 </div>

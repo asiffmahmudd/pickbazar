@@ -5,6 +5,7 @@ import { BiPlus } from "react-icons/bi";
 import { useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import Loading from '../../Loading/Loading';
+import ProfileAddressItem from './ProfileAddressItem';
 
 const ProfileAddressSection = ({customer}) => {
 
@@ -19,8 +20,7 @@ const ProfileAddressSection = ({customer}) => {
 
     const handleClose = () => {
         setAddAddressIsOpen(false)
-    }
-      
+    }   
 
     const addAddress = () => {
         let title = document.getElementById("address-title").value;
@@ -29,7 +29,6 @@ const ProfileAddressSection = ({customer}) => {
             alert("Please fill out all inputs")
         }
         else{
-            setLoading(true)
             const newList = addresses
             newList.push({
                 title,
@@ -37,13 +36,18 @@ const ProfileAddressSection = ({customer}) => {
             });
             setAddresses(newList)
             setAddAddressIsOpen(false)
+            updateAddressInDatabase(newList)
+        }
+    }
 
-            fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
+    const updateAddressInDatabase = (newList) => {
+        setLoading(true)
+        fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(addresses)
+                body: JSON.stringify(newList)
             })
             .then(response => response.json())
             .then(data => {
@@ -56,7 +60,13 @@ const ProfileAddressSection = ({customer}) => {
                 setLoading(false)
                 alert(error.message)
             })
-        }
+    }
+    
+    const handleDelete = (index) =>{
+        const newList = [...addresses]
+        newList.splice(index,1)
+        setAddresses(newList)
+        updateAddressInDatabase(newList)
     }
 
     return (
@@ -68,22 +78,9 @@ const ProfileAddressSection = ({customer}) => {
                     <BiPlus/> Add Address
                 </div>
                 <div className="row" id="deliveryAddress" name="deliveryAddress">
-                    
                     {
-                        addresses?.map((address, index) => {
-                            return (
-                                <div key={index} className="col-md-4">
-                                    <div className="panel panel-default card-input">
-                                        <div className="panel-heading">{address.title}</div>
-                                        <div className="panel-body">
-                                            {address.desc}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
+                        addresses?.map((address, index) => <ProfileAddressItem key={index} updateAddressInDatabase={updateAddressInDatabase} index={index} setAddresses={setAddresses} addresses={addresses} address={address} handleDelete={handleDelete}></ProfileAddressItem>)
                     }
-                    
                 </div>
             </div>
             <AddAddressModal addAddress={addAddress} addAddressIsOpen={addAddressIsOpen} handleClose={handleClose}></AddAddressModal>

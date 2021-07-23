@@ -64,7 +64,7 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <p><strong>Total Price:</strong></p>
-                    <p><strong>${order.amount.toFixed(2)}</strong></p>
+                    <p><strong>${(order.amount-order.discount).toFixed(2)}</strong></p>
                 </div>
             </div>
         </div>

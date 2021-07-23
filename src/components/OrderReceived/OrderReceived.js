@@ -9,6 +9,7 @@ const OrderReceived = () => {
     const items = location.state.passData.products
     const data = location.state.passData
     const totalPrice = location.state.passData.amount
+    const discount = location.state.passData.discount
 
     return (
         <>
@@ -34,7 +35,7 @@ const OrderReceived = () => {
                                 </div>
                                 <div className="order-amount order-info-item ">
                                     <p className="order-number-title">Total Amount</p>
-                                    <p className="order-number-para">${totalPrice.toFixed(2)}</p>
+                                    <p className="order-number-para">${(totalPrice-discount).toFixed(2)}</p>
                                 </div>
                                 <div className="order-method order-info-item">
                                     <p className="order-number-title">Payment Method</p>
@@ -86,10 +87,18 @@ const OrderReceived = () => {
                             <div className="order-details-container mt-4">
                                 <div className="total-item order-details-item">
                                     <div className="order-details-title">
+                                        <p>Discount</p>
+                                    </div>
+                                    <div className="order-details-para">
+                                        <p>${discount.toFixed(2)}</p>
+                                    </div>
+                                </div>
+                                <div className="total-item order-details-item">
+                                    <div className="order-details-title">
                                         <p>Sub Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${totalPrice.toFixed(2)}</p>
+                                        <p>${(totalPrice-discount).toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
@@ -105,7 +114,7 @@ const OrderReceived = () => {
                                         <p>Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${totalPrice.toFixed(2)}</p>
+                                        <p>${(totalPrice-discount).toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>

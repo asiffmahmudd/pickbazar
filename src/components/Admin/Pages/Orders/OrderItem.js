@@ -58,7 +58,7 @@ const OrderItem = ({order,index}) => {
             <td>{order.customerId}</td>
             <td>{order.orderDate}</td>
             <td>{order.deliveryAddress}</td>
-            <td>${order.amount.toFixed(2)}</td>
+            <td>${(order.amount-order.discount).toFixed(2)}</td>
             <td>{order.paymentMethod}</td>
             <td>{order.contactNumber}</td>
             <td className="d-flex align-items-center">

@@ -52,17 +52,12 @@ const UserOrderDetails = ({orderDetails}) => {
                         <p className="details-title">Sub Total</p>
                         <p>${orderDetails?.amount.toFixed(2)}</p>
                     </div>
-                    {
-                        orderDetails?.discount &&
-                        <div className="d-flex justify-content-between">
-                            <p className="details-title">Discount</p>
-                            <p>${orderDetails?.discount}</p>
-                        </div>
-                    }
+                    
                     <div className="d-flex justify-content-between">
-                        <p className="details-title">Delivery</p>
-                        <p>$0</p>
+                        <p className="details-title">Discount</p>
+                        <p>${orderDetails?.discount ? orderDetails?.discount : 0}</p>
                     </div>
+                    
                     <div className="d-flex justify-content-between">
                         <p className="details-title">Delivery Fee</p>
                         <p>$0</p>
@@ -73,12 +68,7 @@ const UserOrderDetails = ({orderDetails}) => {
                             <strong>
                                 $
                                 {
-                                    orderDetails?.discount &&
                                     (orderDetails?.amount-orderDetails?.discount).toFixed(2)
-                                }
-                                {
-                                    !orderDetails?.discount &&
-                                    orderDetails?.amount.toFixed(2)
                                 }
                             </strong>
                         </p>
@@ -186,10 +176,10 @@ const UserOrderDetails = ({orderDetails}) => {
                                         </td>
                                         <td>
                                             <p>{pd.name}</p>
-                                            <p style={{color: 'rgb(0, 158, 127)'}}>${pd.price}</p>
+                                            <p style={{color: 'rgb(0, 158, 127)'}}>${pd.sale> 0 ? pd.sale : pd.price}</p>
                                         </td>
                                         <td>{pd.count}</td>
-                                        <td>${(pd.count*pd.price).toFixed(2)}</td>
+                                        <td>${pd.sale> 0 ? (pd.sale*pd.count).toFixed(2) : (pd.count*pd.price).toFixed(2)}</td>
                                     </tr>
                                 )
                             })

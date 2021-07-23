@@ -72,30 +72,37 @@ const Orders = () => {
                     <div className="admin-products-header col-lg-12 mt-5">
                         <OrderHeader orderFilter={orderFilter} ></OrderHeader>
                     </div>
-                    <div className="col-lg-12 admin-products-body mt-5">
-                        <div className="table-responsive">
-                            <table className="table bg-white border table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Customer ID</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Delivery Address</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Payment Method</th>
-                                        <th scope="col">Contact</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        orders?.map((order,index) => <OrderItem index={index} order={order} key={index}></OrderItem>)
-                                    }
-                                </tbody>
-                            </table>
+                    {
+                        orders.length === 0 &&
+                        <h2 className="text-center col-lg-12 mt-4">No orders found</h2>
+                    }
+                    {
+                        orders.length > 0 &&
+                        <div className="col-lg-12 admin-products-body mt-5">
+                            <div className="table-responsive">
+                                <table className="table bg-white border table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Customer ID</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Delivery Address</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Contact</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            orders?.map((order,index) => <OrderItem index={index} order={order} key={index}></OrderItem>)
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
+                    }
                 </div>
             </div>
         </AdminLayout>

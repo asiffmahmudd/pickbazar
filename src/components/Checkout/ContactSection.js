@@ -4,24 +4,25 @@ import { BiPlus } from "react-icons/bi";
 import { useAuth } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import AddContactModal from './AddContactModal';
+import ContactItem from './ContactItem';
 
 
 const ContactSection = ({register,errors, customer}) => {
    
-
     const [addContactIsOpen, setAddContactIsOpen] = useState(false);
     const [numbers, setNumbers] = useState([])
+    const {loggedInUser} = useAuth()
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=> {
         setNumbers(customer?.contactNumber || [])
     },[customer?.contactNumber])
+    console.log()
 
     const handleClose = () => {
         setAddContactIsOpen(false)
     }
     
-    const {loggedInUser} = useAuth()
-    const [loading, setLoading] = useState(false)
 
     const addContact = () => {
         let title = document.getElementById("number-title").value;
@@ -31,34 +32,44 @@ const ContactSection = ({register,errors, customer}) => {
             alert("Please fill out all inputs")
         }
         else{
-            setLoading(true)
             const newList = numbers
             newList.push({
                 title,
                 desc
             });
             setNumbers(newList)
-            setAddContactIsOpen(false)
-
-            fetch('http://localhost:4000/updateCustomerContact/'+loggedInUser.uid, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(numbers)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data){
-                    
-                }
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.message)
-            })
+            setAddContactIsOpen(false) 
+            updateNumbersInDatabase(newList)
         }
+    }
+
+    const updateNumbersInDatabase = (newList) => {
+        setLoading(true)
+        fetch('http://localhost:4000/updateCustomerContact/'+loggedInUser.uid, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newList)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
+    }
+
+    const handleDelete = (index) =>{
+        const newList = [...numbers]
+        newList.splice(index,1)
+        setNumbers(newList)
+        updateNumbersInDatabase(newList)
     }
 
     return (
@@ -70,19 +81,7 @@ const ContactSection = ({register,errors, customer}) => {
                 <div className="radio-group row" id="contactNumber" name="contactNumber" {...register("contactNumber", { required:true })}>
                     
                     {
-                        numbers?.map((number,index) => {
-                            return (
-                                <label key={index} className="col-md-4">
-                                    <input type="radio" name="contactNumber" className="card-input-element" value={number.desc}/>
-                                    <div className="panel panel-default card-input">
-                                        <div className="panel-heading">{number.title}</div>
-                                        <div className="panel-body">
-                                        {number.desc}
-                                        </div>
-                                    </div>
-                                </label>
-                            )
-                        })
+                        numbers?.map((number,index) => <ContactItem key={index} number={number} updateNumbersInDatabase={updateNumbersInDatabase} numbers={numbers} index={index} setNumbers={setNumbers} handleDelete={handleDelete}></ContactItem>)
                     }
                     
 

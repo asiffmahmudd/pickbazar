@@ -69,11 +69,17 @@ const Checkout = () => {
     }
 
     const {appliedCoupon} = useCoupon()
+    let discount = 0
     if(appliedCoupon){
-        totalPrice = totalPrice*((100-appliedCoupon.discount)/100)
+        const priceAfterDiscount = totalPrice*((100-appliedCoupon.discount)/100)
+        discount = Number((totalPrice-priceAfterDiscount).toFixed(2))
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const updateProduct = () => {
+        
+    }
     
     const onSubmit = async data => {
         if(data.paymentMethod === 'card'){
@@ -85,6 +91,7 @@ const Checkout = () => {
         data.customerId = loggedInUser.uid
         data.orderDate = dayjs().format('LLL') 
         data.amount = totalPrice
+        data.discount = discount
         const passData = {...data}
         passData.products = items
         data.products = items.map(item=> {

@@ -2,8 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
 
-const AddAddressModal = ({addAddress, addAddressIsOpen, handleClose}) =>{
-
+const AddAddressModal = ({addressData, updateAddress, addAddress, addAddressIsOpen, handleClose}) =>{
     const customStyles = {
         content : {
           top: '50%',
@@ -19,7 +18,15 @@ const AddAddressModal = ({addAddress, addAddressIsOpen, handleClose}) =>{
         },
         
       };
-
+    
+    const handleSave = () => {
+        if(addressData){
+            updateAddress()
+        }
+        else{
+            addAddress()
+        }
+    }
 
     return (
         <Modal
@@ -33,15 +40,15 @@ const AddAddressModal = ({addAddress, addAddressIsOpen, handleClose}) =>{
             </span>
 
             <div className="modal-container">
-                <h4 className="">Add New Address</h4>
+                <h4 className="">{addressData? "Update Address" : "Add New Address"}</h4>
                 <form className="add-number pb-3">
                     <div className="form-group">
-                        <input type="text" className="cstm-input" id="address-title" aria-describedby="addressTitle" placeholder="Enter Title"/>
+                        <input type="text" className="cstm-input" id="address-title" aria-describedby="addressTitle" placeholder="Enter Title" defaultValue={addressData?addressData.title:""}/>
                     </div>
                     <div className="form-group">
-                        <textarea style={{minHeight: '150px'}} type="textarea" className="cstm-input" id="address" placeholder="Enter Address"  />
+                        <textarea style={{minHeight: '150px'}} type="textarea" className="cstm-input" id="address" placeholder="Enter Address" defaultValue={addressData?addressData.desc:""} />
                     </div>
-                    <div onClick={addAddress} className="btn form-btn continue-btn bg-theme w-100">Save Address</div>
+                    <div onClick={handleSave} className="btn form-btn continue-btn bg-theme w-100">Save Address</div>
                 </form>
                 
             </div>
