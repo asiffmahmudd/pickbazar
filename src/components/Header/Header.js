@@ -109,7 +109,7 @@ const Header = ({selectedCategory, changeCategory}) => {
                                     <img className="dropdown-toggle" src={loggedInUser.photo} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/user/profile">Profile</Link>
-                                        <Link className="dropdown-item" to="/user/orders">Your Order</Link>
+                                        <Link className="dropdown-item" to="/user/orders">Your Orders</Link>
                                         <div className="dropdown-item" href="/admin/dashboard" onClick={logout}>Logout</div>
                                     </div>
                                 </div>
