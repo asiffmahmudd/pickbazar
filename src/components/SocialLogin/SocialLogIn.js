@@ -15,6 +15,7 @@ const SocialLogIn = ({handleClose}) => {
     const handleLogin = (media) => {
         loginWith(media)
         .then(data => {
+            console.log("6")
             handleClose()
             history.push(from)
         })

@@ -136,11 +136,29 @@ const Checkout = () => {
         }
     };
 
+    
+    const [customer, setCustomer] = useState({})
+    const [customerLoading, setCustomerLoading] = useState(false)
+    useEffect(() => {
+        setCustomerLoading(true)
+        fetch('http://localhost:4000/customer/'+loggedInUser.uid)
+        .then(res => res.json())
+        .then(result => {
+            setCustomer(result)
+            setCustomerLoading(false)
+        })
+        .catch(e => {
+            setCustomerLoading(false)
+            alert(e.message)
+        })
+    },[loggedInUser.uid])
+
     return (
         <>
             <Header></Header>
             <Loading loading={couponLoading}></Loading>
             <Loading loading={orderLoading}></Loading>
+            <Loading loading={customerLoading}></Loading>
             <Loading loading={loading}></Loading>
             <div className="checkout container" style={{marginTop:'10rem'}}>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -149,9 +167,9 @@ const Checkout = () => {
                             
                             <DeliverySchedule register={register} errors={errors}></DeliverySchedule>
 
-                            <AddressSection register={register} errors={errors}></AddressSection>
+                            <AddressSection register={register} customer={customer[0]} errors={errors}></AddressSection>
 
-                            <ContactSection register={register} errors={errors}></ContactSection>
+                            <ContactSection register={register} customer={customer[0]} errors={errors}></ContactSection>
 
                             <PaymentSection disable={items.length === 0} register={register} errors={errors}></PaymentSection>
                             

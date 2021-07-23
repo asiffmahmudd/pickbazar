@@ -21,11 +21,11 @@ export function AuthProvider({children}) {
             provider = new firebase.auth.FacebookAuthProvider();
         const data = await auth.signInWithPopup(provider)
         if(data.additionalUserInfo.isNewUser){
-            saveUserData(data.user)
+            await saveUserData(data.user)
         }
-        // else{
-        //     setLoading(false)
-        // }
+        else{
+            setLoading(false)
+        }
         return data;
     }
 
@@ -72,14 +72,14 @@ export function AuthProvider({children}) {
         });
     }
 
-    const saveUserData = async (user) =>{
+    const saveUserData = (user) =>{
         let currentUser = {
             uid: user.uid,
             name: user.displayName,
             email: user.email,
             photo: user.photoURL
         }
-        fetch('http://localhost:4000/addCustomer/', {
+        return fetch('http://localhost:4000/addCustomer/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
