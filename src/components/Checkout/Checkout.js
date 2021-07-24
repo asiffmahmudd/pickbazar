@@ -29,7 +29,7 @@ const Checkout = () => {
         dispatch(loadCart())
     },[dispatch])   
     
-    const {allproducts, loading, couponLoading, setCouponLoading} = useItem()
+    const {allproducts, loading, couponLoading, setCouponLoading, setProductChange} = useItem()
     const cartItems = useSelector(state => {
         return state.items.cartItems;
     })
@@ -77,8 +77,51 @@ const Checkout = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const updateProduct = () => {
-        
+    const updateProduct = async (items) => {
+        items = items.map(item=> {
+            return {
+                id: item._id,
+                quantity: item.quantity-item.count
+            }
+        })
+        items.map(async item => {
+            await fetch('http://localhost:4000/updateProductQuantity', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                }
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+        })
+    }
+
+    const updateCustomerData = async () =>{
+        await fetch('http://localhost:4000/customer/'+loggedInUser.uid)
+        .then(res => res.json())
+        .then(async result => {
+            const currentAmount = result[0].totalAmount || 0
+            const currentOrder = result[0].orders || 0
+            const totalAmount = currentAmount + totalPrice - discount
+            const orders = currentOrder + 1
+            await fetch('http://localhost:4000/updateCustomerOrder/'+loggedInUser.uid,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({totalAmount:totalAmount, orders:orders})
+            })
+        })
+        .catch(e => {
+            alert(e.message)
+        })
     }
     
     const onSubmit = async data => {
@@ -102,6 +145,8 @@ const Checkout = () => {
         })
         data.status = "pending"
         setOrderLoading(true)
+        updateProduct(items)
+        updateCustomerData()
         fetch('http://localhost:4000/addOrder',{
             method: 'POST',
             headers: {
@@ -111,18 +156,21 @@ const Checkout = () => {
         })
         .then(res => res.json())
         .then(result => {
+            setOrderLoading(false)
             if(result){
                 dispatch(clearCart())
+                setProductChange(true)
+                setProductChange(false)
                 history.push({
                     pathname: '/order-received',
                     state: {passData}
                 })
             }
-            setOrderLoading(false)
         })
         .catch(e => alert(e.message))
         
         if(appliedCoupon){
+            setCouponLoading(true)
             fetch('http://localhost:4000/updateCoupon/'+appliedCoupon._id, {
                 method: 'PUT',
                 headers: {

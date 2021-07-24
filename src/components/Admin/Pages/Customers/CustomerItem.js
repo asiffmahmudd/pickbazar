@@ -1,16 +1,19 @@
 import React from 'react';
 
-const CustomerItem = ({customer}) => {
+const CustomerItem = ({customer, index}) => {
+
     return (
-        <tr>
-            <th scope="row">{customer.id}</th>
-            <td><img src={customer.img} alt="" /></td>
-            <td>{customer.name}</td>
-            <td>{customer.contact}</td>
-            <td>{customer.totalOrders}</td>
-            <td>${customer.totalAmount}</td>
-            <td>{customer.joining}</td>
-        </tr>
+        <>
+            <tr>
+                <th scope="row">{index+1}</th>
+                <td><img src={customer.photo} alt="" /></td>
+                <td>{customer.name}</td>
+                <td>{customer.contactNumber?customer.contactNumber[0].desc:""}</td>
+                <td>{customer.orders}</td>
+                <td>${customer.totalAmount}</td>
+                <td>{customer.joiningDate}</td>
+            </tr>
+        </>
     );
 };
 

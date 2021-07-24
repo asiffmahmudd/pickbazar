@@ -28,7 +28,12 @@ const ProductButton = ({product}) => {
     
     const item = items?.find(pd => pd._id === product?._id);
     const handleIncrease = () =>{
-        dispatch(increaseCount(product))
+        if(product.quantity < item.count+1){
+            alert("Product stock limit is reached")
+        }
+        else{
+            dispatch(increaseCount(product))
+        }
     }
 
     const handleDecrease = () => {
@@ -41,7 +46,7 @@ const ProductButton = ({product}) => {
     return (
         <>
         {
-            !item?.count &&
+            !item?.count && product.quantity !== 0 &&
             <button onClick={() => dispatch(addToCart(product))} className="single-product-btn btn btn-primary">
                 <div className="btn-text">Add</div>
                 <span className="btn-plus-icon" ><FontAwesomeIcon icon={faPlus} size="sm"/></span>
@@ -49,7 +54,7 @@ const ProductButton = ({product}) => {
         }
         
         {
-            item?.count > 0 &&
+            item?.count > 0 && product.quantity !== 0 &&
             <div className="counter">
                 <button className="single-minus-btn minus" onClick={handleDecrease}><FontAwesomeIcon icon={faMinus} size="sm"/></button>
                 <span className="counter-number">{item.count}</span>

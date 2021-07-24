@@ -73,7 +73,7 @@ const Orders = () => {
                         <OrderHeader orderFilter={orderFilter} ></OrderHeader>
                     </div>
                     {
-                        orders.length === 0 &&
+                        !loading && orders.length === 0 &&
                         <h2 className="text-center col-lg-12 mt-4">No orders found</h2>
                     }
                     {

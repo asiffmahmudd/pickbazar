@@ -12,6 +12,19 @@
     padding-right: 5px !important;
 }
 
+span.stockout-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgb(0,0,0,0.7);
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .single-product-btn.btn{
     height: 36px;
     border-radius: 6px;

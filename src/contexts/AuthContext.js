@@ -73,12 +73,19 @@ export function AuthProvider({children}) {
     }
 
     const saveUserData = (user) =>{
+        var dayjs = require('dayjs')
+        var localizedFormat = require('dayjs/plugin/localizedFormat')
+        dayjs.extend(localizedFormat)
         let currentUser = {
             uid: user.uid,
             name: user.displayName,
             email: user.email,
-            photo: user.photoURL
+            photo: user.photoURL,
+            joiningDate: dayjs().format('LL'),
+            totalAmount: 0,
+            orders: 0 
         }
+        console.log(currentUser)
         return fetch('http://localhost:4000/addCustomer/', {
             method: 'POST',
             headers: {

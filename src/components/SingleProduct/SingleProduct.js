@@ -47,6 +47,7 @@ const SingleProduct = () => {
                                 <p className="single-product-desc">{product.desc}</p>
                                 <ProductButton product={product}></ProductButton>
                                 <p className="single-product-tags">Tags: <strong>{product.tags.map(tag => tag.name+", ")}</strong></p>
+                                <p style={{color:'red'}}>Out of stock</p>
                             </div>
                         </div>
                     </div>
@@ -65,8 +66,7 @@ const SingleProduct = () => {
                                 related.map((product,index) => {
                                     return (
                                         <div key={index} className="col-md-2" style={{padding:'0'}}>
-                                    
-                                            <ProductItem  product={product}></ProductItem>
+                                            <ProductItem product={product}></ProductItem>
                                         </div>
                                     )
                                 })

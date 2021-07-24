@@ -98,7 +98,7 @@ const OrderReceived = () => {
                                         <p>Sub Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${(totalPrice-discount).toFixed(2)}</p>
+                                        <p>${(totalPrice).toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
