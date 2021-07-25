@@ -42,13 +42,16 @@ const PageLayout = () => {
         history.push('/category/'+index+'/'+categoryName)
     }
 
+    
+    const param = useParams().category
+
     return (
         <div className="home">
             <Header changeCategory={changeCategory} selectedCategory={selectedCategory}></Header>
             <div className="container-fluid pb-5" style={{marginTop: '89px'}}>
                 <div className="row justify-content-center">
                     <div className="col-lg-3 sidebar-container sidebar-desktop-view">
-                        <Sidebar changeCategory={changeCategory}></Sidebar>
+                        <Sidebar param={param} changeCategory={changeCategory}></Sidebar>
                     </div>
                     <div className="col-lg-9 product-container justify-content-center">
                         {
