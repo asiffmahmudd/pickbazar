@@ -39,8 +39,6 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
         maxFiles:4,
     });
 
-    // const forceUpdate = useForceUpdate()
-
     const closeDrawer = () => {
         setImages([])
         setFiles([])
@@ -48,11 +46,30 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
         handleProductDrawerClose();
     }
 
+    const uploadImages = async (file) => {
+        const imageData = new FormData();
+        imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
+        imageData.append('image', file);
+
+        await fetch('https://api.imgbb.com/1/upload', {
+            method: 'POST',
+            body: imageData
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }
+
     const onSubmit = data => {
         if(files.length > 0 || product?.img){
             data.tags = selectedValues
             const formData = new FormData()
             files.map((file,index) => formData.append('file'+index, file))
+            // files.map((file,index) => formData.append('file'+index, file))
             let apiURL = ""
             if(!product){
                 apiURL = 'http://localhost:4000/addproduct'
