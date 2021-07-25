@@ -60,7 +60,7 @@ const AdminProducts = () => {
                 setProducts(newList)
             }
         })
-    }
+    } 
 
     const handleAllChecked = () => {
         setSelected(products)
