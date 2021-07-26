@@ -25,10 +25,10 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     const { register, handleSubmit, reset } = useForm();
 
     const [files, setFiles] = useState([])
-    const [productImage, setImages] = useState([])
+    const [productImage, setProductImages] = useState([])
     const processDrop = (pics) =>{
         setFiles(pics)
-        setImages(pics.map((pic,index) => (
+        setProductImages(pics.map((pic,index) => (
             <img key={index} src={URL.createObjectURL(pic)} alt="preview" />
         )))
     }
@@ -40,66 +40,77 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     });
 
     const closeDrawer = () => {
-        setImages([])
+        setProductImages([])
         setFiles([])
         reset()
         handleProductDrawerClose();
     }
 
-    const uploadImages = async (file) => {
-        const imageData = new FormData();
-        imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
-        imageData.append('image', file);
-
-        await fetch('https://api.imgbb.com/1/upload', {
-            method: 'POST',
-            body: imageData
+    const saveToDatabase = (data) => {
+        let apiURL = ""
+        if(!product){
+            apiURL = 'http://localhost:4000/addproduct'
+        }
+        else{
+            apiURL = 'http://localhost:4000/updateProduct/'+product._id
+        }
+        fetch(apiURL, {
+            method: product? 'PUT' : 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(result => {
-            console.log(result);
+        .then(data => {
+            setLoading(false)
+            if(data){
+                reset()
+                setProductChange(true)
+                setProductChange(false)
+            }
         })
         .catch(error => {
-            alert(error)
+            setLoading(false)
+            alert(error.message)
         })
     }
-
+    
     const onSubmit = data => {
-        if(files.length > 0 || product?.img){
-            data.tags = selectedValues
-            const formData = new FormData()
-            files.map((file,index) => formData.append('file'+index, file))
-            // files.map((file,index) => formData.append('file'+index, file))
-            let apiURL = ""
-            if(!product){
-                apiURL = 'http://localhost:4000/addproduct'
-            }
-            else{
-                apiURL = 'http://localhost:4000/updateProduct/'+product._id
-            }
-
-            formData.append('data', JSON.stringify(data))
-            setLoading(true)
-            fetch(apiURL, {
-                method: product? 'PUT' : 'POST',
-                body: formData
+        setLoading(true)
+        data.tags = selectedValues
+        if(files.length > 0){
+            const imageData = new FormData();
+            imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
+            const promises = []
+            const imageURLs = []
+            files.map((file) => {
+                imageData.append('image', file);
+                promises.push(fetch('https://api.imgbb.com/1/upload', {
+                    method: 'POST',
+                    body: imageData
+                }))
+                return 0
             })
-            .then(response => response.json())
-            .then(data => {
-                setLoading(false)
-                if(data){
-                    reset()
-                    setProductChange(true)
-                    setProductChange(false)
-                }
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.message)
-            })
+            Promise.all(promises)
+            .then(responses =>
+            Promise.all(responses.map(response => response.json()))
+            ).then(result =>{
+                result.map(item=> imageURLs.push(item.data.display_url))
+                data.img = imageURLs
+                saveToDatabase(data)
+            }).catch(err =>
+                alert(err.message)
+            );
+            
             closeDrawer()
         } 
+        else if(product?.img){
+            saveToDatabase(data)
+            closeDrawer()
+        }
         else{
+            setLoading(false)
             alert("Please upload at least one image")
         }
     }
@@ -149,7 +160,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         product?.img.length > 0 && files.length === 0 &&
                                         <div className="dropzone-img-container">
                                             {   
-                                                product?.img.map((pic,index) => <img key={index} src={`data:image/jpeg;base64,${pic.img}`} alt="preview" />)
+                                                product?.img.map((pic,index) => <img key={index} src={pic} alt="preview" />)
                                             }
                                             
                                         </div>

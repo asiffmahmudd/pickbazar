@@ -51,7 +51,7 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
                     value={product}
                 />
                 <div className="admin-product-item-img-container" onClick={() => handleProductDrawerOpen(product)}>
-                    <img className="card-img-top" src={`data:image/jpeg;base64,${product?.img[0].img}`} alt="" />
+                    <img className="card-img-top" src={product?.img[0]} alt="" />
                     {
                         product?.discount > 0 &&
                         <p className="admin-item-discount">{product.discount}%</p>

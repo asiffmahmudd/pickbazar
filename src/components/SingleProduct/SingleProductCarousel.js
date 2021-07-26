@@ -11,7 +11,7 @@ const CustomDot = ({ product, onClick, ...rest  }) => {
 
     return (
       <li className={"hover-pointer "+(active ? "active" : "inactive")} onClick={() => onClick()} >
-        <img src={`data:image/jpeg;base64,${product.img[index].img}`} alt="" />
+        <img src={product.img[index]} alt="" />
       </li>
     );
   };
@@ -50,16 +50,16 @@ const SingleProductCarousel = ({product}) => {
                 >
                     {
                         carouselItems.map((item, index) => {
-                            return (
-                                
-                                    <img
-                                        key={index}
-                                        className="d-block" style={{margin:'0 auto'}}
-                                        src={`data:image/jpeg;base64,${item.img}`}
-                                        alt="First slide"
-                                    />
-                                
-                            )
+                          return (
+                              
+                            <img
+                                key={index}
+                                className="d-block" style={{margin:'0 auto'}}
+                                src={item}
+                                alt="First slide"
+                            />
+                              
+                          )
                         })
                     }
                 </Carousel>

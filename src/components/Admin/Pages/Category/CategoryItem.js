@@ -50,7 +50,7 @@ const CategoryItem = ({category, index, categories, isAllChecked, setSelected, d
                     <input type="checkbox" className="mt-2 ml-2" checked={isChecked} onChange={changeCheck} name="category-item" value={category}/>
                 </td>
                 <th scope="row">{index+1}</th>
-                <td><img src={`data:image/jpeg;base64,${category.img.img}`} alt="" /></td>
+                <td><img src={category.img} alt="" /></td>
                 <td>{category.name}</td>
                 {/* <td>{category.slug}</td> */}
                 <td>{category.type}</td>

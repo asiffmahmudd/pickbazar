@@ -23,10 +23,6 @@ const SingleProduct = () => {
         setRelated(allproducts?.filter(pd => pd.category === product?.category && pd._id !== productId.id))
         window.scrollTo(0, 0)
     },[allproducts,product, productId.id])
-
-    // useEffect(() => {
-    // }, [product, allproducts, productId.id])
-
     
     return (
         <div className="single-product">
@@ -47,7 +43,10 @@ const SingleProduct = () => {
                                 <p className="single-product-desc">{product.desc}</p>
                                 <ProductButton product={product}></ProductButton>
                                 <p className="single-product-tags">Tags: <strong>{product.tags.map(tag => tag.name+", ")}</strong></p>
-                                <p style={{color:'red'}}>Out of stock</p>
+                                {
+                                    product.quantity === 0 &&
+                                    <p style={{color:'red'}}>Out of stock</p>
+                                }
                             </div>
                         </div>
                     </div>

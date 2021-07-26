@@ -10,7 +10,7 @@ import { useItem } from '../../../../contexts/ItemContext';
 const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClose}) => {
 
     const { register, handleSubmit, reset } = useForm();
-    const {setLoading, setCategoryChange} = useItem();
+    const {setCategoryLoading, setCategoryChange} = useItem();
 
     const [files, setFiles] = useState([])
     const [categoryImage, setImage] = useState([])
@@ -27,41 +27,62 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
         maxFiles:1,
     });
 
+    const saveToDatabase = (data) =>{
+        let apiURL = ""
+        if(!category){
+            apiURL = 'http://localhost:4000/addCategory'
+        }
+        else{
+            apiURL = 'http://localhost:4000/updateCategory/'+category._id
+        }
+        fetch(apiURL, {
+            method: category? 'PUT' : 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                reset()
+                setCategoryChange(true)
+                setCategoryChange(false)
+            }
+            setCategoryLoading(false)
+        })
+        .catch(error => {
+            setCategoryLoading(false)
+            alert(error.message)
+        })
+    }
+
     const onSubmit = data => {
-        if(files.length > 0 || category?.img){
-            const formData = new FormData()
-            formData.append('file', files[0])
-            let apiURL = ""
-            if(!category){
-                apiURL = 'http://localhost:4000/addCategory'
-            }
-            else{
-                apiURL = 'http://localhost:4000/updateCategory/'+category._id
-            }
-            
-            formData.append('data', JSON.stringify(data))
-            setLoading(true)
-            
-            fetch(apiURL, {
-                method: category? 'PUT' : 'POST',
-                body: formData
+        setCategoryLoading(true)
+        if(files.length > 0){
+            const imageData = new FormData();
+            imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
+            imageData.append('image', files[0]);
+            fetch('https://api.imgbb.com/1/upload', {
+                method: 'POST',
+                body: imageData
             })
             .then(response => response.json())
-            .then(data => {
-                if(data){
-                    reset()
-                    setCategoryChange(true)
-                    setCategoryChange(false)
-                }
-                setLoading(false)
+            .then(result => {
+                data.img = result.data.display_url
+                saveToDatabase(data)
             })
             .catch(error => {
-                setLoading(false)
-                alert(error.message)
+                alert(error)
             })
             closeDrawer()
         } 
+        else if(category?.img){
+            saveToDatabase(data)
+            closeDrawer()
+        }
         else{
+            setCategoryLoading(false)
             alert("Please upload an image")
         }
     }
@@ -114,7 +135,7 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
                                         category && files.length === 0 &&
                                         <div className="dropzone-img-container">
                                             {  
-                                                <img className="p-2" src={`data:image/jpeg;base64,${category.img.img}`} alt="" />
+                                                <img className="p-2" src={category.img} alt="" />
                                             }
                                             
                                         </div>
