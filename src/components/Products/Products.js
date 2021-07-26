@@ -7,9 +7,12 @@ import { useEffect } from 'react';
 import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Products = ({selectedCategory}) => {
-  const {allproducts, loading} = useItem()
+  const searchQuery = useParams().search
+
+  const {allproducts, loading, setLoading} = useItem()
   
   const [productArray, setProductArray] = useState(allproducts)
   useEffect(() => {
@@ -17,9 +20,19 @@ const Products = ({selectedCategory}) => {
   },[allproducts])
 
   useEffect(() => {
-    if(selectedCategory)
+    if(selectedCategory){
       setProductArray(allproducts.filter(pd => pd.category === selectedCategory))
-  },[selectedCategory, allproducts])
+    }
+    else if(searchQuery){
+      setLoading(true)
+      fetch('http://localhost:4000/products/'+searchQuery)
+      .then(res => res.json())
+      .then(result =>{
+        setLoading(false)
+        setProductArray(result)
+      })
+    }
+  },[selectedCategory, allproducts, searchQuery, setLoading])
   
   return (
     <>

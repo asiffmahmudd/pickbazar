@@ -47,6 +47,9 @@ function App() {
                 <Route exact path="/category/:index/:category">
                   <PageLayout></PageLayout>  
                 </Route>
+                <Route exact path="/products/:search">
+                  <PageLayout></PageLayout>  
+                </Route>
                 
                 <PrivateRoute exact path="/user/profile">
                   <UserProfile></UserProfile>

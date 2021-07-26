@@ -35,7 +35,7 @@ const UserOrderDetails = ({orderDetails}) => {
             return exists? true : false
         }))
     }, [allproducts, orderDetails?.products])
-
+    console.log(allproducts,orderedProducts)
     return (
         <div className="user-order-details border bg-white">
             <Loading loading={loading}></Loading>
@@ -172,7 +172,7 @@ const UserOrderDetails = ({orderDetails}) => {
                                 return (
                                     <tr>
                                         <td>
-                                            <img src={`data:image/jpeg;base64,${pd.img[0].img}`} alt="" style={{height:'60px',width:'60px',}}/>
+                                            <img src={pd.img} alt="" style={{height:'60px',width:'60px',}}/>
                                         </td>
                                         <td>
                                             <p>{pd.name}</p>

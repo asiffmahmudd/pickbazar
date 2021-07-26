@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../img/logo.svg';
 import {AiOutlineSearch} from 'react-icons/ai';
 import './Header.css';
@@ -63,11 +63,23 @@ const Header = ({selectedCategory, changeCategory}) => {
         setUserDrawerOpen(false)
     }
 
+    const history = useHistory()
+
+    const handleSearchClick = () => {
+        const searchQuery = document.getElementById('search-bar').value
+        history.push('/products/'+searchQuery)
+    }
+    const handleSearchSubmit = (e) => {
+        e.preventDefault()
+        const searchQuery = document.getElementById('search-bar').value
+        history.push('/products/'+searchQuery)
+    }
+
     return (
         <>
         <header className="bg-white">
             <div className ="container-fluid">
-            <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4">
+                <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4">
                     <div className="d-flex">
                         <div className="user-drawer-toggle">
                             <AiOutlineAlignLeft size={30} 
@@ -91,9 +103,9 @@ const Header = ({selectedCategory, changeCategory}) => {
 
                     <div className={"collapse navbar-collapse"} id="navbarSupportedContent">
                         <ul className={"navbar-nav col-lg-8 ml-auto"}>
-                            <form className="form-inline rounded p-2 w-100">
-                                <AiOutlineSearch size={25}></AiOutlineSearch>
-                                <input className="border-0 ml-1" type="search" placeholder="Search your products from here" aria-label="Search" />
+                            <form onSubmit={handleSearchSubmit} className="form-inline rounded p-2 w-100">
+                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="hover-pointer"></AiOutlineSearch>
+                                <input className="border-0 ml-1" id="search-bar" type="search" placeholder="Search your products from here" aria-label="Search" />
                             </form>
                         </ul>
                         {
