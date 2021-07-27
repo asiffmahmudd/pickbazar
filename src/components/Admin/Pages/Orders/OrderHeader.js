@@ -1,19 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
 
-const OrderHeader = ({orderFilter}) => {
+const OrderHeader = ({orderFilter, handleSearch}) => {
 
     const [limit, setLimit] = useState('all')
     const [status, setStatus] = useState('all')
 
     const handleLimitFilter = (e) => {
         setLimit(e.target.value)
-        orderFilter(status, e.target.value)
+        orderFilter(status, e.target.value, true)
     }
 
     const handleStatusFilter = (e) => {
         setStatus(e.target.value)
-        orderFilter(e.target.value, limit)
+        orderFilter(e.target.value, limit, true)
     }
 
     return (
@@ -41,7 +41,7 @@ const OrderHeader = ({orderFilter}) => {
                         </select>
                     </div>
                     <div className="form-group col-lg-6">
-                        <input type="text" id="search" className="form-control" placeholder="Ex: Search By Address"/>
+                        <input type="text" id="search" onKeyUp={handleSearch} className="form-control" placeholder="Ex: Search By Address"/>
                     </div>
                 </div>
             </div>

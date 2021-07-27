@@ -43,26 +43,72 @@ const Orders = () => {
         return newList
     }
 
-    const orderFilter = (status, limit) => {
-        if(status === 'all' && limit === 'all'){
-            setOrders(allorders.slice())
-        }
-        else if(status === 'all' && limit !== 'all'){
-            let newList = sortByDate(allorders.slice())
-            setOrders(newList.slice(0, parseInt(limit)))
-        }
-        else if(status !== 'all' && limit === 'all'){
-            let newList = allorders.filter(item => item.status === status)
-            setOrders(newList)
+    
+    const [limitState, setLimitState] = useState("")
+    const limitFilter = (list, limit) => {
+        setLimitState(limit)
+        if(limit === "all"){
+            setOrders(list)
         }
         else{
-            let newList = sortByDate(allorders.slice())
-            newList = allorders.filter(item => item.status === status)
-            newList = newList.slice(0, parseInt(limit))
+            let newList = sortByDate(list.slice())
+            setOrders(newList.slice(0, parseInt(limit)))
+        }
+    }
+
+    const [orderFilterState, setOrderFilterState] = useState("");
+    const orderFilter = (status, limit, query) => {
+        console.log(status,limit,query)
+        setOrderFilterState(status)
+        if(search && query){
+            let newList = orders.slice()
+            newList = limitFilter(newList, limit)
             setOrders(newList)
         }
-        
+        else if(status === 'all'){
+            const newList = allorders.slice()
+            limitFilter(newList, limit)
+        }
+        else{
+            let newList = allorders.filter(item => item.status === status)
+            limitFilter(newList, limit)
+        }
     }
+
+    console.log(orderFilterState, limitState)
+    const [search, setSearch] = useState(false)
+    const handleSearch = (e) => {
+        if(e.target.value === ""){
+            setSearch(false)
+            if(orderFilterState !== "" || limitState !== ""){
+                orderFilter(orderFilterState, limitState, false)
+            }
+            else{
+                setOrders(allorders.slice())
+            }
+        }
+        else if(e.which === 13){
+            setSearch(true)
+            let newList = allorders.slice()
+            const word = e.target.value
+            newList = newList.filter(item => {
+                const arr = item.deliveryAddress.toLowerCase().split(" ")
+                const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+                return match ? true : false
+            })
+            if(orderFilterState || limitState){
+                orderFilter(orderFilterState, limitState, true)
+            }
+            else
+                setOrders(newList)
+        }
+    }
+
+    useState(() => {
+        setLimitState("")
+        setOrderFilterState("")
+        setOrders(allorders)
+    },[])
 
     return (
         <AdminLayout>
@@ -70,14 +116,14 @@ const Orders = () => {
             <div className="admin-orders admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <OrderHeader orderFilter={orderFilter} ></OrderHeader>
+                        <OrderHeader orderFilter={orderFilter} handleSearch={handleSearch} ></OrderHeader>
                     </div>
                     {
-                        !loading && orders.length === 0 &&
+                        !loading && orders?.length === 0 &&
                         <h2 className="text-center col-lg-12 mt-4">No orders found</h2>
                     }
                     {
-                        orders.length > 0 &&
+                        orders?.length > 0 &&
                         <div className="col-lg-12 admin-products-body mt-5">
                             <div className="table-responsive">
                                 <table className="table bg-white border table-borderless">

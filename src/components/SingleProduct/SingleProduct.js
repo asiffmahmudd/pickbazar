@@ -39,7 +39,17 @@ const SingleProduct = () => {
                         <div className="col-lg-6 cstm-padding">
                             <div className="p-4">
                                 <h3 className="single-product-title">{product.name}</h3>
-                                <p className="single-product-price">${product.price}</p>
+                                {
+                                    product.sale > 0 &&
+                                    <>
+                                        <s className="discount-price">${product.price}</s>
+                                        <h5 className="card-title d-inline-block ml-2">${product.sale}</h5> 
+                                    </>
+                                }
+                                {
+                                    product.sale === 0 &&
+                                    <h5 className="card-title">${product.price}</h5>
+                                }
                                 <p className="single-product-desc">{product.desc}</p>
                                 <ProductButton product={product}></ProductButton>
                                 <p className="single-product-tags">Tags: <strong>{product.tags.map(tag => tag.name+", ")}</strong></p>

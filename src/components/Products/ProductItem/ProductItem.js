@@ -21,7 +21,7 @@ const ProductItem = ({product}) => {
                 </div>
                 <div className="card-body">
                     {
-                        product.discount > 0 &&
+                        product.sale > 0 &&
                         <>
                             <h5 className="card-title">${product.sale}</h5> 
                             <span className="discount-price">${product.price}</span>
@@ -29,7 +29,7 @@ const ProductItem = ({product}) => {
                         </>
                     }
                     {
-                        product.discount === 0 &&
+                        product.sale === 0 &&
                         <h5 className="card-title">${product.price}</h5>
                     }
                     <p className="card-text">{product.name}</p>

@@ -99,8 +99,15 @@ const AdminProducts = () => {
 
     const forceUpdate = useForceUpdate();
 
-    const productFilter = (category, price) => {
-        if(category === "all"){
+    const [categoryFilterState, setCategoryFilterState] = useState("")
+    const productFilter = (category, price, query) => {
+        setCategoryFilterState(category)
+        if(search && query){
+            let newProductList = products.slice()
+            newProductList = priceFilter(newProductList, price)
+            setProducts(newProductList)
+        }
+        else if(category === "all"){
             let newProductList = allproducts.slice()
             newProductList = priceFilter(newProductList, price)
             setProducts(newProductList)
@@ -114,8 +121,10 @@ const AdminProducts = () => {
         forceUpdate()
     }
 
+    const [priceFilterState, setPriceFilterState] = useState("")
     const priceFilter = (pd, price) => {
         const newProductList = pd
+        setPriceFilterState(price)
         if(price === 'highest to lowest'){
             newProductList.sort((a, b) => {
                 if(a.sale > 0 && b.sale > 0){
@@ -151,6 +160,43 @@ const AdminProducts = () => {
         return newProductList
     }
 
+    const [searchLoading, setSearchLoading] = useState(false)
+    const [search,setSearch] = useState()
+    const handleSearch = (e) => {
+        let apiURL = ""
+        if(e.target.value === ""){
+            setSearch(false)
+            if(categoryFilterState !== "" || priceFilterState !== ""){
+                productFilter(categoryFilterState, priceFilterState, false)
+            }
+            else{
+                setProducts(allproducts.slice())
+            }
+        }
+        else if(e.which === 13){
+            setSearch(true)
+            apiURL = 'http://localhost:4000/products/'+e.target.value
+            setSearchLoading(true)
+            fetch(apiURL)
+            .then(res => res.json())
+            .then(result =>{
+                setSearchLoading(false)
+                let newList = result
+                if(priceFilterState){
+                    newList = priceFilter(result, priceFilterState, true)
+                }
+                setProducts(newList)
+            })
+        }
+        
+    }
+    
+    useEffect(() =>{
+        setCategoryFilterState("")
+        setPriceFilterState("")
+        setProducts(allproducts)
+    },[allproducts, setProducts])
+
     return (
         <AdminLayout >
             <div className="admin-products container-fluid">
@@ -158,6 +204,7 @@ const AdminProducts = () => {
                     <div className="admin-products-header col-lg-12 mt-5">
                         <AdminProductHeader 
                             productFilter={productFilter}
+                            handleSearch={handleSearch}
                         >
                         </AdminProductHeader>
                     </div>
@@ -176,6 +223,14 @@ const AdminProducts = () => {
                     <div className="col-lg-12 admin-products-body">
                         <Loading loading={loading}></Loading>
                         <div className="row pb-5">
+                            {
+                                searchLoading &&
+                                <div className="col-md-12 mt-4 text-center">
+                                    <div className="spinner-border" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            }
                             {
                                 !loading && products?.length === 0 &&
                                 <h1 className="col-md-12 mt-4 text-center">No products found</h1>

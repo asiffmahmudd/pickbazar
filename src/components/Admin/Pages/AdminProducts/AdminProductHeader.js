@@ -2,18 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import categories from '../../../../data/categories';
 
-const AdminProductHeader = ({productFilter}) => {
+const AdminProductHeader = ({productFilter, handleSearch}) => {
 
     const [categoryFilter, setCategoryFilter] = useState("all")
     const [priceFilter, setPriceFilter] = useState("")
 
     const handleCategory = (e) => {
         setCategoryFilter(e.target.value)
-        productFilter(e.target.value, priceFilter)
+        productFilter(e.target.value, priceFilter , true)
     }
     const handlePrice = (e) =>{ 
         setPriceFilter(e.target.value)
-        productFilter(categoryFilter, e.target.value)
+        productFilter(categoryFilter, e.target.value, true)
     }
 
     return (
@@ -41,7 +41,7 @@ const AdminProductHeader = ({productFilter}) => {
                         </select>
                     </div>
                     <div className="form-group col-lg-6">
-                        <input type="text" id="search" className="form-control" placeholder="Ex: Search By Name"/>
+                        <input type="text" id="search" className="form-control" onKeyUp={handleSearch} placeholder="Ex: Search By Name"/>
                     </div>
                 </div>
             </div>

@@ -93,16 +93,51 @@ const Category = () => {
         setIsAllChecked(false)
     }
 
-    const categoryFilter = (e) => {
-        if(e.target.value === "all"){
+    const [search, setSearch] = useState(false)
+    const categoryFilter = (value, query) => {
+        setCategoryFilterState(value)
+        if(search && query){
+            let newProductList = categories.slice()
+            setCategories(newProductList)
+        }
+        else if(value === "all"){
             setCategories(allcategories)
         }
         else{
-            const newCategories = allcategories.filter(item => item.type === e.target.value)
+            const newCategories = allcategories.filter(item => item.type === value)
             setCategories(newCategories)
         }
         resetSelection()
     }
+    
+    const [categoryFilterState, setCategoryFilterState] = useState(false)
+    const handleSearch = (e) => {
+        if(e.target.value === ""){
+            setSearch(false)
+            if(categoryFilterState){
+                categoryFilter(categoryFilterState, false)
+            }
+            else{
+                setCategories(allcategories.slice())
+            }
+        }
+        else if(e.which === 13){
+            setSearch(true)
+            let newList = allcategories.slice()
+            const word = e.target.value
+            newList = newList.filter(item => {
+                const arr = item.name.toLowerCase().split(" ")
+                const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+                return match ? true : false
+            })
+            setCategories(newList)
+        }
+    }
+
+    useEffect(() =>{
+        setCategoryFilterState(false)
+        setCategories(allcategories)
+    },[allcategories, setCategories])
 
     return (
         <AdminLayout>
@@ -110,7 +145,7 @@ const Category = () => {
             <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CategoryHeader categoryFilter={categoryFilter}></CategoryHeader>
+                        <CategoryHeader handleSearch={handleSearch} categoryFilter={categoryFilter}></CategoryHeader>
                     </div>
                     {
                         selected.length > 0 &&
