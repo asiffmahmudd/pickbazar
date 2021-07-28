@@ -137,6 +137,7 @@ const Category = () => {
             else{
                 setCategories(allcategories.slice())
             }
+            resetSelection()
         }
         else if(e.which === 13){
             setSearch(e.target.value)
@@ -150,6 +151,7 @@ const Category = () => {
             setCategories(newList)
             setTypeFilter("")
             setCategoryFilterState("")
+            resetSelection()
         }
     }
 

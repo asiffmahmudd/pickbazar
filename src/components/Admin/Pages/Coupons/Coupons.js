@@ -138,6 +138,7 @@ const Coupons = () => {
             else{
                 setCoupons(allcoupons.slice())
             }
+            resetSelection()
         }
         else if(e.which === 13){
             setSearch(e.target.value)
@@ -151,6 +152,7 @@ const Coupons = () => {
             setCoupons(newList)
             setStatusFilter("")
             setCouponFilterState("")
+            resetSelection()
         }
     }
 
