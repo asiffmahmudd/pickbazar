@@ -1,11 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
 import categories from '../../../../data/categories';
 
-const AdminProductHeader = ({productFilter, handleSearch}) => {
-
-    const [categoryFilter, setCategoryFilter] = useState("all")
-    const [priceFilter, setPriceFilter] = useState("")
+const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
 
     const handleCategory = (e) => {
         setCategoryFilter(e.target.value)
@@ -23,7 +19,7 @@ const AdminProductHeader = ({productFilter, handleSearch}) => {
             <div className="col-lg-10">
                 <div className ="row">
                     <div className="form-group col-lg-3">
-                        <select id="category" defaultValue="" onChange={handleCategory} className="form-control">
+                        <select id="category" value={categoryFilter} onChange={handleCategory} className="form-control">
                             <option value="" disabled >Category</option>
                             <option value="all">All</option>
                             {
@@ -34,7 +30,7 @@ const AdminProductHeader = ({productFilter, handleSearch}) => {
                         </select>
                     </div>
                     <div className="form-group col-lg-3">
-                        <select id="price" defaultValue="" onChange={handlePrice}  className="form-control">
+                        <select id="price" value={priceFilter} onChange={handlePrice}  className="form-control">
                             <option value="" disabled >Price</option>
                             <option value="lowest to highest">Lowest to highest</option>
                             <option value="highest to lowest">Highest to lowest</option>

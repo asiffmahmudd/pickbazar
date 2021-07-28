@@ -99,22 +99,32 @@ const AdminProducts = () => {
 
     const forceUpdate = useForceUpdate();
 
+    const [categoryFilter, setCategoryFilter] = useState("")
+    const [priceFilter, setPriceFilter] = useState("")
+
     const [categoryFilterState, setCategoryFilterState] = useState("")
-    const productFilter = (category, price, query) => {
+    const productFilter = async (category, price, query) => {
         setCategoryFilterState(category)
         if(search && query){
-            let newProductList = products.slice()
-            newProductList = priceFilter(newProductList, price)
-            setProducts(newProductList)
+            let newProductList = await handleSearchWithValue(search)
+            if(category === "all" || category === ""){
+                newProductList = priceFilterFunc(newProductList, price)
+                setProducts(newProductList)
+            }
+            else{
+                newProductList = newProductList.filter(pd => pd.category === category)
+                newProductList = priceFilterFunc(newProductList, price)
+                setProducts(newProductList)
+            }
         }
-        else if(category === "all"){
+        else if(category === "all" || category === ""){
             let newProductList = allproducts.slice()
-            newProductList = priceFilter(newProductList, price)
+            newProductList = priceFilterFunc(newProductList, price)
             setProducts(newProductList)
         }
         else{
             let newProductList = allproducts.filter(pd => pd.category === category)
-            newProductList = priceFilter(newProductList, price)
+            newProductList = priceFilterFunc(newProductList, price)
             setProducts(newProductList)
         }
         resetSelection()
@@ -122,7 +132,7 @@ const AdminProducts = () => {
     }
 
     const [priceFilterState, setPriceFilterState] = useState("")
-    const priceFilter = (pd, price) => {
+    const priceFilterFunc = (pd, price) => {
         const newProductList = pd
         setPriceFilterState(price)
         if(price === 'highest to lowest'){
@@ -160,12 +170,27 @@ const AdminProducts = () => {
         return newProductList
     }
 
+    const handleSearchWithValue = (searchValue) => {
+        let apiURL = 'http://localhost:4000/products/'+searchValue
+        setSearchLoading(true)
+        return fetch(apiURL)
+        .then(res => res.json())
+        .then(result =>{
+            setSearchLoading(false)
+            let newList = result
+            if(priceFilterState){
+                newList = priceFilterFunc(result, priceFilterState, true)
+            }
+            return newList
+        })
+    }
+
     const [searchLoading, setSearchLoading] = useState(false)
     const [search,setSearch] = useState()
     const handleSearch = (e) => {
         let apiURL = ""
         if(e.target.value === ""){
-            setSearch(false)
+            setSearch(null)
             if(categoryFilterState !== "" || priceFilterState !== ""){
                 productFilter(categoryFilterState, priceFilterState, false)
             }
@@ -174,7 +199,7 @@ const AdminProducts = () => {
             }
         }
         else if(e.which === 13){
-            setSearch(true)
+            setSearch(e.target.value)
             apiURL = 'http://localhost:4000/products/'+e.target.value
             setSearchLoading(true)
             fetch(apiURL)
@@ -182,13 +207,13 @@ const AdminProducts = () => {
             .then(result =>{
                 setSearchLoading(false)
                 let newList = result
-                if(priceFilterState){
-                    newList = priceFilter(result, priceFilterState, true)
-                }
+                setCategoryFilter("")
+                setPriceFilter("")
+                setCategoryFilterState("")
+                setPriceFilterState("")
                 setProducts(newList)
             })
         }
-        
     }
     
     useEffect(() =>{
@@ -205,6 +230,10 @@ const AdminProducts = () => {
                         <AdminProductHeader 
                             productFilter={productFilter}
                             handleSearch={handleSearch}
+                            categoryFilter={categoryFilter}
+                            setCategoryFilter={setCategoryFilter}
+                            priceFilter={priceFilter}
+                            setPriceFilter={setPriceFilter}
                         >
                         </AdminProductHeader>
                     </div>
