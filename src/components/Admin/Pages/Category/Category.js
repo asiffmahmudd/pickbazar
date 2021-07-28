@@ -93,12 +93,18 @@ const Category = () => {
         setIsAllChecked(false)
     }
 
-    const [search, setSearch] = useState(false)
+    const [search, setSearch] = useState("")
     const categoryFilter = (value, query) => {
         setCategoryFilterState(value)
         if(search && query){
-            let newProductList = categories.slice()
-            setCategories(newProductList)
+            let newProductList = handleSearchWithValue(search)
+            if(value === "all"){
+                setCategories(newProductList)
+            }
+            else{
+                newProductList = newProductList.filter(item => item.type === value)
+                setCategories(newProductList)
+            }
         }
         else if(value === "all"){
             setCategories(allcategories)
@@ -109,11 +115,22 @@ const Category = () => {
         }
         resetSelection()
     }
+
+    const handleSearchWithValue = (value) => {
+        let newList = allcategories.slice()
+        const word = value
+        newList = newList.filter(item => {
+            const arr = item.name.toLowerCase().split(" ")
+            const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+            return match ? true : false
+        })
+        return newList
+    }
     
     const [categoryFilterState, setCategoryFilterState] = useState(false)
     const handleSearch = (e) => {
         if(e.target.value === ""){
-            setSearch(false)
+            setSearch(null)
             if(categoryFilterState){
                 categoryFilter(categoryFilterState, false)
             }
@@ -122,7 +139,7 @@ const Category = () => {
             }
         }
         else if(e.which === 13){
-            setSearch(true)
+            setSearch(e.target.value)
             let newList = allcategories.slice()
             const word = e.target.value
             newList = newList.filter(item => {
@@ -131,10 +148,15 @@ const Category = () => {
                 return match ? true : false
             })
             setCategories(newList)
+            setTypeFilter("")
+            setCategoryFilterState("")
         }
     }
 
+    const [typeFilter, setTypeFilter] = useState("")
+
     useEffect(() =>{
+        setTypeFilter("")
         setCategoryFilterState(false)
         setCategories(allcategories)
     },[allcategories, setCategories])
@@ -145,7 +167,12 @@ const Category = () => {
             <div className="admin-category admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CategoryHeader handleSearch={handleSearch} categoryFilter={categoryFilter}></CategoryHeader>
+                        <CategoryHeader 
+                            handleSearch={handleSearch} 
+                            categoryFilter={categoryFilter}
+                            typeFilter={typeFilter}
+                            setTypeFilter={setTypeFilter}
+                        />
                     </div>
                     {
                         selected.length > 0 &&

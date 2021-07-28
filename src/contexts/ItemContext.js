@@ -32,6 +32,9 @@ export function ItemContextProvider({children}){
             setProducts(data)
             setAllProducts(data)
             setLoading(false)
+        }).catch(e => {
+            setLoading(false)
+            alert(e.message)
         })
     },[productChange])
 
@@ -44,6 +47,10 @@ export function ItemContextProvider({children}){
             setCategories(data)
             setCategoryLoading(false)
         })
+        .catch(e => {
+            setCategoryLoading(false)
+            alert(e.message)
+        })
     },[categoryChange])
 
     useEffect(() => {
@@ -54,6 +61,9 @@ export function ItemContextProvider({children}){
             setAllcoupons(data)
             setCoupons(data)
             setCouponLoading(false)
+        }).catch(e => {
+            setCouponLoading(false)
+            alert(e.message)
         })
     },[couponChange])
 

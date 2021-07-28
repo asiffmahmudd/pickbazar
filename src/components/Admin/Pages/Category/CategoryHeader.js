@@ -4,7 +4,7 @@ import { BiPlus } from "react-icons/bi";
 import { useState } from 'react';
 import CategoryDrawer from './CategoryDrawer';
 
-const CategoryHeader = ({categoryFilter, handleSearch}) => {
+const CategoryHeader = ({typeFilter, setTypeFilter, categoryFilter, handleSearch}) => {
 
     const [isCategoryDrawerOpen, setCategoryDrawerOpen] = useState(false);
 
@@ -17,7 +17,8 @@ const CategoryHeader = ({categoryFilter, handleSearch}) => {
     }
 
     const handleFilter = (e) => {
-        categoryFilter(e.target.value)
+        setTypeFilter(e.target.value)
+        categoryFilter(e.target.value, true)
     }
 
     return (
@@ -27,7 +28,7 @@ const CategoryHeader = ({categoryFilter, handleSearch}) => {
                 <div className="col-lg-10">
                     <div className ="row">
                         <div className="form-group col-lg-3">
-                            <select id="category" defaultValue="" onChange={handleFilter} className="form-control">
+                            <select id="category" value={typeFilter} onChange={handleFilter} className="form-control">
                                 <option value="" disabled>Category Type</option>
                                 <option value="all">All</option>
                                 <option value="Grocery">Grocery</option>

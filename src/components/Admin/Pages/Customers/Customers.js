@@ -29,17 +29,51 @@ const Customers = () => {
     },[])
     
     const forceUpdate = useForceUpdate()
-    const customerFilter = (e) => {
-        const newList = customers
-        if(e.target.value === 'highest to lowest'){
+    const customerFilter = (value, query) => {
+        let newList = allcustomers
+        setCustomerFilterState(value)
+        if(search && query){
+            newList = customers
+        }
+        if(value === 'highest to lowest'){
             newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? -1 : 1)
         }
-        else if(e.target.value === 'lowest to highest'){
+        else if(value === 'lowest to highest'){
             newList.sort((a, b) => (a.totalAmount > b.totalAmount) ? 1 : -1)
         } 
         setCustomers(newList)
         forceUpdate()
     }
+
+    const [customerFilterState, setCustomerFilterState] = useState("")
+    const [search, setSearch] = useState("")
+    const handleSearch = (e) => {
+        if(e.target.value === ""){
+            setSearch(false)
+            if(customerFilterState){
+                customerFilter(customerFilterState, false)
+            }
+            else{
+                setCustomers(allcustomers.slice())
+            }
+        }
+        else if(e.which === 13){
+            setSearch(e.target.value)
+            let newList = allcustomers.slice()
+            const number = e.target.value
+            newList = newList.filter(item => {
+                const arr = item.contactNumber
+                const match = arr.find(item2 => item2 === number || item2?.desc.startsWith(number))
+                return match ? true : false
+            })
+            setCustomers(newList)
+        }
+    }
+
+    useEffect(() => {
+        setCustomerFilterState("")
+        setCustomers(allcustomers)
+    },[allcustomers])
 
     return (
         <AdminLayout>
@@ -47,7 +81,10 @@ const Customers = () => {
             <div className="admin-customers admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CustomersHeader customerFilter={customerFilter}></CustomersHeader>
+                        <CustomersHeader 
+                            customerFilter={customerFilter}
+                            handleSearch={handleSearch}
+                        />
                     </div>
                     {
                         !loading && customers.length === 0 &&

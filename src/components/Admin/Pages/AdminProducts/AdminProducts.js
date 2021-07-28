@@ -197,6 +197,7 @@ const AdminProducts = () => {
             else{
                 setProducts(allproducts.slice())
             }
+            resetSelection()
         }
         else if(e.which === 13){
             setSearch(e.target.value)
@@ -213,6 +214,7 @@ const AdminProducts = () => {
                 setPriceFilterState("")
                 setProducts(newList)
             })
+            resetSelection()
         }
     }
     

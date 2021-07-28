@@ -22,7 +22,10 @@ const Orders = () => {
             setOrders(result)
             setLoading(false)
         })
-        .catch(e => alert(e.message))
+        .catch(e => {
+            setLoading(false)
+            alert(e.message)
+        })
     },[])
 
     const sortByDate = (orderList) => {

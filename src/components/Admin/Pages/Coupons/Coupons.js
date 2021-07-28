@@ -93,16 +93,71 @@ const Coupons = () => {
         setIsAllChecked(false)
     }
 
-    const couponFilter = (e) => {
-        if(e.target.value === 'all'){
+    const couponFilter = (value, query) => {
+        setCouponFilterState(value)
+        if(search && query){
+            let newList = handleSearchWithValue(search)
+            if(value === "all"){
+                setCoupons(newList)
+            }
+            else{
+                newList = newList.filter(item => item.status === value)
+                setCoupons(newList)
+            }
+        }
+        else if(value === 'all'){
             setCoupons(allcoupons)
         }
         else{
-            const newList = allcoupons.filter(item => item.status === e.target.value)
+            const newList = allcoupons.filter(item => item.status === value)
             setCoupons(newList)
         }
         resetSelection()
     }
+
+    const handleSearchWithValue = (value) => {
+        let newList = allcoupons.slice()
+        const word = value
+        newList = newList.filter(item => {
+            const arr = item.name.toLowerCase().split(" ")
+            const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+            return match ? true : false
+        })
+        return newList
+    }
+
+    const [search, setSearch] = useState("")
+    const [statusFilter, setStatusFilter] = useState("")
+    const [couponFilterState, setCouponFilterState] = useState(false)
+    const handleSearch = (e) => {
+        if(e.target.value === ""){
+            setSearch(null)
+            if(couponFilterState){
+                couponFilter(couponFilterState, false)
+            }
+            else{
+                setCoupons(allcoupons.slice())
+            }
+        }
+        else if(e.which === 13){
+            setSearch(e.target.value)
+            let newList = allcoupons.slice()
+            const word = e.target.value
+            newList = newList.filter(item => {
+                const arr = item.name.toLowerCase().split(" ")
+                const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+                return match ? true : false
+            })
+            setCoupons(newList)
+            setStatusFilter("")
+            setCouponFilterState("")
+        }
+    }
+
+    useEffect(() =>{
+        setCouponFilterState("")
+        setCoupons(allcoupons)
+    },[allcoupons, setCoupons])
 
     return (
         <AdminLayout>
@@ -110,15 +165,19 @@ const Coupons = () => {
             <div className="admin-coupon admin container-fluid">
                 <div className="row">
                     <div className="admin-products-header col-lg-12 mt-5">
-                        <CouponsHeader couponFilter={couponFilter}></CouponsHeader>
+                        <CouponsHeader 
+                            statusFilter={statusFilter}
+                            setStatusFilter={setStatusFilter}
+                            couponFilter={couponFilter}
+                            handleSearch={handleSearch}
+                        />
                     </div>
                     {
                         selected.length > 0 &&
                         <div className="col-lg-12 mt-3" style={{padding:0}}>
                             <DeleteBar
                                 handleBulkDelete={handleBulkDelete}
-                            >
-                            </DeleteBar>
+                            />
                         </div>
                     }
                     {
@@ -158,8 +217,7 @@ const Coupons = () => {
                                                     selected={selected}
                                                     handleSingleDelete={handleSingleDelete}
                                                     index={index}
-                                                >
-                                                </CouponItem>)
+                                                />)
                                             )
                                         }
                                         

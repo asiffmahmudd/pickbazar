@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BiPlus } from "react-icons/bi";
 import CouponDrawer from './CouponDrawer';
 
-const CouponsHeader = ({couponFilter}) => {
+const CouponsHeader = ({couponFilter, setStatusFilter, statusFilter, handleSearch}) => {
 
     const [isCouponDrawerOpen, setCouponDrawerOpen] = useState(false);
     
@@ -15,6 +15,12 @@ const CouponsHeader = ({couponFilter}) => {
         setCouponDrawerOpen(false);
     }
 
+    const handleFilter = (e) => {
+        setStatusFilter(e.target.value)
+        couponFilter(e.target.value, true)
+    }
+
+
     return (
         <>
             <div className="row header-content-row">
@@ -22,7 +28,7 @@ const CouponsHeader = ({couponFilter}) => {
                 <div className="col-lg-10">
                     <div className ="row">
                         <div className="form-group col-lg-3">
-                            <select id="category" onChange={couponFilter} defaultValue="" className="form-control">
+                            <select id="category" onChange={handleFilter} value={statusFilter} className="form-control">
                                 <option value="" disabled>Status</option>
                                 <option value="all">All</option>
                                 <option value="active">Active</option>
@@ -30,7 +36,7 @@ const CouponsHeader = ({couponFilter}) => {
                             </select>
                         </div>
                         <div className="form-group col-lg-6">
-                            <input type="text" id="search" className="form-control" placeholder="Ex: Search By Name"/>
+                            <input type="text" id="search" onKeyUp={handleSearch} className="form-control" placeholder="Ex: Search By Name"/>
                         </div>
                         <div className="col-lg-3">
                             <div className="add-category-btn" onClick={()=>handleCouponDrawerOpen("add")}>

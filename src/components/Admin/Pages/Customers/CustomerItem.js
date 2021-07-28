@@ -10,7 +10,7 @@ const CustomerItem = ({customer, index}) => {
                 <td>{customer.name}</td>
                 <td>{customer.contactNumber?customer.contactNumber[0].desc:""}</td>
                 <td>{customer.orders}</td>
-                <td>${customer.totalAmount}</td>
+                <td>${customer.totalAmount.toFixed(2)}</td>
                 <td>{customer.joiningDate}</td>
             </tr>
         </>
