@@ -3,10 +3,10 @@ import './SignupModal.css';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../../contexts/AuthContext';
 
-const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
-
-    
+const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {    
 
     const customStyles = {
         content : {
@@ -22,8 +22,25 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
         
-      };
+    };
 
+    const {signUpWithEmail, saveToken} = useAuth()
+    const { register, handleSubmit,reset } = useForm();
+
+    const onSubmit = async data => {
+        try{
+            await signUpWithEmail(data)
+            saveToken()
+            .then(idToken => {
+                reset()
+                localStorage.setItem('token', idToken)
+                handleClose()
+            })
+        }
+        catch(e){
+            alert(e.message)
+        }
+    };
 
     return (
         <Modal
@@ -39,12 +56,27 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
             <div className="modal-container">
                 <h4 className="theme-text text-center">Sign Up</h4>
                 <p className="text-center">By signing up, you agree to Pickbazar's Terms</p>
-                <form className="login">
+                <form className="login" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <input type="email" className="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input 
+                            type="email" 
+                            className="cstm-input" 
+                            id="email" 
+                            aria-describedby="emailHelp" 
+                            placeholder="Enter email" 
+                            {...register("email")}
+                            required
+                        />
                     </div>
                     <div className="form-group">
-                        <input type="password" className="cstm-input" id="password" placeholder="Password" />
+                        <input 
+                            type="password" 
+                            className="cstm-input" 
+                            id="password" 
+                            placeholder="Password" 
+                            {...register("password")}
+                            required
+                        />
                     </div>
                     <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
@@ -53,7 +85,7 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
                 
                 <SocialLogIn></SocialLogIn>
                 
-                <p className="form-text modal-text text-center">Already have an account? <span className="theme-text underline" onClick={handleLoginOpen}>Login</span></p>
+                <p className="form-text modal-text text-center">Already have an account? <span className="theme-text underline" onClick={handleLoginOpen}> Login</span></p>
             </div>
         </Modal>
     );

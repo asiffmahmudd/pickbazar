@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Header from '../Header/Header';
+import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
 import './OrderReceived.css'
 
 const OrderReceived = () => {
@@ -13,8 +13,7 @@ const OrderReceived = () => {
 
     return (
         <>
-            <Header></Header>
-
+            <UserDashboardHeader></UserDashboardHeader>
             <div className="order-received container" style={{marginTop:'6rem'}}>
                 <div className="row">
                     <div className="col-md-9 mx-auto mt-5 mb-5 bg-white rounded">

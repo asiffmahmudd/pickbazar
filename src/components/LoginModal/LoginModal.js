@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import './LoginModal.css';
 import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
+import { useAuth } from '../../contexts/AuthContext';
+import { useForm } from 'react-hook-form';
 
 
 const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen}) => {
@@ -21,8 +23,25 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
             backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
         
-      };
+    };
 
+    const {signInWithEmail, saveToken} = useAuth()
+    const { register, handleSubmit, reset } = useForm();
+
+    const onSubmit = async data => {
+        try{
+            await signInWithEmail(data)
+            saveToken()
+            .then(idToken => {
+                reset()
+                localStorage.setItem('token', idToken);
+                handleClose()
+            })
+        }
+        catch(e){
+            alert(e.message)
+        }
+    };
 
     return (
         <Modal
@@ -39,24 +58,39 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
             <div className="modal-container">
                 <h4 className="theme-text text-center">Welcome Back</h4>
                 <p className="text-center">Login with your email and password</p>
-                <form className="login">
+                <form className="login" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <input type="email" className="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input 
+                            type="email" 
+                            className="cstm-input" 
+                            id="email" 
+                            aria-describedby="emailHelp" 
+                            {...register("email")}
+                            placeholder="Enter email" 
+                            required
+                        />
                     </div>
                     <div className="form-group">
-                        <input type="password" className="cstm-input" id="password" placeholder="Password" />
+                        <input 
+                            type="password" 
+                            className="cstm-input" 
+                            id="password" 
+                            {...register("password")}
+                            placeholder="Password" 
+                            required
+                        />
                     </div>
                     <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
-                
                 <SocialLogIn handleClose={handleClose}></SocialLogIn>
-                
-                <p className="form-text modal-text text-center">Don't have any account? <span className="theme-text underline" onClick={handleSignupOpen}>Sign Up</span></p>
-            
-                
+                <p className="form-text modal-text text-center">Don't have any account? 
+                    <span className="theme-text underline" onClick={handleSignupOpen}> Sign Up</span>
+                </p>
             </div>
             <div className="forgot-password">
-                <p className="form-text text-center">Forgot your password? <span className="theme-text underline" onClick={handleResetOpen}>Reset It</span></p>
+                <p className="form-text text-center">Forgot your password? 
+                    <span className="theme-text underline" onClick={handleResetOpen}> Reset It</span>
+                </p>
             </div>
         </Modal>
     );

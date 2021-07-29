@@ -15,7 +15,6 @@ const SocialLogIn = ({handleClose}) => {
     const handleLogin = (media) => {
         loginWith(media)
         .then(data => {
-            console.log("6")
             handleClose()
             history.push(from)
         })
@@ -26,7 +25,9 @@ const SocialLogIn = ({handleClose}) => {
         <div className="cstm-separator">
             <span>or</span>
         </div>
-        <button className="btn form-btn fb-btn"><FaFacebookSquare color="white" size={22} style={{marginRight:"5px"}}/> Continue With Facebook</button>
+        <button className="btn form-btn fb-btn" onClick={()=>handleLogin('facebook')}>
+            <FaFacebookSquare color="white" size={22} style={{marginRight:"5px"}}/> Continue With Facebook
+        </button>
         <button className="btn form-btn google-btn" onClick={()=>handleLogin('google')}>
             <FaGoogle color="white" size={22} style={{marginRight:"5px"}}/> Continue With Google
         </button>

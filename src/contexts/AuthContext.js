@@ -14,7 +14,6 @@ export function AuthProvider({children}) {
 
     async function loginWith(media){
         let provider;
-        // setLoading(true)
         if(media === 'google')
             provider = new firebase.auth.GoogleAuthProvider();
         else if(media === 'facebook')
@@ -23,36 +22,32 @@ export function AuthProvider({children}) {
         if(data.additionalUserInfo.isNewUser){
             await saveUserData(data.user)
         }
-        else{
-            setLoading(false)
-        }
         return data;
     }
 
     async function signUpWithEmail(userData){
         await auth.createUserWithEmailAndPassword(userData.email, userData.password)
         var user = firebase.auth().currentUser;
-        await user.updateProfile({
-            displayName: userData.name
+        await saveUserData(user)
+        return user
+    }
+
+    async function passwordReset(email){
+        await auth.sendPasswordResetEmail(email)
+        .then(() => {
+            alert("An email has been sent to "+ email + " to reset your password. Please check your email")
         })
-        
-        auth.onAuthStateChanged(user => {
-            let currentUser;
-            if(user){
-                saveToken()
-                .then(idToken => {
-                    localStorage.setItem('token', idToken)
-                })
-                currentUser = {
-                    uid: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    photo: user.photoURL
-                }
-            }
-            setLoggedInUser(currentUser);
-            setLoading(false);
+        .catch((error) => {
+            alert(error.message);
+        });
+    }
+
+    async function verifyEmail(){
+        await auth.currentUser.sendEmailVerification()
+        .then(() => {
+            alert("An email containing the verification link has been sent to your email. Please refresh the page after verification")
         })
+        .catch(e => alert(e.message))
     }
 
     function signInWithEmail(user){
@@ -85,7 +80,7 @@ export function AuthProvider({children}) {
             totalAmount: 0,
             orders: 0 
         }
-        console.log(currentUser)
+        
         return fetch('http://localhost:4000/addCustomer/', {
             method: 'POST',
             headers: {
@@ -117,7 +112,8 @@ export function AuthProvider({children}) {
                     uid: user.uid,
                     name: user.displayName,
                     email: user.email,
-                    photo: user.photoURL
+                    photo: user.photoURL,
+                    emailVerified: user.emailVerified
                 }
             }
             setLoggedInUser(currentUser);
@@ -128,7 +124,7 @@ export function AuthProvider({children}) {
     },[])
 
     const value = {
-        loggedInUser,loginWith,logout, signInWithEmail, signUpWithEmail, saveToken
+        loggedInUser,loginWith,logout, signInWithEmail, signUpWithEmail, saveToken, passwordReset, verifyEmail,
     }
 
     return (

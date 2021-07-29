@@ -32,7 +32,7 @@ const UserDashboardHeader = () => {
                             <Link className="navbar-brand d-flex align-items-center" to="/"><img src={logo} alt="" /></Link>
                         </div>
                         <div className="dropdown user-icon hover-pointer ml-auto">
-                            <img className="dropdown-toggle" src={loggedInUser? loggedInUser.photo: user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                            <img className="dropdown-toggle" src={loggedInUser.photo? loggedInUser.photo: user} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <Link className="dropdown-item" to="/user/profile">Profile</Link>
                                 <Link className="dropdown-item" to="/user/orders">Your Orders</Link>

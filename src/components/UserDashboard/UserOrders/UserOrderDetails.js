@@ -35,7 +35,7 @@ const UserOrderDetails = ({orderDetails}) => {
             return exists? true : false
         }))
     }, [allproducts, orderDetails?.products])
-    console.log(allproducts,orderedProducts)
+    
     return (
         <div className="user-order-details border bg-white">
             <Loading loading={loading}></Loading>

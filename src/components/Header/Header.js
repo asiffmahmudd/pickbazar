@@ -10,6 +10,7 @@ import FilterDrawer from './FilterDrawer';
 import { useAuth } from '../../contexts/AuthContext';
 import { AiOutlineAlignLeft } from "react-icons/ai";
 import UserDrawer from './UserDrawer';
+import userIcon from '../../img/user.png';
 
 const Header = ({selectedCategory, changeCategory}) => {
 
@@ -118,7 +119,7 @@ const Header = ({selectedCategory, changeCategory}) => {
                             loggedInUser &&
                             <ul className="navbar-nav ml-auto user-menu">
                                 <div className="dropdown user-icon hover-pointer">
-                                    <img className="dropdown-toggle" src={loggedInUser.photo} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                                    <img className="dropdown-toggle" src={loggedInUser.photo?loggedInUser.photo:userIcon} alt="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/user/profile">Profile</Link>
                                         <Link className="dropdown-item" to="/user/orders">Your Orders</Link>

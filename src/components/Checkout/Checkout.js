@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './Checkout.css';
-import Header from '../Header/Header';
 import { useForm } from "react-hook-form";
 import OrderSummary from './OrderSummary';
 import PaymentSection from './PaymentSection';
@@ -16,6 +15,7 @@ import { useState } from 'react';
 import Loading from '../Loading/Loading';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCoupon } from '../../contexts/CouponContext';
+import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -210,7 +210,7 @@ const Checkout = () => {
 
     return (
         <>
-            <Header></Header>
+            <UserDashboardHeader></UserDashboardHeader>
             <Loading loading={couponLoading}></Loading>
             <Loading loading={orderLoading}></Loading>
             <Loading loading={customerLoading}></Loading>

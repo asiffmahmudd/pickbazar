@@ -28,6 +28,8 @@ import Reset from './components/Reset/Reset';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import AdminRoute from './components/AdminRoute/AdminRoute';
 import { ItemContextProvider } from './contexts/ItemContext';
+import VerifyEmail from './components/VerfiyEmail/VerifyEmail';
+import VerifyRoute from './components/VerifyRoute/VerifyRoute';
 
 function App() {
   
@@ -38,11 +40,11 @@ function App() {
           <Router>
             <Switch>
               <CouponContextProvider>
-                <Route exact path="/product/:id">
-                  <SingleProduct></SingleProduct>
-                </Route>
                 <Route exact path="/">
                   <PageLayout></PageLayout>  
+                </Route>
+                <Route exact path="/product/:id">
+                  <SingleProduct></SingleProduct>
                 </Route>
                 <Route exact path="/category/:index/:category">
                   <PageLayout></PageLayout>  
@@ -51,6 +53,9 @@ function App() {
                   <PageLayout></PageLayout>  
                 </Route>
                 
+                <VerifyRoute exact path="/verifyEmail">
+                  <VerifyEmail></VerifyEmail>
+                </VerifyRoute>
                 <PrivateRoute exact path="/user/profile">
                   <UserProfile></UserProfile>
                 </PrivateRoute>

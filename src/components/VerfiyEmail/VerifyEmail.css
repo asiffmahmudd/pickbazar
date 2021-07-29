@@ -1,0 +1,21 @@
+.verify-btn{
+    padding: 0px 30px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease 0s !important;
+    border-radius: 6px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    font-family: inherit !important;
+    border: 0px !important;
+    color: rgb(255, 255, 255) !important;
+    height: 48px !important;
+    background-color: #008d71 !important;
+}

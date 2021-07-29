@@ -28,7 +28,9 @@ const UserSocialLogin = () => {
             <div className="cstm-separator">
                 <span>or</span>
             </div>
-            <button className="btn form-btn fb-btn"><FaFacebookSquare color="white" size={22} style={{marginRight:"5px"}}/> Continue With Facebook</button>
+            <button className="btn form-btn fb-btn" onClick={()=>handleLogin('facebook')}>
+                <FaFacebookSquare color="white" size={22} style={{marginRight:"5px"}}/> Continue With Facebook
+            </button>
             <button className="btn form-btn google-btn" onClick={()=>handleLogin('google')}>
                 <FaGoogle color="white" size={22} style={{marginRight:"5px"}}/> Continue With Google
             </button>

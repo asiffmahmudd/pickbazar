@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { GrClose } from "react-icons/gr";
+import { useAuth } from '../../contexts/AuthContext';
+import { useForm } from 'react-hook-form';
 
 const ResetModal = ({resetIsOpen, handleClose, handleLoginOpen}) => {
     const customStyles = {
@@ -17,8 +19,23 @@ const ResetModal = ({resetIsOpen, handleClose, handleLoginOpen}) => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
         
-      };
+    };
 
+    const {passwordReset} = useAuth()
+    const { register, handleSubmit, reset } = useForm()
+
+    const onSubmit = async data => {
+        try{
+            await passwordReset(data.email)
+            .then(() => {
+                reset()
+                handleClose()
+            })
+        }
+        catch(e){
+            alert(e.message)
+        }
+    };
 
     return (
         <Modal
@@ -34,9 +51,16 @@ const ResetModal = ({resetIsOpen, handleClose, handleLoginOpen}) => {
             <div className="modal-container">
                 <h4 className="theme-text text-center">Forgot Password</h4>
                 <p className="text-center">We'll send you a link to reset your password</p>
-                <form className="reset">
+                <form className="reset" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <input type="email" className="cstm-input" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input type="email" 
+                            className="cstm-input" 
+                            id="email" 
+                            aria-describedby="emailHelp" 
+                            {...register("email")}
+                            placeholder="Enter email" 
+                            required
+                        />
                     </div>
                     <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
