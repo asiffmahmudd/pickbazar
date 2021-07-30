@@ -20,7 +20,6 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
             data.remainingCoupons = data.totalCoupons
         }
         data.creation = dayjs().format('LL')
-        console.log(data)
         let apiURL = ""
         if(!coupon){
             apiURL = 'http://localhost:4000/addCoupon'

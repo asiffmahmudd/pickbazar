@@ -17,7 +17,6 @@ const ContactSection = ({register,errors, customer}) => {
     useEffect(()=> {
         setNumbers(customer?.contactNumber || [])
     },[customer?.contactNumber])
-    console.log()
 
     const handleClose = () => {
         setAddContactIsOpen(false)

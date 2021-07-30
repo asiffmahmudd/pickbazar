@@ -32,7 +32,7 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
         background: bgColor
     }
     let deliveryDate;
-    if(order.deliverySchedule === 'express delivery'){
+    if(order.deliverySchedule === '90 min express delivery'){
         deliveryDate = order.deliverySchedule
     }
     else{

@@ -131,7 +131,6 @@ const Checkout = () => {
     }
     
     const onSubmit = async data => {
-        console.log('eer')
         if(data.paymentMethod === 'card'){
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
@@ -223,7 +222,7 @@ const Checkout = () => {
     },[loggedInUser.uid])
     useEffect(()=>{
         window.scrollTo(0, 0)
-    },[onSubmit])
+    },[])
 
     return (
         <>

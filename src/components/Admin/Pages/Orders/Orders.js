@@ -67,7 +67,6 @@ const Orders = () => {
         setOrderFilterState(status)
         if(search && query){
             let newList = handleSearchWithValue(search)
-            console.log(search, newList, status)
             if(status === 'all' || status === ""){
                 limitFilterFunc(newList, limitnumber)
             }

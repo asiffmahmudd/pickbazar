@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { MdAddShoppingCart } from "react-icons/md";
@@ -6,12 +6,92 @@ import { BiUserCircle } from "react-icons/bi";
 import { RiTruckLine } from "react-icons/ri";
 import { BsArrowUp } from "react-icons/bs";
 import { BsArrowDown } from "react-icons/bs";
-
-import './Dashboard.css'
+import './Dashboard.css';
+import Loading from '../../../Loading/Loading';
 
 const Dashboard = () => {
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        fetch('http://localhost:4000/orders')
+        .then(res => res.json())
+        .then(orders =>{
+            fetch('http://localhost:4000/customers')
+            .then(res => res.json())
+            .then(customers => {
+                calculate(orders, customers)
+            })
+        })
+    },[])
+
+    const [previousRevenue, setPreviousRevenue] = useState(0)
+    const [currentRevenue, setCurrentRevenue] = useState(0)
+    const [previousOrders, setPreviousOrders] = useState(0)
+    const [currentOrders, setCurrentOrders] = useState(0);
+    const [previousDelivered, setPreviousDelivered] = useState(0)
+    const [currentDelivered, setCurrentDelivered] = useState(0);
+    const [previousCustomers, setPreviousCustomers] = useState(0);
+    const [currentCustomers, setCurrentCustomers] = useState(0);
+
+    const calculate = (orders, customers) => {
+        let previousRevenue = 0, currentRevenue = 0;
+        let previousOrders = 0, currentOrders = 0;
+        let previousDelivered = 0, currentDelivered = 0;
+        let previousCustomers = 0, currentCustomers = 0;
+
+        let currentTimelineStart = new Date(new Date().toDateString())
+        let currentTimelineEnd = new Date(new Date().toDateString())
+        currentTimelineStart.setDate(currentTimelineStart.getDate() - 30)
+        currentTimelineEnd.setHours(23, 59, 59, 999)
+        let previousTimelineStart = new Date(new Date().toDateString())
+        let previousTimelineEnd = new Date(new Date().toDateString())
+        previousTimelineStart.setDate(previousTimelineStart.getDate() - 60)
+        previousTimelineEnd.setDate(currentTimelineStart.getDate() - 1)
+        previousTimelineEnd.setHours(23, 59, 59, 999)
+
+        orders.map(item => {
+            let orderDate = new Date(item.orderDate)
+            if(orderDate >= currentTimelineStart && orderDate <= currentTimelineEnd){
+                currentRevenue += item.amount;
+                currentOrders++
+                if(item.status === "delivered"){
+                    currentDelivered++
+                }
+            }
+            else if(orderDate >= previousTimelineStart && orderDate <= previousTimelineEnd){
+                previousRevenue += item.amount;
+                previousOrders++
+                if(item.status === "delivered"){
+                    previousDelivered++
+                }
+            }
+            return 0;
+        })
+        customers.map(item => {
+            let joiningDate = new Date(item.joiningDate)
+            if(joiningDate >= currentTimelineStart && joiningDate <= currentTimelineEnd){
+                currentCustomers++;
+            }
+            else if(joiningDate >= previousTimelineStart && joiningDate <= previousTimelineEnd){
+                previousCustomers++;
+            }
+            return 0;
+        })
+        setPreviousRevenue(previousRevenue)
+        setCurrentRevenue(currentRevenue)
+        setPreviousOrders(previousOrders)
+        setCurrentOrders(currentOrders)
+        setPreviousDelivered(previousDelivered)
+        setCurrentDelivered(currentDelivered)
+        setPreviousCustomers(previousCustomers)
+        setCurrentCustomers(currentCustomers)
+        setLoading(false)
+    }
+
     return (
         <AdminLayout>
+            <Loading loading={loading}></Loading>
             <div className="dashboard w-100">
                 <div className="row mt-4">
                     <div className="col-md-3 mt-4">
@@ -26,8 +106,22 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="card-info mt-5">
-                                <h4 className="revenue">$766.45</h4>
-                                <p className="revenue-info up mt-3"><BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> Revenue Up <span>(previous 30 days)</span></p> 
+                                <h4 className="revenue">${currentRevenue.toFixed(2)}</h4>
+                                <p className={"revenue-info mt-3 "+(previousRevenue <= currentRevenue ?"up":"down")}>
+                                    {
+                                        previousRevenue <= currentRevenue ?
+                                        <>
+                                            <BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> 
+                                             Revenue Up 
+                                        </>
+                                        :
+                                        <>
+                                            <BsArrowDown color="rgb(255, 110, 110)" size={20} style={{marginTop:"-5px"}}></BsArrowDown> 
+                                             Revenue  Down
+                                        </>
+                                    }
+                                    <span> (previous 30 days)</span>
+                                </p> 
                             </div>
                         </div>
                     </div>
@@ -44,8 +138,21 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="card-info mt-5">
-                                <h4 className="revenue">115</h4>
-                                <p className="revenue-info down mt-3"><BsArrowDown color="rgb(255, 110, 110)" size={20} style={{marginTop:"-5px"}}></BsArrowDown> Order Down <span>(previous 30 days)</span></p> 
+                                <h4 className="revenue">{currentOrders}</h4>
+                                <p className={"revenue-info mt-3 "+(previousOrders <= currentOrders ?"up":"down")}>
+                                    {
+                                        previousOrders <= currentOrders ?
+                                        <>
+                                            <BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> 
+                                             Order Up 
+                                        </>
+                                        :
+                                        <>
+                                            <BsArrowDown color="rgb(255, 110, 110)" size={20} style={{marginTop:"-5px"}}></BsArrowDown> 
+                                             Order  Down
+                                        </>
+                                    }<span> (previous 30 days)</span>
+                                </p> 
                             </div>
                         </div>
                     </div>
@@ -62,8 +169,21 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="card-info mt-5">
-                                <h4 className="revenue">98</h4>
-                                <p className="revenue-info up mt-3"><BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> Delivery Up <span>(previous 30 days)</span></p> 
+                                <h4 className="revenue">{currentDelivered}</h4>
+                                <p className={"revenue-info mt-3 "+(previousDelivered <= currentDelivered ?"up":"down")}>
+                                    {
+                                        previousDelivered <= currentDelivered ?
+                                        <>
+                                            <BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> 
+                                            Delivery Up 
+                                        </>
+                                        :
+                                        <>
+                                            <BsArrowDown color="rgb(255, 110, 110)" size={20} style={{marginTop:"-5px"}}></BsArrowDown> 
+                                             Delivery  Down
+                                        </>
+                                    }<span> (previous 30 days)</span>
+                                </p> 
                             </div>
                         </div>
                     </div>
@@ -80,8 +200,21 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="card-info mt-5">
-                                <h4 className="revenue">30</h4>
-                                <p className="revenue-info up mt-3"><BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> Customer Up <span>(previous 30 days)</span></p> 
+                                <h4 className="revenue">{currentCustomers}</h4>
+                                <p className={"revenue-info mt-3 "+(previousCustomers <= currentCustomers ?"up":"down")}>
+                                    {
+                                        previousCustomers <= currentCustomers ?
+                                        <>
+                                            <BsArrowUp color="rgb(39, 199, 183)" size={20} style={{marginTop:"-5px"}}></BsArrowUp> 
+                                             Customers Up 
+                                        </>
+                                        :
+                                        <>
+                                            <BsArrowDown color="rgb(255, 110, 110)" size={20} style={{marginTop:"-5px"}}></BsArrowDown> 
+                                             Customers  Down
+                                        </>
+                                    }<span> (previous 30 days)</span>
+                                </p> 
                             </div>
                         </div>
                     </div>
