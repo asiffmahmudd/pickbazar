@@ -30,10 +30,10 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
     const saveToDatabase = (data) =>{
         let apiURL = ""
         if(!category){
-            apiURL = 'http://localhost:4000/addCategory'
+            apiURL = 'https://pickbazar-clone.herokuapp.com/addCategory'
         }
         else{
-            apiURL = 'http://localhost:4000/updateCategory/'+category._id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCategory/'+category._id
         }
         fetch(apiURL, {
             method: category? 'PUT' : 'POST',

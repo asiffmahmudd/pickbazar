@@ -15,7 +15,7 @@ const Customers = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:4000/customers')
+        fetch('https://pickbazar-clone.herokuapp.com/customers')
         .then(res => res.json())
         .then(result => {
             setLoading(false)

@@ -25,7 +25,7 @@ const Products = ({selectedCategory}) => {
     }
     else if(searchQuery){
       setLoading(true)
-      fetch('http://localhost:4000/products/'+searchQuery)
+      fetch('https://pickbazar-clone.herokuapp.com/products/'+searchQuery)
       .then(res => res.json())
       .then(result =>{
         setLoading(false)

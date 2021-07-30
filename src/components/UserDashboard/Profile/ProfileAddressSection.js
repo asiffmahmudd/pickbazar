@@ -42,7 +42,7 @@ const ProfileAddressSection = ({customer}) => {
 
     const updateAddressInDatabase = (newList) => {
         setLoading(true)
-        fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
+        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerAddress/'+loggedInUser.uid, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

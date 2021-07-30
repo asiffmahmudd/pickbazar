@@ -26,7 +26,7 @@ const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselect
         setCouponLoading(true)
         coupon.status = event.target.value
         setStatusColor(selectColor(event.target.value))
-        fetch('http://localhost:4000/updateCouponStatus/'+coupon._id, {
+        fetch('https://pickbazar-clone.herokuapp.com/updateCouponStatus/'+coupon._id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

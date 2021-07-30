@@ -49,10 +49,10 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     const saveToDatabase = (data) => {
         let apiURL = ""
         if(!product){
-            apiURL = 'http://localhost:4000/addproduct'
+            apiURL = 'https://pickbazar-clone.herokuapp.com/addproduct'
         }
         else{
-            apiURL = 'http://localhost:4000/updateProduct/'+product._id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product._id
         }
         fetch(apiURL, {
             method: product? 'PUT' : 'POST',

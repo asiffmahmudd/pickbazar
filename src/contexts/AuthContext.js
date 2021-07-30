@@ -81,7 +81,7 @@ export function AuthProvider({children}) {
             orders: 0 
         }
         
-        return fetch('http://localhost:4000/addCustomer/', {
+        return fetch('https://pickbazar-clone.herokuapp.com/addCustomer/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

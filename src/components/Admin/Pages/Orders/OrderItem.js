@@ -27,7 +27,7 @@ const OrderItem = ({order,index}) => {
         setLoading(true)
         setStatusColor(selectColor(event.target.value))
         order.status = event.target.value
-        fetch('http://localhost:4000/updateOrderStatus/'+order._id, {
+        fetch('https://pickbazar-clone.herokuapp.com/updateOrderStatus/'+order._id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

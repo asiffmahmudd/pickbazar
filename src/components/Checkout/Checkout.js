@@ -85,7 +85,7 @@ const Checkout = () => {
             }
         })
         items.map(async item => {
-            await fetch('http://localhost:4000/updateProductQuantity', {
+            await fetch('https://pickbazar-clone.herokuapp.com/updateProductQuantity', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const Checkout = () => {
     }
 
     const updateCustomerData = async () =>{
-        await fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+        await fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`
@@ -116,7 +116,7 @@ const Checkout = () => {
             const currentOrder = result[0].orders || 0
             const totalAmount = currentAmount + totalPrice - discount
             const orders = currentOrder + 1
-            await fetch('http://localhost:4000/updateCustomerOrder/'+loggedInUser.uid,{
+            await fetch('https://pickbazar-clone.herokuapp.com/updateCustomerOrder/'+loggedInUser.uid,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ const Checkout = () => {
         setOrderLoading(true)
         updateProduct(items)
         updateCustomerData()
-        fetch('http://localhost:4000/addOrder',{
+        fetch('https://pickbazar-clone.herokuapp.com/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -179,7 +179,7 @@ const Checkout = () => {
         
         if(appliedCoupon){
             setCouponLoading(true)
-            fetch('http://localhost:4000/updateCoupon/'+appliedCoupon._id, {
+            fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon._id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -204,7 +204,7 @@ const Checkout = () => {
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
         setCustomerLoading(true)
-        fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+        fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`

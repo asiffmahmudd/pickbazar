@@ -15,7 +15,7 @@ const Orders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch('http://localhost:4000/orders')
+        fetch('https://pickbazar-clone.herokuapp.com/orders')
         .then(res => res.json())
         .then(result => {
             setAllOrders(result)

@@ -14,10 +14,10 @@ const Dashboard = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:4000/orders')
+        fetch('https://pickbazar-clone.herokuapp.com/orders')
         .then(res => res.json())
         .then(orders =>{
-            fetch('http://localhost:4000/customers')
+            fetch('https://pickbazar-clone.herokuapp.com/customers')
             .then(res => res.json())
             .then(customers => {
                 calculate(orders, customers)

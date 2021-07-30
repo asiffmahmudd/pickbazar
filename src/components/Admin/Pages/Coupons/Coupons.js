@@ -34,7 +34,7 @@ const Coupons = () => {
     const handleBulkDelete = () => {
         setCouponLoading(true)
         const selectedIds = selected.map(item => item._id) 
-        fetch(`http://localhost:4000/deleteBulkCoupon/`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCoupon/`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const Coupons = () => {
 
     const handleSingleDelete = (id) => {
         setCouponLoading(true)
-        fetch(`http://localhost:4000/deleteCoupon/${id}`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteCoupon/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

@@ -23,7 +23,7 @@ const AdminProducts = () => {
     const handleBulkDelete = () => {
         setLoading(true)
         const selectedIds = selected.map(item => item._id) 
-        fetch(`http://localhost:4000/deleteBulkProduct/`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkProduct/`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const AdminProducts = () => {
 
     const handleSingleDelete = (id) => {
         setLoading(true)
-        fetch(`http://localhost:4000/deleteProduct/${id}`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteProduct/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -171,7 +171,7 @@ const AdminProducts = () => {
     }
 
     const handleSearchWithValue = (searchValue) => {
-        let apiURL = 'http://localhost:4000/products/'+searchValue
+        let apiURL = 'https://pickbazar-clone.herokuapp.com/products/'+searchValue
         setSearchLoading(true)
         return fetch(apiURL)
         .then(res => res.json())
@@ -201,7 +201,7 @@ const AdminProducts = () => {
         }
         else if(e.which === 13){
             setSearch(e.target.value)
-            apiURL = 'http://localhost:4000/products/'+e.target.value
+            apiURL = 'https://pickbazar-clone.herokuapp.com/products/'+e.target.value
             setSearchLoading(true)
             fetch(apiURL)
             .then(res => res.json())

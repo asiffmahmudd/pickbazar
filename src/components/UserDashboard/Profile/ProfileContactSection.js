@@ -44,7 +44,7 @@ const ProfileContactSection = ({customer}) => {
 
     const updateNumbersInDatabase = (newList) => {
         setLoading(true)
-        fetch('http://localhost:4000/updateCustomerContact/'+loggedInUser.uid, {
+        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

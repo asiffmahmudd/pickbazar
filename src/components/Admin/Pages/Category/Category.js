@@ -34,7 +34,7 @@ const Category = () => {
     const handleBulkDelete = () => {
         setCategoryLoading(true)
         const selectedIds = selected.map(item => item._id) 
-        fetch(`http://localhost:4000/deleteBulkCategory/`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCategory/`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const Category = () => {
 
     const handleSingleDelete = (id) => {
         setCategoryLoading(true)
-        fetch(`http://localhost:4000/deleteCategory/${id}`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteCategory/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

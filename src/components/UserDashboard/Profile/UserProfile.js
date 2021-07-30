@@ -14,7 +14,7 @@ const UserProfile = () => {
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
         setCustomerLoading(true)
-        fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+        fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`

@@ -22,10 +22,10 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
         data.creation = dayjs().format('LL')
         let apiURL = ""
         if(!coupon){
-            apiURL = 'http://localhost:4000/addCoupon'
+            apiURL = 'https://pickbazar-clone.herokuapp.com/addCoupon'
         }
         else{
-            apiURL = 'http://localhost:4000/updateCoupon/'+coupon._id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCoupon/'+coupon._id
         }
 
         fetch(apiURL, {

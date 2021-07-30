@@ -18,7 +18,7 @@ const UserOrders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch(`http://localhost:4000/orders/`+userId,{
+        fetch(`https://pickbazar-clone.herokuapp.com/orders/`+userId,{
             method: 'GET',
             headers: { 
                 'Content-Type': 'application/json',

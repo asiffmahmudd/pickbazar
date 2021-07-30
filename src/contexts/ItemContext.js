@@ -26,7 +26,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:4000/products')
+        fetch('https://pickbazar-clone.herokuapp.com/products')
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -40,7 +40,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setCategoryLoading(true)
-        fetch('http://localhost:4000/categories')
+        fetch('https://pickbazar-clone.herokuapp.com/categories')
         .then(res => res.json())
         .then(data => {
             setAllCategories(data)
@@ -55,7 +55,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setCouponLoading(true)
-        fetch('http://localhost:4000/coupons')
+        fetch('https://pickbazar-clone.herokuapp.com/coupons')
         .then(res => res.json())
         .then(data => {
             setAllcoupons(data)
