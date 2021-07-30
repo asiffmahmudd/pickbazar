@@ -43,12 +43,12 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
         newDate.setDate(newDate.getDate() + 7)
         deliveryDate = dayjs(newDate).format('LL')
     }
-
+    
     return (
         <div className={"order-item mt-3 "+(index === 0?"active":"")} onClick={() => changeClass(index)}>
             <div className="order-item-header pt-3 pl-3 pr-3">
                 <div className="d-flex justify-content-between align-items-center">
-                    <p><strong>Order</strong>#{index+1}</p>
+                    <p><strong>Order</strong>#{order.orderId}</p>
                     <p className="user-order-item-status text-capitalize" style={customStyle}>{order.status}</p>
                 </div>
             </div>

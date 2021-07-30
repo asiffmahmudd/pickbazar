@@ -158,7 +158,7 @@ const Orders = () => {
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">Customer ID</th>
+                                            <th scope="col">Customer Email</th>
                                             <th scope="col">Date</th>
                                             <th scope="col">Delivery Address</th>
                                             <th scope="col">Amount</th>

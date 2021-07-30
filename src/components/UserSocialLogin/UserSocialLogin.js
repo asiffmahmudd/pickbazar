@@ -5,7 +5,7 @@ import { useHistory, useLocation} from "react-router-dom";
 
 const UserSocialLogin = () => {
 
-    const {loginWith} = useAuth();
+    const {loginWith, saveToken} = useAuth();
     let history = useHistory();
     let location = useLocation();
 
@@ -15,6 +15,10 @@ const UserSocialLogin = () => {
         try{
             loginWith(media)
             .then(data => {
+                saveToken()
+                .then(idToken => {
+                    localStorage.setItem('token', idToken)
+                })
                 history.replace(from)
             })
         }

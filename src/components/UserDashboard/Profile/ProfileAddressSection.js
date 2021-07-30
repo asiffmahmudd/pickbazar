@@ -45,7 +45,8 @@ const ProfileAddressSection = ({customer}) => {
         fetch('http://localhost:4000/updateCustomerAddress/'+loggedInUser.uid, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(newList)
             })

@@ -45,7 +45,7 @@ const OrderItem = ({order,index}) => {
             alert(error.message)
         })
     }
-
+    
     useEffect(() => {
         setStatusColor(selectColor(order.status))
     }, [order])
@@ -55,7 +55,7 @@ const OrderItem = ({order,index}) => {
         <Loading loading={loading}></Loading>
         <tr>
             <th scope="row">{index+1}</th>
-            <td>{order.customerId}</td>
+            <td>{order.customerEmail}</td>
             <td>{order.orderDate}</td>
             <td>{order.deliveryAddress}</td>
             <td>${(order.amount-order.discount).toFixed(2)}</td>

@@ -80,10 +80,12 @@ function App() {
               
 
                 <ProductDrawerProvider>
+                  <AdminRoute exact path="/admin">
+                    <Dashboard></Dashboard>
+                  </AdminRoute>
                   <AdminRoute exact path="/admin/dashboard">
                     <Dashboard></Dashboard>
                   </AdminRoute>
-                  
                   <AdminRoute exact path="/admin/category">
                     <Category></Category>
                   </AdminRoute>

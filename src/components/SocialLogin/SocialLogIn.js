@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 const SocialLogIn = ({handleClose}) => {
 
-    const {loginWith} = useAuth()
+    const {loginWith, saveToken} = useAuth()
     let history = useHistory();
     let location = useLocation();
 
@@ -15,6 +15,11 @@ const SocialLogIn = ({handleClose}) => {
     const handleLogin = (media) => {
         loginWith(media)
         .then(data => {
+            saveToken()
+            .then(idToken => {
+                localStorage.setItem('token', idToken)
+                handleClose()
+            })
             handleClose()
             history.push(from)
         })

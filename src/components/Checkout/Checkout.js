@@ -88,7 +88,7 @@ const Checkout = () => {
             await fetch('http://localhost:4000/updateProductQuantity', {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(item)
             })
@@ -104,7 +104,12 @@ const Checkout = () => {
     }
 
     const updateCustomerData = async () =>{
-        await fetch('http://localhost:4000/customer/'+loggedInUser.uid)
+        await fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(async result => {
             const currentAmount = result[0].totalAmount || 0
@@ -114,7 +119,8 @@ const Checkout = () => {
             await fetch('http://localhost:4000/updateCustomerOrder/'+loggedInUser.uid,{
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify({totalAmount:totalAmount, orders:orders})
             })
@@ -125,6 +131,7 @@ const Checkout = () => {
     }
     
     const onSubmit = async data => {
+        console.log('eer')
         if(data.paymentMethod === 'card'){
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
@@ -132,6 +139,7 @@ const Checkout = () => {
         
         data.orderId = uniqid()
         data.customerId = loggedInUser.uid
+        data.customerEmail = loggedInUser.email
         data.orderDate = dayjs().format('LLL') 
         data.amount = totalPrice
         data.discount = discount
@@ -150,7 +158,8 @@ const Checkout = () => {
         fetch('http://localhost:4000/addOrder',{
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(data)
         })
@@ -196,7 +205,12 @@ const Checkout = () => {
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
         setCustomerLoading(true)
-        fetch('http://localhost:4000/customer/'+loggedInUser.uid)
+        fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(result => {
             setCustomer(result)
@@ -207,6 +221,9 @@ const Checkout = () => {
             alert(e.message)
         })
     },[loggedInUser.uid])
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[onSubmit])
 
     return (
         <>

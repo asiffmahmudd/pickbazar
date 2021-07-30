@@ -14,7 +14,12 @@ const UserProfile = () => {
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
         setCustomerLoading(true)
-        fetch('http://localhost:4000/customer/'+loggedInUser.uid)
+        fetch('http://localhost:4000/customer/'+loggedInUser.uid,{
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(result => {
             setCustomer(result)

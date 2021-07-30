@@ -18,7 +18,13 @@ const UserOrders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch(`http://localhost:4000/orders/`+userId)
+        fetch(`http://localhost:4000/orders/`+userId,{
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             if(data){
