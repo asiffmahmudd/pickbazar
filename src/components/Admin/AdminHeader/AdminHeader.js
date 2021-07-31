@@ -73,7 +73,7 @@ const AdminHeader = ({setSidebarOpen}) => {
                                 }
                                 {
                                     unreadNotifications > 0 &&
-                                    notifications.map(item => <><p className="notification-item text-center">{item.desc}</p><hr style={{margin:0}}/></>)
+                                    notifications.map(item => <><p className="notification-item text-left pl-2">{item.desc}</p><hr style={{margin:0}}/></>)
                                 }
                                 </div>
 

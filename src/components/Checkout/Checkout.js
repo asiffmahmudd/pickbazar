@@ -164,6 +164,7 @@ const Checkout = () => {
         })
         .then(res => res.json())
         .then(async result => {
+            console.log(loggedInUser)
             if(result){
                 const notification = {
                     desc:'Order placed by '+(loggedInUser.email?loggedInUser.email:loggedInUser.displayName),
