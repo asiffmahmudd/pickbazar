@@ -9,6 +9,7 @@
     <li>User can see their order history</li>
     <li>Sorting and filter option in admin</li>
     <li>Category sorting for users</li>
+    <li>Sign up, login using google, facebook and email</li>
   </ul>
 </h3>
 <h3>Technologies used: React, Redux, Stripe, React-Router, React-hook-form, react-dropzone, Express, NodeJs, MongoDB, Bootstrap, JSX, CSS, Firebase, Heroku</h3>
