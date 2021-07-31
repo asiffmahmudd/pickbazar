@@ -19,6 +19,7 @@ export function AuthProvider({children}) {
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
         const data = await auth.signInWithPopup(provider)
+        console.log('here', data)
         if(data.additionalUserInfo.isNewUser){
             await saveUserData(data.user)
         }
