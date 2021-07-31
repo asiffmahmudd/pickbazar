@@ -11,5 +11,5 @@
     <li>Category sorting for users</li>
   </ul>
 </h3>
-<h3>Technologies used: React, Redux, Stripe, React-hook-form, react-dropzone, Express, NodeJs, MongoDB, Bootstrap, JSX, CSS, Firebase, Heroku</h3>
+<h3>Technologies used: React, Redux, Stripe, React-Router, React-hook-form, react-dropzone, Express, NodeJs, MongoDB, Bootstrap, JSX, CSS, Firebase, Heroku</h3>
 <h1><a href="https://pickbazar-acec8.web.app/" target="_blank">Click here to see live</a></h1>
