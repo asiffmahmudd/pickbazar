@@ -116,6 +116,7 @@ export function AuthProvider({children}) {
                     email: user.email,
                     photo: user.photoURL,
                     emailVerified: user.emailVerified,
+                    providerId: user.providerData[0].providerId,
                 }
             }
             setLoggedInUser(currentUser);
