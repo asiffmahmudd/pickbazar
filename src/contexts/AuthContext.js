@@ -18,14 +18,11 @@ export function AuthProvider({children}) {
             provider = new firebase.auth.GoogleAuthProvider();
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
-        const data = await auth.signInWithPopup(provider)
-        .then(async ()=>{
-            if(data.additionalUserInfo.isNewUser){
-                await saveUserData(data.user)
-            }
-        })
-        .catch(e=> alert(e.message))
-        console.log(data)
+        const data = await auth.signInWithPopup(provider).catch(e=> alert(e.message))
+        console.log('here', data)
+        if(data && data.additionalUserInfo.isNewUser){
+            await saveUserData(data.user)
+        }
         return data;
     }
 
@@ -118,7 +115,6 @@ export function AuthProvider({children}) {
                     email: user.email,
                     photo: user.photoURL,
                     emailVerified: user.emailVerified,
-                    providerId: user.additionalUserInfo.providerId
                 }
             }
             setLoggedInUser(currentUser);
