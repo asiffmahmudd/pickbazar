@@ -19,7 +19,6 @@ export function AuthProvider({children}) {
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
         const data = await auth.signInWithPopup(provider).catch(e=> alert(e.message))
-        console.log('here', data)
         if(data && data.additionalUserInfo.isNewUser){
             await saveUserData(data.user)
         }
@@ -60,7 +59,7 @@ export function AuthProvider({children}) {
     }
 
     function saveToken(){
-        return firebase.auth().currentUser.getIdToken(true)
+        return firebase.auth().currentUser?.getIdToken(true)
             .then(function(idToken) {
             return idToken;
         }).catch(function(error) {
@@ -105,7 +104,6 @@ export function AuthProvider({children}) {
         const unsubscribe = auth.onAuthStateChanged(user => {
             let currentUser;
             if(user){
-                console.log("in effect",user)
                 saveToken()
                 .then(idToken => {
                     localStorage.setItem('token', idToken)
