@@ -88,7 +88,18 @@
 }
 
 .notification-item{
-    padding: 10px;
+    padding: 15px 0 15px 10px;
+    margin-bottom: 0 !important;
+}
+
+.notification-item.true, .notification-item.true p{
+    background: #eeeeee;
+}
+
+.notification-time{
+    margin-bottom: 0;
+    color:#888 !important;
+    font-size: 12px;
 }
 
 .clear-notification .hover-pointer:hover{
@@ -108,5 +119,19 @@
 
     .admin-header .container-fluid{
         padding: 0;
+    }
+}
+
+.notification-dropdown.dropdown-menu{
+    width: 350px;
+    min-height: 100px;
+    left:-320px;
+    padding-bottom: 40px;
+}
+
+@media (max-width: 450px){
+    .notification-dropdown.dropdown-menu{
+        left: -250px;
+        top: 35px;
     }
 }

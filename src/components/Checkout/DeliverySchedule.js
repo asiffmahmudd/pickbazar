@@ -18,10 +18,10 @@ const DeliverySchedule = ({register,errors}) => {
             
             <div className="radio-group row" {...register("deliverySchedule", { required:true })} id="deliverySchedule" name="deliverySchedule">
                 <label className="col-md-4">
-                    <input type="radio" disabled={hour>19?true:false} name="deliverySchedule" className="card-input-element" value="90 min express delivery"/>
-                    <div className="panel panel-default card-input" style={hour>18?disabledBackground:{}}>
-                        <div className="panel-heading" style={hour>18?disabledFont:{}}>Express-Delivery</div>
-                        <div className="panel-body" style={hour>18?disabledFont:{}}>
+                    <input type="radio" disabled={hour>19 || hour < 7?true:false} name="deliverySchedule" className="card-input-element" value="90 min express delivery"/>
+                    <div className="panel panel-default card-input" style={hour>19 || hour < 7?disabledBackground:{}}>
+                        <div className="panel-heading" style={hour>19 || hour < 7?disabledFont:{}}>Express-Delivery</div>
+                        <div className="panel-body" style={hour>19 || hour < 7?disabledFont:{}}>
                         90 min express delivery
                         </div>
                     </div>

@@ -15,33 +15,60 @@ const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
     const {loggedInUser, logout} = useAuth()
 
-    const notificationBarStyle = {
-        width: '350px',
-        minHeight: '100px',
-        left:'-320px',
-        paddingBottom: '42px'
-    }
-
     const [notifications, setNotifications] = useState([])
     const [unreadNotifications, setUnreadNotifications] = useState(0)
     useEffect(() => {
         fetch('http://localhost:4000/notifications')
         .then(res => res.json())
         .then(result =>{
-            let unread = 0
-            result.map(item => {
-                if(item.unread)
-                    unread++
-                return 0
-            })
-            setUnreadNotifications(unread)
+            calculateUnread(result)
             setNotifications(result)
         })
     }, [])
 
-    const handleNotificationRead = () => {
+    const calculateUnread = (result) =>{
+        let unread = 0
+        result.map(item => {
+            if(item.unread)
+                unread++
+            return 0
+        })
+        setUnreadNotifications(unread)
+    }
+
+    const handleNotificationRead = (e, index) => {
+        const newList = [...notifications]
+        newList[index].unread = false
+        setNotifications(newList)
+        calculateUnread(newList)
+        e.target.style.background = "white"
 
     }
+
+    const clearNotifications = () =>{
+        fetch('http://localhost:4000/deleteNotifications',{
+            method: 'DELETE'
+        })
+        .then(res=>res.json())
+        .then(result=> console.log(result))
+
+        setNotifications([])
+        setUnreadNotifications(0)
+    }
+
+    const markAllRead = () =>{
+        fetch('http://localhost:4000/updateNotifications',{
+            method: 'PUT'
+        })
+        .then(res=>res.json())
+        .then(result=> console.log(result))
+        const newList = [...notifications]
+        newList.map(item => item.unread = false)
+        setNotifications(newList)
+        setUnreadNotifications(0)
+    }
+
+    
 
     return (
         <>
@@ -64,23 +91,32 @@ const AdminHeader = ({setSidebarOpen}) => {
                                 <span className="new-notification"></span>
                             }
                             <IoNotificationsOutline className="dropdown-toggle hover-pointer" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" size={20} color="rgb(22, 31, 106)"></IoNotificationsOutline>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={notificationBarStyle}>
-                                
+                            <div className="notification-dropdown dropdown-menu pt-0" aria-labelledby="dropdownMenuButton" id="test">
                                 <div className="notifications-container">
                                 {
-                                    unreadNotifications === 0 &&
-                                    <p className="text-center mt-2">No New Notification</p>
+                                    notifications.length === 0 &&
+                                    <p className="text-center mt-3">No New Notification</p>
                                 }
                                 {
-                                    unreadNotifications > 0 &&
-                                    notifications.map(item => <><p className="notification-item text-left pl-2">{item.desc}</p><hr style={{margin:0}}/></>)
+                                    notifications.length > 0 &&
+                                    notifications.map((item, index) => {
+                                        return (
+                                            <>
+                                                <div key={index} onMouseEnter={(e)=>handleNotificationRead(e,index)} className={"notification-item "+item.unread}>
+                                                    <p className="text-left">{item.desc}</p>
+                                                    <p className="text-left notification-time">{item.date}</p>
+                                                </div>
+                                                <hr style={{margin:0}}/>
+                                            </>
+                                        )
+                                    })
                                 }
                                 </div>
 
                                 <div className="clear-notification">
                                     <div className="d-flex justify-content-around">
-                                        <p className="hover-pointer d-flex m-0 pt-2 pb-2 justify-content-center align-items-center border-top border-right w-50" >Clear All Notifications</p>
-                                        <p className="hover-pointer d-flex m-0 pt-2 pb-2 justify-content-center align-items-center border-top w-50">Mark all as read</p>
+                                        <p onClick={clearNotifications} className="hover-pointer d-flex m-0 pt-2 pb-2 justify-content-center align-items-center border-top border-right w-50" >Clear All Notifications</p>
+                                        <p onClick={markAllRead} className="hover-pointer d-flex m-0 pt-2 pb-2 justify-content-center align-items-center border-top w-50">Mark all as read</p>
                                     </div>
                                 </div>
                             </div>

@@ -174,6 +174,7 @@ const Checkout = () => {
             if(result){
                 const notification = {
                     desc:'Order placed by '+placedBy,
+                    date: dayjs().format('lll'),
                     unread: true
                 }
                 fetch('http://localhost:4000/addNotification',{
