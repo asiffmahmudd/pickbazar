@@ -10,7 +10,7 @@ const PrivateRoute = ({ children, ...rest }) => {
             {...rest}
             render={({ location }) =>
                 loggedInUser ? 
-                    loggedInUser.emailVerified ? 
+                    loggedInUser.emailVerified || loggedInUser.providerId === 'facebook.com' ? 
                         (children) 
                     :
                     (

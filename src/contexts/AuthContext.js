@@ -19,7 +19,6 @@ export function AuthProvider({children}) {
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
         const data = await auth.signInWithPopup(provider).catch(e=> alert(e.message))
-        console.log('here', data)
         if(data.additionalUserInfo.isNewUser){
             await saveUserData(data.user)
         }
@@ -114,7 +113,8 @@ export function AuthProvider({children}) {
                     name: user.displayName,
                     email: user.email,
                     photo: user.photoURL,
-                    emailVerified: user.emailVerified
+                    emailVerified: user.emailVerified,
+                    providerId: user.additionalUserInfo.providerId
                 }
             }
             setLoggedInUser(currentUser);
