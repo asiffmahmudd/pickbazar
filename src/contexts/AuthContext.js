@@ -105,6 +105,7 @@ export function AuthProvider({children}) {
         const unsubscribe = auth.onAuthStateChanged(user => {
             let currentUser;
             if(user){
+                console.log("in effect",user)
                 saveToken()
                 .then(idToken => {
                     localStorage.setItem('token', idToken)
