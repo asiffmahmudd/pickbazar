@@ -18,11 +18,15 @@ export function AuthProvider({children}) {
             provider = new firebase.auth.GoogleAuthProvider();
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
-        const data = await auth.signInWithPopup(provider).catch(e=> alert(e.message))
-        if(data.additionalUserInfo.isNewUser){
-            await saveUserData(data.user)
-        }
-        return data;
+        const data = await auth.signInWithPopup(provider)
+        .then(async ()=>{
+            if(data.additionalUserInfo.isNewUser){
+                await saveUserData(data.user)
+            }
+            return data;
+        })
+        .catch(e=> alert(e.message))
+        
     }
 
     async function signUpWithEmail(userData){
