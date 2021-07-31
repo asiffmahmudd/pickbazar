@@ -12,9 +12,9 @@ const SocialLogIn = ({handleClose}) => {
 
     let { from } = location.state || { from: { pathname: "/" } };
     
-    const handleLogin = (media) => {
-        loginWith(media)
-        .then(data => {
+    const handleLogin = async (media) => {
+        await loginWith(media)
+        try{
             saveToken()
             .then(idToken => {
                 localStorage.setItem('token', idToken)
@@ -22,7 +22,10 @@ const SocialLogIn = ({handleClose}) => {
             })
             handleClose()
             history.push(from)
-        })
+        }
+        catch(e){
+            alert("Something went wrong")
+        }
     }
 
     return (

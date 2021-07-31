@@ -59,7 +59,7 @@ export function AuthProvider({children}) {
     }
 
     function saveToken(){
-        return firebase.auth().currentUser?.getIdToken(true)
+        return firebase.auth().currentUser.getIdToken(true)
             .then(function(idToken) {
             return idToken;
         }).catch(function(error) {

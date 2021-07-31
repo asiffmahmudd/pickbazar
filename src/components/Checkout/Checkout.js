@@ -163,17 +163,32 @@ const Checkout = () => {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(result => {
-            setOrderLoading(false)
+        .then(async result => {
             if(result){
-                dispatch(clearCart())
-                setProductChange(true)
-                setProductChange(false)
-                history.push({
-                    pathname: '/order-received',
-                    state: {passData}
+                const notification = {
+                    desc:'Order placed by '+(loggedInUser.email?loggedInUser.email:loggedInUser.displayName),
+                    unread: true
+                }
+                fetch('http://localhost:4000/addNotification',{
+                    method: 'POST',    
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(notification)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setOrderLoading(false)
+                    dispatch(clearCart())
+                    setProductChange(true)
+                    setProductChange(false)
+                    history.push({
+                        pathname: '/order-received',
+                        state: {passData}
+                    })
                 })
             }
+            
         })
         .catch(e => alert(e.message))
         

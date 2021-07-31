@@ -13,17 +13,15 @@ const UserSocialLogin = () => {
 
     async function handleLogin(media) {
         try{
-            loginWith(media)
-            .then(data => {
-                saveToken()
-                .then(idToken => {
-                    localStorage.setItem('token', idToken)
-                })
-                history.replace(from)
+            await loginWith(media)
+            saveToken()
+            .then(idToken => {
+                localStorage.setItem('token', idToken)
             })
+            history.replace(from)
         }
         catch(e){
-            alert(e.message)
+            alert("Something went wrong")
         }
     }
 

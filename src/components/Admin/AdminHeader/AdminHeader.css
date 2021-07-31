@@ -49,6 +49,52 @@
     display: none;
 }
 
+.admin-notification{
+    position: relative;
+}
+
+.new-notification{
+    height: 5px;
+    right: 1px;
+    width: 5px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: red;
+    top: 1px;
+}
+
+.clear-notification{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.notifications-container{
+    max-height: 230px;
+    overflow-y: scroll;
+}
+
+.notifications-container::-webkit-scrollbar{
+    width: 3px;
+}
+.notifications-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+.notifications-container::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+.notifications-container::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.notification-item{
+    padding: 10px;
+}
+
+.clear-notification .hover-pointer:hover{
+    text-decoration: underline;
+}
+
 @media (max-width: 991px){
     .admin-sidebar-toggler{
         display: block;
