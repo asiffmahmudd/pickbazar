@@ -18,7 +18,7 @@ export function AuthProvider({children}) {
             provider = new firebase.auth.GoogleAuthProvider();
         else if(media === 'facebook')
             provider = new firebase.auth.FacebookAuthProvider();
-        const data = await auth.signInWithPopup(provider)
+        const data = await auth.signInWithPopup(provider).catch(e=> alert(e.message))
         console.log('here', data)
         if(data.additionalUserInfo.isNewUser){
             await saveUserData(data.user)
@@ -27,7 +27,7 @@ export function AuthProvider({children}) {
     }
 
     async function signUpWithEmail(userData){
-        await auth.createUserWithEmailAndPassword(userData.email, userData.password)
+        await auth.createUserWithEmailAndPassword(userData.email, userData.password).catch(e=>alert(e.message))
         var user = firebase.auth().currentUser;
         await saveUserData(user)
         return user
@@ -52,7 +52,7 @@ export function AuthProvider({children}) {
     }
 
     function signInWithEmail(user){
-        return auth.signInWithEmailAndPassword(user.email, user.password);
+        return auth.signInWithEmailAndPassword(user.email, user.password).catch(e=>alert(e.message))
     }
 
     function logout(){
