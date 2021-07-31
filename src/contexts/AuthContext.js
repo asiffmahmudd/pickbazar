@@ -23,10 +23,10 @@ export function AuthProvider({children}) {
             if(data.additionalUserInfo.isNewUser){
                 await saveUserData(data.user)
             }
-            return data;
         })
         .catch(e=> alert(e.message))
-        
+        console.log(data)
+        return data;
     }
 
     async function signUpWithEmail(userData){
