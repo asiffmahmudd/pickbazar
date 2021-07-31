@@ -164,7 +164,7 @@ const Checkout = () => {
         })
         .then(res => res.json())
         .then(async result => {
-            const placedBy = ""
+            let placedBy = ""
             if(loggedInUser.email)
                 placedBy = loggedInUser.email
             else if(loggedInUser.name)
