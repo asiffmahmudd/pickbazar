@@ -164,10 +164,16 @@ const Checkout = () => {
         })
         .then(res => res.json())
         .then(async result => {
-            console.log(loggedInUser)
+            const placedBy = ""
+            if(loggedInUser.email)
+                placedBy = loggedInUser.email
+            else if(loggedInUser.name)
+                placedBy = loggedInUser.name
+            else
+                placedBy = loggedInUser.uid
             if(result){
                 const notification = {
-                    desc:'Order placed by '+(loggedInUser.email?loggedInUser.email:loggedInUser.displayName),
+                    desc:'Order placed by '+placedBy,
                     unread: true
                 }
                 fetch('http://localhost:4000/addNotification',{
