@@ -11,12 +11,15 @@ const AdminRoute = ({ children, ...rest }) => {
                 loggedInUser?.email === "asifmahmud3472@gmail.com" ? (
                 children
                 ) : (
-                <Redirect
-                    to={{
-                    pathname: "/login",
-                    state: { from: location }
-                    }}
-                />
+                <>
+                    {alert("This is not an admin account")}
+                    <Redirect
+                        to={{
+                        pathname: "/login",
+                        state: { from: location }
+                        }}
+                    />
+                </>
                 )
             }
         />
