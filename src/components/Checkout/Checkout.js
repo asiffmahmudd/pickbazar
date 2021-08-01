@@ -226,6 +226,7 @@ const Checkout = () => {
     const [customer, setCustomer] = useState({})
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
+        console.log(localStorage.getItem('token'))
         setCustomerLoading(true)
         fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
             headers: {
@@ -242,7 +243,7 @@ const Checkout = () => {
             setCustomerLoading(false)
             alert(e.message)
         })
-    },[loggedInUser.uid])
+    },[])
     useEffect(()=>{
         window.scrollTo(0, 0)
     },[])

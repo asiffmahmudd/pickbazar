@@ -19,9 +19,8 @@ const SocialLogIn = ({handleClose}) => {
             .then(idToken => {
                 localStorage.setItem('token', idToken)
                 handleClose()
+                history.push(from)
             })
-            handleClose()
-            history.push(from)
         }
         catch(e){
             alert("Something went wrong")
