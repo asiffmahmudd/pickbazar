@@ -243,7 +243,7 @@ const Checkout = () => {
             setCustomerLoading(false)
             alert(e.message)
         })
-    },[])
+    },[loggedInUser.uid])
     useEffect(()=>{
         window.scrollTo(0, 0)
     },[])
