@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './Redux/CartStore';
@@ -30,6 +31,7 @@ import AdminRoute from './components/AdminRoute/AdminRoute';
 import { ItemContextProvider } from './contexts/ItemContext';
 import VerifyEmail from './components/VerfiyEmail/VerifyEmail';
 import VerifyRoute from './components/VerifyRoute/VerifyRoute';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function App() {
   
@@ -37,79 +39,84 @@ function App() {
     <Provider store={store}>
       <ItemContextProvider>
         <AuthProvider>
-          <Router>
-            <Switch>
-              <CouponContextProvider>
-                <Route exact path="/">
-                  <PageLayout></PageLayout>  
-                </Route>
-                <Route exact path="/product/:id">
-                  <SingleProduct></SingleProduct>
-                </Route>
-                <Route exact path="/category/:index/:category">
-                  <PageLayout></PageLayout>  
-                </Route>
-                <Route exact path="/products/:search">
-                  <PageLayout></PageLayout>  
-                </Route>
-                
-                <VerifyRoute exact path="/verifyEmail">
-                  <VerifyEmail></VerifyEmail>
-                </VerifyRoute>
-                <PrivateRoute exact path="/user/profile">
-                  <UserProfile></UserProfile>
-                </PrivateRoute>
-                <PrivateRoute exact path="/user/orders">
-                  <UserOrders></UserOrders>
-                </PrivateRoute>
-                <Route exact path="/login">
-                  <Login></Login>
-                </Route>
-                <Route exact path="/signup">
-                  <SignUp></SignUp>
-                </Route>
-                <Route exact path="/reset">
-                  <Reset></Reset>
-                </Route>
-                <PrivateRoute exact path="/checkout">
-                  <Checkout></Checkout>
-                </PrivateRoute>
-                <PrivateRoute exact path="/order-received">
-                  <OrderReceived></OrderReceived>
-                </PrivateRoute>
-              
+          <CouponContextProvider>
+            <ProductDrawerProvider>
+              <Router>
+                <Switch>
+                    <Route exact path="/">
+                      <PageLayout></PageLayout>  
+                    </Route>
+                    <Route exact path="/product/:id">
+                      <SingleProduct></SingleProduct>
+                    </Route>
+                    <Route exact path="/category/:index/:category">
+                      <PageLayout></PageLayout>  
+                    </Route>
+                    <Route exact path="/products/:search">
+                      <PageLayout></PageLayout>  
+                    </Route>
+                    <Route exact path="/login">
+                      <Login></Login>
+                    </Route>
+                    <Route exact path="/signup">
+                      <SignUp></SignUp>
+                    </Route>
+                    <Route exact path="/reset">
+                      <Reset></Reset>
+                    </Route>
 
-                <ProductDrawerProvider>
-                  <AdminRoute exact path="/admin">
-                    <Dashboard></Dashboard>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/dashboard">
-                    <Dashboard></Dashboard>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/category">
-                    <Category></Category>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/coupons">
-                    <Coupons></Coupons>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/customers">
-                    <Customers></Customers>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/orders">
-                    <Orders></Orders>
-                  </AdminRoute>
-                  <AdminRoute exact path="/admin/settings">
-                    <Settings></Settings>
-                  </AdminRoute>
+                    <VerifyRoute exact path="/verifyEmail">
+                      <VerifyEmail></VerifyEmail>
+                    </VerifyRoute>
+                    
+                    <PrivateRoute exact path="/user/profile">
+                      <UserProfile></UserProfile>
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/user/orders">
+                      <UserOrders></UserOrders>
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/checkout">
+                      <Checkout></Checkout>
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/order-received">
+                      <OrderReceived></OrderReceived>
+                    </PrivateRoute>
                   
+                    <AdminRoute exact path="/admin">
+                      <Dashboard></Dashboard>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/dashboard">
+                      <Dashboard></Dashboard>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/category">
+                      <Category></Category>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/coupons">
+                      <Coupons></Coupons>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/customers">
+                      <Customers></Customers>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/orders">
+                      <Orders></Orders>
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/settings">
+                      <Settings></Settings>
+                    </AdminRoute>
+                    
                     <AdminRoute exact path="/admin/products">
                       <AdminProducts></AdminProducts>
                     </AdminRoute>
-                  
-                </ProductDrawerProvider>
-              </CouponContextProvider>
-            </Switch>
-          </Router>
+
+
+                    <Route path="/*">
+                      <PageNotFound></PageNotFound>
+                    </Route>
+
+                </Switch>
+              </Router>
+            </ProductDrawerProvider>
+          </CouponContextProvider>
         </AuthProvider> 
       </ItemContextProvider> 
     </Provider>
