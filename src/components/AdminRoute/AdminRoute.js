@@ -12,7 +12,6 @@ const AdminRoute = ({ children, ...rest }) => {
                 children
                 ) : (
                 <>
-                    {alert("This is not an admin account")}
                     <Redirect
                         to={{
                         pathname: "/login",

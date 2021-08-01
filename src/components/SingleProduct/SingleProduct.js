@@ -74,7 +74,7 @@ const SingleProduct = () => {
                             {
                                 related.map((product,index) => {
                                     return (
-                                        <div key={index} className="col-md-2" style={{padding:'0'}}>
+                                        <div key={index} className="col-md-2 col-6" style={{padding:'0'}}>
                                             <ProductItem product={product}></ProductItem>
                                         </div>
                                     )

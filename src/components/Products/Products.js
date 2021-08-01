@@ -32,6 +32,9 @@ const Products = ({selectedCategory}) => {
         setProductArray(result)
       })
     }
+    else{
+      setProductArray(allproducts)
+    }
   },[selectedCategory, allproducts, searchQuery, setLoading])
   
   return (
