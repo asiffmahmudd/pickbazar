@@ -1,0 +1,753 @@
+[{
+    "_id": "60fe805e25a8e83a0ca34aab",
+    "name": "Lime",
+    "desc": "The lemon/lime, Citrus limon Osbeck, is a species of small evergreen tree in the flowering plant family Rutaceae, native to South Asia, primarily North eastern India.",
+    "unit": "lbs",
+    "price": 1.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 74,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/2ctv83F/Green-Limes-jrodle.png"]
+}, {
+    "_id": "60fe810725a8e83a0ca34aad",
+    "name": "Cherry",
+    "desc": "A cherry is the fruit of many plants of the genus Prunus, and is a fleshy drupe. Commercial cherries are obtained from cultivars of several species, such as the sweet Prunus avium and the sour Prunus cerasus",
+    "unit": "lbs",
+    "price": 2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 7,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/v3Fj9VW/cherry.png"]
+}, {
+    "_id": "60fe814925a8e83a0ca34aae",
+    "name": "Apples",
+    "desc": "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, though many bi- or tri-colored cultivars may be found.",
+    "unit": "lbs",
+    "price": 2,
+    "sale": 1.6,
+    "discount": 20,
+    "quantity": 58,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/swhrZvL/apples.png"]
+}, {
+    "_id": "60fe81a525a8e83a0ca34aaf",
+    "name": "Blueberries",
+    "desc": "Blueberries are perennial flowering plants with blue or purple berries. They are classified in the section Cyanococcus within the genus Vaccinium. Vaccinium also includes cranberries, bilberries, huckleberries and Madeira blueberries. Commercial blueberries—both wild and cultivated —are all native to North America.",
+    "unit": "lbs",
+    "price": 8,
+    "sale": 7.2,
+    "discount": 10,
+    "quantity": 44,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/BfKhwQq/blueberry.png"]
+}, {
+    "_id": "60fe81e525a8e83a0ca34ab0",
+    "name": "Peeled Baby Carrot",
+    "desc": "The carrot is a root vegetable, usually orange in colour, though purple, black, red, white, and yellow cultivars exist. They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds.",
+    "unit": "lbs",
+    "price": 2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 85,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "vegetables"
+    }],
+    "img": ["https://i.ibb.co/9gyPYgf/carrots.png"]
+}, {
+    "_id": "60fe821625a8e83a0ca34ab1",
+    "name": "Cucumber",
+    "desc": "Cucumber is a widely cultivated plant in the gourd family, Cucurbitaceae. It is a creeping vine that bears cucumiform fruits that are used as vegetables. There are three main varieties of cucumber: slicing, pickling, and seedless. Within these varieties, several cultivars have been created.",
+    "unit": "lbs",
+    "price": 2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 40,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "vegetables"
+    }],
+    "img": ["https://i.ibb.co/8shv6HG/cucumber.png"]
+}, {
+    "_id": "60fe824f25a8e83a0ca34ab2",
+    "name": "Dates",
+    "desc": "Phoenix dactylifera, commonly known as date or date palm, is a flowering plant species in the palm family, Arecaceae, cultivated for its edible sweet fruit.",
+    "unit": "lbs",
+    "price": 15,
+    "sale": 12,
+    "discount": 20,
+    "quantity": 24,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/Wf453My/dates.png"]
+}, {
+    "_id": "60fe828025a8e83a0ca34ab3",
+    "name": "Mango",
+    "desc": "A mango is a juicy stone fruit produced from numerous species of tropical trees belonging to the flowering plant genus Mangifera, cultivated mostly for their edible fruit. Most of these species are found in nature as wild mangoes. The genus belongs to the cashew family Anacardiaceae.",
+    "unit": "lbs",
+    "price": 2.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 92,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/4MTmC5s/mango.png"]
+}, {
+    "_id": "60fe82b525a8e83a0ca34ab4",
+    "name": "Pears",
+    "desc": "The pear tree and shrub are a species of genus Pyrus, in the family Rosaceae, bearing the pomaceous fruit of the same name. Several species of pear are valued for their edible fruit and juices while others are cultivated as trees.",
+    "unit": "lbs",
+    "price": 2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 43,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/G23ZyM7/pears.png"]
+}, {
+    "_id": "60fe830a25a8e83a0ca34ab5",
+    "name": "Pepper",
+    "desc": "Black pepper is a flowering vine in the family Piperaceae, cultivated for its fruit, known as a peppercorn, which is usually dried and used as a spice and seasoning. When fresh and fully mature, it is about 5 mm in diameter and dark red, and contains a single seed, like all drupes",
+    "unit": "lbs",
+    "price": 10,
+    "sale": 8,
+    "discount": 20,
+    "quantity": 94,
+    "category": "Cooking",
+    "tags": [],
+    "img": ["https://i.ibb.co/j4TbNjF/pepper.png"]
+}, {
+    "_id": "60fe833d25a8e83a0ca34ab6",
+    "name": "Strawberry",
+    "desc": "The garden strawberry is a widely grown hybrid species of the genus Fragaria, collectively known as the strawberries, which are cultivated worldwide for their fruit. The fruit is widely appreciated for its characteristic aroma, bright red color, juicy texture, and sweetness.\n",
+    "unit": "lbs",
+    "price": 5,
+    "sale": 2.5,
+    "discount": 50,
+    "quantity": 145,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/r5HgVpr/strawberry.png"]
+}, {
+    "_id": "60fe83a625a8e83a0ca34ab7",
+    "name": "Ozmo Air Fabric Freshner",
+    "desc": "Air fresheners are consumer products that typically emit fragrance and are used in homes or commercial interiors such as restrooms, foyers, hallways, vestibules and other smaller indoor areas, as well as larger areas such as hotel lobbies, auto dealerships, medical facilities, public arenas and other large interior spaces.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 15,
+    "discount": 25,
+    "quantity": 35,
+    "category": "Home & Cleaning",
+    "tags": [{
+        "name": "spray"
+    }, {
+        "name": "home"
+    }, {
+        "name": "cleaning"
+    }],
+    "img": ["https://i.ibb.co/rdbntKz/air-freshner-acana-ozmo.png"]
+}, {
+    "_id": "60fe83ea25a8e83a0ca34ab8",
+    "name": "Air Wick Essential Oils",
+    "desc": "Air fresheners are consumer products that typically emit fragrance and are used in homes or commercial interiors such as restrooms, foyers, hallways, vestibules and other smaller indoor areas, as well as larger areas such as hotel lobbies, auto dealerships, medical facilities, public arenas and other large interior spaces.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 21,
+    "category": "Home & Cleaning",
+    "tags": [{
+        "name": "spray"
+    }, {
+        "name": "home"
+    }, {
+        "name": "cleaning"
+    }],
+    "img": ["https://i.ibb.co/7JDMV7V/air-freshner-air-wick-essential-oils.png"]
+}, {
+    "_id": "60fe842925a8e83a0ca34ab9",
+    "name": "Ambi Pur Air",
+    "desc": "Air fresheners are consumer products that typically emit fragrance and are used in homes or commercial interiors such as restrooms, foyers, hallways, vestibules and other smaller indoor areas, as well as larger areas such as hotel lobbies, auto dealerships, medical facilities, public arenas and other large interior spaces.",
+    "unit": "Piece",
+    "price": 15,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 35,
+    "category": "Home & Cleaning",
+    "tags": [{
+        "name": "spray"
+    }, {
+        "name": "home"
+    }, {
+        "name": "cleaning"
+    }],
+    "img": ["https://i.ibb.co/5cWSxQS/air-freshner-ambipur-air-sweet-citrus-zest.png"]
+}, {
+    "_id": "60fe846225a8e83a0ca34aba",
+    "name": "Broadwalk Air Freshner",
+    "desc": "Air fresheners are consumer products that typically emit fragrance and are used in homes or commercial interiors such as restrooms, foyers, hallways, vestibules and other smaller indoor areas, as well as larger areas such as hotel lobbies, auto dealerships, medical facilities, public arenas and other large interior spaces.",
+    "unit": "Piece",
+    "price": 15,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 35,
+    "category": "Home & Cleaning",
+    "tags": [{
+        "name": "spray"
+    }, {
+        "name": "home"
+    }, {
+        "name": "cleaning"
+    }],
+    "img": ["https://i.ibb.co/hgNyPzg/air-freshner-boardwalk-mango.png"]
+}, {
+    "_id": "60fe84ae25a8e83a0ca34abb",
+    "name": "Attitude Bubble Bath",
+    "desc": "Bath gel is a specialized liquid product used for cleaning the body during baths. Not to be confused with liquid soaps, bath gels, in fact, do not contain saponified oil. Instead, it uses synthetic detergents derived from either petroleum or plant sources.",
+    "unit": "Piece",
+    "price": 15,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 40,
+    "category": "Beauty & Health",
+    "tags": [{
+        "name": "bath"
+    }],
+    "img": ["https://i.ibb.co/y40QdXf/attitude-night-bubble-bath.png"]
+}, {
+    "_id": "60fe84de25a8e83a0ca34abc",
+    "name": "Aveeno Baby Shampoo",
+    "desc": "Bath gel is a specialized liquid product used for cleaning the body during baths. Not to be confused with liquid soaps, bath gels, in fact, do not contain saponified oil. Instead, it uses synthetic detergents derived from either petroleum or plant sources.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 10,
+    "discount": 50,
+    "quantity": 20,
+    "category": "Beauty & Health",
+    "tags": [{
+        "name": "bath"
+    }],
+    "img": ["https://i.ibb.co/8b0rTYh/aveeno-baby-shampoo.png"]
+}, {
+    "_id": "60fe853125a8e83a0ca34abd",
+    "name": "Beef Steak",
+    "desc": "Meat is animal flesh that is eaten as food. Humans have hunted and killed animals for meat since prehistoric times. The advent of civilization allowed the domestication of animals such as chickens, sheep, rabbits, pigs and cattle.",
+    "unit": "lbs",
+    "price": 15,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 50,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "beef"
+    }],
+    "img": ["https://i.ibb.co/SNRHZTw/beef-steak.png"]
+}, {
+    "_id": "60fe856325a8e83a0ca34abe",
+    "name": "Fresh Beef",
+    "desc": "Meat is animal flesh that is eaten as food. Humans have hunted and killed animals for meat since prehistoric times. The advent of civilization allowed the domestication of animals such as chickens, sheep, rabbits, pigs and cattle.",
+    "unit": "lbs",
+    "price": 6,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 40,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "beef"
+    }],
+    "img": ["https://i.ibb.co/ZHGrh3R/beef.png"]
+}, {
+    "_id": "60fe85a925a8e83a0ca34abf",
+    "name": "Belmont Custard Cream",
+    "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened.",
+    "unit": "piece",
+    "price": 5,
+    "sale": 4.5,
+    "discount": 10,
+    "quantity": 100,
+    "category": "Snacks",
+    "tags": [{
+        "name": "biscuit"
+    }, {
+        "name": "snacks"
+    }],
+    "img": ["https://i.ibb.co/FHZBT81/belmont-custard-cream.png"]
+}, {
+    "_id": "60fe85ee25a8e83a0ca34ac0",
+    "name": "Garry Best Taste Bread",
+    "desc": "Bread is a staple food prepared from a dough of flour and water, usually by baking. Throughout recorded history it has been a prominent food in large parts of the world and is one of the oldest man-made foods, having been of significant importance since the dawn of agriculture.",
+    "unit": "Piece",
+    "price": 3,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 50,
+    "category": "Breakfast",
+    "tags": [{
+        "name": "breads"
+    }],
+    "img": ["https://i.ibb.co/ZcFvt5d/best-taste-Bread-garry.png"]
+}, {
+    "_id": "60fe868c25a8e83a0ca34ac1",
+    "name": "Barney Butter",
+    "desc": "Butter is a dairy product with high butterfat content which is solid when chilled and at room temperature in some regions, and liquid when warmed. It is made by churning fresh or fermented cream or milk to separate the butterfat from the buttermilk.",
+    "unit": "Piece",
+    "price": 8,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "butter"
+    }],
+    "img": ["https://i.ibb.co/W5ZczwZ/butter-barney.png"]
+}, {
+    "_id": "60fe871725a8e83a0ca34ac2",
+    "name": "Kirkland Signature",
+    "desc": "Butter is a dairy product with high butterfat content which is solid when chilled and at room temperature in some regions, and liquid when warmed. It is made by churning fresh or fermented cream or milk to separate the butterfat from the buttermilk.",
+    "unit": "Piece",
+    "price": 9,
+    "sale": 8,
+    "discount": 8,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "butter"
+    }],
+    "img": ["https://i.ibb.co/ZWSR1mv/butter-kirkland.png"]
+}, {
+    "_id": "60fe874525a8e83a0ca34ac3",
+    "name": "Nikki S Coconut Butter",
+    "desc": "Butter is a dairy product with high butterfat content which is solid when chilled and at room temperature in some regions, and liquid when warmed. It is made by churning fresh or fermented cream or milk to separate the butterfat from the buttermilk.",
+    "unit": "Piece",
+    "price": 10,
+    "sale": 7,
+    "discount": 30,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "butter"
+    }],
+    "img": ["https://i.ibb.co/BTKqC7D/butter-nikkis.png"]
+}, {
+    "_id": "60fe87aa25a8e83a0ca34ac4",
+    "name": "Dairy Milk Reclose",
+    "desc": "Chocolate is a usually sweet, brown food preparation of roasted and ground cacao seeds that is made in the form of a liquid, paste, or in a block, or used as a flavoring ingredient in other foods.",
+    "unit": "Piece",
+    "price": 3.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Snacks",
+    "tags": [{
+        "name": "chocolate"
+    }],
+    "img": ["https://i.ibb.co/Fxg2333/cadbury-dairy-milk-reclose.png"]
+}, {
+    "_id": "60fe895a25a8e83a0ca34ac5",
+    "name": "Chicken Breast",
+    "desc": "Meat is animal flesh that is eaten as food. Humans have hunted and killed animals for meat since prehistoric times. The advent of civilization allowed the domestication of animals such as chickens, sheep, rabbits, pigs and cattle.",
+    "unit": "lbs",
+    "price": 10,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 50,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "chicken"
+    }],
+    "img": ["https://i.ibb.co/1m9J7z0/chicken-breast.png"]
+}, {
+    "_id": "60fe899e25a8e83a0ca34ac6",
+    "name": "Coca Cola Bottle",
+    "desc": "A soft drink is a drink that usually contains carbonated water, a sweetener, and a natural or artificial flavoring. The sweetener may be a sugar, high-fructose corn syrup, fruit juice, a sugar substitute, or some combination of these.",
+    "unit": "Piece",
+    "price": 1,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beverage",
+    "tags": [{
+        "name": "fizzy drinks"
+    }],
+    "img": ["https://i.ibb.co/sjbnsX6/Coca-Cola-200ml-Bottle.png"]
+}, {
+    "_id": "60fe89d125a8e83a0ca34ac7",
+    "name": "Cod Fillet",
+    "desc": "Cod is the common name for the demersal fish genus Gadus, belonging to the family Gadidae. Cod is also used as part of the common name for a number of other fish species, and some species suggested to belong to genus Gadus are not called cod.",
+    "unit": "lbs",
+    "price": 10,
+    "sale": 7,
+    "discount": 30,
+    "quantity": 50,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "fizzy drinks"
+    }],
+    "img": ["https://i.ibb.co/9g1rwS9/cod-fillet.png"]
+}, {
+    "_id": "60fe8a0125a8e83a0ca34ac8",
+    "name": "Crawford Digestives",
+    "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened.",
+    "unit": "Piece",
+    "price": 8,
+    "sale": 6.4,
+    "discount": 20,
+    "quantity": 100,
+    "category": "Snacks",
+    "tags": [{
+        "name": "biscuit"
+    }],
+    "img": ["https://i.ibb.co/2Y6kqWj/crawford-digestives.png"]
+}, {
+    "_id": "60fe8a2d25a8e83a0ca34ac9",
+    "name": "Crawford Shortie",
+    "desc": "A biscuit is a flour-based baked food product. This article covers the type of biscuit found in Africa, Asia, and Europe, which is typically hard, flat, and unleavened.",
+    "unit": "Piece",
+    "price": 5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Snacks",
+    "tags": [{
+        "name": "biscuit"
+    }],
+    "img": ["https://i.ibb.co/64BmsdC/crawford-shortie.png"]
+}, {
+    "_id": "60fe8a6125a8e83a0ca34aca",
+    "name": "Cp Omega",
+    "desc": "The egg is the organic vessel containing the zygote in which an embryo develops until it can survive on its own, at which point the animal hatches. An egg results from fertilization of an egg cell. Most arthropods, vertebrates (excluding mammals), and mollusks lay eggs, although some, such as scorpions, do not.",
+    "unit": "Dozen",
+    "price": 2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "egg"
+    }],
+    "img": ["https://i.ibb.co/SNLPVR9/egg-cp.png"]
+}, {
+    "_id": "60fe8aa025a8e83a0ca34acb",
+    "name": "Golden Cage Free",
+    "desc": "The egg is the organic vessel containing the zygote in which an embryo develops until it can survive on its own, at which point the animal hatches. An egg results from fertilization of an egg cell. Most arthropods, vertebrates (excluding mammals), and mollusks lay eggs, although some, such as scorpions, do not.",
+    "unit": "Dozen",
+    "price": 2.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "egg"
+    }],
+    "img": ["https://i.ibb.co/GJVyMzS/egg-gold-hen.png"]
+}, {
+    "_id": "60fe8ae425a8e83a0ca34acc",
+    "name": "Eo Body Lotion",
+    "desc": "Bath gel is a specialized liquid product used for cleaning the body during baths. Not to be confused with liquid soaps, bath gels, in fact, do not contain saponified oil. Instead, it uses synthetic detergents derived from either petroleum or plant sources.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 16,
+    "discount": 20,
+    "quantity": 100,
+    "category": "Beauty & Health",
+    "tags": [{
+        "name": "egg"
+    }],
+    "img": ["https://i.ibb.co/b3bpm7d/eo-body-lotion.png"]
+}, {
+    "_id": "60fe8b1625a8e83a0ca34acd",
+    "name": "Everyday Essentials Wholemeal Bread",
+    "desc": "Bread is a staple food prepared from a dough of flour and water, usually by baking. Throughout recorded history it has been a prominent food in large parts of the world and is one of the oldest man-made foods, having been of significant importance since the dawn of agriculture.",
+    "unit": "Piece",
+    "price": 2.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Breakfast",
+    "tags": [{
+        "name": "breads"
+    }],
+    "img": ["https://i.ibb.co/8dRvZkn/Everyday-Essentials-Wholemeal-Bread.png"]
+}, {
+    "_id": "60fe8b3f25a8e83a0ca34ace",
+    "name": "Fibre 1 Crunchy Original",
+    "desc": "A cereal is any grass cultivated for the edible components of its grain, composed of the endosperm, germ, and bran. The term may also refer to the resulting grain itself.",
+    "unit": "Piece",
+    "price": 4,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Breakfast",
+    "tags": [{
+        "name": "cereal"
+    }],
+    "img": ["https://i.ibb.co/FYsqbJw/fibre1-crunchy-original.png"]
+}, {
+    "_id": "60fe8b7225a8e83a0ca34acf",
+    "name": "Avo Derm Grain Free",
+    "desc": "Cat food is food specifically formulated and intended for consumption by cats and other related canines. Like all carnivores, cats have sharp, pointed teeth, and have short gastrointestinal tracts better suited for the consumption of meat than of vegetable substances.",
+    "unit": "Piece",
+    "price": 30,
+    "sale": 27,
+    "discount": 10,
+    "quantity": 100,
+    "category": "Pet Care",
+    "tags": [{
+        "name": "pet food"
+    }, {
+        "name": "pet care"
+    }, {
+        "name": "cat food"
+    }],
+    "img": ["https://i.ibb.co/RTxttr1/grain-free.png"]
+}, {
+    "_id": "60fe8b9925a8e83a0ca34ad0",
+    "name": "Hills Science Diet",
+    "desc": "Cat food is food specifically formulated and intended for consumption by cats and other related canines. Like all carnivores, cats have sharp, pointed teeth, and have short gastrointestinal tracts better suited for the consumption of meat than of vegetable substances.",
+    "unit": "Piece",
+    "price": 25,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Pet Care",
+    "tags": [{
+        "name": "cat food"
+    }, {
+        "name": "pet food"
+    }],
+    "img": ["https://i.ibb.co/NYjBSbM/hills-science-diet.png"]
+}, {
+    "_id": "60fe8bd325a8e83a0ca34ad1",
+    "name": "Iceland Tropical Juice Drink",
+    "desc": "Juice is a drink made from the extraction or pressing of the natural liquid contained in fruit and vegetables. It can also refer to liquids that are flavored with concentrate or other biological food sources, such as meat or seafood, such as clam juice.",
+    "unit": "Piece",
+    "price": 2.2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beverage",
+    "tags": [{
+        "name": "juice"
+    }],
+    "img": ["https://i.ibb.co/L1YnZ2K/iceland-tropical-juice-drink.png"]
+}, {
+    "_id": "60fe8c0b25a8e83a0ca34ad2",
+    "name": "Instinct Ultimate Protien",
+    "desc": "Cat food is food specifically formulated and intended for consumption by cats and other related canines. Like all carnivores, cats have sharp, pointed teeth, and have short gastrointestinal tracts better suited for the consumption of meat than of vegetable substances.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 16,
+    "discount": 20,
+    "quantity": 100,
+    "category": "Pet Care",
+    "tags": [{
+        "name": "cat food"
+    }, {
+        "name": "pet food"
+    }],
+    "img": ["https://i.ibb.co/ykhyj91/instinct-the-raw.png"]
+}, {
+    "_id": "60fe8c3a25a8e83a0ca34ad3",
+    "name": "Arla Lacto Free Semi Skimmed Milk",
+    "desc": "Milk is a nutrient-rich, white liquid food produced by the mammary glands of mammals. It is the primary source of nutrition for infant mammals (including humans who are breastfed) before they are able to digest other types of food.",
+    "unit": "Liter",
+    "price": 4,
+    "sale": 3.5,
+    "discount": 5,
+    "quantity": 100,
+    "category": "Dairy",
+    "tags": [{
+        "name": "milk"
+    }],
+    "img": ["https://i.ibb.co/swFNv3W/milk-arla-lacto-free.png"]
+}, {
+    "_id": "60fe8c6225a8e83a0ca34ad4",
+    "name": "Nestle Corn Flakes",
+    "desc": "A cereal is any grass cultivated for the edible components of its grain, composed of the endosperm, germ, and bran. The term may also refer to the resulting grain itself.",
+    "unit": "Piece",
+    "price": 4,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Breakfast",
+    "tags": [{
+        "name": "cereal"
+    }],
+    "img": ["https://i.ibb.co/syzSLn1/nestle-made-with-whole-grain-corn-flakes.png"]
+}, {
+    "_id": "60fe8c9a25a8e83a0ca34ad5",
+    "name": "Neutrogena Body Oil",
+    "desc": "Bath gel is a specialized liquid product used for cleaning the body during baths. Not to be confused with liquid soaps, bath gels, in fact, do not contain saponified oil. Instead, it uses synthetic detergents derived from either petroleum or plant sources.",
+    "unit": "Piece",
+    "price": 20,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beauty & Health",
+    "tags": [{
+        "name": "bath"
+    }],
+    "img": ["https://i.ibb.co/NxrLWsc/neutrogena-Body-Oil.png"]
+}, {
+    "_id": "60fe94c925a8e83a0ca34ad6",
+    "name": "1 2 3 Vegetable Oil",
+    "desc": "An oil is any nonpolar chemical substance that is a viscous liquid at ambient temperatures and is both hydrophobic (does not mix with water, literally water fearing) and lipophilic (mixes with other oils, literally fat loving). Oils have a high carbon and hydrogen content and are usually flammable and surface active.",
+    "unit": "Liter",
+    "price": 5,
+    "sale": 4,
+    "discount": 20,
+    "quantity": 100,
+    "category": "Cooking",
+    "tags": [{
+        "name": "oil"
+    }],
+    "img": ["https://i.ibb.co/G5LZrsG/oil-1-2-3-vegitable.png"]
+}, {
+    "_id": "60fe94f225a8e83a0ca34ad7",
+    "name": "Clover Valley Vegetable Oil",
+    "desc": "An oil is any nonpolar chemical substance that is a viscous liquid at ambient temperatures and is both hydrophobic (does not mix with water, literally water fearing) and lipophilic (mixes with other oils, literally fat loving). Oils have a high carbon and hydrogen content and are usually flammable and surface active.",
+    "unit": "Liter",
+    "price": 8,
+    "sale": 6.4,
+    "discount": 15,
+    "quantity": 60,
+    "category": "Cooking",
+    "tags": [{
+        "name": "oil"
+    }],
+    "img": ["https://i.ibb.co/PhhzYS4/oil-clover-valley.png"]
+}, {
+    "_id": "60fe951425a8e83a0ca34ad8",
+    "name": "Daisy Corn Oil",
+    "desc": "An oil is any nonpolar chemical substance that is a viscous liquid at ambient temperatures and is both hydrophobic (does not mix with water, literally water fearing) and lipophilic (mixes with other oils, literally fat loving). Oils have a high carbon and hydrogen content and are usually flammable and surface active.",
+    "unit": "Liter",
+    "price": 8,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 50,
+    "category": "Cooking",
+    "tags": [{
+        "name": "oil"
+    }],
+    "img": ["https://i.ibb.co/kQRGXHC/oil-daisy.png"]
+}, {
+    "_id": "60fe953e25a8e83a0ca34ad9",
+    "name": "Eva Corn Oil",
+    "desc": "An oil is any nonpolar chemical substance that is a viscous liquid at ambient temperatures and is both hydrophobic (does not mix with water, literally water fearing) and lipophilic (mixes with other oils, literally fat loving). Oils have a high carbon and hydrogen content and are usually flammable and surface active.",
+    "unit": "Liter",
+    "price": 8,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 70,
+    "category": "Cooking",
+    "tags": [{
+        "name": "oil"
+    }],
+    "img": ["https://i.ibb.co/wRN6rq6/oil-eva.png"]
+}, {
+    "_id": "60fe957125a8e83a0ca34ada",
+    "name": "Quake Energy",
+    "desc": "An energy drink is a type of drink containing sugar and stimulant compounds, usually caffeine, which is marketed as providing mental and physical stimulation (marketed as energy, but distinct from food energy).",
+    "unit": "Liter",
+    "price": 1.5,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beverage",
+    "tags": [{
+        "name": "energy drinks"
+    }],
+    "img": ["https://i.ibb.co/VCKDhvf/Quake.png"]
+}, {
+    "_id": "60fe95d825a8e83a0ca34adb",
+    "name": "Red Bull Energy Drink",
+    "desc": "An energy drink is a type of drink containing sugar and stimulant compounds, usually caffeine, which is marketed as providing mental and physical stimulation (marketed as energy, but distinct from food energy).",
+    "unit": "Liter",
+    "price": 2.2,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beverage",
+    "tags": [{
+        "name": "energy drinks"
+    }],
+    "img": ["https://i.ibb.co/vz8R17W/red-bull.png"]
+}, {
+    "_id": "60fe960625a8e83a0ca34adc",
+    "name": "Signature Salmon",
+    "desc": "Salmon is a common food classified as an oily fish with a rich content of protein and omega-3 fatty acids",
+    "unit": "lbs",
+    "price": 4.95,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 50,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "energy drinks"
+    }],
+    "img": ["https://i.ibb.co/m60nsfH/salmon.png"]
+}, {
+    "_id": "60fe962f25a8e83a0ca34add",
+    "name": "Swordfish Fillet",
+    "desc": "The swordfish meat has a very delicate flavour, meaty and mild. Swordfish, also known as broadbills, is an oily fish similar to tuna, chunky meat without bones.",
+    "unit": "lbs",
+    "price": 10,
+    "sale": 8.5,
+    "discount": 15,
+    "quantity": 100,
+    "category": "Meat & Fish",
+    "tags": [{
+        "name": "energy drinks"
+    }],
+    "img": ["https://i.ibb.co/Wz6cqrZ/swordfish.png"]
+}, {
+    "_id": "60fe967e25a8e83a0ca34ade",
+    "name": "Teeccino Herbal Coffee Alternative",
+    "desc": "Coffee is a brewed drink prepared from roasted coffee beans, the seeds of berries from certain Coffea species. The genus Coffea is native to tropical Africa (specifically having its origin in Ethiopia and Sudan) and Madagascar, the Comoros, Mauritius, and Réunion in the Indian Ocean.",
+    "unit": "Piece",
+    "price": 8,
+    "sale": 0,
+    "discount": 0,
+    "quantity": 100,
+    "category": "Beverage",
+    "tags": [{
+        "name": "coffee"
+    }],
+    "img": ["https://i.ibb.co/sF55FSP/teeccino-herbal-coffee-alternative-almond-amaretto.png"]
+}, {
+    "_id": "60ffbdf60d93fbaba15fe09e",
+    "name": "Lemon",
+    "desc": "The lemon/lime, Citrus limon Osbeck, is a species of small evergreen tree in the flowering plant family Rutaceae, native to South Asia, primarily North eastern India.",
+    "unit": "lbs",
+    "price": 1.5,
+    "sale": 1,
+    "discount": 40,
+    "quantity": 100,
+    "category": "Fruits & Vegetables",
+    "tags": [{
+        "name": "fruits"
+    }],
+    "img": ["https://i.ibb.co/fpzbNgQ/Yellow-Limes-y0lbyo.png"]
+}]

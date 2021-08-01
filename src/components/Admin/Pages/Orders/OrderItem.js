@@ -50,12 +50,20 @@ const OrderItem = ({order,index}) => {
         setStatusColor(selectColor(order.status))
     }, [order])
 
+    let identity = ""
+    if(order.customerName)
+        identity = order.customerName
+    else if(order.customerEmail)
+        identity = order.customerEmail
+    else
+        identity = order.customerId
+        
     return (
         <>
         <Loading loading={loading}></Loading>
         <tr>
             <th scope="row">{index+1}</th>
-            <td>{order.customerEmail}</td>
+            <td>{identity}</td>
             <td>{order.orderDate}</td>
             <td>{order.deliveryAddress}</td>
             <td>${(order.amount-order.discount).toFixed(2)}</td>

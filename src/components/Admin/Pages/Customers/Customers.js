@@ -63,7 +63,7 @@ const Customers = () => {
             const number = e.target.value
             newList = newList.filter(item => {
                 const arr = item.contactNumber
-                const match = arr.find(item2 => item2 === number || item2?.desc.startsWith(number))
+                const match = arr?.find(item2 => item2 === number || item2?.desc.startsWith(number))
                 return match ? true : false
             })
             setCustomers(newList)
@@ -99,7 +99,7 @@ const Customers = () => {
                                         <tr>
                                             <th scope="col">Id</th>
                                             <th scope="col">Image</th>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Identity</th>
                                             <th scope="col">Contact</th>
                                             <th scope="col">Total Orders</th>
                                             <th scope="col">Total Amount</th>

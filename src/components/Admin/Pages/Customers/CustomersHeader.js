@@ -19,7 +19,7 @@ const CustomersHeader = ({customerFilter, handleSearch}) => {
                         </select>
                     </div>
                     <div className="form-group col-lg-9">
-                        <input type="text" id="search" onKeyUp={handleSearch} className="form-control" placeholder="Ex: Search By Address"/>
+                        <input type="text" id="search" onKeyUp={handleSearch} className="form-control" placeholder="Ex: Search By Contact Number"/>
                     </div>
                 </div>
             </div>

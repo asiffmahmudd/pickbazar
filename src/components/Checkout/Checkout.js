@@ -177,7 +177,7 @@ const Checkout = () => {
                     date: dayjs().format('lll'),
                     unread: true
                 }
-                fetch('http://localhost:4000/addNotification',{
+                fetch('https://pickbazar-clone.herokuapp.com/addNotification',{
                     method: 'POST',    
                     headers:{
                         'Content-Type':'application/json'

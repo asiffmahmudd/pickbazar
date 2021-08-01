@@ -18,7 +18,7 @@ const AdminHeader = ({setSidebarOpen}) => {
     const [notifications, setNotifications] = useState([])
     const [unreadNotifications, setUnreadNotifications] = useState(0)
     useEffect(() => {
-        fetch('http://localhost:4000/notifications')
+        fetch('https://pickbazar-clone.herokuapp.com/notifications')
         .then(res => res.json())
         .then(result =>{
             calculateUnread(result)
@@ -37,38 +37,49 @@ const AdminHeader = ({setSidebarOpen}) => {
     }
 
     const handleNotificationRead = (e, index) => {
-        const newList = [...notifications]
-        newList[index].unread = false
-        setNotifications(newList)
-        calculateUnread(newList)
-        e.target.style.background = "white"
+        if(notifications[index].unread === true){
+            fetch('https://pickbazar-clone.herokuapp.com/updateNotification/'+notifications[index]._id,{
+                method: 'PUT'
+            })
+            .then(res=>res.json())
+            .then(result=> result)
+            .catch(e => alert(e.message))
 
+            const newList = [...notifications]
+            newList[index].unread = false
+            setNotifications(newList)
+            calculateUnread(newList)
+            e.target.style.background = "white"
+        }
     }
 
     const clearNotifications = () =>{
-        fetch('http://localhost:4000/deleteNotifications',{
+        fetch('https://pickbazar-clone.herokuapp.com/deleteNotifications',{
             method: 'DELETE'
         })
         .then(res=>res.json())
-        .then(result=> console.log(result))
+        .then(result=> (result))
+        .catch(e => alert(e.message))
 
         setNotifications([])
         setUnreadNotifications(0)
     }
 
     const markAllRead = () =>{
-        fetch('http://localhost:4000/updateNotifications',{
+        fetch('https://pickbazar-clone.herokuapp.com/updateNotifications',{
             method: 'PUT'
         })
         .then(res=>res.json())
-        .then(result=> console.log(result))
+        .then(result=> (result))
+        .catch(e => alert(e.message))
+
         const newList = [...notifications]
         newList.map(item => item.unread = false)
         setNotifications(newList)
         setUnreadNotifications(0)
     }
 
-    
+
 
     return (
         <>
