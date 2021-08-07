@@ -31,18 +31,19 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
         color: textColor,
         background: bgColor
     }
-    let deliveryDate;
-    if(order.deliverySchedule === '90 min express delivery'){
-        deliveryDate = order.deliverySchedule
-    }
-    else{
-        var dayjs = require('dayjs')
-        var localizedFormat = require('dayjs/plugin/localizedFormat')
-        dayjs.extend(localizedFormat)
-        let newDate = new Date(order.orderDate)
-        newDate.setDate(newDate.getDate() + 7)
-        deliveryDate = dayjs(newDate).format('LL')
-    }
+    
+    // let deliveryDate;
+    // if(order.deliverySchedule === '90 min express delivery'){
+    //     deliveryDate = order.deliverySchedule
+    // }
+    // else{
+    //     var dayjs = require('dayjs')
+    //     var localizedFormat = require('dayjs/plugin/localizedFormat')
+    //     dayjs.extend(localizedFormat)
+    //     let newDate = new Date(order.orderDate)
+    //     newDate.setDate(newDate.getDate() + 7)
+    //     deliveryDate = dayjs(newDate).format('LL')
+    // }
     
     return (
         <div className={"order-item mt-3 "+(index === 0?"active":"")} onClick={() => changeClass(index)}>
@@ -60,7 +61,7 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <p>Delivery Time:</p>
-                    <p className="text-capitalize">{deliveryDate}</p>
+                    <p className="text-capitalize">{order.deliverySchedule}</p>
                 </div>
                 <div className="d-flex justify-content-between">
                     <p><strong>Total Price:</strong></p>

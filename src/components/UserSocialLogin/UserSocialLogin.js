@@ -12,13 +12,13 @@ const UserSocialLogin = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     async function handleLogin(media) {
+        await loginWith(media)
         try{
-            await loginWith(media)
             saveToken()
             .then(idToken => {
                 localStorage.setItem('token', idToken)
+                history.replace(from)
             })
-            history.replace(from)
         }
         catch(e){
             alert("Something went wrong")

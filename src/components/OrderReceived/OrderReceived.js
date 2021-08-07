@@ -20,7 +20,7 @@ const OrderReceived = () => {
                         <div className="btn-container mt-3 text-right">
                             <Link to="/"><button className="btn">Back to Home</button></Link>
                         </div>
-                        <div className="order-received pl-5 pb-5 pr-5">
+                        <div className="order-received pb-5">
                             <h2 className="order-title">Order Received</h2>
                             <p className="order-received-para">Thank you. Your order has been received</p>
                             <div className="order-info-container mt-4">
@@ -43,7 +43,7 @@ const OrderReceived = () => {
                             </div>
                         </div>
 
-                        <div className="order-details pl-5 pb-5 pr-5">
+                        <div className="order-details pb-5 ">
                             <h2 className="order-title">Order Details</h2>
                             <div className="order-details-container mt-4">
                                 <div className="total-item order-details-item">
@@ -81,7 +81,7 @@ const OrderReceived = () => {
                             </div>
                         </div>
 
-                        <div className="order-details pl-5 pb-5 pr-5">
+                        <div className="order-details pb-5">
                             <h2 className="order-title">Total Amount</h2>
                             <div className="order-details-container mt-4">
                                 <div className="total-item order-details-item">
