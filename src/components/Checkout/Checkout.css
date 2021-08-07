@@ -209,7 +209,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     background-color: rgb(0, 158, 127);
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 body{
@@ -269,5 +269,14 @@ body{
 @media (max-width: 991px){
     .form-row{
         flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 450px){
+    .checkout-section{
+        padding: 30px 20px;
+    }
+    .section-header{
+        font-size: 16px;
     }
 }

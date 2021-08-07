@@ -110,6 +110,11 @@ a:hover{
     width: 75%;
 }
 
+.order-received, .order-details{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
 @media (max-width:450px) {
     .order-details-title{
         width: 35%;
@@ -117,5 +122,15 @@ a:hover{
     .order-details-para{
         padding-left: 2rem;
         width: 65%;
+    }
+}
+
+@media(max-width:591px){
+    .order-received, .order-details{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .order-date.order-info-item{
+        text-align: right;
     }
 }
