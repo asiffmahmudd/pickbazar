@@ -49,7 +49,7 @@ function App() {
                     <Route exact path="/product/:id">
                       <SingleProduct></SingleProduct>
                     </Route>
-                    <Route exact path="/category/:index/:category">
+                    <Route exact path="/category/:index/:category/:subCategory">
                       <PageLayout></PageLayout>  
                     </Route>
                     <Route exact path="/products/:search">

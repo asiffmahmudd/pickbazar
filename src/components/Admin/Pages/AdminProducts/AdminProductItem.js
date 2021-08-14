@@ -23,7 +23,7 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
             setSelected(newList)
         }
         else{
-            const newList = selected.filter(pd => pd._id !== product._id)
+            const newList = selected.filter(pd => pd.id !== product.id)
             setSelected(newList)
         }
         setIsChecked(!isChecked)
@@ -75,7 +75,7 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
                     </div>
                     <div className="d-flex justify-content-between align-items-center" style={{height:'50px'}}>
                         <p className="card-text" style={{margin:0}}>{product.name}</p>
-                        <div className="btn delete-btn hover-pointer" onClick={()=>handleSingleDelete(product._id)}>
+                        <div className="btn delete-btn hover-pointer" onClick={()=>handleSingleDelete(product.id)}>
                             Delete
                         </div>
                     </div>

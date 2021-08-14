@@ -22,7 +22,7 @@ const AdminProducts = () => {
 
     const handleBulkDelete = () => {
         setLoading(true)
-        const selectedIds = selected.map(item => item._id) 
+        const selectedIds = selected.map(item => item.id) 
         fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkProduct/`,{
             method: 'DELETE',
             headers: {
@@ -34,7 +34,7 @@ const AdminProducts = () => {
         .then(data => {
             if(data){
                 const newList = products.filter(item => {
-                    let deleteItem = selected.find(item2 => item._id === item2._id)
+                    let deleteItem = selected.find(item2 => item.id === item2.id)
                     return deleteItem? false: true
                 })
                 setProducts(newList)
@@ -56,7 +56,7 @@ const AdminProducts = () => {
         .then(data => {
             setLoading(false)
             if(data){
-                const newList = products.filter(pd => pd._id !== id)
+                const newList = products.filter(pd => pd.id !== id)
                 setProducts(newList)
             }
         })

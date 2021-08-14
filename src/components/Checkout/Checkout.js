@@ -38,7 +38,7 @@ const Checkout = () => {
     useEffect(() => {
         setItems(allproducts.filter(pd => {
             let exists = cartItems.find(cartPd => {
-                if(pd._id === cartPd._id){
+                if(pd.id === cartPd.id){
                     pd.count = cartPd.count
                     return pd
                 }
@@ -80,7 +80,7 @@ const Checkout = () => {
     const updateProduct = async (items) => {
         items = items.map(item=> {
             return {
-                id: item._id,
+                id: item.id,
                 quantity: item.quantity-item.count
             }
         })
@@ -146,7 +146,7 @@ const Checkout = () => {
         passData.products = items
         data.products = items.map(item=> {
             return {
-                id: item._id,
+                id: item.id,
                 count: item.count
             }
         })
@@ -202,7 +202,7 @@ const Checkout = () => {
         
         if(appliedCoupon){
             setCouponLoading(true)
-            fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon._id, {
+            fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon.id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

@@ -33,7 +33,7 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
             apiURL = 'https://pickbazar-clone.herokuapp.com/addCategory'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCategory/'+category._id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCategory/'+category.id
         }
         fetch(apiURL, {
             method: category? 'PUT' : 'POST',

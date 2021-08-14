@@ -26,7 +26,7 @@ const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselect
         setCouponLoading(true)
         coupon.status = event.target.value
         setStatusColor(selectColor(event.target.value))
-        fetch('https://pickbazar-clone.herokuapp.com/updateCouponStatus/'+coupon._id, {
+        fetch('https://pickbazar-clone.herokuapp.com/updateCouponStatus/'+coupon.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselect
                     </select></td>
                 <td>
                     <BiEdit color="green" onClick={()=> handleCouponDrawerOpen(coupon)} className="mr-2 hover-pointer"></BiEdit>
-                    <BsTrash color='red' onClick={() => handleSingleDelete(coupon._id)} className="hover-pointer"></BsTrash>
+                    <BsTrash color='red' onClick={() => handleSingleDelete(coupon.id)} className="hover-pointer"></BsTrash>
                 </td>
             </tr>
             <CouponDrawer coupon={coupon} isCouponDrawerOpen={isCouponDrawerOpen} handleCouponDrawerClose={handleCouponDrawerClose}></CouponDrawer>

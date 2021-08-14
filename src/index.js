@@ -8,7 +8,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 // import 'jquery';
 // import 'popper.js';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(

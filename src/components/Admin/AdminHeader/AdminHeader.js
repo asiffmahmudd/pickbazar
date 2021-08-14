@@ -38,7 +38,7 @@ const AdminHeader = ({setSidebarOpen}) => {
 
     const handleNotificationRead = (e, index) => {
         if(notifications[index].unread === true){
-            fetch('https://pickbazar-clone.herokuapp.com/updateNotification/'+notifications[index]._id,{
+            fetch('https://pickbazar-clone.herokuapp.com/updateNotification/'+notifications[index].id,{
                 method: 'PUT'
             })
             .then(res=>res.json())

@@ -15,7 +15,7 @@ const CartVoucher = ({totalPrice}) => {
 
     const items = allproducts.filter(pd => {
         let exists = cartItems.find(cartPd => {
-            if(pd._id === cartPd._id){
+            if(pd.id === cartPd.id){
                 pd.count = cartPd.count
                 return pd
             }
