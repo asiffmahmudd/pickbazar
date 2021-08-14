@@ -19,8 +19,8 @@ const SingleProduct = () => {
     const [related, setRelated] = useState()
 
     useEffect(() => {
-        setProduct(allproducts.find(pd => pd._id === productId.id))
-        setRelated(allproducts?.filter(pd => pd.category === product?.category && pd._id !== productId.id))
+        setProduct(allproducts.find(pd => Number(pd.id) === Number(productId.id)))
+        setRelated(allproducts?.filter(pd => pd.category === product?.category && Number(pd.id) !== Number(productId.id)))
         window.scrollTo(0, 0)
     },[allproducts,product, productId.id])
     

@@ -45,9 +45,9 @@ const PageLayout = () => {
 
     const {categories} = useItem();
     const [subCategoryList, setSubCategoryList] = useState([])
-    const changeCategory = (index,categoryName) => {
-        setSubCategoryList(categories.find(item=> item.name === categoryName).subCategory)
-        setSelectedCategory(categoryName)
+    const changeCategory = (index,categoryId) => {
+        setSubCategoryList(categories.find(item=> item.id === categoryId).subCategory)
+        setSelectedCategory(categoryId)
         setIndex(index)
         setSubCategoryDrawerOpen(true)
     }
@@ -73,7 +73,7 @@ const PageLayout = () => {
                     </div>
                     <div className="col-lg-9 product-container justify-content-center">
                         {
-                            <Products selectedCategory={selectedCategory}></Products>
+                            <Products selectedCategory={selectedCategory} subCategory={subCategory}></Products>
                         }
                     </div>
                 </div>

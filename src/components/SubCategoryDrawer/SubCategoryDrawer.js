@@ -21,7 +21,7 @@ const SubCategoryDrawer = ({filterWithCategory, setSubCategory, subCategoryList,
                         subCategoryList.map(item => {
                             return (
                                 <div className="col-lg-2 subCategory-item">
-                                    <div className="bg-white p-3 text-center hover-pointer" onClick={()=>handleClick(item.name)}>
+                                    <div className="bg-white p-3 text-center hover-pointer" onClick={()=>handleClick(item.id)}>
                                         {item.name}
                                     </div>
                                 </div>

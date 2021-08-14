@@ -20,35 +20,39 @@ const CategorySlider = () => {
 
     return (
         <div>
-        <h2>Swipe To Slide</h2>
+        <h5>Category</h5>
         <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-          <div>
-            <h3>7</h3>
-          </div>
-          <div>
-            <h3>8</h3>
-          </div>
-          <div>
-            <h3>9</h3>
-          </div>
+          {
+            categories.map(item => {
+              return (
+                <div className="slick-item d-flex justify-content-center flex-column  p-3">
+                  <p>{item.name}</p>
+                  <img src={item.img} alt="" />
+                </div>
+              )
+            })
+          }
+          {
+            categories.map(item => {
+              return (
+                <div className="slick-item d-flex justify-content-center flex-column  p-3">
+                  <p>{item.name}</p>
+                  <img src={item.img} alt="" />
+                </div>
+              )
+            })
+          }
+          {
+            categories.map(item => {
+              return (
+                <div className="slick-item d-flex flex-column  p-3">
+                  <p>{item.name}</p>
+                  <img src={item.img} alt="" />
+                </div>
+              )
+            })
+          }
+          
         </Slider>
       </div>
     );

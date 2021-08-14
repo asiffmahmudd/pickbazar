@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CategorySlider from '../PageLayout/CategorySlider';
 
-const Products = ({selectedCategory}) => {
+const Products = ({selectedCategory, subCategory}) => {
   const searchQuery = useParams().search
 
   const {allproducts, loading, setLoading} = useItem()
@@ -22,7 +22,13 @@ const Products = ({selectedCategory}) => {
 
   useEffect(() => {
     if(selectedCategory){
-      setProductArray(allproducts.filter(pd => pd.category === selectedCategory))
+      setLoading(true)
+      fetch('https://api.onimamzad.com/api/frontEnd/products?categoryId='+selectedCategory+'&subCategoryId='+subCategory)
+      .then(res => res.json())
+      .then(result =>{
+        setLoading(false)
+        setProductArray(result)
+      })
     }
     else if(searchQuery){
       setLoading(true)
@@ -36,7 +42,7 @@ const Products = ({selectedCategory}) => {
     else{
       setProductArray(allproducts)
     }
-  },[selectedCategory, allproducts, searchQuery, setLoading])
+  },[selectedCategory, subCategory, allproducts, searchQuery, setLoading])
   
   return (
     <>
@@ -44,7 +50,6 @@ const Products = ({selectedCategory}) => {
         <Loading loading={loading}></Loading>
         <Slider></Slider>
         <div className="col-sm-12 filter-mobile-view mt-3">
-            <p>Category</p>
             <CategorySlider />
         </div>
         {
