@@ -13,7 +13,7 @@ const ProductItem = ({product}) => {
                         product.quantity === 0 &&
                         <span className="stockout-container">Out of stock</span>
                     }
-                    <img className="card-img-top" src={product?.img[0]} alt="" onClick={() => history.push('/product/'+product.id)} />
+                    <img className="card-img-top" src={product?.img[0]} alt="" onClick={() => history.push('/product/'+product._id)} />
                     {
                         product.discount > 0 &&
                         <p className="product-item-discount">{product.discount}%</p>

@@ -25,7 +25,7 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
             apiURL = 'https://pickbazar-clone.herokuapp.com/addCoupon'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCoupon/'+coupon.id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCoupon/'+coupon._id
         }
 
         fetch(apiURL, {

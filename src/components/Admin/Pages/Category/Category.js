@@ -33,7 +33,7 @@ const Category = () => {
 
     const handleBulkDelete = () => {
         setCategoryLoading(true)
-        const selectedIds = selected.map(item => item.id) 
+        const selectedIds = selected.map(item => item._id) 
         fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCategory/`,{
             method: 'DELETE',
             headers: {
@@ -45,7 +45,7 @@ const Category = () => {
         .then(data => {
             if(data){
                 const newList = categories.filter(item => {
-                    let deleteItem = selected.find(item2 => item.id === item2.id)
+                    let deleteItem = selected.find(item2 => item._id === item2._id)
                     return deleteItem? false: true
                 })
                 setCategories(newList)
@@ -66,7 +66,7 @@ const Category = () => {
         .then(res => res.json())
         .then(data => {
             if(data){
-                setCategories(categories.filter(item => item.id !== id))
+                setCategories(categories.filter(item => item._id !== id))
                 resetSelection()
             }
             setCategoryLoading(false)

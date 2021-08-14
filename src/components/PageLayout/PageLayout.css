@@ -3,7 +3,6 @@
 }
 
 .product-container #carouselControls{
-    width: 100%;
     margin-top: 5px;
 }
 
@@ -29,6 +28,6 @@
         display: none;
     }
     .home .container-fluid.pb-5{
-        margin-top: 5rem !important;
+        margin-top: 9rem !important;
     }
 }

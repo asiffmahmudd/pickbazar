@@ -52,7 +52,7 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
             apiURL = 'https://pickbazar-clone.herokuapp.com/addproduct'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product.id
+            apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product._id
         }
         fetch(apiURL, {
             method: product? 'PUT' : 'POST',

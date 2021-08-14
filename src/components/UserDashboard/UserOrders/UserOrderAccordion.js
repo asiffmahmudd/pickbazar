@@ -46,7 +46,7 @@ const UserOrderAccordion = ({order,index}) => {
     useEffect(() => {
         setOrderedProducts(allproducts.filter(pd => {
             let exists = order?.products.find(pd2 => {
-                if(pd.id === pd2.id){
+                if(pd._id === pd2.id){
                     pd.count = pd2.count
                     return pd
                 }

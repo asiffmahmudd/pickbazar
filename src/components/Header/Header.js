@@ -138,7 +138,7 @@ const Header = ({selectedCategory, changeCategory}) => {
                 </nav>
             </div>
             
-            {/* <hr style={{margin:0}}/>
+            <hr style={{margin:0}}/>
             <div className="filter-mobile-view bg-white shadow-sm">
                 <div className="p-3 d-flex justify-content-between">
                     {
@@ -151,7 +151,7 @@ const Header = ({selectedCategory, changeCategory}) => {
                         Filter
                     </div>
                 </div>
-            </div> */}
+            </div>
             <FilterDrawer 
                 changeCategory={changeCategory} 
                 isFilterDrawerOpen={isFilterDrawerOpen} 

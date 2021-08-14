@@ -33,7 +33,7 @@ const Coupons = () => {
 
     const handleBulkDelete = () => {
         setCouponLoading(true)
-        const selectedIds = selected.map(item => item.id) 
+        const selectedIds = selected.map(item => item._id) 
         fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCoupon/`,{
             method: 'DELETE',
             headers: {
@@ -45,7 +45,7 @@ const Coupons = () => {
         .then(data => {
             if(data){
                 const newList = coupons.filter(item => {
-                    let deleteItem = selected.find(item2 => item.id === item2.id)
+                    let deleteItem = selected.find(item2 => item._id === item2._id)
                     return deleteItem? false: true
                 })
                 setCoupons(newList)
@@ -66,7 +66,7 @@ const Coupons = () => {
         .then(res => res.json())
         .then(data => {
             if(data){
-                setCoupons(coupons.filter(item => item.id !== id))
+                setCoupons(coupons.filter(item => item._id !== id))
                 resetSelection()
             }
             setCouponLoading(false)

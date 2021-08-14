@@ -26,7 +26,7 @@ const Cart = () => {
     })
     const items = allproducts.filter(pd => {
         let exists = cartItems.find(cartPd => {
-            if(pd.id === cartPd.id){
+            if(pd._id === cartPd._id){
                 pd.count = cartPd.count
                 return pd
             }
