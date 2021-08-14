@@ -73,7 +73,7 @@ const PageLayout = () => {
                     </div>
                     <div className="col-lg-9 product-container justify-content-center">
                         {
-                            <Products selectedCategory={selectedCategory} subCategory={subCategory}></Products>
+                            <Products changeCategory={changeCategory} selectedCategory={selectedCategory} subCategory={subCategory}></Products>
                         }
                     </div>
                 </div>

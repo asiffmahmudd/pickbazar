@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CategorySlider from '../PageLayout/CategorySlider';
 
-const Products = ({selectedCategory, subCategory}) => {
+const Products = ({changeCategory, selectedCategory, subCategory}) => {
   const searchQuery = useParams().search
 
   const {allproducts, loading, setLoading} = useItem()
@@ -50,7 +50,7 @@ const Products = ({selectedCategory, subCategory}) => {
         <Loading loading={loading}></Loading>
         <Slider></Slider>
         <div className="col-sm-12 filter-mobile-view mt-3">
-            <CategorySlider />
+            <CategorySlider changeCategory={changeCategory} />
         </div>
         {
           !loading && productArray.length === 0 &&

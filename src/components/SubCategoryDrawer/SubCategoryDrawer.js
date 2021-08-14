@@ -1,5 +1,6 @@
 import { Drawer } from '@material-ui/core';
 import React from 'react';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 const SubCategoryDrawer = ({filterWithCategory, setSubCategory, subCategoryList, isSubCategoryDrawerOpen, handleSubCategoryDrawerClose}) => {
 
@@ -17,10 +18,13 @@ const SubCategoryDrawer = ({filterWithCategory, setSubCategory, subCategoryList,
         > 
             <div className="container p-5">
                 <div className="row">
+                    <div className="hover-pointer" style={{position:'absolute', left:'10px', top: '10px'}}>
+                        <AiOutlineCloseCircle onClick={handleSubCategoryDrawerClose} size={30} />
+                    </div>
                     {
                         subCategoryList.map(item => {
                             return (
-                                <div className="col-lg-2 subCategory-item">
+                                <div className="col-lg-2 subCategory-item mt-3">
                                     <div className="bg-white p-3 text-center hover-pointer" onClick={()=>handleClick(item.id)}>
                                         {item.name}
                                     </div>
