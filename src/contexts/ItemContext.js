@@ -26,7 +26,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/products')
+        fetch('https://api.onimamzad.com/api/frontEnd/products')
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -40,7 +40,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setCategoryLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/categories')
+        fetch('https://api.onimamzad.com/api/frontEnd/categories')
         .then(res => res.json())
         .then(data => {
             setAllCategories(data)
