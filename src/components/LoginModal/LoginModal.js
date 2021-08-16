@@ -41,9 +41,9 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
             .then(result => {
                 reset()
                 signInWithEmail(result)
-                localStorage.setItem('token', result.token)
                 handleClose()
             })
+            .catch(e => alert("Email or password doesn't match"))
         }
         catch(e){
             alert(e.message)

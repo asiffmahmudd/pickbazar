@@ -33,6 +33,10 @@ const Login = () => {
                 signInWithEmail(result)
                 history.replace(from)
             })
+            .catch(e => {
+                setLoading(false)
+                alert("Email or password doesn't match")
+            })
         }
         catch(e){
             setLoading(false)
