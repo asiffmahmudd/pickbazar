@@ -3,8 +3,8 @@ import Modal from 'react-modal';
 import './LoginModal.css';
 import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
-import { useAuth } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen}) => {
@@ -25,16 +25,23 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
         
     };
 
-    const {signInWithEmail, saveToken} = useAuth()
     const { register, handleSubmit, reset } = useForm();
+    const {signInWithEmail} = useAuth()
 
     const onSubmit = async data => {
         try{
-            await signInWithEmail(data)
-            saveToken()
-            .then(idToken => {
+            fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
                 reset()
-                localStorage.setItem('token', idToken);
+                signInWithEmail(result)
+                localStorage.setItem('token', result.token)
                 handleClose()
             })
         }

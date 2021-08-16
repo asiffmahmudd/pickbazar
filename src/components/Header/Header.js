@@ -12,7 +12,7 @@ import { AiOutlineAlignLeft } from "react-icons/ai";
 import UserDrawer from './UserDrawer';
 import userIcon from '../../img/user.png';
 
-const Header = ({selectedCategory, changeCategory}) => {
+const Header = ({changeCategory}) => {
 
     const [loginIsOpen,setLoginIsOpen] = useState(false);
     const [signupIsOpen, setSignupIsOpen] = useState(false);
@@ -47,16 +47,13 @@ const Header = ({selectedCategory, changeCategory}) => {
     }
 
     const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
-    
-    const handleFilterDrawerOpen = () => {
-        setFilterDrawerOpen(true); 
-    }
 
     const handleFilterDrawerClose = () => {
         setFilterDrawerOpen(false);
     }
 
     const {loggedInUser, logout} = useAuth()
+    console.log(loggedInUser)
     
     const [isUserDrawerOpen, setUserDrawerOpen] = useState(false)
 

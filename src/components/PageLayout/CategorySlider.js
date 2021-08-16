@@ -47,7 +47,7 @@ const CategorySlider = ({changeCategory}) => {
           {
             categories.map((item, index) => {
               return (
-                <div className="slick-item d-flex justify-content-center flex-column align-items-center p-3" onClick={()=>changeCategory(index,item.id)}>
+                <div key={index} className="slick-item d-flex justify-content-center flex-column align-items-center p-3" onClick={()=>changeCategory(index,item.id)}>
                   <p className="text-center">{item.name}</p>
                   <img src={item.img} alt="" />
                 </div>

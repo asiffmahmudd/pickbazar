@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const SignUp = () => {
 
-    const {signUpWithEmail, saveToken} = useAuth()
+    const {signInWithEmail} = useAuth()
     const { register, handleSubmit } = useForm();
     const [loading, setLoading] = useState(false)
     
@@ -20,16 +20,22 @@ const SignUp = () => {
     const onSubmit = async data => {
         try{
             setLoading(true)
-            await signUpWithEmail(data)
-            saveToken()
-            .then(idToken => {
-                localStorage.setItem('token', idToken);
+            fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
                 setLoading(false)
+                signInWithEmail(result)
                 history.replace(from)
             })
         }
         catch(e){
-            setLoading(true)
+            setLoading(false)
             alert(e.message)
         }
     };
@@ -45,6 +51,17 @@ const SignUp = () => {
                             <h4 className="theme-text text-center">Sign Up</h4>
                             <p className="text-center">By signing up, you agree to Pickbazar's Terms</p>
                             <form className="login" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="form-group">
+                                    <input 
+                                        type="text" 
+                                        className="cstm-input" 
+                                        id="name" 
+                                        aria-describedby="name" 
+                                        {...register("name")}
+                                        placeholder="Enter name" 
+                                        required
+                                    />
+                                </div>
                                 <div className="form-group">
                                     <input 
                                         type="email" 

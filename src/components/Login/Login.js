@@ -2,17 +2,16 @@ import React from 'react';
 import './Login.css'
 import {Link, useHistory, useLocation} from "react-router-dom";
 import UserSocialLogin from '../UserSocialLogin/UserSocialLogin';
-import { useAuth } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Loading from '../Loading/Loading';
 import SimpleHeader from '../SimpleHeader/SimpleHeader';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Login = () => {
-
-    const {signInWithEmail, saveToken} = useAuth()
     const { register, handleSubmit } = useForm();
     const [loading, setLoading] = useState(false)
+    const {signInWithEmail} = useAuth()
     
     let history = useHistory();
     let location = useLocation();
@@ -21,11 +20,17 @@ const Login = () => {
     const onSubmit = async data => {
         try{
             setLoading(true)
-            await signInWithEmail(data)
-            saveToken()
-            .then(idToken => {
-                localStorage.setItem('token', idToken);
+            fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
                 setLoading(false)
+                signInWithEmail(result)
                 history.replace(from)
             })
         }
