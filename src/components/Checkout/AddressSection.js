@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { BiPlus } from "react-icons/bi";
-import { useAuth } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import AddAddressModal from './AddAddressModal';
 import AddressItem from './AddressItem';
@@ -11,7 +10,6 @@ const AddressSection = ({register,errors, customer}) => {
     const [addAddressIsOpen, setAddAddressIsOpen] = useState(false);
     const [addresses, setAddresses] = useState([]) 
     const [loading, setLoading] = useState(false)
-    const {loggedInUser} = useAuth()
 
     useEffect(()=> {
         setAddresses(customer?.deliveryAddress || [])
@@ -35,19 +33,91 @@ const AddressSection = ({register,errors, customer}) => {
             });
             setAddresses(newList)
             setAddAddressIsOpen(false)
-            updateAddressInDatabase(newList)
+            const address = {title, desc}
+            
+            setLoading(true)
+            const user = JSON.parse(localStorage.getItem('user'))
+            fetch('https://api.onimamzad.com/api/frontEnd/inputAddress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: user.token
+                },
+                body: JSON.stringify(address)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                    
+                }
+                setLoading(false)
+            })
+            .catch(error => {
+                setLoading(false)
+                alert(error.message)
+            })
         }
     }
 
-    const updateAddressInDatabase = (newList) => {
+    useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerAddress/'+loggedInUser.uid, {
+        const user = JSON.parse(localStorage.getItem('user'))
+        console.log(user.token)
+        fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': user.token
+            }
+        })
+        .then(res => res.json())
+        .then(result => {
+            setLoading(false)
+            setAddresses(result)
+        })
+        .catch(e => {
+            setLoading(false)
+            alert(e.message)
+        })
+    },[])
+
+    const updateAddressInDatabase = (title,desc, index) => {
+        setLoading(true)
+        const user = JSON.parse(localStorage.getItem('user'))
+        const address = {
+            title, desc
+        }
+        fetch('https://api.onimamzad.com/api/frontEnd/updateAddress'+ addresses[index].id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: user.token
             },
-            body: JSON.stringify(newList)
+            body: JSON.stringify(address)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                
+            }
+            setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
+        })
+    }
+    
+    const deleteAddress = (index) => {
+        setLoading(true)
+        const user = JSON.parse(localStorage.getItem('user'))
+        fetch('https://api.onimamzad.com/api/frontEnd/deleteAddress'+ addresses[index].id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: user.token
+            }
         })
         .then(response => response.json())
         .then(data => {
@@ -66,7 +136,7 @@ const AddressSection = ({register,errors, customer}) => {
         const newList = [...addresses]
         newList.splice(index,1)
         setAddresses(newList)
-        updateAddressInDatabase(newList)
+        deleteAddress(index)
     }
 
 

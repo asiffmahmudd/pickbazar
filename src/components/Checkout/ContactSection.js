@@ -42,6 +42,22 @@ const ContactSection = ({register,errors, customer}) => {
         }
     }
 
+    // useEffect(() => {
+    //     setLoading(true)
+    //     const user = JSON.parse(localStorage.getItem('user'))
+    //     fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: user.token
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(result => {
+    //         setLoading(false)
+    //         setNumbers(result)
+    //     })
+    // },[])
+
     const updateNumbersInDatabase = (newList) => {
         setLoading(true)
         fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {

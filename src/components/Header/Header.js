@@ -53,7 +53,6 @@ const Header = ({changeCategory}) => {
     }
 
     const {loggedInUser, logout} = useAuth()
-    console.log(loggedInUser)
     
     const [isUserDrawerOpen, setUserDrawerOpen] = useState(false)
 

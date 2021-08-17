@@ -26,7 +26,7 @@ const AddressItem = ({address, updateAddressInDatabase, addresses, index, setAdd
             newList[index].desc = desc
             setAddresses(newList)
             handleClose()
-            updateAddressInDatabase(newList)
+            updateAddressInDatabase(title, desc, index)
         }
     }
 
