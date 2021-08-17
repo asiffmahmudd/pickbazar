@@ -10,14 +10,14 @@ const CustomerItem = ({customer, index}) => {
         identity = customer.email
     else
         identity = customer.uid
-
+   console.log(customer)
     return (
         <>
             <tr>
                 <th scope="row">{index+1}</th>
                 <td><img src={customer.photo?customer.photo:user} alt="" /></td>
                 <td>{identity}</td>
-                <td>{customer.contactNumber?customer.contactNumber[0].desc:""}</td>
+                <td>{customer.contactNumber? customer.contactNumber.length>0 ? customer.contactNumber[0].desc:"":""}</td>
                 <td>{customer.orders}</td>
                 <td>${customer.totalAmount.toFixed(2)}</td>
                 <td>{customer.joiningDate}</td>
