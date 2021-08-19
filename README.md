@@ -1,6 +1,6 @@
 <h1>A complete E-commerce Site</h1>
 <h3>
-  Features:
+  Features: 
   <ul>
     <li>Complete admin panel with the functionality to add, edit, delete, bulk delete products, categories, coupons etc</li>
     <li>Search functionality</li>
