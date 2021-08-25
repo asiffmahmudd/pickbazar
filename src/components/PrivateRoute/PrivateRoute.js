@@ -10,7 +10,17 @@ const PrivateRoute = ({ children, ...rest }) => {
             {...rest}
             render={({ location }) =>
                 loggedInUser ? 
-                    (children) 
+                    loggedInUser.emailVerified || loggedInUser.providerId === 'facebook.com' ? 
+                        (children) 
+                    :
+                    (
+                        <Redirect
+                            to={{
+                            pathname: "/verifyEmail",
+                            state: { from: location }
+                            }}
+                        />
+                    )
                 : 
                 (
                     <Redirect

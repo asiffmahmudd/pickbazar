@@ -8,7 +8,7 @@ const AdminRoute = ({ children, ...rest }) => {
         <Route
             {...rest}
             render={({ location }) =>
-                loggedInUser?.email === "sarwarhosen007@gmail.com" ? (
+                loggedInUser?.email === "asifmahmud3472@gmail.com" ? (
                 children
                 ) : (
                 <>

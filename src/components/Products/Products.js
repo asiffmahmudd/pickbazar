@@ -8,10 +8,8 @@ import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CategorySlider from '../PageLayout/CategorySlider';
-import { getProducts } from '../../utils/network';
 
-const Products = ({changeCategory, selectedCategory, subCategory}) => {
+const Products = ({selectedCategory}) => {
   const searchQuery = useParams().search
 
   const {allproducts, loading, setLoading} = useItem()
@@ -23,19 +21,7 @@ const Products = ({changeCategory, selectedCategory, subCategory}) => {
 
   useEffect(() => {
     if(selectedCategory){
-      setLoading(true)
-      getProducts(selectedCategory, subCategory)
-      .then(result => {
-        setLoading(false)
-        setProductArray(result)
-      })
-      
-      // fetch('https://api.onimamzad.com/api/frontEnd/products?categoryId='+selectedCategory+'&subCategoryId='+subCategory)
-      // .then(res => res.json())
-      // .then(result =>{
-      //   setLoading(false)
-      //   setProductArray(result)
-      // })
+      setProductArray(allproducts.filter(pd => pd.category === selectedCategory))
     }
     else if(searchQuery){
       setLoading(true)
@@ -49,16 +35,13 @@ const Products = ({changeCategory, selectedCategory, subCategory}) => {
     else{
       setProductArray(allproducts)
     }
-  },[selectedCategory, subCategory, allproducts, searchQuery, setLoading])
+  },[selectedCategory, allproducts, searchQuery, setLoading])
   
   return (
     <>
       <div className="row mt-4">
         <Loading loading={loading}></Loading>
         <Slider></Slider>
-        <div className="col-sm-12 filter-mobile-view mt-3">
-            <CategorySlider changeCategory={changeCategory} />
-        </div>
         {
           !loading && productArray.length === 0 &&
           <h3 className="text-center col-md-12 mt-4">No products found</h3>

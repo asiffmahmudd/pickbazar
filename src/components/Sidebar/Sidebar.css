@@ -14,11 +14,3 @@
     height: 40px;
     width: 40px;
 }
-
-
-@media (max-width:747px){
-    .sub-category-drawer.drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorBottom {
-        background: rgba(247,247,247);
-        height: 100% !important;
-    }
-}

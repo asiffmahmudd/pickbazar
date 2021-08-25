@@ -11,7 +11,7 @@ const DeliverySchedule = ({register,errors}) => {
     const disabledFont ={
         color: 'white'
     }
-    
+
     return (
         <div className="schedule checkout-section">
             <h3 className="section-header">Delivery Schedule</h3>

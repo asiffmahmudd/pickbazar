@@ -27,14 +27,14 @@ const ContactItem = ({number, updateNumbersInDatabase, numbers, index, setNumber
             newList[index].desc = desc
             setNumbers(newList)
             handleClose()
-            updateNumbersInDatabase(title, desc, index)
+            updateNumbersInDatabase(newList)
         }
     }
 
     return (
         <>
             <label key={index} className="col-md-4">
-                <input type="radio" name="contactNumber" className="card-input-element" value={number.id}/>
+                <input type="radio" name="contactNumber" className="card-input-element" value={number.desc}/>
                 <div className="panel panel-default card-input">
                     <span className="hover-item-action-container d-flex">
                         <span className="hover-edit mr-1" onClick={()=>handleEdit(number)}>

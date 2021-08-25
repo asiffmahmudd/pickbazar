@@ -16,7 +16,6 @@ import Loading from '../Loading/Loading';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCoupon } from '../../contexts/CouponContext';
 import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
-import { addOrder } from '../../utils/network';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -39,7 +38,7 @@ const Checkout = () => {
     useEffect(() => {
         setItems(allproducts.filter(pd => {
             let exists = cartItems.find(cartPd => {
-                if(pd.id === cartPd.id){
+                if(pd._id === cartPd._id){
                     pd.count = cartPd.count
                     return pd
                 }
@@ -81,7 +80,7 @@ const Checkout = () => {
     const updateProduct = async (items) => {
         items = items.map(item=> {
             return {
-                id: item.id,
+                id: item._id,
                 quantity: item.quantity-item.count
             }
         })
@@ -136,130 +135,114 @@ const Checkout = () => {
             const paymentInfo = await payWithCard();
             data.paymentInfo = paymentInfo;
         }
-        // data.orderId = uniqid()
-        // data.customerId = loggedInUser.uid
-        // data.customerEmail = loggedInUser.email
+        
+        data.orderId = uniqid()
+        data.customerId = loggedInUser.uid
+        data.customerEmail = loggedInUser.email
+        data.orderDate = dayjs().format('LLL') 
         data.amount = totalPrice
         data.discount = discount
         const passData = {...data}
         passData.products = items
-        passData.orderDate = dayjs().format('LLL') 
         data.products = items.map(item=> {
             return {
-                id: item.id,
+                id: item._id,
                 count: item.count
             }
         })
-        // data.status = "pending"
-        console.log(data)
-
+        data.status = "pending"
         setOrderLoading(true)
-        const user = JSON.parse(localStorage.getItem('user')) 
-        addOrder(data, user.token)
-        .then(result => {
-            setOrderLoading(false)
-            dispatch(clearCart())
-            setProductChange(true)
-            setProductChange(false)
-            passData.orderId = result.order.order_number
-            history.push({
-                pathname: '/order-received',
-                state: {passData}
-            })
+        updateProduct(items)
+        updateCustomerData()
+        fetch('https://pickbazar-clone.herokuapp.com/addOrder',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(data)
         })
-
-
-        // updateProduct(items)
-        // updateCustomerData()
-        // fetch('https://pickbazar-clone.herokuapp.com/addOrder',{
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         authorization: `Bearer ${localStorage.getItem('token')}`
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        // .then(res => res.json())
-        // .then(async result => {
-        //     console.log(result)
-        //     let placedBy = ""
-        //     if(loggedInUser.email)
-        //         placedBy = loggedInUser.email
-        //     else if(loggedInUser.name)
-        //         placedBy = loggedInUser.name
-        //     else
-        //         placedBy = loggedInUser.uid
-        //     if(result){
-        //         const notification = {
-        //             desc:'Order placed by '+placedBy,
-        //             date: dayjs().format('lll'),
-        //             unread: true
-        //         }
-        //         fetch('https://pickbazar-clone.herokuapp.com/addNotification',{
-        //             method: 'POST',    
-        //             headers:{
-        //                 'Content-Type':'application/json'
-        //             },
-        //             body: JSON.stringify(notification)
-        //         })
-        //         .then(res => res.json())
-        //         .then(data => {
-        //             setOrderLoading(false)
-        //             dispatch(clearCart())
-        //             setProductChange(true)
-        //             setProductChange(false)
-        //             history.push({
-        //                 pathname: '/order-received',
-        //                 state: {passData}
-        //             })
-        //         })
-        //     }
+        .then(res => res.json())
+        .then(async result => {
+            let placedBy = ""
+            if(loggedInUser.email)
+                placedBy = loggedInUser.email
+            else if(loggedInUser.name)
+                placedBy = loggedInUser.name
+            else
+                placedBy = loggedInUser.uid
+            if(result){
+                const notification = {
+                    desc:'Order placed by '+placedBy,
+                    date: dayjs().format('lll'),
+                    unread: true
+                }
+                fetch('https://pickbazar-clone.herokuapp.com/addNotification',{
+                    method: 'POST',    
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(notification)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setOrderLoading(false)
+                    dispatch(clearCart())
+                    setProductChange(true)
+                    setProductChange(false)
+                    history.push({
+                        pathname: '/order-received',
+                        state: {passData}
+                    })
+                })
+            }
             
-        // })
-        // .catch(e => alert(e.message))
+        })
+        .catch(e => alert(e.message))
         
-        // if(appliedCoupon){
-        //     setCouponLoading(true)
-        //     fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon.id, {
-        //         method: 'PUT',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(appliedCoupon)
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if(data){ 
-        //         }
-        //         setCouponLoading(false)
-        //     })
-        //     .catch(error => {
-        //         setCouponLoading(false)
-        //         alert(error.message)
-        //     })
-        // }
+        if(appliedCoupon){
+            setCouponLoading(true)
+            fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon._id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(appliedCoupon)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){ 
+                }
+                setCouponLoading(false)
+            })
+            .catch(error => {
+                setCouponLoading(false)
+                alert(error.message)
+            })
+        }
     };
 
     
     const [customer, setCustomer] = useState({})
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
-        // setCustomerLoading(true)
-        // fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         authorization: `Bearer ${localStorage.getItem('token')}`
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(result => {
-        //     setCustomer(result)
-        //     setCustomerLoading(false)
-        // })
-        // .catch(e => {
-        //     setCustomerLoading(false)
-        //     alert(e.message)
-        // })
+        console.log(localStorage.getItem('token'))
+        setCustomerLoading(true)
+        fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => res.json())
+        .then(result => {
+            setCustomer(result)
+            setCustomerLoading(false)
+        })
+        .catch(e => {
+            setCustomerLoading(false)
+            alert(e.message)
+        })
     },[loggedInUser.uid])
     useEffect(()=>{
         window.scrollTo(0, 0)

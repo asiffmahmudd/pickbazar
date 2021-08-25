@@ -12,7 +12,7 @@ const UserDrawer = ({isUserDrawerOpen, handleUserDrawerClose, handleLoginOpen}) 
     }
 
     const {logout, loggedInUser} = useAuth()
-    
+
     return (
         <Drawer 
             className="user-drawer" 
@@ -33,7 +33,7 @@ const UserDrawer = ({isUserDrawerOpen, handleUserDrawerClose, handleLoginOpen}) 
                         </div>
                         <div className="user-details ml-2 text-left align-items-center">
                             <p className="user-info-name m-0 ">{loggedInUser.name}</p>
-                            <p className="user-info-number m-0 mt-2">{loggedInUser.email ? loggedInUser.email: ""}</p>
+                            <p className="user-info-number m-0 mt-2">0192843857</p>
                         </div>
                     </div>
                 }

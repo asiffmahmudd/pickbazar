@@ -8,7 +8,7 @@ export const CartReducer = (state = intitialState, action) => {
     switch(action.type){
         case "ADD_TO_CART": {
             const newItem = {}
-            newItem.id = product.id
+            newItem._id = product._id
             newItem.count = 1
             let newState = {
                 cartItems: [...state.cartItems, newItem]
@@ -19,7 +19,7 @@ export const CartReducer = (state = intitialState, action) => {
 
         case "REMOVE_FROM_CART": {
             let newState = {
-                cartItems: state.cartItems.filter(pd=> pd.id !== product.id)
+                cartItems: state.cartItems.filter(pd=> pd._id !== product._id)
             }
             localStorage.setItem('cart', JSON.stringify(newState.cartItems))
             return newState;
@@ -48,7 +48,7 @@ export const CartReducer = (state = intitialState, action) => {
         case "INCREASE_COUNT": {
             let newState = {
                 cartItems: state.cartItems.map(pd => {
-                    if(pd.id === product.id){
+                    if(pd._id === product._id){
                         pd.count++;
                     }
                     return pd;
@@ -61,7 +61,7 @@ export const CartReducer = (state = intitialState, action) => {
         case "DECREASE_COUNT": {
             let newState = {
                 cartItems: state.cartItems.map(pd => {
-                    if(pd.id === product.id){
+                    if(pd._id === product._id){
                         pd.count--;
                     }
                     return pd;

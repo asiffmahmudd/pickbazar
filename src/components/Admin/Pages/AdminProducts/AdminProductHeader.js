@@ -1,26 +1,16 @@
 import React from 'react';
-import {useItem} from '../../../../contexts/ItemContext'
-// import categories from '../../../../data/categories';
+import categories from '../../../../data/categories';
 
-const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
-    
+const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
+
     const handleCategory = (e) => {
-        let filter = ""
-        if(e.target.value === 'all'){
-            setCategoryFilter("")
-        }
-        else{
-            setCategoryFilter(e.target.value)
-            filter = e.target.value
-        }
+        setCategoryFilter(e.target.value)
         productFilter(e.target.value, priceFilter , true)
     }
     const handlePrice = (e) =>{ 
         setPriceFilter(e.target.value)
         productFilter(categoryFilter, e.target.value, true)
     }
-
-    const {categories} = useItem()
 
     return (
         <>
@@ -34,7 +24,7 @@ const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearc
                             <option value="all">All</option>
                             {
                                 categories.map((category,index) => (
-                                    <option key={index} value={category.id}>{category.name}</option>
+                                    <option key={index} value={category.name}>{category.name}</option>
                                 ))
                             }
                         </select>
@@ -42,8 +32,8 @@ const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearc
                     <div className="form-group col-lg-3">
                         <select id="price" value={priceFilter} onChange={handlePrice}  className="form-control">
                             <option value="" disabled >Price</option>
-                            <option value="ASC">Lowest to highest</option>
-                            <option value="DESC">Highest to lowest</option>
+                            <option value="lowest to highest">Lowest to highest</option>
+                            <option value="highest to lowest">Highest to lowest</option>
                         </select>
                     </div>
                     <div className="form-group col-lg-6">

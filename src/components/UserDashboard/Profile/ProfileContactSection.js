@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BiPlus } from "react-icons/bi";
-import { callAddContact, deleteContactNumber, getAllContacts, updateContacts } from '../../../utils/network';
+import { useAuth } from '../../../contexts/AuthContext';
 import AddContactModal from '../../Checkout/AddContactModal';
 import Loading from '../../Loading/Loading';
 import ProfileContactItem from './ProfileContactItem';
@@ -11,11 +11,12 @@ const ProfileContactSection = ({customer}) => {
 
     const [addContactIsOpen, setAddContactIsOpen] = useState(false);
     const [numbers, setNumbers] = useState([])
+    const {loggedInUser} = useAuth()
     const [loading, setLoading] = useState(false)
 
-    // useEffect(()=> {
-    //     setNumbers(customer?.contactNumber || [])
-    // },[customer?.contactNumber])
+    useEffect(()=> {
+        setNumbers(customer?.contactNumber || [])
+    },[customer?.contactNumber])
 
     const handleClose = () => {
         setAddContactIsOpen(false)
@@ -37,76 +38,30 @@ const ProfileContactSection = ({customer}) => {
             });
             setNumbers(newList)
             setAddContactIsOpen(false) 
-            const number = {title, desc}
-            
-            setLoading(true)
-            const user = JSON.parse(localStorage.getItem('user')) 
-            
-            callAddContact(number, user.token)
-            .then(result => {
-                setLoading(false)
-            })
+            updateNumbersInDatabase(newList)
         }
-    }
-    
-    useEffect(() => {
-        setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        getAllContacts(user.token)
-        .then(result => {
-            setLoading(false)
-            setNumbers(result)
-        })
-        // fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: user.token
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(result => {
-        //     setLoading(false)
-        //     setNumbers(result)
-        // })
-    },[])
-    
-    const updateNumbersInDatabase = (title,desc,index) => {
-        setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        const number = {
-            title, desc
-        }
-        updateContacts(number, numbers[index].id, user.token)
-        .then(result => {
-            setLoading(false)
-        })
-        // fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         authorization: `Bearer ${localStorage.getItem('token')}`
-        //     },
-        //     body: JSON.stringify(newList)
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     if(data){
-                
-        //     }
-        //     setLoading(false)
-        // })
-        // .catch(error => {
-        //     setLoading(false)
-        //     alert(error.message)
-        // })
     }
 
-    const deleteNumber = (index) => {
+    const updateNumbersInDatabase = (newList) => {
         setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        deleteContactNumber(numbers[index].id, user.token)
-        .then(result => {
+        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(newList)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data){
+                
+            }
             setLoading(false)
+        })
+        .catch(error => {
+            setLoading(false)
+            alert(error.message)
         })
     }
 
@@ -114,7 +69,7 @@ const ProfileContactSection = ({customer}) => {
         const newList = [...numbers]
         newList.splice(index,1)
         setNumbers(newList)
-        deleteNumber(index)
+        updateNumbersInDatabase(newList)
     }
 
     return (

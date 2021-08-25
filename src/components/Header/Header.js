@@ -11,9 +11,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { AiOutlineAlignLeft } from "react-icons/ai";
 import UserDrawer from './UserDrawer';
 import userIcon from '../../img/user.png';
-import { useEffect } from 'react';
 
-const Header = ({changeCategory}) => {
+const Header = ({selectedCategory, changeCategory}) => {
 
     const [loginIsOpen,setLoginIsOpen] = useState(false);
     const [signupIsOpen, setSignupIsOpen] = useState(false);
@@ -48,6 +47,10 @@ const Header = ({changeCategory}) => {
     }
 
     const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
+    
+    const handleFilterDrawerOpen = () => {
+        setFilterDrawerOpen(true); 
+    }
 
     const handleFilterDrawerClose = () => {
         setFilterDrawerOpen(false);
@@ -73,15 +76,6 @@ const Header = ({changeCategory}) => {
         history.push('/products/'+searchQuery)
     }
 
-    const [isHome, setIsHome] = useState(false)
-
-    useEffect(() => {
-        if(document.location.pathname === "/"){
-            setIsHome(true)
-        }
-    }, [window.location])
-    
-
     return (
         <>
         <header className="bg-white">
@@ -97,31 +91,24 @@ const Header = ({changeCategory}) => {
                         </div>
                         <Link className="navbar-brand d-flex align-items-center" to="/"><img src={logo} alt="" /></Link>
                     </div>
-
-                    {
-                        isHome &&
-                        <AiOutlineSearch 
-                            size={25} 
-                            className="navbar-toggler" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#navbarSupportedContent" 
-                            aria-controls="navbarSupportedContent" 
-                            aria-expanded="false" 
-                            aria-label="Toggle navigation">
-                        </AiOutlineSearch>
-                    }
+                    <AiOutlineSearch 
+                        size={25} 
+                        className="navbar-toggler" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#navbarSupportedContent" 
+                        aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                    </AiOutlineSearch>
 
                     <div className={"collapse navbar-collapse"} id="navbarSupportedContent">
-                        {
-                            isHome &&
-                            <ul className={"navbar-nav col-lg-8 ml-auto"}>
-                                <form onSubmit={handleSearchSubmit} className="form-inline rounded p-2 w-100">
-                                    <AiOutlineSearch size={25} onClick={handleSearchClick} className="hover-pointer"></AiOutlineSearch>
-                                    <input className="border-0 ml-1" id="search-bar" type="search" placeholder="Search your products from here" aria-label="Search" />
-                                </form>
-                            </ul>
-                        }
+                        <ul className={"navbar-nav col-lg-8 ml-auto"}>
+                            <form onSubmit={handleSearchSubmit} className="form-inline rounded p-2 w-100">
+                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="hover-pointer"></AiOutlineSearch>
+                                <input className="border-0 ml-1" id="search-bar" type="search" placeholder="Search your products from here" aria-label="Search" />
+                            </form>
+                        </ul>
                         {
                             !loggedInUser &&
                             <ul className="navbar-nav ml-auto">
@@ -151,7 +138,7 @@ const Header = ({changeCategory}) => {
                 </nav>
             </div>
             
-            {/* <hr style={{margin:0}}/>
+            <hr style={{margin:0}}/>
             <div className="filter-mobile-view bg-white shadow-sm">
                 <div className="p-3 d-flex justify-content-between">
                     {
@@ -164,7 +151,7 @@ const Header = ({changeCategory}) => {
                         Filter
                     </div>
                 </div>
-            </div> */}
+            </div>
             <FilterDrawer 
                 changeCategory={changeCategory} 
                 isFilterDrawerOpen={isFilterDrawerOpen} 

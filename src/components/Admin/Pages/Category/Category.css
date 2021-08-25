@@ -28,11 +28,11 @@
 }
 
 .admin table thead tr th:nth-child(1){
-    width: 100px;
-}
-/* .admin-category table thead tr th:nth-child(2){
     width: 60px;
-} */
+}
+.admin-category table thead tr th:nth-child(2){
+    width: 60px;
+}
 
 .admin table tr td{
     padding: 8px 16px;

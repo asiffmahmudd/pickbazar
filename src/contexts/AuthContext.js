@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import firebase from "firebase/app";
 import { auth } from '../utils/firbaseConfig';
-import { useForceUpdate } from '../components/Admin/Pages/AdminProducts/AdminProducts';
 
 const AuthContext = createContext();
 export function useAuth(){
@@ -10,7 +9,6 @@ export function useAuth(){
 
 export function AuthProvider({children}) {    
     
-    const forceUpdate = useForceUpdate()
     const [loggedInUser, setLoggedInUser] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -53,19 +51,11 @@ export function AuthProvider({children}) {
     }
 
     function signInWithEmail(user){
-        let currentUser = {
-            uid: user.userInfo.uid,
-            name: user.userInfo.name,
-            email: user.userInfo.email
-        }
-        setLoggedInUser(currentUser)
-        localStorage.setItem('user', JSON.stringify(user))
+        return auth.signInWithEmailAndPassword(user.email, user.password).catch(e=>alert(e.message))
     }
 
     function logout(){
-        localStorage.removeItem('user')
-        setLoggedInUser(null)
-        forceUpdate()
+        return auth.signOut();
     }
 
     function saveToken(){
@@ -82,10 +72,10 @@ export function AuthProvider({children}) {
         var localizedFormat = require('dayjs/plugin/localizedFormat')
         dayjs.extend(localizedFormat)
         let currentUser = {
-            uid: user.userInfo.uid,
-            name: user.userInfo.name,
-            email: user.userInfo.email,
-            // photo: user.photoURL,
+            uid: user.uid,
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
             joiningDate: dayjs().format('LL'),
             totalAmount: 0,
             orders: 0 
@@ -111,22 +101,27 @@ export function AuthProvider({children}) {
     }
 
     useEffect(() => {
-        let currentUser;
-        setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(user){
-            currentUser = {
-                uid: user.userInfo.uid,
-                name: user.userInfo.name,
-                email: user.userInfo.email,
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            let currentUser;
+            if(user){
+                saveToken()
+                .then(idToken => {
+                    localStorage.setItem('token', idToken)
+                })
+                currentUser = {
+                    uid: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    emailVerified: user.emailVerified,
+                    providerId: user.providerData[0].providerId,
+                }
             }
             setLoggedInUser(currentUser);
             setLoading(false);
-        }
-        else{
-            setLoggedInUser(null)
-        }
-        setLoading(false);
+        })
+
+        return unsubscribe;
     },[])
 
     const value = {

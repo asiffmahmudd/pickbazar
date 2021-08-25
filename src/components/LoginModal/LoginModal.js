@@ -3,9 +3,8 @@ import Modal from 'react-modal';
 import './LoginModal.css';
 import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
-import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AuthContext';
-import { login } from '../../utils/network';
+import { useForm } from 'react-hook-form';
 
 
 const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen}) => {
@@ -26,34 +25,18 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
         
     };
 
+    const {signInWithEmail, saveToken} = useAuth()
     const { register, handleSubmit, reset } = useForm();
-    const {signInWithEmail} = useAuth()
 
     const onSubmit = async data => {
         try{
-            login(data)
-            .then(result => {
+            await signInWithEmail(data)
+            saveToken()
+            .then(idToken => {
                 reset()
-                signInWithEmail(result)
+                localStorage.setItem('token', idToken);
                 handleClose()
             })
-            .catch(e => {
-                alert("Email or password doesn't match")
-            })
-            // fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            // .then(res => res.json())
-            // .then(result => {
-            //     reset()
-            //     signInWithEmail(result)
-            //     handleClose()
-            // })
-            // .catch(e => alert("Email or password doesn't match"))
         }
         catch(e){
             alert(e.message)

@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './Redux/CartStore';
@@ -33,6 +34,7 @@ import VerifyRoute from './components/VerifyRoute/VerifyRoute';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function App() {
+  
   return (
     <Provider store={store}>
       <ItemContextProvider>
@@ -47,7 +49,7 @@ function App() {
                     <Route exact path="/product/:id">
                       <SingleProduct></SingleProduct>
                     </Route>
-                    <Route exact path="/category/:index/:category/:subCategory">
+                    <Route exact path="/category/:index/:category">
                       <PageLayout></PageLayout>  
                     </Route>
                     <Route exact path="/products/:search">
