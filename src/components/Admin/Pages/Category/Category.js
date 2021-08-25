@@ -5,139 +5,155 @@ import CategoryHeader from './CategoryHeader'
 import { useState } from "react";
 import CategoryItem from './CategoryItem';
 import { useEffect } from 'react';
-import DeleteBar from './DeleteBar';
+// import DeleteBar from './DeleteBar';
 import Loading from '../../../Loading/Loading';
 import { useItem } from '../../../../contexts/ItemContext';
+import { deleteCategory } from '../../../../utils/network';
 
 const Category = () => {
 
-    const [isAllChecked, setIsAllChecked] = useState(false)
-    const [deselectAll, setDeselectAll] = useState(true);
-    const [selected, setSelected] = useState([])
-    const {categories, allcategories, setCategories, categoryLoading, setCategoryLoading} = useItem()
+    // const [isAllChecked, setIsAllChecked] = useState(false)
+    // const [deselectAll, setDeselectAll] = useState(true);
+    // const [selected, setSelected] = useState([])
+    const {categories, allcategories, setCategories, categoryLoading, setCategoryChange, setCategoryLoading} = useItem()
 
-    useEffect(() => {
-        if(selected.length < categories.length){
-            setIsAllChecked(false)
-        }
-        else if(selected.length === categories.length){
-            setIsAllChecked(true)
-        }
-        if(selected.length > 0){
-            setDeselectAll(false)
-        }
-        else if(selected.length === 0){
-            setDeselectAll(true)
-        }
-    }, [selected, categories.length])
+    // useEffect(() => {
+    //     if(selected.length < categories.length){
+    //         setIsAllChecked(false)
+    //     }
+    //     else if(selected.length === categories.length){
+    //         setIsAllChecked(true)
+    //     }
+    //     if(selected.length > 0){
+    //         setDeselectAll(false)
+    //     }
+    //     else if(selected.length === 0){
+    //         setDeselectAll(true)
+    //     }
+    // }, [selected, categories.length])
 
-    const handleBulkDelete = () => {
-        setCategoryLoading(true)
-        const selectedIds = selected.map(item => item._id) 
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCategory/`,{
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(selectedIds)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data){
-                const newList = categories.filter(item => {
-                    let deleteItem = selected.find(item2 => item._id === item2._id)
-                    return deleteItem? false: true
-                })
-                setCategories(newList)
-            }
-            resetSelection()
-            setCategoryLoading(false)
-        })
-        .catch(e => {
-            alert(e.message)
-        })
-    }
+    // const handleBulkDelete = () => {
+    //     setCategoryLoading(true)
+    //     const selectedIds = selected.map(item => item.id) 
+    //     fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCategory/`,{
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(selectedIds)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if(data){
+    //             const newList = categories.filter(item => {
+    //                 let deleteItem = selected.find(item2 => item.id === item2.id)
+    //                 return deleteItem? false: true
+    //             })
+    //             setCategories(newList)
+    //         }
+    //         resetSelection()
+    //         setCategoryLoading(false)
+    //     })
+    //     .catch(e => {
+    //         alert(e.message)
+    //     })
+    // }
 
     const handleSingleDelete = (id) => {
+        const user = JSON.parse(localStorage.getItem('user')) 
         setCategoryLoading(true)
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteCategory/${id}`,{
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data){
-                setCategories(categories.filter(item => item._id !== id))
-                resetSelection()
-            }
+        deleteCategory(user.token,id)
+        .then(result => {
+            setCategoryChange(true)
+            setCategoryChange(false)
             setCategoryLoading(false)
         })
-        .catch(e => {
-            alert(e.message)
-        })
+
+
+        // fetch(`https://pickbazar-clone.herokuapp.com/deleteCategory/${id}`,{
+        //     method: 'DELETE'
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //     if(data){
+        //         setCategories(categories.filter(item => item.id !== id))
+        //         resetSelection()
+        //     }
+        //     setCategoryLoading(false)
+        // })
+        // .catch(e => {
+        //     alert(e.message)
+        // })
     }
     
-    const handleAll = (e) => {
-        if(e.target.checked){
-            setIsAllChecked(true)
-            setDeselectAll(false)
-        }
-        else{
-            setIsAllChecked(false)
-            setDeselectAll(true)
-        }
-    }
+    // const handleAll = (e) => {
+    //     if(e.target.checked){
+    //         setIsAllChecked(true)
+    //         setDeselectAll(false)
+    //     }
+    //     else{
+    //         setIsAllChecked(false)
+    //         setDeselectAll(true)
+    //     }
+    // }
 
-    const resetSelection = () => {
-        setDeselectAll(true)
-        setSelected([])
-        setIsAllChecked(false)
-    }
+    // const resetSelection = () => {
+    //     setDeselectAll(true)
+    //     setSelected([])
+    //     setIsAllChecked(false)
+    // }
 
     const [search, setSearch] = useState("")
-    const categoryFilter = (value, query) => {
-        setCategoryFilterState(value)
-        if(search && query){
-            let newProductList = handleSearchWithValue(search)
-            if(value === "all"){
-                setCategories(newProductList)
-            }
-            else{
-                newProductList = newProductList.filter(item => item.type === value)
-                setCategories(newProductList)
-            }
-        }
-        else if(value === "all"){
+    const categoryFilter = (value) => {
+        // setCategoryFilterState(value)
+        // if(search && query){
+        //     let newProductList = handleSearchWithValue(search)
+        //     if(value === "all"){
+        //         setCategories(newProductList)
+        //     }
+        //     else{
+        //         newProductList = newProductList.filter(item => item.type === value)
+        //         setCategories(newProductList)
+        //     }
+        // }
+        // else if(value === "all"){
+        //     setCategories(allcategories)
+        // }
+        // else{
+        //     const newCategories = allcategories.filter(item => item.type === value)
+        //     setCategories(newCategories)
+        // }
+        // resetSelection()
+        if(value === "all" || value === ""){
             setCategories(allcategories)
         }
         else{
-            const newCategories = allcategories.filter(item => item.type === value)
-            setCategories(newCategories)
+            setCategories(allcategories.filter(item => item.id == value))
         }
-        resetSelection()
     }
 
-    const handleSearchWithValue = (value) => {
-        let newList = allcategories.slice()
-        const word = value
-        newList = newList.filter(item => {
-            const arr = item.name.toLowerCase().split(" ")
-            const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
-            return match ? true : false
-        })
-        return newList
-    }
+    // const handleSearchWithValue = (value) => {
+    //     let newList = allcategories.slice()
+    //     const word = value
+    //     newList = newList.filter(item => {
+    //         const arr = item.name.toLowerCase().split(" ")
+    //         const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
+    //         return match ? true : false
+    //     })
+    //     return newList
+    // }
     
-    const [categoryFilterState, setCategoryFilterState] = useState(false)
+    // const [categoryFilterState, setCategoryFilterState] = useState(false)
     const handleSearch = (e) => {
         if(e.target.value === ""){
             setSearch(null)
-            if(categoryFilterState){
-                categoryFilter(categoryFilterState, false)
-            }
-            else{
+            // if(categoryFilterState){
+            //     categoryFilter(categoryFilterState, false)
+            // }
+            // else{
                 setCategories(allcategories.slice())
-            }
-            resetSelection()
+            // }
+            // resetSelection()
         }
         else if(e.which === 13){
             setSearch(e.target.value)
@@ -150,8 +166,8 @@ const Category = () => {
             })
             setCategories(newList)
             setTypeFilter("")
-            setCategoryFilterState("")
-            resetSelection()
+            // setCategoryFilterState("")
+            // resetSelection()
         }
     }
 
@@ -159,7 +175,7 @@ const Category = () => {
 
     useEffect(() =>{
         setTypeFilter("")
-        setCategoryFilterState(false)
+        // setCategoryFilterState(false)
         setCategories(allcategories)
     },[allcategories, setCategories])
 
@@ -176,15 +192,15 @@ const Category = () => {
                             setTypeFilter={setTypeFilter}
                         />
                     </div>
-                    {
+                    {/* {
                         selected.length > 0 &&
                         <div className="col-lg-12 mt-3" style={{padding:0}}>
                             <DeleteBar
-                                handleBulkDelete={handleBulkDelete}
+                                // handleBulkDelete={handleBulkDelete}
                             >
                             </DeleteBar>
                         </div>
-                    }
+                    } */}
                     {
                         categories.length === 0 && !categoryLoading &&
                         <h1 className="col-md-12 mt-4 text-center">No categories found</h1>
@@ -196,35 +212,54 @@ const Category = () => {
                                 <table className="table bg-white border table-borderless">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            {/* <th>
                                                 <input type="checkbox" className="mt-2 ml-2" checked={isAllChecked} onChange={handleAll} name="category-item" value={categories}/>
                                             </th>
-                                            <th scope="col">Index</th>
+                                            <th scope="col">Index</th> */}
                                             <th scope="col">Image</th>
                                             <th scope="col">Name</th>
                                             {/* <th scope="col">Slug</th> */}
-                                            <th scope="col">Type</th>
+                                            <th scope="col">Parent</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            categories.map((category,index) => (
-                                                <CategoryItem 
-                                                    key={index} 
-                                                    index={index}
-                                                    category={category}
-                                                    categories={categories}
-                                                    isAllChecked={isAllChecked} 
-                                                    setSelected={setSelected} 
-                                                    deselectAll={deselectAll}
-                                                    selected={selected}
-                                                    handleSingleDelete={handleSingleDelete}
-                                                >
-                                                </CategoryItem>)
-                                            )
+                                            categories.map((category,index) => {
+                                                return (
+                                                    <CategoryItem 
+                                                        key={index} 
+                                                        // index={index}
+                                                        category={category}
+                                                        // categories={categories}
+                                                        // isAllChecked={isAllChecked} 
+                                                        // setSelected={setSelected} 
+                                                        // deselectAll={deselectAll}
+                                                        // selected={selected}
+                                                        handleSingleDelete={handleSingleDelete}
+                                                    />
+                                                )
+                                            })
                                         }
-                                        
+                                        {
+                                            categories.map(category => {
+                                                return category.subCategory?.map((subCategory, index) => {
+                                                    return (
+                                                        <CategoryItem 
+                                                            key={index} 
+                                                            category={subCategory}
+                                                            parent={category}
+                                                            // categories={categories}
+                                                            // isAllChecked={isAllChecked} 
+                                                            // setSelected={setSelected} 
+                                                            // deselectAll={deselectAll}
+                                                            // selected={selected}
+                                                            handleSingleDelete={handleSingleDelete}
+                                                        />
+                                                    )
+                                                })
+                                            })
+                                        }
                                     </tbody>
                                 </table>
                             </div>

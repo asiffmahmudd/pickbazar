@@ -62,8 +62,22 @@
     line-height: 1;
 }
 
+.slick-item img {
+    height: 50px;
+    width: 50px;
+}
+
+.slick-item{
+    min-height: 150px;
+}
+
+.slick-item p{
+    min-height: 50px;
+}
+
 @media (min-width:991px){
     .product-item .product-img-container {
         height: 250px;
     }
+    
 }

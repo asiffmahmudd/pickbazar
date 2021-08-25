@@ -10,19 +10,19 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
     }
 
     let textColor, bgColor
-    if(order.status === "pending"){
+    if(order.status.toLowerCase() === "pending"){
         textColor = "rgb(32, 103, 250)"
         bgColor = "rgb(32, 103, 250, 0.1)"
     }
-    else if(order.status === "processing"){
+    else if(order.status.toLowerCase() === "processing"){
         textColor = "rgb(102, 109, 146)"
         bgColor = "rgb(102, 109, 146, 0.1)"
     }
-    else if(order.status === "delivered"){
+    else if(order.status.toLowerCase() === "delivered"){
         textColor = "rgb(0, 197, 141)"
         bgColor = "rgb(0, 197, 141, 0.1)"
     }
-    else if(order.status === "failed"){
+    else if(order.status.toLowerCase() === "failed"){
         textColor = "rgb(252, 92, 99)"
         bgColor = "rgb(252, 92, 99, 0.1)"
     }
@@ -44,12 +44,19 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
     //     newDate.setDate(newDate.getDate() + 7)
     //     deliveryDate = dayjs(newDate).format('LL')
     // }
-    
+
+    const dayjs = require('dayjs')
+    const localizedFormat = require('dayjs/plugin/localizedFormat')
+    dayjs.extend(localizedFormat)
+    let newDate = new Date(order.created_at)
+    const orderDate = dayjs(newDate).format('LLL')
+    const discount_amount = order.discount_amount?order.discount_amount:0
+
     return (
         <div className={"order-item mt-3 "+(index === 0?"active":"")} onClick={() => changeClass(index)}>
             <div className="order-item-header pt-3 pl-3 pr-3">
                 <div className="d-flex justify-content-between align-items-center">
-                    <p><strong>Order</strong>#{order.orderId}</p>
+                    <p><strong>Order</strong>#{order.order_number}</p>
                     <p className="user-order-item-status text-capitalize" style={customStyle}>{order.status}</p>
                 </div>
             </div>
@@ -57,15 +64,15 @@ const UserOrderItem = ({order,index, setOrderDetails}) => {
             <div className="order-item-body pt-3 pl-3 pr-3">
                 <div className="d-flex justify-content-between">
                     <p>Order Date:</p>
-                    <p>{order.orderDate}</p>
+                    <p>{orderDate}</p>
                 </div>
                 <div className="d-flex justify-content-between">
                     <p>Delivery Time:</p>
-                    <p className="text-capitalize">{order.deliverySchedule}</p>
+                    <p className="text-capitalize">{order.delivery_time}</p>
                 </div>
                 <div className="d-flex justify-content-between">
                     <p><strong>Total Price:</strong></p>
-                    <p><strong>${(order.amount-order.discount).toFixed(2)}</strong></p>
+                    <p><strong>${(order.total-discount_amount).toFixed(2)}</strong></p>
                 </div>
             </div>
         </div>

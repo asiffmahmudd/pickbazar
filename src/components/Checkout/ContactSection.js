@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { BiPlus } from "react-icons/bi";
-import { useAuth } from '../../contexts/AuthContext';
+import { callAddContact, deleteContactNumber, getAllContacts, updateContacts } from '../../utils/network';
 import Loading from '../Loading/Loading';
 import AddContactModal from './AddContactModal';
 import ContactItem from './ContactItem';
-
+ 
 
 const ContactSection = ({register,errors, customer}) => {
    
     const [addContactIsOpen, setAddContactIsOpen] = useState(false);
     const [numbers, setNumbers] = useState([])
-    const {loggedInUser} = useAuth()
     const [loading, setLoading] = useState(false)
 
     useEffect(()=> {
@@ -38,30 +37,76 @@ const ContactSection = ({register,errors, customer}) => {
             });
             setNumbers(newList)
             setAddContactIsOpen(false) 
-            updateNumbersInDatabase(newList)
+            const number = {title, desc}
+            
+            setLoading(true)
+            const user = JSON.parse(localStorage.getItem('user')) 
+            
+            callAddContact(number, user.token)
+            .then(result => {
+                setLoading(false)
+            })
         }
     }
 
-    const updateNumbersInDatabase = (newList) => {
+    useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(newList)
+        const user = JSON.parse(localStorage.getItem('user'))
+        getAllContacts(user.token)
+        .then(result => {
+            setLoading(false)
+            setNumbers(result)
         })
-        .then(response => response.json())
-        .then(data => {
-            if(data){
+        // fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: user.token
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(result => {
+        //     setLoading(false)
+        //     setNumbers(result)
+        // })
+    },[])
+
+    const updateNumbersInDatabase = (title,desc,index) => {
+        setLoading(true)
+        const user = JSON.parse(localStorage.getItem('user'))
+        const number = {
+            title, desc
+        }
+        updateContacts(number, numbers[index].id, user.token)
+        .then(result => {
+            setLoading(false)
+        })
+        // fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         authorization: `Bearer ${localStorage.getItem('token')}`
+        //     },
+        //     body: JSON.stringify(newList)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     if(data){
                 
-            }
+        //     }
+        //     setLoading(false)
+        // })
+        // .catch(error => {
+        //     setLoading(false)
+        //     alert(error.message)
+        // })
+    }
+
+    const deleteNumber = (index) => {
+        setLoading(true)
+        const user = JSON.parse(localStorage.getItem('user'))
+        deleteContactNumber(numbers[index].id, user.token)
+        .then(result => {
             setLoading(false)
-        })
-        .catch(error => {
-            setLoading(false)
-            alert(error.message)
         })
     }
 
@@ -69,7 +114,7 @@ const ContactSection = ({register,errors, customer}) => {
         const newList = [...numbers]
         newList.splice(index,1)
         setNumbers(newList)
-        updateNumbersInDatabase(newList)
+        deleteNumber(index)
     }
 
     return (

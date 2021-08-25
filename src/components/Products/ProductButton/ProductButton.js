@@ -16,7 +16,7 @@ const ProductButton = ({product}) => {
     
     const items = allproducts.filter(pd => {
         let exists = cartItems.find(cartPd => {
-            if(pd._id === cartPd._id){
+            if(pd.id === cartPd.id){
                 pd.count = cartPd.count
                 return pd
             }
@@ -26,7 +26,7 @@ const ProductButton = ({product}) => {
         return exists? true : false
     })
     
-    const item = items?.find(pd => pd._id === product?._id);
+    const item = items?.find(pd => pd.id === product?.id);
     const handleIncrease = () =>{
         if(product.quantity < item.count+1){
             alert("Product stock limit is reached")

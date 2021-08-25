@@ -27,7 +27,7 @@ const ProfileContactItem = ({number, updateNumbersInDatabase, numbers, index, se
             newList[index].desc = desc
             setNumbers(newList)
             handleClose()
-            updateNumbersInDatabase(newList)
+            updateNumbersInDatabase(title, desc, index)
         }
     }
 

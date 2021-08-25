@@ -5,6 +5,7 @@ import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AuthContext';
+import { signup } from '../../utils/network';
 
 const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {    
 
@@ -24,18 +25,29 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
         
     };
 
-    const {signUpWithEmail, saveToken} = useAuth()
     const { register, handleSubmit,reset } = useForm();
-
+    const {signInWithEmail} = useAuth()
     const onSubmit = async data => {
         try{
-            await signUpWithEmail(data)
-            saveToken()
-            .then(idToken => {
+            signup(data)
+            .then(result => {
                 reset()
-                localStorage.setItem('token', idToken)
+                signInWithEmail(result)
                 handleClose()
             })
+            // fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(res => res.json())
+            // .then(result => {
+            //     reset()
+            //     signInWithEmail(result)
+            //     handleClose()
+            // })
         }
         catch(e){
             alert(e.message)
@@ -57,6 +69,17 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
                 <h4 className="theme-text text-center">Sign Up</h4>
                 <p className="text-center">By signing up, you agree to Pickbazar's Terms</p>
                 <form className="login" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="form-group">
+                        <input 
+                            type="text" 
+                            className="cstm-input" 
+                            id="name" 
+                            aria-describedby="name" 
+                            {...register("name")}
+                            placeholder="Enter name" 
+                            required
+                        />
+                    </div>
                     <div className="form-group">
                         <input 
                             type="email" 

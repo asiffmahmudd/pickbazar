@@ -24,7 +24,7 @@ const PaymentSection = ({register,errors, disable}) => {
     })
     const items = allproducts.filter(pd => {
         let exists = cartItems.find(cartPd => {
-            if(pd._id === cartPd._id){
+            if(pd.id === cartPd.id){
                 pd.count = cartPd.count
                 return pd
             }
@@ -62,7 +62,7 @@ const PaymentSection = ({register,errors, disable}) => {
                     </label>
                 </div>
             </div>
-            {errors.paymentMethod?.category === 'required' && <span className="text-danger">Payment method is required</span>}
+            {errors.paymentMethod?.type === 'required' && <span className="text-danger">Payment method is required</span>}
             {
                 showCard &&
                 <CardPayment></CardPayment>

@@ -6,13 +6,14 @@ import './AdminProductDrawer.css'
 import {useDropzone} from 'react-dropzone';
 import { useForm } from "react-hook-form";
 import { Multiselect } from 'multiselect-react-dropdown';
-import categories from '../../../../data/categories';
+// import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
 import { useItem } from '../../../../contexts/ItemContext';
+import { addProduct } from '../../../../utils/network';
 
 const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
 
-    const {setProductChange, setLoading} = useItem()
+    const {setProductChange, setLoading, categories} = useItem()
     const [options, setOptions] = useState(tags)
     const [selectedValues, setSelectedValues] = useState(product?.tags)
     const onSelect = (selectedList, selectedItem) => {
@@ -45,63 +46,101 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
         reset()
         handleProductDrawerClose();
     }
-
+    
     const saveToDatabase = (data) => {
-        let apiURL = ""
-        if(!product){
-            apiURL = 'https://pickbazar-clone.herokuapp.com/addproduct'
-        }
-        else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product._id
-        }
-        fetch(apiURL, {
-            method: product? 'PUT' : 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
+        const {name, desc, unit, price, discount_percentage, sale_price, category_id, sub_category_id, quantity, tags, images} = data
+        const formData = new FormData();
+        
+        formData.append('name',name)
+        formData.append('desc',desc)
+        formData.append('unit',unit)
+        formData.append('price',price)
+        formData.append('discount_percentage',discount_percentage)
+        formData.append('sale_price',sale_price)
+        formData.append('category_id',category_id)
+        formData.append('sub_category_id',sub_category_id)
+        formData.append('quantity',quantity)
+        // images.map(image => formData.append('images',image))
+        // formData.append('tags[]',tags)
+
+        Array.from(tags).forEach(tag => {
+            console.log(tag)
+            formData.append("tags[]", tag);
+        });
+
+        Array.from(images).forEach(image => {
+            console.log(image)
+            formData.append("images[]", image);
+        });
+        
+        
+        const user = JSON.parse(localStorage.getItem('user')) 
+        addProduct(formData, user.token)
+        .then(result => {
+            setProductChange(true)
+            setProductChange(false)
             setLoading(false)
-            if(data){
-                reset()
-                setProductChange(true)
-                setProductChange(false)
-            }
         })
-        .catch(error => {
-            setLoading(false)
-            alert(error.message)
-        })
+
+
+        // let apiURL = ""
+        // if(!product){
+        //     apiURL = 'https://pickbazar-clone.herokuapp.com/addproduct'
+        // }
+        // else{
+        //     apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product.id
+        // }
+        // fetch(apiURL, {
+        //     method: product? 'PUT' : 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     setLoading(false)
+        //     if(data){
+        //         reset()
+        //         setProductChange(true)
+        //         setProductChange(false)
+        //     }
+        // })
+        // .catch(error => {
+        //     setLoading(false)
+        //     alert(error.message)
+        // })
     }
     
     const onSubmit = data => {
         setLoading(true)
         data.tags = selectedValues
         if(files.length > 0){
-            const imageData = new FormData();
-            imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
-            const promises = []
-            const imageURLs = []
-            files.map((file) => {
-                imageData.append('image', file);
-                promises.push(fetch('https://api.imgbb.com/1/upload', {
-                    method: 'POST',
-                    body: imageData
-                }))
-                return 0
-            })
-            Promise.all(promises)
-            .then(responses =>
-            Promise.all(responses.map(response => response.json()))
-            ).then(result =>{
-                result.map(item=> imageURLs.push(item.data.display_url))
-                data.img = imageURLs
-                saveToDatabase(data)
-            }).catch(err =>
-                alert(err.message)
-            );
+            // const imageData = new FormData();
+            // imageData.set('key', '0c9c52f3c2c70e376333024c7dd177e2');
+            // const promises = []
+            // const imageURLs = []
+            // files.map((file) => {
+            //     imageData.append('image', file);
+            //     promises.push(fetch('https://api.imgbb.com/1/upload', {
+            //         method: 'POST',
+            //         body: imageData
+            //     }))
+            //     return 0
+            // })
+            // Promise.all(promises)
+            // .then(responses =>
+            // Promise.all(responses.map(response => response.json()))
+            // ).then(result =>{
+            //     result.map(item=> imageURLs.push(item.data.display_url))
+            //     data.img = imageURLs
+            //     saveToDatabase(data)
+            // }).catch(err =>
+            //     alert(err.message)
+            // );
+
+            data.images = files
+            saveToDatabase(data)
             
             closeDrawer()
         } 
@@ -124,6 +163,13 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
             </li>
         ) 
     });
+    
+    const [subCategories, setSubCategories] = useState([])
+    const handleCategoryChange = (e) => {
+        const categoryId = Number(e.target.value)
+        const category = categories.find(item => Number(item.id) === categoryId)
+        setSubCategories(category.subCategory)
+    }
     
     return (
         <div>
@@ -236,29 +282,29 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="sale">Sale Price</label>
+                                        <label htmlFor="sale_price">Sale Price</label>
                                         <input 
                                             type="number" 
                                             className="form-control" 
-                                            {...register("sale")} 
-                                            name="sale" 
-                                            id="sale" 
+                                            {...register("sale_price")} 
+                                            name="sale_price" 
+                                            id="sale_price" 
                                             step="any" 
-                                            aria-describedby="sale"
+                                            aria-describedby="sale_price"
                                             defaultValue={product?.sale} 
                                             required
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="discount">Discount In Percent</label>
+                                        <label htmlFor="discount_percentage">Discount In Percent</label>
                                         <input 
                                             type="number" 
                                             className="form-control" 
-                                            {...register("discount")} 
-                                            name="discount" 
-                                            id="discount" 
+                                            {...register("discount_percentage")} 
+                                            name="discount_percentage" 
+                                            id="discount_percentage" 
                                             step="any" 
-                                            aria-describedby="discount" 
+                                            aria-describedby="discount_percentage" 
                                             defaultValue={product?.discount} 
                                             required
                                         />
@@ -277,19 +323,36 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="category">Category</label>
+                                        <label htmlFor="category_id">Category</label>
                                         <select 
                                             type="text" 
                                             className="form-control" 
-                                            {...register("category")} 
-                                            name="category" 
-                                            id="category" 
-                                            aria-describedby="category" 
-                                            defaultValue={product?.category} 
+                                            {...register("category_id")} 
+                                            name="category_id" 
+                                            id="category_id" 
+                                            aria-describedby="category_id" 
+                                            onChange={handleCategoryChange}
+                                            // defaultValue={product?.category?.id} 
                                             required
                                         >
                                             {
-                                                categories.map((category,index) => <option key={index} value={category.name}>{category.name}</option>)
+                                                categories.map((category,index) => <option key={index} value={category.id}>{category.name}</option>)
+                                            }
+                                        </select>
+                                    </div><div className="form-group">
+                                        <label htmlFor="sub_category_id">Sub Category</label>
+                                        <select 
+                                            type="text" 
+                                            className="form-control" 
+                                            {...register("sub_category_id")} 
+                                            name="sub_category_id" 
+                                            id="sub_category_id" 
+                                            aria-describedby="sub_category_id" 
+                                            defaultValue={product?.sub_category_id } 
+                                        >
+                                            <option value="" disabled></option>
+                                            {
+                                                subCategories.map((subcategory,index) => <option key={index} value={subcategory.id}>{subcategory.name}</option>)
                                             }
                                         </select>
                                     </div>

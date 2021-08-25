@@ -3,6 +3,7 @@ import './Category.css';
 import { BiPlus } from "react-icons/bi";
 import { useState } from 'react';
 import CategoryDrawer from './CategoryDrawer';
+import { useItem } from '../../../../contexts/ItemContext';
 
 const CategoryHeader = ({typeFilter, setTypeFilter, categoryFilter, handleSearch}) => {
 
@@ -18,8 +19,10 @@ const CategoryHeader = ({typeFilter, setTypeFilter, categoryFilter, handleSearch
 
     const handleFilter = (e) => {
         setTypeFilter(e.target.value)
-        categoryFilter(e.target.value, true)
+        categoryFilter(e.target.value)
     }
+
+    const {allcategories} = useItem()
 
     return (
         <>
@@ -31,11 +34,13 @@ const CategoryHeader = ({typeFilter, setTypeFilter, categoryFilter, handleSearch
                             <select id="category" value={typeFilter} onChange={handleFilter} className="form-control">
                                 <option value="" disabled>Category Type</option>
                                 <option value="all">All</option>
-                                <option value="Grocery">Grocery</option>
-                                <option value="Home">Home</option>
-                                <option value="Make Up">Make Up</option>
-                                <option value="Drinks">Drinks</option>
-                                <option value="Pet">Pet</option>
+                                {
+                                    allcategories.map(item => {
+                                        return (
+                                            <option value={item.id}>{item.name}</option>
+                                        )
+                                    })
+                                }
                             </select>
                         </div>
                         <div className="form-group col-lg-6">

@@ -27,7 +27,7 @@ const ProfileAddressItem = ({address, updateAddressInDatabase, addresses, index,
             newList[index].desc = desc
             setAddresses(newList)
             handleClose()
-            updateAddressInDatabase(newList)
+            updateAddressInDatabase(title,desc,index)
         }
     }
     return (

@@ -10,6 +10,8 @@ import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import CustomerFeedback from './CustomerFeedback';
+import Header from '../Header/Header';
 
 const SingleProduct = () => {
 
@@ -19,15 +21,16 @@ const SingleProduct = () => {
     const [related, setRelated] = useState()
 
     useEffect(() => {
-        setProduct(allproducts.find(pd => pd._id === productId.id))
-        setRelated(allproducts?.filter(pd => pd.category === product?.category && pd._id !== productId.id))
+        setProduct(allproducts.find(pd => Number(pd.id) === Number(productId.id)))
+        setRelated(allproducts?.filter(pd => pd.category === product?.category && Number(pd.id) !== Number(productId.id)))
         window.scrollTo(0, 0)
     },[allproducts,product, productId.id])
     
     return (
         <div className="single-product">
             <Loading loading={loading}></Loading>
-            <UserDashboardHeader></UserDashboardHeader>
+            {/* <UserDashboardHeader></UserDashboardHeader> */}
+            <Header></Header>
             { product &&
             <>
             <div className="bg-white border-top single-product-container" style={{marginTop: '89px'}}>
@@ -58,6 +61,8 @@ const SingleProduct = () => {
                                     <p style={{color:'red'}}>Out of stock</p>
                                 }
                             </div>
+
+                            <CustomerFeedback productId={productId.id} />
                         </div>
                     </div>
                 </div>

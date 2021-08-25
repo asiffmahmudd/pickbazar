@@ -26,14 +26,14 @@ const AddressItem = ({address, updateAddressInDatabase, addresses, index, setAdd
             newList[index].desc = desc
             setAddresses(newList)
             handleClose()
-            updateAddressInDatabase(newList)
+            updateAddressInDatabase(title, desc, index)
         }
     }
 
     return (
         <>
             <label className="col-md-4">
-                <input type="radio" name="deliveryAddress" className="card-input-element" value={address.desc}/>
+                <input type="radio" name="deliveryAddress" className="card-input-element" value={address.id}/>
                 
                 <div className="panel panel-default card-input">
                     <span className="hover-item-action-container d-flex">
