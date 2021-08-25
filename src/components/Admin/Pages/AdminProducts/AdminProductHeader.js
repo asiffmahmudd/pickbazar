@@ -1,5 +1,6 @@
 import React from 'react';
-import categories from '../../../../data/categories';
+import {useItem} from '../../../../contexts/ItemContext'
+// import categories from '../../../../data/categories';
 
 const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
 
@@ -11,6 +12,8 @@ const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCat
         setPriceFilter(e.target.value)
         productFilter(categoryFilter, e.target.value, true)
     }
+
+    const {categories} = useItem()
 
     return (
         <>

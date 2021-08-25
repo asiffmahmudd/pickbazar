@@ -10,6 +10,11 @@ const CustomerItem = ({customer, index}) => {
         identity = customer.email
     else
         identity = customer.uid
+    
+    let contact = ""
+    if(customer.contactNumber && customer.contactNumber.length > 0){
+        contact = customer.contactNumber[0].desc
+    }
 
     return (
         <>
@@ -17,7 +22,7 @@ const CustomerItem = ({customer, index}) => {
                 <th scope="row">{index+1}</th>
                 <td><img src={customer.photo?customer.photo:user} alt="" /></td>
                 <td>{identity}</td>
-                <td>{customer.contactNumber?customer.contactNumber[0].desc:""}</td>
+                <td>{contact}</td>
                 <td>{customer.orders}</td>
                 <td>${customer.totalAmount.toFixed(2)}</td>
                 <td>{customer.joiningDate}</td>
