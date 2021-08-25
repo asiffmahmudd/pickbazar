@@ -1,9 +1,8 @@
 import React from 'react';
-import { useItem } from '../../../../contexts/ItemContext';
-import { getProducts } from '../../../../utils/network';
+import {useItem} from '../../../../contexts/ItemContext'
+// import categories from '../../../../data/categories';
 
 const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
-    const {categories} = useItem()
     
     const handleCategory = (e) => {
         let filter = ""
@@ -14,22 +13,14 @@ const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearc
             setCategoryFilter(e.target.value)
             filter = e.target.value
         }
-        getProducts(filter, "", priceFilter)
-        .then(result => {
-            setProducts(result)
-            forceUpdate()
-        })
-        // productFilter(e.target.value, priceFilter , true)
+        productFilter(e.target.value, priceFilter , true)
     }
     const handlePrice = (e) =>{ 
         setPriceFilter(e.target.value)
-        getProducts(categoryFilter,"", e.target.value)
-        .then(result => {
-            setProducts(result)
-            forceUpdate()
-        })
-        // productFilter(categoryFilter, e.target.value, true)
+        productFilter(categoryFilter, e.target.value, true)
     }
+
+    const {categories} = useItem()
 
     return (
         <>
