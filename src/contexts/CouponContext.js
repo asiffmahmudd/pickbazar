@@ -44,7 +44,7 @@ export function CouponContextProvider({children}){
 
     const value = {   
         appliedCoupon, removeCoupon, error, setError, couponHandler, setAppliedCoupon
-    }
+    } 
 
     return (
         <CouponContext.Provider value={value}>
