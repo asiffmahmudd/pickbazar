@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Loading from '../Loading/Loading';
 import SimpleHeader from '../SimpleHeader/SimpleHeader';
 import { useAuth } from '../../contexts/AuthContext';
+import { login } from '../../utils/network';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -20,23 +21,32 @@ const Login = () => {
     const onSubmit = async data => {
         try{
             setLoading(true)
-            fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
+            login(data)
             .then(result => {
                 setLoading(false)
                 signInWithEmail(result)
                 history.replace(from)
             })
             .catch(e => {
-                setLoading(false)
                 alert("Email or password doesn't match")
             })
+            // fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(res => res.json())
+            // .then(result => {
+            //     setLoading(false)
+            //     signInWithEmail(result)
+            //     history.replace(from)
+            // })
+            // .catch(e => {
+            //     setLoading(false)
+            //     alert("Email or password doesn't match")
+            // })
         }
         catch(e){
             setLoading(false)

@@ -27,3 +27,7 @@ body{
 .sidebar-container::-webkit-scrollbar {
   width: 4px;
 }
+
+.site-logo{
+  max-width: 150px;
+}

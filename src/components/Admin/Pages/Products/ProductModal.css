@@ -1,0 +1,8 @@
+.product-modal.ReactModal__Content{
+    inset: 50% auto auto 50%;
+    position: absolute;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    outline: none;
+}

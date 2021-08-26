@@ -3,6 +3,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import user from '../../img/user.png'
 
 const UserDrawer = ({isUserDrawerOpen, handleUserDrawerClose, handleLoginOpen}) => {
 
@@ -12,7 +13,7 @@ const UserDrawer = ({isUserDrawerOpen, handleUserDrawerClose, handleLoginOpen}) 
     }
 
     const {logout, loggedInUser} = useAuth()
-
+    
     return (
         <Drawer 
             className="user-drawer" 
@@ -29,11 +30,11 @@ const UserDrawer = ({isUserDrawerOpen, handleUserDrawerClose, handleLoginOpen}) 
                     loggedInUser &&
                     <div className="user-info d-flex align-items-center">
                         <div className="user-info-img mr-2">
-                            <img src={loggedInUser.photo} alt="" />
+                            <img src={loggedInUser.photo? loggedInUser.photo : user} alt="" />
                         </div>
                         <div className="user-details ml-2 text-left align-items-center">
                             <p className="user-info-name m-0 ">{loggedInUser.name}</p>
-                            <p className="user-info-number m-0 mt-2">0192843857</p>
+                            <p className="user-info-number m-0 mt-2">{loggedInUser.email}</p>
                         </div>
                     </div>
                 }

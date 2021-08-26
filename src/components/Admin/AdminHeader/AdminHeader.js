@@ -10,10 +10,13 @@ import AdminProductDrawer from '../Pages/AdminProducts/AdminProductDrawer';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useItem } from '../../../contexts/ItemContext';
 
 const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
     const {loggedInUser, logout} = useAuth()
+
+    const {logo} = useItem()
 
     const [notifications, setNotifications] = useState([])
     const [unreadNotifications, setUnreadNotifications] = useState(0)
@@ -87,7 +90,7 @@ const AdminHeader = ({setSidebarOpen}) => {
             <div className ="container-fluid">
                 <nav className="navbar navbar-expand-lg navbar-light pt-4 pb-4">
                     <Link className="navbar-brand" to="/">
-                        <img src={adminLogo} alt="" />
+                        <img src={logo} alt="" />
                     </Link>
 
                     <div className="admin-sidebar-toggler" type="button" onClick={() => setSidebarOpen(true)}>

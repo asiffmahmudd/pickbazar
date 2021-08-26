@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../../img/logo.svg';
+// import logo from '../../img/logo.svg';
 import {AiOutlineSearch} from 'react-icons/ai';
 import './Header.css';
 import LoginModal from '../LoginModal/LoginModal';
@@ -11,6 +11,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { AiOutlineAlignLeft } from "react-icons/ai";
 import UserDrawer from './UserDrawer';
 import userIcon from '../../img/user.png';
+import { useEffect } from 'react';
+import { useItem } from '../../contexts/ItemContext';
 
 const Header = ({changeCategory}) => {
 
@@ -72,6 +74,16 @@ const Header = ({changeCategory}) => {
         history.push('/products/'+searchQuery)
     }
 
+    const [isHome, setIsHome] = useState(false)
+
+    useEffect(() => {
+        if(document.location.pathname === "/"){
+            setIsHome(true)
+        }
+    }, [window.location])
+    
+    const {logo} = useItem()
+
     return (
         <>
         <header className="bg-white">
@@ -85,26 +97,33 @@ const Header = ({changeCategory}) => {
                                 onClick={()=>setUserDrawerOpen(true)}
                             />
                         </div>
-                        <Link className="navbar-brand d-flex align-items-center" to="/"><img src={logo} alt="" /></Link>
+                        <Link className="navbar-brand d-flex align-items-center" to="/"><img className="site-logo" src={logo} alt="" /></Link>
                     </div>
-                    <AiOutlineSearch 
-                        size={25} 
-                        className="navbar-toggler" 
-                        type="button" 
-                        data-toggle="collapse" 
-                        data-target="#navbarSupportedContent" 
-                        aria-controls="navbarSupportedContent" 
-                        aria-expanded="false" 
-                        aria-label="Toggle navigation">
-                    </AiOutlineSearch>
+
+                    {
+                        isHome &&
+                        <AiOutlineSearch 
+                            size={25} 
+                            className="navbar-toggler" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#navbarSupportedContent" 
+                            aria-controls="navbarSupportedContent" 
+                            aria-expanded="false" 
+                            aria-label="Toggle navigation">
+                        </AiOutlineSearch>
+                    }
 
                     <div className={"collapse navbar-collapse"} id="navbarSupportedContent">
-                        <ul className={"navbar-nav col-lg-8 ml-auto"}>
-                            <form onSubmit={handleSearchSubmit} className="form-inline rounded p-2 w-100">
-                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="hover-pointer"></AiOutlineSearch>
-                                <input className="border-0 ml-1" id="search-bar" type="search" placeholder="Search your products from here" aria-label="Search" />
-                            </form>
-                        </ul>
+                        {
+                            isHome &&
+                            <ul className={"navbar-nav col-lg-8 ml-auto"}>
+                                <form onSubmit={handleSearchSubmit} className="form-inline rounded p-2 w-100">
+                                    <AiOutlineSearch size={25} onClick={handleSearchClick} className="hover-pointer"></AiOutlineSearch>
+                                    <input className="border-0 ml-1" id="search-bar" type="search" placeholder="Search your products from here" aria-label="Search" />
+                                </form>
+                            </ul>
+                        }
                         {
                             !loggedInUser &&
                             <ul className="navbar-nav ml-auto">

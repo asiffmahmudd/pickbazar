@@ -5,6 +5,7 @@ import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AuthContext';
+import { login } from '../../utils/network';
 
 
 const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen}) => {
@@ -30,20 +31,29 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
 
     const onSubmit = async data => {
         try{
-            fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
+            login(data)
             .then(result => {
                 reset()
                 signInWithEmail(result)
                 handleClose()
             })
-            .catch(e => alert("Email or password doesn't match"))
+            .catch(e => {
+                alert("Email or password doesn't match")
+            })
+            // fetch('https://api.onimamzad.com/api/frontEnd/userLogin', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(res => res.json())
+            // .then(result => {
+            //     reset()
+            //     signInWithEmail(result)
+            //     handleClose()
+            // })
+            // .catch(e => alert("Email or password doesn't match"))
         }
         catch(e){
             alert(e.message)

@@ -6,6 +6,7 @@ import OrderItem from './OrderItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Loading from '../../../Loading/Loading';
+import { getAdminOrders } from '../../../../utils/network';
 
 const Orders = () => {
     
@@ -15,17 +16,24 @@ const Orders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/orders')
-        .then(res => res.json())
+        const user = JSON.parse(localStorage.getItem('user')) 
+        getAdminOrders(user.token)
         .then(result => {
             setAllOrders(result)
             setOrders(result)
             setLoading(false)
         })
-        .catch(e => {
-            setLoading(false)
-            alert(e.message)
-        })
+        // fetch('https://pickbazar-clone.herokuapp.com/orders')
+        // .then(res => res.json())
+        // .then(result => {
+        //     setAllOrders(result)
+        //     setOrders(result)
+        //     setLoading(false)
+        // })
+        // .catch(e => {
+        //     setLoading(false)
+        //     alert(e.message)
+        // })
     },[])
 
     const sortByDate = (orderList) => {
@@ -80,7 +88,7 @@ const Orders = () => {
             limitFilterFunc(newList, limitnumber)
         }
         else{
-            let newList = allorders.filter(item => item.status === status)
+            let newList = allorders.filter(item => item.status.toLowerCase() === status)
             limitFilterFunc(newList, limitnumber)
         }
     }
@@ -89,7 +97,7 @@ const Orders = () => {
         let newList = allorders.slice()
         const word = search
         newList = newList.filter(item => {
-            const arr = item.deliveryAddress.toLowerCase().split(" ")
+            const arr = item.address.length>0? item.address[0].desc.toLowerCase().split(" "): []
             const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
             return match ? true : false
         })
@@ -112,7 +120,7 @@ const Orders = () => {
             let newList = allorders.slice()
             const word = e.target.value
             newList = newList.filter(item => {
-                const arr = item.deliveryAddress.toLowerCase().split(" ")
+                const arr = item.address.length>0? item.address[0].desc.toLowerCase().split(" "): []
                 const match = arr.find(item2 => item2 === word.toLowerCase() || item2.startsWith(word))
                 return match ? true : false
             })
@@ -171,7 +179,6 @@ const Orders = () => {
                                             orders?.map((order,index) => {
                                                 return (
                                                     <OrderItem 
-                                                        index={index} 
                                                         order={order} 
                                                         key={index}
                                                     />

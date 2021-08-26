@@ -7,30 +7,30 @@ import Loading from '../../Loading/Loading';
 const UserOrderAccordion = ({order,index}) => {
 
     let barWidth;
-    if(order.status === "pending"){
+    if(order.status.toLowerCase() === "pending"){
         barWidth = "50px"
     }
-    else if(order.status === "processing"){
+    else if(order.status.toLowerCase() === "processing"){
         barWidth = "160px"
     }
-    else if(order.status === "delivered"){
+    else if(order.status.toLowerCase() === "delivered"){
         barWidth = "200px"
     }
 
     let textColor, bgColor
-    if(order.status === "pending"){
+    if(order.status.toLowerCase() === "pending"){
         textColor = "rgb(32, 103, 250)"
         bgColor = "rgb(32, 103, 250, 0.1)"
     }
-    else if(order.status === "processing"){
+    else if(order.status.toLowerCase() === "processing"){
         textColor = "rgb(102, 109, 146)"
         bgColor = "rgb(102, 109, 146, 0.1)"
     }
-    else if(order.status === "delivered"){
+    else if(order.status.toLowerCase() === "delivered"){
         textColor = "rgb(0, 197, 141)"
         bgColor = "rgb(0, 197, 141, 0.1)"
     }
-    else if(order.status === "failed"){
+    else if(order.status.toLowerCase() === "cancelled"){
         textColor = "rgb(252, 92, 99)"
         bgColor = "rgb(252, 92, 99, 0.1)"
     }
@@ -70,6 +70,13 @@ const UserOrderAccordion = ({order,index}) => {
     //     deliveryDate = dayjs(newDate).format('LL')
     // }
 
+    const dayjs = require('dayjs')
+    const localizedFormat = require('dayjs/plugin/localizedFormat')
+    dayjs.extend(localizedFormat)
+    let newDate = new Date(order.created_at)
+    const orderDate = dayjs(newDate).format('LLL')
+    const discount_amount = order.discount_amount?order.discount_amount:0
+
     return (
         <>
             <Loading loading={loading}></Loading>
@@ -78,7 +85,7 @@ const UserOrderAccordion = ({order,index}) => {
                     <div className="order-item-accordion" >
                         <div className="order-item-header pt-3 pl-3 pr-3">
                             <div className="d-flex justify-content-between align-items-center">
-                                <p><strong>Order</strong>#{order.orderId}</p>
+                                <p><strong>Order</strong>#{order.order_number}</p>
                                 <p className="user-order-item-status text-capitalize" style={customStyle}>{order.status}</p>
                             </div>
                         </div>
@@ -86,15 +93,15 @@ const UserOrderAccordion = ({order,index}) => {
                         <div className="order-item-body pt-3 pl-3 pr-3">
                             <div className="d-flex justify-content-between">
                                 <p>Order Date:</p>
-                                <p>{order.orderDate}</p>
+                                <p>{orderDate}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p>Delivery Time:</p>
-                                <p>{order.deliverySchedule}</p>
+                                <p>{order.delivery_time}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p><strong>Total Price:</strong></p>
-                                <p><strong>${(order.amount-order.discount).toFixed(2)}</strong></p>
+                                <p><strong>${(order.total-discount_amount).toFixed(2)}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -104,17 +111,17 @@ const UserOrderAccordion = ({order,index}) => {
                     <div className="row border-top border-bottom" style={{margin:'0'}}>
                         <div className="col-lg-12 border-right p-3">
                             <p className="address-title">Delivery Address</p>
-                            <p className="address-details">{order.deliveryAddress}</p>
+                            <p className="address-details">{order.address.length>0 &&order.address[0].address}</p>
                         </div>
                         <hr className="col-lg-12" />
                         <div className="col-lg-12 p-3">
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Sub Total</p>
-                                <p>${order.amount}</p>
+                                <p>${order.total}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Discount</p>
-                                <p>${order.discount.toFixed(2)}</p>
+                                <p>${discount_amount.toFixed(2)}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Delivery Fee</p>
@@ -122,14 +129,14 @@ const UserOrderAccordion = ({order,index}) => {
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="total"><strong>Total</strong></p>
-                                <p><strong>${(order.amount-order.discount).toFixed(2)}</strong></p>
+                                <p><strong>${(order.total-discount_amount).toFixed(2)}</strong></p>
                             </div>
                         </div>
                     </div>
 
                     <div className="m-5 progressbar-container">
                         {
-                            order.status !== 'failed' &&
+                            order.status.toLowerCase() !== 'cancelled' &&
                             <div className="progress vertical">
                                 <div className="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{height: barWidth, width:'100%', backgroundColor:'rgb(0, 158, 127)'}}>
                                 </div>
@@ -137,7 +144,7 @@ const UserOrderAccordion = ({order,index}) => {
                         }
                         <div className="progress-numbers">
                             {
-                                order.status === "pending" &&
+                                order.status.toLowerCase() === "pending" &&
                                 <>
                                     <div className="accordion-first-step check-container">
                                         <BsCheck color="white" size={20}></BsCheck>
@@ -152,7 +159,7 @@ const UserOrderAccordion = ({order,index}) => {
                             }
 
                             {
-                                order.status === "delivered" &&
+                                order.status.toLowerCase() === "delivered" &&
                                 <>
                                     <div className="accordion-first-step check-container">
                                         <BsCheck color="white" size={20}></BsCheck>
@@ -167,7 +174,7 @@ const UserOrderAccordion = ({order,index}) => {
                             }
 
                             {
-                                order.status === "processing" &&
+                                order.status.toLowerCase() === "processing" &&
                                 <>
                                     <div className="accordion-first-step check-container">
                                         <BsCheck color="white" size={20}></BsCheck>
@@ -182,7 +189,7 @@ const UserOrderAccordion = ({order,index}) => {
                             }
 
                             {
-                                order.status !== 'failed' &&
+                                order.status.toLowerCase() !== 'cancelled' &&
                                 <div className="d-flex accordion-order-status-text justify-content-between mt-3">
                                     <p>Order Received</p>
                                     <p>Order on the way</p>
@@ -191,7 +198,7 @@ const UserOrderAccordion = ({order,index}) => {
                             }
 
                             {
-                                order.status === "failed" &&
+                                order.status.toLowerCase() === "cancelled" &&
                                 <>
                                     <div className="text-center">
                                         <ImCross color="red" size={20}></ImCross>
@@ -202,9 +209,9 @@ const UserOrderAccordion = ({order,index}) => {
                             
                         </div>
                         {
-                            order.status === 'failed' &&
+                            order.status.toLowerCase() === 'cancelled' &&
                             <h4 className="text-center mt-3">
-                                Delivery Failed
+                                Delivery cancelled
                             </h4>
                         }
                     </div>

@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CategorySlider from '../PageLayout/CategorySlider';
+import { getProducts } from '../../utils/network';
 
 const Products = ({changeCategory, selectedCategory, subCategory}) => {
   const searchQuery = useParams().search
@@ -23,12 +24,18 @@ const Products = ({changeCategory, selectedCategory, subCategory}) => {
   useEffect(() => {
     if(selectedCategory){
       setLoading(true)
-      fetch('https://api.onimamzad.com/api/frontEnd/products?categoryId='+selectedCategory+'&subCategoryId='+subCategory)
-      .then(res => res.json())
-      .then(result =>{
+      getProducts(selectedCategory, subCategory)
+      .then(result => {
         setLoading(false)
         setProductArray(result)
       })
+      
+      // fetch('https://api.onimamzad.com/api/frontEnd/products?categoryId='+selectedCategory+'&subCategoryId='+subCategory)
+      // .then(res => res.json())
+      // .then(result =>{
+      //   setLoading(false)
+      //   setProductArray(result)
+      // })
     }
     else if(searchQuery){
       setLoading(true)

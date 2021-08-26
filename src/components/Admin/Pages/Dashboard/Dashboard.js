@@ -8,22 +8,36 @@ import { BsArrowUp } from "react-icons/bs";
 import { BsArrowDown } from "react-icons/bs";
 import './Dashboard.css';
 import Loading from '../../../Loading/Loading';
+import { getAdminOrders, getCustomers } from '../../../../utils/network';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user')) 
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/orders')
-        .then(res => res.json())
-        .then(orders =>{
-            fetch('https://pickbazar-clone.herokuapp.com/customers')
-            .then(res => res.json())
+        getAdminOrders(user.token)
+        .then(orders => {
+            getCustomers(user.token)
             .then(customers => {
                 calculate(orders, customers)
+                setLoading(false)
             })
         })
-    },[])
+    }, [])
+    
+    // useEffect(() => {
+    //     setLoading(true)
+    //     fetch('https://pickbazar-clone.herokuapp.com/orders')
+    //     .then(res => res.json())
+    //     .then(orders =>{
+    //         fetch('https://pickbazar-clone.herokuapp.com/customers')
+    //         .then(res => res.json())
+    //         .then(customers => {
+    //             calculate(orders, customers)
+    //         })
+    //     })
+    // },[])
 
     const [previousRevenue, setPreviousRevenue] = useState(0)
     const [currentRevenue, setCurrentRevenue] = useState(0)
@@ -51,25 +65,25 @@ const Dashboard = () => {
         previousTimelineEnd.setHours(23, 59, 59, 999)
 
         orders.map(item => {
-            let orderDate = new Date(item.orderDate)
+            let orderDate = new Date(item.created_at)
             if(orderDate >= currentTimelineStart && orderDate <= currentTimelineEnd){
-                currentRevenue += item.amount;
+                currentRevenue += Number(item.total);
                 currentOrders++
-                if(item.status === "delivered"){
+                if(item.status.toLowerCase() === "delivered"){
                     currentDelivered++
                 }
             }
             else if(orderDate >= previousTimelineStart && orderDate <= previousTimelineEnd){
-                previousRevenue += item.amount;
+                previousRevenue += Number(item.total);
                 previousOrders++
-                if(item.status === "delivered"){
+                if(item.status.toLowerCase() === "delivered"){
                     previousDelivered++
                 }
             }
             return 0;
         })
         customers.map(item => {
-            let joiningDate = new Date(item.joiningDate)
+            let joiningDate = new Date(item.joining_date)
             if(joiningDate >= currentTimelineStart && joiningDate <= currentTimelineEnd){
                 currentCustomers++;
             }

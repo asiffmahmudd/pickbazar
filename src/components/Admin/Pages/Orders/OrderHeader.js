@@ -24,21 +24,21 @@ const OrderHeader = ({orderFilter, handleSearch, limitFilter, setLimitFilter, st
                             <option value="delivered">Delivered</option>
                             <option value="pending">Pending</option>
                             <option value="processing">Processing</option>
-                            <option value="failed">Failed</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
                     <div className="form-group col-lg-3">
                         <select id="orderLimits" value={limitFilter} onChange={handleLimitFilter} className="form-control">
                             <option value="" disabled>Order Limits</option>
                             <option value="all">All</option>
-                            <option value="2">Last 7 orders</option>
-                            <option value="4">Last 15 orders</option>
-                            <option value="6">Last 30 orders</option>
+                            <option value="7">Last 7 orders</option>
+                            <option value="15">Last 15 orders</option>
+                            <option value="30">Last 30 orders</option>
                         </select>
                     </div>
-                    <div className="form-group col-lg-6">
+                    {/* <div className="form-group col-lg-6">
                         <input type="text" id="search" onKeyUp={handleSearch} className="form-control" placeholder="Ex: Search By Address"/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

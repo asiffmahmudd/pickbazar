@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { BiPlus } from "react-icons/bi";
+import { callAddAddress, deleteDeliveryAddress, getDeliveryAddress, updateDeliveryAddress } from '../../utils/network';
 import Loading from '../Loading/Loading';
 import AddAddressModal from './AddAddressModal';
 import AddressItem from './AddressItem';
@@ -36,50 +37,61 @@ const AddressSection = ({register,errors, customer}) => {
             const address = {title, desc}
             
             setLoading(true)
-            const user = JSON.parse(localStorage.getItem('user'))
-            fetch('https://api.onimamzad.com/api/frontEnd/inputAddress', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: user.token
-                },
-                body: JSON.stringify(address)
+            const user = JSON.parse(localStorage.getItem('user')) 
+            
+            callAddAddress(address, user.token)
+            .then(result => {
+                // setLoading(false)
+                window.location.reload();
             })
-            .then(response => response.json())
-            .then(data => {
-                if(data){
+            // fetch(base_url+'/api/frontEnd/inputAddress', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         Authorization: user.token
+            //     },
+            //     body: JSON.stringify(address)
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     if(data){
                     
-                }
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                alert(error.message)
-            })
+            //     }
+            //     setLoading(false)
+            // })
+            // .catch(error => {
+            //     setLoading(false)
+            //     alert(error.message)
+            // })
         }
     }
 
     useEffect(() => {
         setLoading(true)
         const user = JSON.parse(localStorage.getItem('user'))
-        console.log(user.token)
-        fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': user.token
-            }
-        })
-        .then(res => res.json())
+        
+        getDeliveryAddress(user.token)
         .then(result => {
             setLoading(false)
             setAddresses(result)
         })
-        .catch(e => {
-            setLoading(false)
-            alert(e.message)
-        })
+        // fetch('https://api.onimamzad.com/api/frontEnd/deliveryAddress', {
+        //     method: "GET",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'Authorization': user.token
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(result => {
+        //     setLoading(false)
+        //     setAddresses(result)
+        // })
+        // .catch(e => {
+        //     setLoading(false)
+        //     alert(e.message)
+        // })
     },[])
 
     const updateAddressInDatabase = (title,desc, index) => {
@@ -88,48 +100,56 @@ const AddressSection = ({register,errors, customer}) => {
         const address = {
             title, desc
         }
-        fetch('https://api.onimamzad.com/api/frontEnd/updateAddress'+ addresses[index].id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: user.token
-            },
-            body: JSON.stringify(address)
+        updateDeliveryAddress(address, addresses[index].id, user.token)
+        .then(result => {
+            setLoading(false)
         })
-        .then(response => response.json())
-        .then(data => {
-            if(data){
+        // fetch('https://api.onimamzad.com/api/frontEnd/updateAddress'+ addresses[index].id, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: user.token
+        //     },
+        //     body: JSON.stringify(address)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     if(data){
                 
-            }
-            setLoading(false)
-        })
-        .catch(error => {
-            setLoading(false)
-            alert(error.message)
-        })
+        //     }
+        //     setLoading(false)
+        // })
+        // .catch(error => {
+        //     setLoading(false)
+        //     alert(error.message)
+        // })
     }
     
     const deleteAddress = (index) => {
         setLoading(true)
         const user = JSON.parse(localStorage.getItem('user'))
-        fetch('https://api.onimamzad.com/api/frontEnd/deleteAddress'+ addresses[index].id, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: user.token
-            }
+        deleteDeliveryAddress(addresses[index].id, user.token)
+        .then(result => {
+            setLoading(false)
         })
-        .then(response => response.json())
-        .then(data => {
-            if(data){
+        // fetch('https://api.onimamzad.com/api/frontEnd/deleteAddress'+ addresses[index].id, {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: user.token
+        //     }
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     if(data){
                 
-            }
-            setLoading(false)
-        })
-        .catch(error => {
-            setLoading(false)
-            alert(error.message)
-        })
+        //     }
+        //     setLoading(false)
+        // })
+        // .catch(error => {
+        //     setLoading(false)
+        //     alert(error.message)
+        // })
     }
     
     const handleDelete = (index) =>{

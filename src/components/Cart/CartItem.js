@@ -14,6 +14,8 @@ const CartItem = ({item}) => {
             dispatch(removeFromCart(product))
         }
     }
+
+    console.log(item)
     return (
         <div className="cart-item d-flex justify-content-between align-items-center p-3 border-bottom">
             <div className="d-flex align-items-center justify-content-center">
@@ -32,12 +34,12 @@ const CartItem = ({item}) => {
                 <div className="cart-item-desc ml-4">
                     <div className="text-dark">{item.name}</div>
                     {
-                        item.sale > 0 &&
-                        <div className="theme-text">${item.sale.toFixed(2)}</div>
+                        item.sale && item.sale > 0 &&
+                        <div className="theme-text">${Number(item.sale)?.toFixed(2)}</div>
                     }
                     {
-                        item.sale === 0 &&
-                        <div className="theme-text">${item.price.toFixed(2)}</div>
+                        item.sale === 0 || item.sale === null &&
+                        <div className="theme-text">${Number(item.price).toFixed(2)}</div>
                     }
                 </div>
             </div>
@@ -45,12 +47,12 @@ const CartItem = ({item}) => {
             <div className="cart-item-price mr-2 ml-auto">
                 $
                 {
-                    item.sale === 0 &&
-                    (item.price*item.count).toFixed(2)
+                    item.sale === 0 || item.sale === null &&
+                    (Number(item.price)*Number(item.count)).toFixed(2)
                 }
                 {
-                    item.sale > 0 &&
-                    (item.sale*item.count).toFixed(2)
+                    item.sale && item.sale > 0 &&
+                    (Number(item.sale)*Number(item.count)).toFixed(2)
                 }
             </div>
             <GrClose className="hover-pointer cart-item-close" size={14} onClick={()=> dispatch(removeFromCart(item))}></GrClose>

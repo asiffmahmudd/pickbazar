@@ -1,15 +1,34 @@
 import React from 'react';
-import categories from '../../../../data/categories';
+import { useItem } from '../../../../contexts/ItemContext';
+import { getProducts } from '../../../../utils/network';
 
-const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
-
+const AdminProductHeader = ({forceUpdate,setProducts, productFilter, handleSearch, categoryFilter, setCategoryFilter, priceFilter, setPriceFilter}) => {
+    const {categories} = useItem()
+    
     const handleCategory = (e) => {
-        setCategoryFilter(e.target.value)
-        productFilter(e.target.value, priceFilter , true)
+        let filter = ""
+        if(e.target.value === 'all'){
+            setCategoryFilter("")
+        }
+        else{
+            setCategoryFilter(e.target.value)
+            filter = e.target.value
+        }
+        getProducts(filter, "", priceFilter)
+        .then(result => {
+            setProducts(result)
+            forceUpdate()
+        })
+        // productFilter(e.target.value, priceFilter , true)
     }
     const handlePrice = (e) =>{ 
         setPriceFilter(e.target.value)
-        productFilter(categoryFilter, e.target.value, true)
+        getProducts(categoryFilter,"", e.target.value)
+        .then(result => {
+            setProducts(result)
+            forceUpdate()
+        })
+        // productFilter(categoryFilter, e.target.value, true)
     }
 
     return (
@@ -24,7 +43,7 @@ const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCat
                             <option value="all">All</option>
                             {
                                 categories.map((category,index) => (
-                                    <option key={index} value={category.name}>{category.name}</option>
+                                    <option key={index} value={category.id}>{category.name}</option>
                                 ))
                             }
                         </select>
@@ -32,8 +51,8 @@ const AdminProductHeader = ({productFilter, handleSearch, categoryFilter, setCat
                     <div className="form-group col-lg-3">
                         <select id="price" value={priceFilter} onChange={handlePrice}  className="form-control">
                             <option value="" disabled >Price</option>
-                            <option value="lowest to highest">Lowest to highest</option>
-                            <option value="highest to lowest">Highest to lowest</option>
+                            <option value="ASC">Lowest to highest</option>
+                            <option value="DESC">Highest to lowest</option>
                         </select>
                     </div>
                     <div className="form-group col-lg-6">

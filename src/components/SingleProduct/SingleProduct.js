@@ -10,6 +10,8 @@ import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import CustomerFeedback from './CustomerFeedback';
+import Header from '../Header/Header';
 
 const SingleProduct = () => {
 
@@ -27,7 +29,8 @@ const SingleProduct = () => {
     return (
         <div className="single-product">
             <Loading loading={loading}></Loading>
-            <UserDashboardHeader></UserDashboardHeader>
+            {/* <UserDashboardHeader></UserDashboardHeader> */}
+            <Header></Header>
             { product &&
             <>
             <div className="bg-white border-top single-product-container" style={{marginTop: '89px'}}>
@@ -58,6 +61,8 @@ const SingleProduct = () => {
                                     <p style={{color:'red'}}>Out of stock</p>
                                 }
                             </div>
+
+                            <CustomerFeedback productId={productId.id} />
                         </div>
                     </div>
                 </div>

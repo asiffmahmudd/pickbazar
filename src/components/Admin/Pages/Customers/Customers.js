@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { getCustomers } from '../../../../utils/network';
 import Loading from '../../../Loading/Loading';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import { useForceUpdate } from '../AdminProducts/AdminProducts';
@@ -15,17 +16,26 @@ const Customers = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/customers')
-        .then(res => res.json())
+
+        const user = JSON.parse(localStorage.getItem('user')) 
+        getCustomers(user.token)
         .then(result => {
             setLoading(false)
             setAllcustomers(result)
             setCustomers(result)
         })
-        .catch(e => {
-            setLoading(false)
-            alert(e.message)
-        })
+
+        // fetch('https://pickbazar-clone.herokuapp.com/customers')
+        // .then(res => res.json())
+        // .then(result => {
+        //     setLoading(false)
+        //     setAllcustomers(result)
+        //     setCustomers(result)
+        // })
+        // .catch(e => {
+        //     setLoading(false)
+        //     alert(e.message)
+        // })
     },[])
     
     const forceUpdate = useForceUpdate()
@@ -98,7 +108,7 @@ const Customers = () => {
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">Image</th>
+                                            {/* <th scope="col">Image</th> */}
                                             <th scope="col">Identity</th>
                                             <th scope="col">Contact</th>
                                             <th scope="col">Total Orders</th>

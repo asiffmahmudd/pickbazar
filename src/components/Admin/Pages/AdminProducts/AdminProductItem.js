@@ -4,7 +4,7 @@ import { useState } from 'react';
 import AdminProductDrawer from './AdminProductDrawer';
 
 const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, isAllChecked, selected, setSelected}) => {
-
+    // console.log(product)
     const [isProductDrawerOpen, setProductDrawerOpen] = useState(false);
     
     const handleProductDrawerOpen = () => {
@@ -69,7 +69,7 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
                         </>
                     }
                     {
-                        product?.discount === 0 &&
+                        (product.sale == null || product.sale === 0) &&
                         <h5 className="card-title">${product.price}</h5>
                     }
                     </div>

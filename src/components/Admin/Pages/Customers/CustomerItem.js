@@ -8,19 +8,22 @@ const CustomerItem = ({customer, index}) => {
         identity = customer.name
     else if(customer.email)
         identity = customer.email
-    else
-        identity = customer.uid
+    
+    var dayjs = require('dayjs')
+    var localizedFormat = require('dayjs/plugin/localizedFormat')
+    dayjs.extend(localizedFormat)
+    const joiningDate = dayjs(customer.joining_date).format('LL')
 
     return (
         <>
             <tr>
                 <th scope="row">{index+1}</th>
-                <td><img src={customer.photo?customer.photo:user} alt="" /></td>
+                {/* <td><img src={customer.photo?customer.photo:user} alt="" /></td> */}
                 <td>{identity}</td>
-                <td>{customer.contactNumber?customer.contactNumber[0].desc:""}</td>
-                <td>{customer.orders}</td>
-                <td>${customer.totalAmount.toFixed(2)}</td>
-                <td>{customer.joiningDate}</td>
+                <td>{customer.contact.length > 0 ? customer.contact[0].phone : ""}</td>
+                <td>{customer.orderSummary[0].total_order}</td>
+                <td>${customer.orderSummary[0].total_amount}</td>
+                <td>{joiningDate}</td>
             </tr>
         </>
     );

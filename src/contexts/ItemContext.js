@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useContext,createContext } from "react"
+import { getCategories, getLogo, getProducts } from "../utils/network"
 
 const ItemContext = createContext()
 export function useItem(){
@@ -10,6 +11,7 @@ export function ItemContextProvider({children}){
     const [productChange, setProductChange] = useState(true)
     const [categoryChange, setCategoryChange] = useState(true)
     const [couponChange, setCouponChange] = useState(true)
+    const [logoChange, setLogoChange] = useState(true)
 
     const [loading,setLoading] = useState()
     const [categoryLoading, setCategoryLoading] = useState()
@@ -24,51 +26,75 @@ export function ItemContextProvider({children}){
     const [allcoupons, setAllcoupons] = useState([])
     const [coupons, setCoupons] = useState([])
 
+    const [logo, setLogo] = useState({})
+
     useEffect(() => {
         setLoading(true)
-        fetch('https://api.onimamzad.com/api/frontEnd/products')
-        .then(res => res.json())
+        getProducts()
         .then(data => {
             setProducts(data)
             setAllProducts(data)
             setLoading(false)
-        }).catch(e => {
-            setLoading(false)
-            alert(e.message)
         })
+        
+        // fetch('https://api.onimamzad.com/api/frontEnd/products')
+        // .then(res => res.json())
+        // .then(data => {
+        //     setProducts(data)
+        //     setAllProducts(data)
+        //     setLoading(false)
+        // }).catch(e => {
+        //     setLoading(false)
+        //     alert(e.message)
+        // })
     },[productChange])
 
     useEffect(() => {
+        setLoading(true)
+        getLogo()
+        .then(result => {
+            setLogo(result.img)
+            setLoading(false)
+        })
+    },[logoChange])
+
+    useEffect(() => {
         setCategoryLoading(true)
-        fetch('https://api.onimamzad.com/api/frontEnd/categories')
-        .then(res => res.json())
+        getCategories()
         .then(data => {
             setAllCategories(data)
             setCategories(data)
             setCategoryLoading(false)
         })
-        .catch(e => {
-            setCategoryLoading(false)
-            alert(e.message)
-        })
+        // fetch('https://api.onimamzad.com/api/frontEnd/categories')
+        // .then(res => res.json())
+        // .then(data => {
+        //     setAllCategories(data)
+        //     setCategories(data)
+        //     setCategoryLoading(false)
+        // })
+        // .catch(e => {
+        //     setCategoryLoading(false)
+        //     alert(e.message)
+        // })
     },[categoryChange])
 
-    useEffect(() => {
-        setCouponLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/coupons')
-        .then(res => res.json())
-        .then(data => {
-            setAllcoupons(data)
-            setCoupons(data)
-            setCouponLoading(false)
-        }).catch(e => {
-            setCouponLoading(false)
-            alert(e.message)
-        })
-    },[couponChange])
+    // useEffect(() => {
+    //     setCouponLoading(true)
+    //     fetch('https://pickbazar-clone.herokuapp.com/coupons')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setAllcoupons(data)
+    //         setCoupons(data)
+    //         setCouponLoading(false)
+    //     }).catch(e => {
+    //         setCouponLoading(false)
+    //         alert(e.message)
+    //     })
+    // },[couponChange])
 
     const value = {
-        loading, setLoading, allproducts, products, setProducts, productChange, setProductChange, categoryChange, setCategoryChange, allcategories, categories, setCategories, categoryLoading, setCategoryLoading, couponLoading, setCouponLoading, allcoupons, coupons, setCoupons, setCouponChange, couponChange
+        loading, setLoading, allproducts, products, setProducts, productChange, setProductChange, categoryChange, setCategoryChange, allcategories, categories, setCategories, categoryLoading, setCategoryLoading, couponLoading, setCouponLoading, allcoupons, coupons, setCoupons, setCouponChange, couponChange, logo, setLogo, logoChange, setLogoChange
     }
 
     return (

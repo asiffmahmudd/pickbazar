@@ -105,7 +105,7 @@ const Cart = () => {
                     </div>
                     
                     <div className="cart-expanded-footer mt-auto p-3">
-                        <CartVoucher totalPrice={totalPrice}></CartVoucher>
+                        {/* <CartVoucher totalPrice={totalPrice}></CartVoucher> */}
                         <Link to="/checkout" >
                             <button disabled={items?.length===0} className="hover-pointer border-0 w-100 checkout-btn d-flex justify-content-between align-items-center">
                                 <span className="checkout-text" onClick={(e) => items?.length===0 ? e.preventDefault(): ""}>

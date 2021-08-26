@@ -66,6 +66,17 @@ ul.react-multi-carousel-dot-list li.inactive{
     text-transform: capitalize;
 }
 
+.comment-input button, .collapse-btn{
+    background: #009e7f !important;
+    color: white !important;
+}
+
+.comment-section h6{
+    font-weight: 700;
+}
+
+
+
 @media(min-width:992px){
     .single-product .cstm-right-border{
         border-right: 1px solid #dee2e6;

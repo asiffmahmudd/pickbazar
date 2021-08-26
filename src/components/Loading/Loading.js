@@ -6,7 +6,7 @@ const Loading = ({loading}) => {
         <>
         {
             loading && 
-            <div className="text-center spinner-container mt-3 mb-3 d-flex justify-content-center align-items-center">
+            <div className="text-center spinner-container mb-3 d-flex justify-content-center align-items-center">
                 <div className="spinner-border" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>

@@ -62,12 +62,12 @@ const PaymentSection = ({register,errors, disable}) => {
                     </label>
                 </div>
             </div>
-            {errors.paymentMethod?.category === 'required' && <span className="text-danger">Payment method is required</span>}
+            {errors.paymentMethod?.type === 'required' && <span className="text-danger">Payment method is required</span>}
             {
                 showCard &&
                 <CardPayment></CardPayment>
             }
-            <div className="checkout-voucher mb-3 mt-3">
+            {/* <div className="checkout-voucher mb-3 mt-3">
                 {
                     showVoucher && !appliedCoupon &&
                     <div className="voucher-input-container">
@@ -94,7 +94,7 @@ const PaymentSection = ({register,errors, disable}) => {
                         {appliedCoupon.name} coupon applied <AiOutlineCloseCircle onClick={couponRemove} className="hover-pointer" color="rgb(255, 110, 110)"></AiOutlineCloseCircle>
                     </div>
                 }          
-            </div>
+            </div> */}
             
             <button type="submit" className="order-btn mt-5" disabled={disable}>Confirm Order</button>
         </div>

@@ -44,11 +44,11 @@ const AdminSidebar = ({setSidebarOpen}) => {
                         <FaUsers></FaUsers> Customers
                     </div>
                 </NavLink>
-                <NavLink to='/admin/coupons' exact>
+                {/* <NavLink to='/admin/coupons' exact>
                     <div className='admin-sidebar-item' >
                         <RiCoupon3Fill></RiCoupon3Fill> Coupons
                     </div>
-                </NavLink>
+                </NavLink> */}
                 <NavLink to='/admin/settings' exact>
                     <div className='admin-sidebar-item' >
                         <IoSettings></IoSettings> Settings

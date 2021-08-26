@@ -6,6 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useForm } from "react-hook-form";
 import Loading from '../Loading/Loading';
 import { useState } from "react";
+import { signup } from "../../utils/network";
 
 const SignUp = () => {
 
@@ -20,19 +21,25 @@ const SignUp = () => {
     const onSubmit = async data => {
         try{
             setLoading(true)
-            fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
+            signup(data)
             .then(result => {
                 setLoading(false)
                 signInWithEmail(result)
                 history.replace(from)
             })
+            // fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(res => res.json())
+            // .then(result => {
+            //     setLoading(false)
+            //     signInWithEmail(result)
+            //     history.replace(from)
+            // })
         }
         catch(e){
             setLoading(false)

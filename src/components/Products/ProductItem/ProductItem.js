@@ -29,7 +29,7 @@ const ProductItem = ({product}) => {
                         </>
                     }
                     {
-                        product.sale === 0 &&
+                        (product.sale == null || product.sale === 0) &&
                         <h5 className="card-title">${product.price}</h5>
                     }
                     <p className="card-text">{product.name}</p>

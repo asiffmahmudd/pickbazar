@@ -334,7 +334,7 @@ const orders = [
         discount: 20,
         paymentMethod:"Cash On Delivery",
         contact:"123-435-6780",
-        status:"failed",
+        status:"cancelled",
         products: [
             {
                 id:1,
@@ -400,7 +400,7 @@ const orders = [
         amount: 249.7,
         paymentMethod:"Cash On Delivery",
         contact:"567-353-5434",
-        status:"failed",
+        status:"cancelled",
         products: [
             {
                 id:2,

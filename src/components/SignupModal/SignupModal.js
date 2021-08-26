@@ -5,6 +5,7 @@ import { GrClose } from "react-icons/gr";
 import SocialLogIn from '../SocialLogin/SocialLogIn';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AuthContext';
+import { signup } from '../../utils/network';
 
 const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {    
 
@@ -28,19 +29,25 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
     const {signInWithEmail} = useAuth()
     const onSubmit = async data => {
         try{
-            fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(res => res.json())
+            signup(data)
             .then(result => {
                 reset()
                 signInWithEmail(result)
                 handleClose()
             })
+            // fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(res => res.json())
+            // .then(result => {
+            //     reset()
+            //     signInWithEmail(result)
+            //     handleClose()
+            // })
         }
         catch(e){
             alert(e.message)
