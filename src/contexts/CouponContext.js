@@ -42,7 +42,7 @@ export function CouponContextProvider({children}){
         localStorage.removeItem('coupon')   
     }
 
-    const value = {
+    const value = {   
         appliedCoupon, removeCoupon, error, setError, couponHandler, setAppliedCoupon
     }
 
