@@ -94,3 +94,9 @@ ul.react-multi-carousel-dot-list li.inactive{
         padding: 0 40px;
     }
 }
+
+@media (max-width: 450px){
+    .single-product-carousel-img{
+        width: 100%;
+    }
+}

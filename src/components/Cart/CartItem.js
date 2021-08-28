@@ -35,17 +35,17 @@ const CartItem = ({item}) => {
                     <div className="text-dark">{item.name}</div>
                     {
                         item.sale && item.sale > 0 &&
-                        <div className="theme-text">${Number(item.sale)?.toFixed(2)}</div>
+                        <div className="theme-text">৳{Number(item.sale)?.toFixed(2)}</div>
                     }
                     {
                         item.sale === 0 || item.sale === null &&
-                        <div className="theme-text">${Number(item.price).toFixed(2)}</div>
+                        <div className="theme-text">৳{Number(item.price).toFixed(2)}</div>
                     }
                 </div>
             </div>
             
             <div className="cart-item-price mr-2 ml-auto">
-                $
+                ৳
                 {
                     item.sale === 0 || item.sale === null &&
                     (Number(item.price)*Number(item.count)).toFixed(2)

@@ -48,23 +48,23 @@ const UserOrderDetails = ({orderDetails}) => {
                 <div className="col-lg-4 p-3">
                     <div className="d-flex justify-content-between">
                         <p className="details-title">Sub Total</p>
-                        <p>${Number(orderDetails?.total).toFixed(2)}</p>
+                        <p>৳{Number(orderDetails?.total).toFixed(2)}</p>
                     </div>
                     
                     <div className="d-flex justify-content-between">
                         <p className="details-title">Discount</p>
-                        <p>${orderDetails?.discount_amount ? orderDetails?.discount_amount : 0}</p>
+                        <p>৳{orderDetails?.discount_amount ? orderDetails?.discount_amount : 0}</p>
                     </div>
                     
                     <div className="d-flex justify-content-between">
                         <p className="details-title">Delivery Fee</p>
-                        <p>${orderDetails?.delivery_fee ? orderDetails?.delivery_fee : 0}</p>
+                        <p>৳{orderDetails?.delivery_fee ? orderDetails?.delivery_fee : 0}</p>
                     </div>
                     <div className="d-flex justify-content-between">
                         <p className="total"><strong>Total</strong></p>
                         <p>
                             <strong>
-                                $
+                                ৳
                                 {
                                     (Number(orderDetails?.total)-Number(orderDetails?.discount_amount)).toFixed(2)
                                 }
@@ -175,10 +175,10 @@ const UserOrderDetails = ({orderDetails}) => {
                                         </td>
                                         <td>
                                             <p>{pd.item_name}</p>
-                                            <p style={{color: 'rgb(0, 158, 127)'}}>${pd.sale> 0 ? pd.sale : pd.item_price}</p>
+                                            <p style={{color: 'rgb(0, 158, 127)'}}>৳{pd.sale> 0 ? pd.sale : pd.item_price}</p>
                                         </td>
                                         <td>{pd.item_quantity}</td>
-                                        <td>${pd.sale> 0 ? (pd.sale*pd.count).toFixed(2) : (Number(pd.item_quantity)*Number(pd.item_price)).toFixed(2)}</td>
+                                        <td>৳{pd.sale> 0 ? (pd.sale*pd.count).toFixed(2) : (Number(pd.item_quantity)*Number(pd.item_price)).toFixed(2)}</td>
                                     </tr>
                                 )
                             })

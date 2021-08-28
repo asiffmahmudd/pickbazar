@@ -87,7 +87,7 @@ const OrderItem = ({order}) => {
             <td>{identity}</td>
             <td>{orderDate}</td>
             <td>{order.address.length > 0 ? order.address[0].address : ""}</td>
-            <td>${(Number(order.total)).toFixed(2)}</td>
+            <td>৳{(Number(order.total)).toFixed(2)}</td>
             <td>{order.payment_method}</td>
             <td>{order.contact.length>0 ? order.contact[0].phone:""}</td>
             <td className="d-flex align-items-center">

@@ -36,7 +36,7 @@ const GroceryItem = ({product}) => {
             <div className="card shadow-sm">
                 <img className="card-img-top" src={product.img} alt="" />
                 <div className="card-body">
-                    <h5 className="card-title">${product.price}</h5>
+                    <h5 className="card-title">৳{product.price}</h5>
                     <p className="card-text">{product.name}</p>
                     {
                         !item?.count &&

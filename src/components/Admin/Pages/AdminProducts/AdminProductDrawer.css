@@ -231,27 +231,27 @@ svg.drawer-close  {
 }
 
 @media (min-width: 1400px){
-    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
-        width: 70%;
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 {
+        width: 25%;
     }
     
 }
 
 @media (min-width: 1200px) and (max-width: 1399px){
-    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
-        width: 75%;
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 {
+        width: 30%;
     }
 }
 
 @media (min-width: 993px) and (max-width: 1199px){
-    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
-        width: 80%;
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 {
+        width: 40%;
     }
     
 }
 
 @media (min-width: 769px) and (max-width: 991px){
-    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 {
         width: 100%;
     }
     svg.drawer-close{
@@ -265,7 +265,7 @@ svg.drawer-close  {
     .drawer .drawer-footer{
         padding:20px 10px;
     }
-    .drawer .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 {
         width: 100%;
     }
     svg.drawer-close{

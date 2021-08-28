@@ -34,7 +34,7 @@ const OrderReceived = () => {
                                 </div>
                                 <div className="order-amount order-info-item ">
                                     <p className="order-number-title">Total Amount</p>
-                                    <p className="order-number-para">${(totalPrice-discount).toFixed(2)}</p>
+                                    <p className="order-number-para">৳{(totalPrice-discount).toFixed(2)}</p>
                                 </div>
                                 <div className="order-method order-info-item">
                                     <p className="order-number-title">Payment Method</p>
@@ -89,7 +89,7 @@ const OrderReceived = () => {
                                         <p>Discount</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${discount.toFixed(2)}</p>
+                                        <p>৳{discount.toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="total-item order-details-item">
@@ -97,7 +97,7 @@ const OrderReceived = () => {
                                         <p>Sub Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${(totalPrice).toFixed(2)}</p>
+                                        <p>৳{(totalPrice).toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="order-time order-details-item mt-1">
@@ -113,7 +113,7 @@ const OrderReceived = () => {
                                         <p>Total</p>
                                     </div>
                                     <div className="order-details-para">
-                                        <p>${(totalPrice-discount).toFixed(2)}</p>
+                                        <p>৳{(totalPrice-discount).toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>

@@ -120,7 +120,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="card-info mt-5">
-                                <h4 className="revenue">${currentRevenue.toFixed(2)}</h4>
+                                <h4 className="revenue">৳{currentRevenue.toFixed(2)}</h4>
                                 <p className={"revenue-info mt-3 "+(previousRevenue <= currentRevenue ?"up":"down")}>
                                     {
                                         previousRevenue <= currentRevenue ?

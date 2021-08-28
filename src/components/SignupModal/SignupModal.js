@@ -28,29 +28,21 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
     const { register, handleSubmit,reset } = useForm();
     const {signInWithEmail} = useAuth()
     const onSubmit = async data => {
-        try{
-            signup(data)
-            .then(result => {
-                reset()
-                signInWithEmail(result)
-                handleClose()
-            })
-            // fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            // .then(res => res.json())
-            // .then(result => {
-            //     reset()
-            //     signInWithEmail(result)
-            //     handleClose()
-            // })
+        if(data.number || data.email){
+            try{
+                signup(data)
+                .then(result => {
+                    reset()
+                    signInWithEmail(result)
+                    handleClose()
+                })
+            }
+            catch(e){
+                alert(e.message)
+            }
         }
-        catch(e){
-            alert(e.message)
+        else{
+            alert("Please enter number or email")
         }
     };
 
@@ -82,13 +74,24 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
                     </div>
                     <div className="form-group">
                         <input 
+                            type="number" 
+                            className="cstm-input" 
+                            id="number" 
+                            aria-describedby="number" 
+                            {...register("number")}
+                            placeholder="Enter Number" 
+                            
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input 
                             type="email" 
                             className="cstm-input" 
                             id="email" 
                             aria-describedby="emailHelp" 
                             placeholder="Enter email" 
                             {...register("email")}
-                            required
+                            
                         />
                     </div>
                     <div className="form-group">
@@ -106,7 +109,7 @@ const SignupModal = ({signupIsOpen, handleClose, handleLoginOpen}) => {
                 
                 <p className="terms">By signing up, you agree to Pickbazar's <span className="terms-link">Terms &amp; Condtions</span></p>
                 
-                <SocialLogIn></SocialLogIn>
+                {/* <SocialLogIn></SocialLogIn> */}
                 
                 <p className="form-text modal-text text-center">Already have an account? <span className="theme-text underline" onClick={handleLoginOpen}> Login</span></p>
             </div>

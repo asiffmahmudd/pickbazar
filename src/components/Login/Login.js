@@ -67,7 +67,7 @@ const Login = () => {
                             <form className="login" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="form-group">
                                     <input 
-                                        type="email" 
+                                        type="text" 
                                         className="cstm-input" 
                                         id="email" 
                                         aria-describedby="emailHelp" 
@@ -89,7 +89,7 @@ const Login = () => {
                                 <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                             </form>
                             
-                            <UserSocialLogin></UserSocialLogin>
+                            {/* <UserSocialLogin></UserSocialLogin> */}
                             
                             <p className="form-text modal-text text-center">Don't have any account? <Link className="theme-text underline" to="/signup">Sign Up</Link></p>
                             <div className="forgot-password">

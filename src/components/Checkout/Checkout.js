@@ -108,7 +108,7 @@ const Checkout = () => {
     //     await fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             authorization: `Bearer ${localStorage.getItem('token')}`
+    //             authorization: `Bearer ৳{localStorage.getItem('token')}`
     //         }
     //     })
     //     .then(res => res.json())
@@ -121,7 +121,7 @@ const Checkout = () => {
     //             method: 'PUT',
     //             headers: {
     //                 'Content-Type': 'application/json',
-    //                 authorization: `Bearer ${localStorage.getItem('token')}`
+    //                 authorization: `Bearer ৳{localStorage.getItem('token')}`
     //             },
     //             body: JSON.stringify({totalAmount:totalAmount, orders:orders})
     //         })
@@ -175,7 +175,7 @@ const Checkout = () => {
         //     method: 'POST',
         //     headers: {
         //         'Content-Type': 'application/json',
-        //         authorization: `Bearer ${localStorage.getItem('token')}`
+        //         authorization: `Bearer ৳{localStorage.getItem('token')}`
         //     },
         //     body: JSON.stringify(data)
         // })
@@ -248,7 +248,7 @@ const Checkout = () => {
         // fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
         //     headers: {
         //         'Content-Type': 'application/json',
-        //         authorization: `Bearer ${localStorage.getItem('token')}`
+        //         authorization: `Bearer ৳{localStorage.getItem('token')}`
         //     }
         // })
         // .then(res => res.json())

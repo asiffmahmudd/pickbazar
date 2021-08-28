@@ -78,12 +78,12 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
                 <form className="login" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                         <input 
-                            type="email" 
+                            type="text" 
                             className="cstm-input" 
                             id="email" 
                             aria-describedby="emailHelp" 
                             {...register("email")}
-                            placeholder="Enter email" 
+                            placeholder="Enter email/phone" 
                             required
                         />
                     </div>
@@ -99,7 +99,7 @@ const LoginModal = ({loginIsOpen, handleClose, handleSignupOpen, handleResetOpen
                     </div>
                     <button type="submit" className="btn form-btn continue-btn bg-theme w-100">Continue</button>
                 </form>
-                <SocialLogIn handleClose={handleClose}></SocialLogIn>
+                {/* <SocialLogIn handleClose={handleClose}></SocialLogIn> */}
                 <p className="form-text modal-text text-center">Don't have any account? 
                     <span className="theme-text underline" onClick={handleSignupOpen}> Sign Up</span>
                 </p>

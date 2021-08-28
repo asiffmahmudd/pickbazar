@@ -19,13 +19,13 @@ const SubCategoryDrawer = ({filterWithCategory, setSubCategory, subCategoryList,
     return (
         <Drawer 
             className="sub-category-drawer drawer" 
-            anchor={anchorOpen > 768 ? "right" : "bottom"} 
+            anchor={anchorOpen > 768 ? "left" : "bottom"} 
             open={isSubCategoryDrawerOpen} 
             onClose={handleSubCategoryDrawerClose}
         > 
             <div className="container p-5">
                 <div className="row">
-                    <div className="hover-pointer" style={{position:'absolute', left:'10px', top: '10px'}}>
+                    <div className="hover-pointer" style={{position:'absolute', right:'10px', top: '10px'}}>
                         <AiOutlineCloseCircle onClick={handleSubCategoryDrawerClose} size={30} />
                     </div>
                     {

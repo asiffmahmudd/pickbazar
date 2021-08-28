@@ -101,7 +101,7 @@ const UserOrderAccordion = ({order,index}) => {
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p><strong>Total Price:</strong></p>
-                                <p><strong>${(order.total-discount_amount).toFixed(2)}</strong></p>
+                                <p><strong>৳{(order.total-discount_amount).toFixed(2)}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -117,19 +117,19 @@ const UserOrderAccordion = ({order,index}) => {
                         <div className="col-lg-12 p-3">
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Sub Total</p>
-                                <p>${order.total}</p>
+                                <p>৳{order.total}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Discount</p>
-                                <p>${discount_amount.toFixed(2)}</p>
+                                <p>৳{discount_amount.toFixed(2)}</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="details-title">Delivery Fee</p>
-                                <p>$0</p>
+                                <p>৳0</p>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p className="total"><strong>Total</strong></p>
-                                <p><strong>${(order.total-discount_amount).toFixed(2)}</strong></p>
+                                <p><strong>৳{(order.total-discount_amount).toFixed(2)}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -236,10 +236,10 @@ const UserOrderAccordion = ({order,index}) => {
                                                 </td>
                                                 <td>
                                                     <p>{pd.name}</p>
-                                                    <p style={{color: 'rgb(0, 158, 127)'}}>${pd.price}</p>
+                                                    <p style={{color: 'rgb(0, 158, 127)'}}>৳{pd.price}</p>
                                                 </td>
                                                 <td>{pd.count}</td>
-                                                <td>${(pd.count*pd.price).toFixed(2)}</td>
+                                                <td>৳{(pd.count*pd.price).toFixed(2)}</td>
                                             </tr>
                                         )
                                     })

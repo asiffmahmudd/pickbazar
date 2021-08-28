@@ -67,7 +67,7 @@ const Cart = () => {
                         <span className="item-count ml-1"> {items?.length} items</span>
                     </div>
                     <div className="price-container d-flex justify-content-center">
-                        <span className="price bg-white pt-2 pb-2 pl-4 pr-4">${totalPrice.toFixed(2)}</span>
+                        <span className="price bg-white pt-2 pb-2 pl-4 pr-4">৳{totalPrice.toFixed(2)}</span>
                     </div>
                 </div>
             }
@@ -112,7 +112,7 @@ const Cart = () => {
                                     Checkout
                                 </span>
                                 <span className="checkout-price" onClick={(e) => items?.length===0 ? e.preventDefault(): ""}>
-                                    ${totalPrice.toFixed(2)}
+                                    ৳{totalPrice.toFixed(2)}
                                 </span>
                             </button>
                         </Link>

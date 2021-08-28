@@ -22,7 +22,7 @@ const SingleProduct = () => {
 
     useEffect(() => {
         setProduct(allproducts.find(pd => Number(pd.id) === Number(productId.id)))
-        setRelated(allproducts?.filter(pd => pd.category === product?.category && Number(pd.id) !== Number(productId.id)))
+        setRelated(allproducts?.filter(pd => Number(pd.category_id) === Number(product?.category_id) && Number(pd.id) !== Number(productId.id)))
         window.scrollTo(0, 0)
     },[allproducts,product, productId.id])
     
@@ -45,13 +45,13 @@ const SingleProduct = () => {
                                 {
                                     product.sale > 0 &&
                                     <>
-                                        <s className="discount-price">${product.price}</s>
-                                        <h5 className="card-title d-inline-block ml-2">${product.sale}</h5> 
+                                        <s className="discount-price">৳{product.price}</s>
+                                        <h5 className="card-title d-inline-block ml-2">৳{product.sale}</h5> 
                                     </>
                                 }
                                 {
                                     product.sale === 0 &&
-                                    <h5 className="card-title">${product.price}</h5>
+                                    <h5 className="card-title">৳{product.price}</h5>
                                 }
                                 <p className="single-product-desc">{product.desc}</p>
                                 <ProductButton product={product}></ProductButton>

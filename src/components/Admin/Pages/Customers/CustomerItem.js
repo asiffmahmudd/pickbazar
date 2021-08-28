@@ -22,7 +22,7 @@ const CustomerItem = ({customer, index}) => {
                 <td>{identity}</td>
                 <td>{customer.contact.length > 0 ? customer.contact[0].phone : ""}</td>
                 <td>{customer.orderSummary[0].total_order}</td>
-                <td>${customer.orderSummary[0].total_amount}</td>
+                <td>৳{customer.orderSummary[0].total_amount}</td>
                 <td>{joiningDate}</td>
             </tr>
         </>

@@ -54,7 +54,7 @@ const SingleProductCarousel = ({product}) => {
                               
                             <img
                                 key={index}
-                                className="d-block" style={{margin:'0 auto'}}
+                                className="d-block single-product-carousel-img" style={{margin:'0 auto'}}
                                 src={item}
                                 alt="First slide"
                             />

@@ -17,7 +17,7 @@ const UserProfile = () => {
     //     fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             authorization: `Bearer ${localStorage.getItem('token')}`
+    //             authorization: `Bearer ৳{localStorage.getItem('token')}`
     //         }
     //     })
     //     .then(res => res.json())

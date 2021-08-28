@@ -98,7 +98,7 @@ const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselect
                 <td className="pt-3 pb-3">
                     
                     <div className="progress" style={{height:'4px'}}>
-                        <div className="progress-bar" role="progressbar" style={{width: `${percentage}%`, background:'rgb(0, 197, 141)'}} aria-valuenow={coupon.remainingCoupons} aria-valuemin="0" aria-valuemax={coupon.totalCoupons}></div>
+                        <div className="progress-bar" role="progressbar" style={{width: `৳{percentage}%`, background:'rgb(0, 197, 141)'}} aria-valuenow={coupon.remainingCoupons} aria-valuemin="0" aria-valuemax={coupon.totalCoupons}></div>
                     </div>
                     <div className="coupon-td-info">
                         {coupon.remainingCoupons} of {coupon.totalCoupons} coupons remaining

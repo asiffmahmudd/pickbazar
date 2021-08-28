@@ -60,7 +60,7 @@ const Coupons = () => {
 
     const handleSingleDelete = (id) => {
         setCouponLoading(true)
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteCoupon/${id}`,{
+        fetch(`https://pickbazar-clone.herokuapp.com/deleteCoupon/৳{id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

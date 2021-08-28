@@ -98,7 +98,7 @@ const AdminProducts = () => {
             setLoading(false)
         })
 
-        // fetch(`https://pickbazar-clone.herokuapp.com/deleteProduct/${id}`,{
+        // fetch(`https://pickbazar-clone.herokuapp.com/deleteProduct/৳{id}`,{
         //     method: 'DELETE'
         // })
         // .then(res => res.json())

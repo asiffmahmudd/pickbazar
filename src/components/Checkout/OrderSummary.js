@@ -36,7 +36,7 @@ const OrderSummary = ({items}) => {
                                     <span>{item.name}</span>
                                 </div>
                                 <div>
-                                    <span>${item.sale?(item.sale*item.count).toFixed(2):(item.price*item.count).toFixed(2)}</span>    
+                                    <span>৳{item.sale?(item.sale*item.count).toFixed(2):(item.price*item.count).toFixed(2)}</span>    
                                 </div>  
                             </div>
                         )
@@ -56,22 +56,22 @@ const OrderSummary = ({items}) => {
                 <hr />
                 <div className="sub-total summary-item">
                     <span>Sub Total ({items.length} items)</span>
-                    <span>${totalPrice.toFixed(2)}</span>
+                    <span>৳{totalPrice.toFixed(2)}</span>
                 </div>
                 {
                     appliedCoupon &&
                     <div className="discount summary-item">
                         <span>Discount ({appliedCoupon.code})</span>
-                        <span>${discount.toFixed(2)}</span>
+                        <span>৳{discount.toFixed(2)}</span>
                     </div>
                 }
                 <div className="shipping summary-item">
                     <span>Shipping fee</span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span>৳{shipping.toFixed(2)}</span>
                 </div>
                 <div className="sub-total summary-item">
                     <span>Total</span>
-                    <span>${(totalPrice+shipping-discount).toFixed(2)}</span>
+                    <span>৳{(totalPrice+shipping-discount).toFixed(2)}</span>
                 </div>
             </div>
         </div>

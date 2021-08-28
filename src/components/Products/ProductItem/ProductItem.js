@@ -23,14 +23,14 @@ const ProductItem = ({product}) => {
                     {
                         product.sale > 0 &&
                         <>
-                            <h5 className="card-title">${product.sale}</h5> 
-                            <span className="discount-price">${product.price}</span>
+                            <h5 className="card-title">৳{product.sale}</h5> 
+                            <span className="discount-price">৳{product.price}</span>
                             
                         </>
                     }
                     {
                         (product.sale == null || product.sale === 0) &&
-                        <h5 className="card-title">${product.price}</h5>
+                        <h5 className="card-title">৳{product.price}</h5>
                     }
                     <p className="card-text">{product.name}</p>
                     <ProductButton product={product}></ProductButton>

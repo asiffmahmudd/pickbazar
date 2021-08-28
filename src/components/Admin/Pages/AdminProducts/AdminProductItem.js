@@ -63,14 +63,14 @@ const AdminProductItem = ({product, products, deselectAll, handleSingleDelete, i
                     {
                         product?.discount > 0 &&
                         <>
-                            <h5 className="card-title">${product.sale}</h5> 
-                            <span className="discount-price">${product.price}</span>
+                            <h5 className="card-title">৳{product.sale}</h5> 
+                            <span className="discount-price">৳{product.price}</span>
                             
                         </>
                     }
                     {
                         (product.sale == null || product.sale === 0) &&
-                        <h5 className="card-title">${product.price}</h5>
+                        <h5 className="card-title">৳{product.price}</h5>
                     }
                     </div>
                     <div className="d-flex justify-content-between align-items-center" style={{height:'50px'}}>

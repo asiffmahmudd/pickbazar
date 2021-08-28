@@ -19,31 +19,23 @@ const SignUp = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     const onSubmit = async data => {
-        try{
-            setLoading(true)
-            signup(data)
-            .then(result => {
+        if(data.number || data.email){
+            try{
+                setLoading(true)
+                signup(data)
+                .then(result => {
+                    setLoading(false)
+                    signInWithEmail(result)
+                    history.replace(from)
+                })
+            }
+            catch(e){
                 setLoading(false)
-                signInWithEmail(result)
-                history.replace(from)
-            })
-            // fetch('https://api.onimamzad.com/api/frontEnd/userRegister', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            // .then(res => res.json())
-            // .then(result => {
-            //     setLoading(false)
-            //     signInWithEmail(result)
-            //     history.replace(from)
-            // })
+                alert(e.message)
+            }
         }
-        catch(e){
-            setLoading(false)
-            alert(e.message)
+        else{
+            alert("Please enter number or email")
         }
     };
 
@@ -66,6 +58,17 @@ const SignUp = () => {
                                         aria-describedby="name" 
                                         {...register("name")}
                                         placeholder="Enter name" 
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input 
+                                        type="number" 
+                                        className="cstm-input" 
+                                        id="number" 
+                                        aria-describedby="number" 
+                                        {...register("number")}
+                                        placeholder="Enter Number" 
                                         required
                                     />
                                 </div>
@@ -95,7 +98,7 @@ const SignUp = () => {
                             
                             <p className="terms">By signing up, you agree to Pickbazar's <span className="terms-link">Terms &amp; Condtions</span></p>
                             
-                            <UserSocialLogin></UserSocialLogin>
+                            {/* <UserSocialLogin></UserSocialLogin> */}
                             
                             <p className="form-text modal-text text-center">Already have an account? <Link className="theme-text underline" to="/login">Login</Link></p>
                         </div>

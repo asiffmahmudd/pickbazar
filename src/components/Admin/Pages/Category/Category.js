@@ -70,7 +70,7 @@ const Category = () => {
         })
 
 
-        // fetch(`https://pickbazar-clone.herokuapp.com/deleteCategory/${id}`,{
+        // fetch(`https://pickbazar-clone.herokuapp.com/deleteCategory/৳{id}`,{
         //     method: 'DELETE'
         // })
         // .then(res => res.json())
