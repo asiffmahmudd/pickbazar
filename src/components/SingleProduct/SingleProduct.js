@@ -40,7 +40,7 @@ const SingleProduct = () => {
                             <div className="p-4">
                                 <h3 className="single-product-title">{product.name}</h3>
                                 {
-                                    product.sale > 0 &&
+                                    product.sale > 0 && 
                                     <>
                                         <s className="discount-price">${product.price}</s>
                                         <h5 className="card-title d-inline-block ml-2">${product.sale}</h5> 
