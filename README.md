@@ -10,7 +10,7 @@
     <li>Sorting and filter option in admin</li>
     <li>Category sorting for users</li>
     <li>Sign up, login using google, facebook and email</li>
-    <li>Notification system for admin</li>
+    <li>Notification system for admin</li> 
   </ul>
 </h3>
 <h3>Technologies used: React, Redux, Stripe, React-Router, React-hook-form, react-dropzone, Express, NodeJs, MongoDB, Bootstrap, JSX, CSS, Firebase, Heroku</h3>
