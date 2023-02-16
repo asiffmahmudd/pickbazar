@@ -24,7 +24,7 @@ const AdminProducts = () => {
     const handleBulkDelete = () => {
         setLoading(true)
         const selectedIds = selected.map(item => item._id) 
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkProduct/`,{
+        fetch(serverUrl + `/deleteBulkProduct/`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ const AdminProducts = () => {
 
     const handleSingleDelete = (id) => {
         setLoading(true)
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteProduct/${id}`,{
+        fetch(serverUrl+`/deleteProduct/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

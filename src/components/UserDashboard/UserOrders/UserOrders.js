@@ -8,6 +8,7 @@ import UserOrderAccordion from './UserOrderAccordion';
 import { useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import Loading from '../../Loading/Loading';
+import { serverUrl } from '../../../baseURL';
 
 const UserOrders = () => {
     const {loggedInUser} = useAuth()
@@ -18,7 +19,7 @@ const UserOrders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch(`https://pickbazar-clone.herokuapp.com/orders/`+userId,{
+        fetch(serverUrl`/orders/`+userId,{
             method: 'GET',
             headers: { 
                 'Content-Type': 'application/json',

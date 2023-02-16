@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import DeleteBar from '../Category/DeleteBar';
 import { useItem } from '../../../../contexts/ItemContext';
 import Loading from '../../../Loading/Loading';
+import { serverUrl } from '../../../../baseURL';
 
 const Coupons = () => {
 
@@ -34,7 +35,7 @@ const Coupons = () => {
     const handleBulkDelete = () => {
         setCouponLoading(true)
         const selectedIds = selected.map(item => item._id) 
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteBulkCoupon/`,{
+        fetch(serverUrl+`/deleteBulkCoupon/`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +61,7 @@ const Coupons = () => {
 
     const handleSingleDelete = (id) => {
         setCouponLoading(true)
-        fetch(`https://pickbazar-clone.herokuapp.com/deleteCoupon/${id}`,{
+        fetch(serverUrl`/deleteCoupon/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())
