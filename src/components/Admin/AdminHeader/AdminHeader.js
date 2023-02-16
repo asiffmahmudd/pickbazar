@@ -10,6 +10,7 @@ import AdminProductDrawer from '../Pages/AdminProducts/AdminProductDrawer';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { serverUrl } from '../../../baseURL';
 
 const AdminHeader = ({setSidebarOpen}) => {
     const {isProductDrawerOpen, handleProductDrawerOpen, handleProductDrawerClose} = useProductDrawer()
@@ -18,7 +19,7 @@ const AdminHeader = ({setSidebarOpen}) => {
     const [notifications, setNotifications] = useState([])
     const [unreadNotifications, setUnreadNotifications] = useState(0)
     useEffect(() => {
-        fetch('https://pickbazar-clone.herokuapp.com/notifications')
+        fetch(serverUrl + '/notifications')
         .then(res => res.json())
         .then(result =>{
             calculateUnread(result)
@@ -38,7 +39,7 @@ const AdminHeader = ({setSidebarOpen}) => {
 
     const handleNotificationRead = (e, index) => {
         if(notifications[index].unread === true){
-            fetch('https://pickbazar-clone.herokuapp.com/updateNotification/'+notifications[index]._id,{
+            fetch(serverUrl + '/updateNotification/'+notifications[index]._id,{
                 method: 'PUT'
             })
             .then(res=>res.json())
@@ -54,7 +55,7 @@ const AdminHeader = ({setSidebarOpen}) => {
     }
 
     const clearNotifications = () =>{
-        fetch('https://pickbazar-clone.herokuapp.com/deleteNotifications',{
+        fetch(serverUrl + '/deleteNotifications',{
             method: 'DELETE'
         })
         .then(res=>res.json())
@@ -66,7 +67,7 @@ const AdminHeader = ({setSidebarOpen}) => {
     }
 
     const markAllRead = () =>{
-        fetch('https://pickbazar-clone.herokuapp.com/updateNotifications',{
+        fetch(serverUrl + '/updateNotifications',{
             method: 'PUT'
         })
         .then(res=>res.json())

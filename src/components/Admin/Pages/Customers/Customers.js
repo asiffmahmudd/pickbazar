@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { serverUrl } from '../../../../baseURL';
 import Loading from '../../../Loading/Loading';
 import AdminLayout from '../../AdminLayout/AdminLayout';
 import { useForceUpdate } from '../AdminProducts/AdminProducts';
@@ -15,7 +16,7 @@ const Customers = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/customers')
+        fetch(serverUrl + '/customers')
         .then(res => res.json())
         .then(result => {
             setLoading(false)

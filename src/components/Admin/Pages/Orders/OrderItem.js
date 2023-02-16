@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { VscCircleFilled } from "react-icons/vsc";
+import { serverUrl } from '../../../../baseURL';
 import Loading from '../../../Loading/Loading';
 
 const OrderItem = ({order,index}) => {
@@ -27,7 +28,7 @@ const OrderItem = ({order,index}) => {
         setLoading(true)
         setStatusColor(selectColor(event.target.value))
         order.status = event.target.value
-        fetch('https://pickbazar-clone.herokuapp.com/updateOrderStatus/'+order._id, {
+        fetch(serverUrl + '/updateOrderStatus/'+order._id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

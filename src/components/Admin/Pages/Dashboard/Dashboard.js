@@ -8,16 +8,17 @@ import { BsArrowUp } from "react-icons/bs";
 import { BsArrowDown } from "react-icons/bs";
 import './Dashboard.css';
 import Loading from '../../../Loading/Loading';
+import { serverUrl } from '../../../../baseURL';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/orders')
+        fetch(serverUrl + '/orders')
         .then(res => res.json())
         .then(orders =>{
-            fetch('https://pickbazar-clone.herokuapp.com/customers')
+            fetch(serverUrl + '/customers')
             .then(res => res.json())
             .then(customers => {
                 calculate(orders, customers)

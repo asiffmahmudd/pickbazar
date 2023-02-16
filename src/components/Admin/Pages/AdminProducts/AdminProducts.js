@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Loading from '../../../Loading/Loading';
 import { useItem } from '../../../../contexts/ItemContext';
+import { serverUrl } from '../../../../baseURL';
 
 export function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
@@ -171,7 +172,7 @@ const AdminProducts = () => {
     }
 
     const handleSearchWithValue = (searchValue) => {
-        let apiURL = 'https://pickbazar-clone.herokuapp.com/products/'+searchValue
+        let apiURL = serverUrl + '/products/'+searchValue
         setSearchLoading(true)
         return fetch(apiURL)
         .then(res => res.json())
@@ -201,7 +202,7 @@ const AdminProducts = () => {
         }
         else if(e.which === 13){
             setSearch(e.target.value)
-            apiURL = 'https://pickbazar-clone.herokuapp.com/products/'+e.target.value
+            apiURL = serverUrl + '/products/'+e.target.value
             setSearchLoading(true)
             fetch(apiURL)
             .then(res => res.json())

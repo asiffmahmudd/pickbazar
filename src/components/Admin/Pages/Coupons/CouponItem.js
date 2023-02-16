@@ -6,6 +6,7 @@ import { useState } from 'react';
 import CouponDrawer from './CouponDrawer';
 import { useEffect } from 'react';
 import { useItem } from '../../../../contexts/ItemContext';
+import { serverUrl } from '../../../../baseURL';
 
 const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselectAll, selected, handleSingleDelete}) => {
 
@@ -26,7 +27,7 @@ const CouponItem = ({coupon, coupons, index, isAllChecked, setSelected, deselect
         setCouponLoading(true)
         coupon.status = event.target.value
         setStatusColor(selectColor(event.target.value))
-        fetch('https://pickbazar-clone.herokuapp.com/updateCouponStatus/'+coupon._id, {
+        fetch(serverUrl + '/updateCouponStatus/'+coupon._id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

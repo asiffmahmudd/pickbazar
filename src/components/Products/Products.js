@@ -8,6 +8,7 @@ import { useItem } from '../../contexts/ItemContext';
 import Loading from '../Loading/Loading';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { serverUrl } from '../../baseURL';
 
 const Products = ({selectedCategory}) => {
   const searchQuery = useParams().search
@@ -25,7 +26,8 @@ const Products = ({selectedCategory}) => {
     }
     else if(searchQuery){
       setLoading(true)
-      fetch('https://pickbazar-clone.herokuapp.com/products/'+searchQuery)
+      console.log(serverUrl)
+      fetch(serverUrl +'/products/'+searchQuery)
       .then(res => res.json())
       .then(result =>{
         setLoading(false)

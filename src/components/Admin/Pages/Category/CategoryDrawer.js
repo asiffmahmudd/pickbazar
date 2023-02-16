@@ -6,6 +6,7 @@ import './Category.css'
 import {useDropzone} from 'react-dropzone';
 import { useForm } from "react-hook-form";
 import { useItem } from '../../../../contexts/ItemContext';
+import { serverUrl } from '../../../../baseURL';
 
 const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClose}) => {
 
@@ -30,10 +31,10 @@ const CategoryDrawer = ({category, isCategoryDrawerOpen, handleCategoryDrawerClo
     const saveToDatabase = (data) =>{
         let apiURL = ""
         if(!category){
-            apiURL = 'https://pickbazar-clone.herokuapp.com/addCategory'
+            apiURL = serverUrl + '/addCategory'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCategory/'+category._id
+            apiURL = serverUrl + '/updateCategory/'+category._id
         }
         fetch(apiURL, {
             method: category? 'PUT' : 'POST',

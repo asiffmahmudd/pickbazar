@@ -6,6 +6,7 @@ import OrderItem from './OrderItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Loading from '../../../Loading/Loading';
+import { serverUrl } from '../../../../baseURL';
 
 const Orders = () => {
     
@@ -15,7 +16,7 @@ const Orders = () => {
 
     useEffect(()=> {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/orders')
+        fetch(serverUrl + '/orders')
         .then(res => res.json())
         .then(result => {
             setAllOrders(result)

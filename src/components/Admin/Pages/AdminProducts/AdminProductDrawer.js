@@ -9,6 +9,7 @@ import { Multiselect } from 'multiselect-react-dropdown';
 import categories from '../../../../data/categories';
 import tags from '../../../../data/tags';
 import { useItem } from '../../../../contexts/ItemContext';
+import { serverUrl } from '../../../../baseURL';
 
 const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerOpen}) => {
 
@@ -49,10 +50,10 @@ const AdminProductDrawer = ({product, handleProductDrawerClose, isProductDrawerO
     const saveToDatabase = (data) => {
         let apiURL = ""
         if(!product){
-            apiURL = 'https://pickbazar-clone.herokuapp.com/addproduct'
+            apiURL = serverUrl + '/addproduct'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateProduct/'+product._id
+            apiURL = serverUrl + '/updateProduct/'+product._id
         }
         fetch(apiURL, {
             method: product? 'PUT' : 'POST',

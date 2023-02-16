@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useContext,createContext } from "react"
+import { serverUrl } from "../baseURL"
 
 const ItemContext = createContext()
 export function useItem(){
@@ -26,7 +27,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/products')
+        fetch(serverUrl + '/products')
         .then(res => res.json())
         .then(data => {
             setProducts(data)
@@ -40,7 +41,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setCategoryLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/categories')
+        fetch(serverUrl + '/categories')
         .then(res => res.json())
         .then(data => {
             setAllCategories(data)
@@ -55,7 +56,7 @@ export function ItemContextProvider({children}){
 
     useEffect(() => {
         setCouponLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/coupons')
+        fetch(serverUrl + '/coupons')
         .then(res => res.json())
         .then(data => {
             setAllcoupons(data)

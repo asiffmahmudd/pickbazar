@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { BiPlus } from "react-icons/bi";
+import { serverUrl } from '../../baseURL';
 import { useAuth } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import AddContactModal from './AddContactModal';
@@ -44,7 +45,7 @@ const ContactSection = ({register,errors, customer}) => {
 
     const updateNumbersInDatabase = (newList) => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerContact/'+loggedInUser.uid, {
+        fetch(serverUrl + '/updateCustomerContact/'+loggedInUser.uid, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

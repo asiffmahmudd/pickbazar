@@ -32,9 +32,9 @@ import { ItemContextProvider } from './contexts/ItemContext';
 import VerifyEmail from './components/VerfiyEmail/VerifyEmail';
 import VerifyRoute from './components/VerifyRoute/VerifyRoute';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import { getBaseUrl } from './baseURL';
 
 function App() {
-  
   return (
     <Provider store={store}>
       <ItemContextProvider>

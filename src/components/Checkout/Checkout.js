@@ -16,6 +16,7 @@ import Loading from '../Loading/Loading';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCoupon } from '../../contexts/CouponContext';
 import UserDashboardHeader from '../UserDashboard/UserDashboardHeader/UserDashboardHeader';
+import { serverUrl } from '../../baseURL';
 
 async function payWithCard(){
     const paymentInfo = await handleSubmit();
@@ -85,7 +86,7 @@ const Checkout = () => {
             }
         })
         items.map(async item => {
-            await fetch('https://pickbazar-clone.herokuapp.com/updateProductQuantity', {
+            await fetch(serverUrl + '/updateProductQuantity', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +105,7 @@ const Checkout = () => {
     }
 
     const updateCustomerData = async () =>{
-        await fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
+        await fetch(serverUrl + '/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`
@@ -116,7 +117,7 @@ const Checkout = () => {
             const currentOrder = result[0].orders || 0
             const totalAmount = currentAmount + totalPrice - discount
             const orders = currentOrder + 1
-            await fetch('https://pickbazar-clone.herokuapp.com/updateCustomerOrder/'+loggedInUser.uid,{
+            await fetch(serverUrl + '/updateCustomerOrder/'+loggedInUser.uid,{
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +155,7 @@ const Checkout = () => {
         setOrderLoading(true)
         updateProduct(items)
         updateCustomerData()
-        fetch('https://pickbazar-clone.herokuapp.com/addOrder',{
+        fetch(serverUrl + '/addOrder',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -177,7 +178,7 @@ const Checkout = () => {
                     date: dayjs().format('lll'),
                     unread: true
                 }
-                fetch('https://pickbazar-clone.herokuapp.com/addNotification',{
+                fetch(serverUrl + '/addNotification',{
                     method: 'POST',    
                     headers:{
                         'Content-Type':'application/json'
@@ -202,7 +203,7 @@ const Checkout = () => {
         
         if(appliedCoupon){
             setCouponLoading(true)
-            fetch('https://pickbazar-clone.herokuapp.com/updateCoupon/'+appliedCoupon._id, {
+            fetch(serverUrl + '/updateCoupon/'+appliedCoupon._id, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -228,7 +229,7 @@ const Checkout = () => {
     useEffect(() => {
         console.log(localStorage.getItem('token'))
         setCustomerLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
+        fetch(serverUrl + '/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`

@@ -3,6 +3,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { GrClose } from "react-icons/gr";
 import { useForm } from "react-hook-form";
 import { useItem } from '../../../../contexts/ItemContext';
+import { serverUrl } from '../../../../baseURL';
 
 const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => {
 
@@ -22,10 +23,10 @@ const CouponDrawer = ({coupon, isCouponDrawerOpen, handleCouponDrawerClose}) => 
         data.creation = dayjs().format('LL')
         let apiURL = ""
         if(!coupon){
-            apiURL = 'https://pickbazar-clone.herokuapp.com/addCoupon'
+            apiURL = serverUrl + '/addCoupon'
         }
         else{
-            apiURL = 'https://pickbazar-clone.herokuapp.com/updateCoupon/'+coupon._id
+            apiURL = serverUrl + '/updateCoupon/'+coupon._id
         }
 
         fetch(apiURL, {

@@ -6,6 +6,7 @@ import ProfileContactSection from './ProfileContactSection';
 import { useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import Loading from '../../Loading/Loading';
+import { serverUrl } from '../../../baseURL';
 
 const UserProfile = () => {
 
@@ -14,7 +15,7 @@ const UserProfile = () => {
     const [customerLoading, setCustomerLoading] = useState(false)
     useEffect(() => {
         setCustomerLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/customer/'+loggedInUser.uid,{
+        fetch(serverUrl + '/customer/'+loggedInUser.uid,{
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('token')}`

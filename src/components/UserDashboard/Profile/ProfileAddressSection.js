@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import Loading from '../../Loading/Loading';
 import ProfileAddressItem from './ProfileAddressItem';
+import { serverUrl } from '../../../baseURL';
 
 const ProfileAddressSection = ({customer}) => {
 
@@ -42,7 +43,7 @@ const ProfileAddressSection = ({customer}) => {
 
     const updateAddressInDatabase = (newList) => {
         setLoading(true)
-        fetch('https://pickbazar-clone.herokuapp.com/updateCustomerAddress/'+loggedInUser.uid, {
+        fetch(serverUrl + '/updateCustomerAddress/'+loggedInUser.uid, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

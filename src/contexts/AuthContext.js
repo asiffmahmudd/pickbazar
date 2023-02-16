@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import firebase from "firebase/app";
 import { auth } from '../utils/firbaseConfig';
+import { serverUrl } from '../baseURL';
 
 const AuthContext = createContext();
 export function useAuth(){
@@ -81,7 +82,7 @@ export function AuthProvider({children}) {
             orders: 0 
         }
         
-        return fetch('https://pickbazar-clone.herokuapp.com/addCustomer/', {
+        return fetch(serverUrl + '/addCustomer/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
